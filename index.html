@@ -1,429 +1,85 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CreatorHub - Plataforma de Creadores</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CreatorHub Premium</title>
+    <style>
+        :root {
+            --primary: #00c6ff;
+            --bg: #0b0f19;
+            --card: #151b2d;
+            --text: #ffffff;
+        }
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
+        body { background: var(--bg); color: var(--text); line-height: 1.6; }
 
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Poppins',sans-serif;
-}
+        /* Header */
+        header { background: #0b0f19; padding: 1rem 5%; display: flex; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #2d3748; }
+        .logo { font-weight: 800; color: var(--primary); font-size: 1.5rem; }
 
-body{
-background:#0f172a;
-color:#fff;
-}
+        /* Feed Estilo OnlyFans */
+        .feed { max-width: 600px; margin: 2rem auto; padding: 0 1rem; }
+        .post-card { background: var(--card); border-radius: 12px; margin-bottom: 2rem; overflow: hidden; border: 1px solid #2d3748; }
+        .post-header { padding: 15px; display: flex; align-items: center; gap: 10px; }
+        .avatar-mini { width: 40px; height: 40px; background: #334155; border-radius: 50%; }
+        
+        /* Contenido Bloqueado (Blur) */
+        .media-container { width: 100%; height: 350px; background: #000; position: relative; display: flex; align-items: center; justify-content: center; }
+        .locked-media { filter: blur(15px); width: 100%; height: 100%; background: linear-gradient(45deg, #1e293b, #0f172a); }
+        .lock-overlay { position: absolute; text-align: center; }
+        
+        .btn-subscribe { background: var(--primary); color: #000; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 10px; }
 
-header{
-background:linear-gradient(135deg,#00c6ff,#0072ff);
-padding:15px 30px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-position:sticky;
-top:0;
-z-index:1000;
-}
+        /* Footer Sticky (Móvil) */
+        .mobile-sticky-bar { position: fixed; bottom: 0; width: 100%; background: var(--card); padding: 15px; text-align: center; border-top: 2px solid var(--primary); }
 
-.logo{
-font-size:1.8rem;
-font-weight:700;
-}
-
-nav a{
-color:white;
-text-decoration:none;
-margin-left:20px;
-font-weight:500;
-}
-
-.hero{
-padding:80px 20px;
-text-align:center;
-background:linear-gradient(to bottom,#0f172a,#111827);
-}
-
-.hero h1{
-font-size:3rem;
-margin-bottom:15px;
-}
-
-.hero p{
-max-width:700px;
-margin:auto;
-opacity:.8;
-margin-bottom:25px;
-}
-
-.btn{
-display:inline-block;
-padding:12px 25px;
-border-radius:50px;
-background:#00c6ff;
-color:white;
-text-decoration:none;
-font-weight:600;
-transition:.3s;
-}
-
-.btn:hover{
-transform:translateY(-3px);
-}
-
-.stats{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-gap:20px;
-padding:40px 20px;
-max-width:1100px;
-margin:auto;
-}
-
-.stat{
-background:#1e293b;
-padding:25px;
-border-radius:15px;
-text-align:center;
-}
-
-.stat h2{
-color:#00c6ff;
-font-size:2rem;
-}
-
-.section-title{
-text-align:center;
-margin:60px 0 30px;
-font-size:2rem;
-}
-
-.creators{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-padding:20px;
-max-width:1200px;
-margin:auto;
-}
-
-.card{
-background:#1e293b;
-border-radius:20px;
-overflow:hidden;
-transition:.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-}
-
-.banner{
-height:120px;
-background:linear-gradient(45deg,#00c6ff,#0072ff);
-}
-
-.avatar{
-width:90px;
-height:90px;
-border-radius:50%;
-background:white;
-margin:-45px auto 10px;
-border:4px solid #1e293b;
-}
-
-.card-content{
-padding:15px;
-text-align:center;
-}
-
-.card h3{
-margin-bottom:5px;
-}
-
-.card p{
-font-size:.9rem;
-opacity:.7;
-margin-bottom:15px;
-}
-
-.price{
-font-size:1.2rem;
-font-weight:bold;
-color:#00c6ff;
-margin-bottom:10px;
-}
-
-.gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-padding:20px;
-max-width:1200px;
-margin:auto;
-}
-
-.post{
-background:#1e293b;
-padding:20px;
-border-radius:15px;
-}
-
-.post-img{
-height:180px;
-background:#334155;
-border-radius:10px;
-margin-bottom:15px;
-}
-
-.features{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-padding:20px;
-max-width:1200px;
-margin:auto;
-}
-
-.feature{
-background:#1e293b;
-padding:25px;
-border-radius:15px;
-text-align:center;
-}
-
-.pricing{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:25px;
-padding:20px;
-max-width:1000px;
-margin:auto;
-}
-
-.plan{
-background:#1e293b;
-padding:30px;
-border-radius:20px;
-text-align:center;
-}
-
-.plan h3{
-margin-bottom:10px;
-}
-
-.plan-price{
-font-size:2rem;
-color:#00c6ff;
-margin:15px 0;
-}
-
-footer{
-margin-top:60px;
-padding:30px;
-text-align:center;
-background:#020617;
-}
-
-input{
-width:100%;
-padding:12px;
-border:none;
-border-radius:10px;
-margin-bottom:10px;
-}
-
-.subscribe{
-max-width:500px;
-margin:30px auto;
-padding:20px;
-}
-
-@media(max-width:768px){
-.hero h1{
-font-size:2rem;
-}
-}
-</style>
+        @media (min-width: 768px) {
+            .mobile-sticky-bar { display: none; }
+        }
+    </style>
 </head>
-
 <body>
 
 <header>
-<div class="logo">CreatorHub</div>
-<nav>
-<a href="#">Inicio</a>
-<a href="#">Creadores</a>
-<a href="#">Explorar</a>
-<a href="#">Premium</a>
-</nav>
+    <div class="logo">CreatorHub</div>
+    <nav>Perfil | Explorar</nav>
 </header>
 
-<section class="hero">
-<h1>Apoya a tus Creadores Favoritos</h1>
-<p>
-Accede a contenido exclusivo, publicaciones premium,
-videos, cursos, música, fotografía y mucho más.
-</p>
-<a href="#" class="btn">Explorar Creadores</a>
-</section>
+<main class="feed">
+    <div class="post-card">
+        <div class="post-header">
+            <div class="avatar-mini"></div>
+            <strong>Ana Fitness</strong>
+        </div>
+        <div class="media-container">
+            <div class="locked-media"></div>
+            <div class="lock-overlay">
+                <p>🔒 Contenido exclusivo</p>
+                <a href="#" class="btn-subscribe">Suscribirse para ver</a>
+            </div>
+        </div>
+    </div>
 
-<section class="stats">
-<div class="stat">
-<h2>1,250+</h2>
-<p>Creadores</p>
+    <div class="post-card">
+        <div class="post-header">
+            <div class="avatar-mini"></div>
+            <strong>Carlos Music</strong>
+        </div>
+        <div class="media-container">
+            <div class="locked-media"></div>
+            <div class="lock-overlay">
+                <p>🔒 Suscríbete para acceder al audio</p>
+                <a href="#" class="btn-subscribe">Suscribirse</a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div class="mobile-sticky-bar">
+    <a href="#" class="btn-subscribe" style="width: 90%;">Desbloquear todo el contenido</a>
 </div>
-
-<div class="stat">
-<h2>45K+</h2>
-<p>Suscriptores</p>
-</div>
-
-<div class="stat">
-<h2>120K+</h2>
-<p>Publicaciones</p>
-</div>
-
-<div class="stat">
-<h2>$250K</h2>
-<p>Pagado a Creadores</p>
-</div>
-</section>
-
-<h2 class="section-title">Creadores Destacados</h2>
-
-<section class="creators">
-
-<div class="card">
-<div class="banner"></div>
-<div class="avatar"></div>
-<div class="card-content">
-<h3>Ana Fitness</h3>
-<p>Rutinas y entrenamiento</p>
-<div class="price">$5 / mes</div>
-<a href="#" class="btn">Suscribirse</a>
-</div>
-</div>
-
-<div class="card">
-<div class="banner"></div>
-<div class="avatar"></div>
-<div class="card-content">
-<h3>Carlos Music</h3>
-<p>Música exclusiva</p>
-<div class="price">$3 / mes</div>
-<a href="#" class="btn">Suscribirse</a>
-</div>
-</div>
-
-<div class="card">
-<div class="banner"></div>
-<div class="avatar"></div>
-<div class="card-content">
-<h3>Laura Photo</h3>
-<p>Fotografía premium</p>
-<div class="price">$7 / mes</div>
-<a href="#" class="btn">Suscribirse</a>
-</div>
-</div>
-
-</section>
-
-<h2 class="section-title">Contenido Reciente</h2>
-
-<section class="gallery">
-
-<div class="post">
-<div class="post-img"></div>
-<h3>Nueva Sesión Fotográfica</h3>
-<p>Contenido exclusivo para suscriptores.</p>
-</div>
-
-<div class="post">
-<div class="post-img"></div>
-<h3>Curso de Marketing</h3>
-<p>Aprende estrategias digitales.</p>
-</div>
-
-<div class="post">
-<div class="post-img"></div>
-<h3>Entrenamiento Premium</h3>
-<p>Rutina completa de la semana.</p>
-</div>
-
-</section>
-
-<h2 class="section-title">Características</h2>
-
-<section class="features">
-
-<div class="feature">
-<h3>🔒 Contenido Exclusivo</h3>
-<p>Publica material para tus seguidores.</p>
-</div>
-
-<div class="feature">
-<h3>💰 Monetización</h3>
-<p>Obtén ingresos con suscripciones.</p>
-</div>
-
-<div class="feature">
-<h3>📱 Compatible Móvil</h3>
-<p>Diseño adaptable para cualquier dispositivo.</p>
-</div>
-
-<div class="feature">
-<h3>⚡ Rápido</h3>
-<p>Optimizado para GitHub Pages.</p>
-</div>
-
-</section>
-
-<h2 class="section-title">Planes</h2>
-
-<section class="pricing">
-
-<div class="plan">
-<h3>Básico</h3>
-<div class="plan-price">Gratis</div>
-<p>Perfil público</p>
-<p>Publicaciones básicas</p>
-<br>
-<a href="#" class="btn">Comenzar</a>
-</div>
-
-<div class="plan">
-<h3>Premium</h3>
-<div class="plan-price">$5</div>
-<p>Contenido exclusivo</p>
-<p>Suscripciones</p>
-<p>Estadísticas</p>
-<br>
-<a href="#" class="btn">Elegir</a>
-</div>
-
-</section>
-
-<div class="subscribe">
-<h2 style="text-align:center;margin-bottom:15px;">
-Recibe novedades
-</h2>
-
-<input type="email" placeholder="Tu correo">
-<a href="#" class="btn" style="width:100%;display:block;text-align:center;">
-Suscribirme
-</a>
-</div>
-
-<footer>
-<p>© 2026 CreatorHub - Plataforma de Creadores</p>
-<p>Compatible con GitHub Pages</p>
-</footer>
 
 </body>
 </html>
