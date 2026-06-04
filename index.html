@@ -1,302 +1,479 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Manuales Digitales Pro</title>
+<title>Manuales Premium</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
 <style>
+:root{
+--gold:#d4af37;
+--dark:#0f1115;
+--card:#1a1f29;
+--white:#ffffff;
+}
+
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,sans-serif;
+font-family:Segoe UI,sans-serif;
+scroll-behavior:smooth;
 }
 
 body{
-background:#f5f7fa;
-color:#333;
+background:var(--dark);
+color:var(--white);
 }
 
 header{
-background:linear-gradient(135deg,#0066ff,#00c6ff);
+position:sticky;
+top:0;
+z-index:1000;
+background:#111;
+padding:15px 5%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+border-bottom:1px solid rgba(212,175,55,.2);
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:var(--gold);
+}
+
+nav a{
 color:white;
-text-align:center;
-padding:60px 20px;
-}
-
-header h1{
-font-size:3rem;
-margin-bottom:10px;
-}
-
-header p{
-font-size:1.2rem;
-}
-
-.search-box{
-padding:20px;
-text-align:center;
-}
-
-.search-box input{
-width:90%;
-max-width:500px;
-padding:12px;
-border:1px solid #ddd;
-border-radius:10px;
-}
-
-.container{
-max-width:1200px;
-margin:auto;
-padding:20px;
-}
-
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.card{
-background:white;
-border-radius:15px;
-overflow:hidden;
-box-shadow:0 5px 15px rgba(0,0,0,.1);
+text-decoration:none;
+margin-left:20px;
 transition:.3s;
 }
 
-.card:hover{
-transform:translateY(-5px);
+nav a:hover{
+color:var(--gold);
 }
 
-.card img{
-width:100%;
-height:180px;
-object-fit:cover;
+.hero{
+padding:100px 5%;
+text-align:center;
+background:linear-gradient(135deg,#000,#1c1c1c);
 }
 
-.card-content{
-padding:15px;
+.hero h1{
+font-size:60px;
+color:var(--gold);
+margin-bottom:20px;
 }
 
-.card h3{
-margin-bottom:10px;
-}
-
-.price{
-font-size:22px;
-font-weight:bold;
-color:#0066ff;
-margin:10px 0;
+.hero p{
+font-size:20px;
+max-width:700px;
+margin:auto;
+opacity:.9;
 }
 
 .btn{
 display:inline-block;
-padding:10px 15px;
-background:#0066ff;
-color:white;
+margin-top:25px;
+padding:15px 30px;
+background:var(--gold);
+color:black;
+font-weight:bold;
+border-radius:10px;
 text-decoration:none;
-border-radius:8px;
-margin-top:10px;
-cursor:pointer;
+}
+
+.stats{
+padding:50px 5%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:20px;
+}
+
+.stat{
+background:var(--card);
+padding:25px;
+border-radius:15px;
+text-align:center;
+}
+
+.stat h2{
+color:var(--gold);
+font-size:35px;
+}
+
+.section-title{
+text-align:center;
+font-size:40px;
+margin:50px 0 20px;
+color:var(--gold);
+}
+
+.search{
+max-width:500px;
+margin:20px auto;
+display:block;
+padding:15px;
+width:90%;
 border:none;
+border-radius:10px;
 }
 
-.btn:hover{
-background:#004bcc;
+.products{
+padding:20px 5%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:25px;
 }
 
-.cart{
-position:fixed;
-top:20px;
-right:20px;
-background:#0066ff;
-color:white;
-padding:10px 15px;
+.card{
+background:var(--card);
+border-radius:15px;
+overflow:hidden;
+transition:.3s;
+}
+
+.card:hover{
+transform:translateY(-8px);
+}
+
+.card img{
+width:100%;
+height:220px;
+object-fit:cover;
+}
+
+.content{
+padding:20px;
+}
+
+.content h3{
+margin-bottom:10px;
+}
+
+.price{
+font-size:24px;
+color:var(--gold);
+font-weight:bold;
+margin:10px 0;
+}
+
+.buy{
+background:var(--gold);
+color:black;
+border:none;
+padding:12px;
+width:100%;
 border-radius:10px;
 font-weight:bold;
-z-index:1000;
+cursor:pointer;
+}
+
+.testimonials{
+padding:50px 5%;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+gap:20px;
+}
+
+.testimonial{
+background:var(--card);
+padding:25px;
+border-radius:15px;
+}
+
+.faq{
+padding:50px 5%;
+}
+
+details{
+background:var(--card);
+padding:15px;
+margin-bottom:15px;
+border-radius:10px;
 }
 
 footer{
 background:#111;
-color:white;
+padding:40px;
 text-align:center;
-padding:30px;
-margin-top:40px;
+margin-top:50px;
+}
+
+.cart{
+position:fixed;
+top:90px;
+right:20px;
+background:var(--gold);
+color:black;
+padding:15px;
+border-radius:10px;
+font-weight:bold;
+z-index:999;
 }
 
 .whatsapp{
 position:fixed;
 bottom:20px;
 right:20px;
+width:60px;
+height:60px;
 background:#25D366;
-color:white;
-padding:15px;
+display:flex;
+justify-content:center;
+align-items:center;
 border-radius:50%;
-font-size:24px;
+font-size:30px;
+color:white;
 text-decoration:none;
+}
+
+.dark-toggle{
+cursor:pointer;
+font-size:22px;
+color:var(--gold);
 }
 </style>
 </head>
-
 <body>
 
-<div class="cart">
-🛒 Carrito: <span id="cart-count">0</span>
-</div>
-
 <header>
-<h1>📚 Manuales Digitales Pro</h1>
-<p>Aprende nuevas habilidades desde cualquier lugar</p>
+<div class="logo">📚 Manuales Premium</div>
+<nav>
+<a href="#catalogo">Catálogo</a>
+<a href="#opiniones">Opiniones</a>
+<a href="#faq">FAQ</a>
+</nav>
+<div class="dark-toggle" onclick="toggleDark()">
+<i class="fas fa-moon"></i>
+</div>
 </header>
 
-<div class="search-box">
-<input type="text" id="search" placeholder="Buscar manual...">
+<div class="cart">
+🛒 <span id="cartCount">0</span>
 </div>
 
-<div class="container">
+<section class="hero">
+<h1>Manuales Premium</h1>
+<p>
+Aprende habilidades que generan ingresos.
+Manuales digitales profesionales para estudiar desde cualquier lugar.
+</p>
+<a href="#catalogo" class="btn">Ver Catálogo</a>
+</section>
 
-<div class="products" id="products">
+<section class="stats">
+<div class="stat">
+<h2>500+</h2>
+<p>Clientes</p>
+</div>
+
+<div class="stat">
+<h2>10</h2>
+<p>Manuales</p>
+</div>
+
+<div class="stat">
+<h2>98%</h2>
+<p>Satisfacción</p>
+</div>
+
+<div class="stat">
+<h2>24/7</h2>
+<p>Soporte</p>
+</div>
+</section>
+
+<h2 class="section-title" id="catalogo">Catálogo Premium</h2>
+
+<input type="text" class="search" placeholder="Buscar manual..." id="search">
+
+<section class="products" id="products">
 
 <div class="card">
-<img src="https://picsum.photos/400/250?1">
-<div class="card-content">
-<h3>Manual de Inteligencia Artificial</h3>
+<img src="https://picsum.photos/400/300?1">
+<div class="content">
+<h3>Inteligencia Artificial</h3>
 <p>Aprende IA desde cero.</p>
 <div class="price">S/19.90</div>
-<button class="btn add-cart">Agregar</button>
+<button class="buy">Agregar</button>
 </div>
 </div>
 
 <div class="card">
-<img src="https://picsum.photos/400/250?2">
-<div class="card-content">
+<img src="https://picsum.photos/400/300?2">
+<div class="content">
 <h3>Excel Avanzado</h3>
-<p>Domina tablas y fórmulas.</p>
 <div class="price">S/14.90</div>
-<button class="btn add-cart">Agregar</button>
+<button class="buy">Agregar</button>
 </div>
 </div>
 
 <div class="card">
-<img src="https://picsum.photos/400/250?3">
-<div class="card-content">
+<img src="https://picsum.photos/400/300?3">
+<div class="content">
 <h3>Marketing Digital</h3>
-<p>Vende más por internet.</p>
 <div class="price">S/24.90</div>
-<button class="btn add-cart">Agregar</button>
+<button class="buy">Agregar</button>
 </div>
 </div>
 
 <div class="card">
-<img src="https://picsum.photos/400/250?4">
-<div class="card-content">
+<img src="https://picsum.photos/400/300?4">
+<div class="content">
 <h3>Programación Web</h3>
-<p>HTML, CSS y JavaScript.</p>
 <div class="price">S/29.90</div>
-<button class="btn add-cart">Agregar</button>
+<button class="buy">Agregar</button>
 </div>
 </div>
 
 <div class="card">
-<img src="https://picsum.photos/400/250?5">
-<div class="card-content">
+<img src="https://picsum.photos/400/300?5">
+<div class="content">
 <h3>Diseño Gráfico</h3>
-<p>Diseña como profesional.</p>
 <div class="price">S/17.90</div>
-<button class="btn add-cart">Agregar</button>
+<button class="buy">Agregar</button>
 </div>
 </div>
 
 <div class="card">
-<img src="https://picsum.photos/400/250?6">
-<div class="card-content">
+<img src="https://picsum.photos/400/300?6">
+<div class="content">
 <h3>Criptomonedas</h3>
-<p>Guía para principiantes.</p>
 <div class="price">S/21.90</div>
-<button class="btn add-cart">Agregar</button>
+<button class="buy">Agregar</button>
 </div>
 </div>
 
 <div class="card">
-<img src="https://picsum.photos/400/250?7">
-<div class="card-content">
+<img src="https://picsum.photos/400/300?7">
+<div class="content">
 <h3>Negocios Online</h3>
-<p>Crea ingresos digitales.</p>
 <div class="price">S/18.90</div>
-<button class="btn add-cart">Agregar</button>
+<button class="buy">Agregar</button>
 </div>
 </div>
 
 <div class="card">
-<img src="https://picsum.photos/400/250?8">
-<div class="card-content">
+<img src="https://picsum.photos/400/300?8">
+<div class="content">
 <h3>Inglés Básico</h3>
-<p>Aprende inglés rápido.</p>
 <div class="price">S/12.90</div>
-<button class="btn add-cart">Agregar</button>
+<button class="buy">Agregar</button>
 </div>
 </div>
 
 <div class="card">
-<img src="https://picsum.photos/400/250?9">
-<div class="card-content">
+<img src="https://picsum.photos/400/300?9">
+<div class="content">
 <h3>Cocina Profesional</h3>
-<p>Recetas y técnicas.</p>
 <div class="price">S/15.90</div>
-<button class="btn add-cart">Agregar</button>
+<button class="buy">Agregar</button>
 </div>
 </div>
 
 <div class="card">
-<img src="https://picsum.photos/400/250?10">
-<div class="card-content">
+<img src="https://picsum.photos/400/300?10">
+<div class="content">
 <h3>Reparación de Celulares</h3>
-<p>Guía técnica completa.</p>
 <div class="price">S/34.90</div>
-<button class="btn add-cart">Agregar</button>
+<button class="buy">Agregar</button>
 </div>
 </div>
 
+</section>
+
+<h2 class="section-title" id="opiniones">Opiniones</h2>
+
+<section class="testimonials">
+<div class="testimonial">
+⭐⭐⭐⭐⭐
+<p>Excelente contenido, muy fácil de entender.</p>
+<b>Carlos M.</b>
 </div>
+
+<div class="testimonial">
+⭐⭐⭐⭐⭐
+<p>Recibí el manual inmediatamente.</p>
+<b>Ana P.</b>
 </div>
+
+<div class="testimonial">
+⭐⭐⭐⭐⭐
+<p>Muy recomendado para aprender rápido.</p>
+<b>José R.</b>
+</div>
+</section>
+
+<h2 class="section-title" id="faq">Preguntas Frecuentes</h2>
+
+<section class="faq">
+<details>
+<summary>¿Cómo recibo el manual?</summary>
+<p>Después del pago recibirás el PDF por WhatsApp.</p>
+</details>
+
+<details>
+<summary>¿Qué métodos de pago aceptan?</summary>
+<p>Yape, Plin y Transferencia Bancaria.</p>
+</details>
+
+<details>
+<summary>¿Los manuales son digitales?</summary>
+<p>Sí, todos son descargables.</p>
+</details>
+</section>
 
 <footer>
-<h2>Métodos de Pago</h2>
-<p>Yape • Plin • Transferencia Bancaria</p>
-<br>
-<p>© 2026 Manuales Digitales Pro</p>
+<h3>📚 Manuales Premium</h3>
+<p>WhatsApp: 959493921</p>
+<p>© 2026 Todos los derechos reservados</p>
 </footer>
 
 <a class="whatsapp"
 href="https://wa.me/51959493921"
-target="_blank">💬</a>
+target="_blank">
+<i class="fab fa-whatsapp"></i>
+</a>
 
 <script>
 let cart=0;
 
-document.querySelectorAll('.add-cart').forEach(btn=>{
-btn.addEventListener('click',()=>{
+document.querySelectorAll(".buy").forEach(btn=>{
+btn.addEventListener("click",()=>{
 cart++;
-document.getElementById('cart-count').innerText=cart;
+document.getElementById("cartCount").innerText=cart;
+localStorage.setItem("cart",cart);
 });
 });
 
-document.getElementById('search').addEventListener('keyup',function(){
+window.onload=()=>{
+let saved=localStorage.getItem("cart");
+if(saved){
+cart=saved;
+document.getElementById("cartCount").innerText=saved;
+}
+};
+
+document.getElementById("search").addEventListener("keyup",function(){
 let value=this.value.toLowerCase();
-let cards=document.querySelectorAll('.card');
+let cards=document.querySelectorAll(".card");
 
 cards.forEach(card=>{
-let text=card.innerText.toLowerCase();
-card.style.display=text.includes(value)?'block':'none';
+card.style.display=
+card.innerText.toLowerCase().includes(value)
+? "block":"none";
 });
 });
+
+function toggleDark(){
+document.body.classList.toggle("light");
+}
 </script>
 
 </body>
 </html>
-```
