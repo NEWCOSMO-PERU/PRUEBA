@@ -3,22 +3,23 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Biblioteca Digital</title>
+<title>BookVault Premium</title>
 
 <style>
 :root{
-    --bg:#0f172a;
-    --card:#1e293b;
-    --primary:#00c6ff;
-    --text:#ffffff;
-    --muted:#94a3b8;
+    --bg:#09090b;
+    --card:#18181b;
+    --gold:#fbbf24;
+    --accent:#38bdf8;
+    --text:#fafafa;
+    --muted:#a1a1aa;
 }
 
 *{
     margin:0;
     padding:0;
     box-sizing:border-box;
-    font-family:Segoe UI, Arial, sans-serif;
+    font-family:Inter,Segoe UI,sans-serif;
 }
 
 body{
@@ -27,49 +28,107 @@ body{
 }
 
 header{
+    position:sticky;
+    top:0;
+    backdrop-filter:blur(15px);
+    background:rgba(9,9,11,.85);
+    border-bottom:1px solid #27272a;
+    z-index:100;
+}
+
+.nav{
+    max-width:1300px;
+    margin:auto;
     padding:20px;
-    text-align:center;
-    border-bottom:1px solid #334155;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
 
 .logo{
     font-size:2rem;
+    font-weight:800;
+    color:var(--gold);
+}
+
+.hero{
+    min-height:80vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    padding:40px;
+    background:
+    linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.8)),
+    url('https://images.unsplash.com/photo-1521587760476-6c12a4b040da?auto=format&fit=crop&w=1600&q=80');
+    background-size:cover;
+    background-position:center;
+}
+
+.hero-content{
+    max-width:900px;
+}
+
+.hero h1{
+    font-size:4rem;
+    margin-bottom:20px;
+}
+
+.hero p{
+    color:#d4d4d8;
+    font-size:1.2rem;
+    margin-bottom:30px;
+}
+
+.btn{
+    display:inline-block;
+    padding:15px 30px;
+    border-radius:50px;
+    text-decoration:none;
     font-weight:bold;
-    color:var(--primary);
+    transition:.3s;
 }
 
-.subtitle{
-    color:var(--muted);
-    margin-top:10px;
+.btn-primary{
+    background:var(--gold);
+    color:#000;
 }
 
-.container{
-    max-width:1200px;
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+.section{
+    max-width:1300px;
     margin:auto;
-    padding:30px 20px;
+    padding:80px 20px;
 }
 
-.books-grid{
+.section-title{
+    font-size:2rem;
+    margin-bottom:40px;
+}
+
+.books{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-    gap:25px;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
 }
 
-.book-card{
+.book{
     background:var(--card);
-    border-radius:15px;
+    border-radius:20px;
     overflow:hidden;
-    transition:0.3s;
-    border:1px solid #334155;
+    transition:.3s;
 }
 
-.book-card:hover{
-    transform:translateY(-5px);
+.book:hover{
+    transform:translateY(-10px);
 }
 
-.book-cover{
+.book img{
     width:100%;
-    height:400px;
+    height:380px;
     object-fit:cover;
 }
 
@@ -78,54 +137,55 @@ header{
 }
 
 .book-title{
-    font-size:1.4rem;
+    font-size:1.2rem;
     margin-bottom:10px;
 }
 
 .price{
+    color:var(--gold);
     font-size:1.5rem;
-    color:var(--primary);
-    font-weight:bold;
+    font-weight:700;
     margin-bottom:15px;
 }
 
 .summary{
-    color:#cbd5e1;
+    color:var(--muted);
     line-height:1.6;
-    margin-bottom:20px;
 }
 
-.qr-box{
-    text-align:center;
-    margin:20px 0;
-}
-
-.qr-box img{
-    width:180px;
-    border-radius:10px;
-    background:white;
-    padding:10px;
-}
-
-.whatsapp-btn{
+.buy{
     display:block;
-    width:100%;
+    margin-top:20px;
     text-align:center;
-    background:#25D366;
+    padding:12px;
+    border-radius:10px;
+    background:var(--accent);
     color:white;
     text-decoration:none;
-    padding:14px;
-    border-radius:10px;
-    font-weight:bold;
 }
 
-.whatsapp-btn:hover{
-    opacity:.9;
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+    gap:20px;
+    text-align:center;
+}
+
+.stat{
+    background:var(--card);
+    padding:40px;
+    border-radius:20px;
+}
+
+.stat h3{
+    font-size:2rem;
+    color:var(--gold);
 }
 
 footer{
+    border-top:1px solid #27272a;
     text-align:center;
-    padding:30px;
+    padding:40px;
     color:var(--muted);
 }
 </style>
@@ -133,111 +193,120 @@ footer{
 <body>
 
 <header>
-    <div class="logo">📚 Biblioteca Digital</div>
-    <p class="subtitle">
-        Compra ebooks y recibe el enlace de descarga después del pago.
-    </p>
+<div class="nav">
+<div class="logo">📚 BookVault</div>
+<a href="#catalogo" class="btn btn-primary">Explorar</a>
+</div>
 </header>
 
-<div class="container">
+<section class="hero">
+<div class="hero-content">
+<h1>Biblioteca Premium Digital</h1>
+<p>
+Accede a una colección exclusiva de ebooks,
+guías y contenido digital para emprendedores,
+estudiantes y profesionales.
+</p>
 
-    <div class="books-grid">
+<a href="#catalogo" class="btn btn-primary">
+Ver Catálogo
+</a>
+</div>
+</section>
 
-        <!-- LIBRO 1 -->
-        <div class="book-card">
+<section class="section">
 
-            <img
-                src="https://via.placeholder.com/500x700?text=PORTADA+LIBRO"
-                class="book-cover"
-                alt="Portada del libro">
+<div class="stats">
 
-            <div class="book-content">
+<div class="stat">
+<h3>500+</h3>
+<p>Ebooks</p>
+</div>
 
-                <h2 class="book-title">
-                    Aprende Marketing Digital
-                </h2>
+<div class="stat">
+<h3>10K+</h3>
+<p>Clientes</p>
+</div>
 
-                <div class="price">
-                    S/ 15.00
-                </div>
-
-                <p class="summary">
-                    Aprende publicidad en redes sociales,
-                    embudos de venta, estrategias de contenido
-                    y técnicas modernas para vender online.
-                </p>
-
-                <div class="qr-box">
-                    <p><strong>Escanea para pagar</strong></p>
-                    <br>
-
-                    <!-- CAMBIA POR TU QR -->
-                    <img
-                        src="https://via.placeholder.com/300x300?text=QR+DE+PAGO"
-                        alt="QR de pago">
-                </div>
-
-                <a
-                    class="whatsapp-btn"
-                    href="https://wa.me/51999999999?text=Hola,%20ya%20realicé%20el%20pago%20del%20ebook."
-                    target="_blank">
-
-                    Enviar comprobante por WhatsApp
-                </a>
-
-            </div>
-        </div>
-
-        <!-- LIBRO 2 -->
-        <div class="book-card">
-
-            <img
-                src="https://via.placeholder.com/500x700?text=PORTADA+LIBRO+2"
-                class="book-cover"
-                alt="Portada">
-
-            <div class="book-content">
-
-                <h2 class="book-title">
-                    Finanzas para Emprendedores
-                </h2>
-
-                <div class="price">
-                    S/ 20.00
-                </div>
-
-                <p class="summary">
-                    Aprende a administrar dinero,
-                    controlar gastos, aumentar ganancias
-                    y crear un negocio rentable.
-                </p>
-
-                <div class="qr-box">
-                    <p><strong>Escanea para pagar</strong></p>
-                    <br>
-
-                    <img
-                        src="https://via.placeholder.com/300x300?text=QR+DE+PAGO"
-                        alt="QR">
-                </div>
-
-                <a
-                    class="whatsapp-btn"
-                    href="https://wa.me/51999999999?text=Hola,%20ya%20realicé%20el%20pago%20del%20ebook."
-                    target="_blank">
-
-                    Enviar comprobante por WhatsApp
-                </a>
-
-            </div>
-        </div>
-
-    </div>
+<div class="stat">
+<h3>24/7</h3>
+<p>Acceso Digital</p>
+</div>
 
 </div>
 
+</section>
+
+<section class="section" id="catalogo">
+
+<h2 class="section-title">
+Libros Destacados
+</h2>
+
+<div class="books">
+
+<div class="book">
+
+<img src="portadas/libro1.jpg">
+
+<div class="book-content">
+
+<h3 class="book-title">
+Marketing Digital Avanzado
+</h3>
+
+<div class="price">
+S/15
+</div>
+
+<p class="summary">
+Aprende embudos de venta, anuncios,
+automatización y estrategias modernas.
+</p>
+
+<a class="buy"
+href="libro1.html">
+Ver detalles
+</a>
+
+</div>
+
+</div>
+
+<div class="book">
+
+<img src="portadas/libro2.jpg">
+
+<div class="book-content">
+
+<h3 class="book-title">
+Finanzas Inteligentes
+</h3>
+
+<div class="price">
+S/20
+</div>
+
+<p class="summary">
+Métodos prácticos para administrar
+dinero y aumentar ingresos.
+</p>
+
+<a class="buy"
+href="libro2.html">
+Ver detalles
+</a>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
 <footer>
-    © 2026 Biblioteca Digital
+© 2026 BookVault Premium
 </footer>
 
 </body>
