@@ -1,85 +1,244 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CreatorHub Premium</title>
-    <style>
-        :root {
-            --primary: #00c6ff;
-            --bg: #0b0f19;
-            --card: #151b2d;
-            --text: #ffffff;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biblioteca Digital</title>
 
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', sans-serif; }
-        body { background: var(--bg); color: var(--text); line-height: 1.6; }
+<style>
+:root{
+    --bg:#0f172a;
+    --card:#1e293b;
+    --primary:#00c6ff;
+    --text:#ffffff;
+    --muted:#94a3b8;
+}
 
-        /* Header */
-        header { background: #0b0f19; padding: 1rem 5%; display: flex; justify-content: space-between; position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #2d3748; }
-        .logo { font-weight: 800; color: var(--primary); font-size: 1.5rem; }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Segoe UI, Arial, sans-serif;
+}
 
-        /* Feed Estilo OnlyFans */
-        .feed { max-width: 600px; margin: 2rem auto; padding: 0 1rem; }
-        .post-card { background: var(--card); border-radius: 12px; margin-bottom: 2rem; overflow: hidden; border: 1px solid #2d3748; }
-        .post-header { padding: 15px; display: flex; align-items: center; gap: 10px; }
-        .avatar-mini { width: 40px; height: 40px; background: #334155; border-radius: 50%; }
-        
-        /* Contenido Bloqueado (Blur) */
-        .media-container { width: 100%; height: 350px; background: #000; position: relative; display: flex; align-items: center; justify-content: center; }
-        .locked-media { filter: blur(15px); width: 100%; height: 100%; background: linear-gradient(45deg, #1e293b, #0f172a); }
-        .lock-overlay { position: absolute; text-align: center; }
-        
-        .btn-subscribe { background: var(--primary); color: #000; padding: 10px 20px; border-radius: 25px; text-decoration: none; font-weight: bold; display: inline-block; margin-top: 10px; }
+body{
+    background:var(--bg);
+    color:var(--text);
+}
 
-        /* Footer Sticky (Móvil) */
-        .mobile-sticky-bar { position: fixed; bottom: 0; width: 100%; background: var(--card); padding: 15px; text-align: center; border-top: 2px solid var(--primary); }
+header{
+    padding:20px;
+    text-align:center;
+    border-bottom:1px solid #334155;
+}
 
-        @media (min-width: 768px) {
-            .mobile-sticky-bar { display: none; }
-        }
-    </style>
+.logo{
+    font-size:2rem;
+    font-weight:bold;
+    color:var(--primary);
+}
+
+.subtitle{
+    color:var(--muted);
+    margin-top:10px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    padding:30px 20px;
+}
+
+.books-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.book-card{
+    background:var(--card);
+    border-radius:15px;
+    overflow:hidden;
+    transition:0.3s;
+    border:1px solid #334155;
+}
+
+.book-card:hover{
+    transform:translateY(-5px);
+}
+
+.book-cover{
+    width:100%;
+    height:400px;
+    object-fit:cover;
+}
+
+.book-content{
+    padding:20px;
+}
+
+.book-title{
+    font-size:1.4rem;
+    margin-bottom:10px;
+}
+
+.price{
+    font-size:1.5rem;
+    color:var(--primary);
+    font-weight:bold;
+    margin-bottom:15px;
+}
+
+.summary{
+    color:#cbd5e1;
+    line-height:1.6;
+    margin-bottom:20px;
+}
+
+.qr-box{
+    text-align:center;
+    margin:20px 0;
+}
+
+.qr-box img{
+    width:180px;
+    border-radius:10px;
+    background:white;
+    padding:10px;
+}
+
+.whatsapp-btn{
+    display:block;
+    width:100%;
+    text-align:center;
+    background:#25D366;
+    color:white;
+    text-decoration:none;
+    padding:14px;
+    border-radius:10px;
+    font-weight:bold;
+}
+
+.whatsapp-btn:hover{
+    opacity:.9;
+}
+
+footer{
+    text-align:center;
+    padding:30px;
+    color:var(--muted);
+}
+</style>
 </head>
 <body>
 
 <header>
-    <div class="logo">CreatorHub</div>
-    <nav>Perfil | Explorar</nav>
+    <div class="logo">📚 Biblioteca Digital</div>
+    <p class="subtitle">
+        Compra ebooks y recibe el enlace de descarga después del pago.
+    </p>
 </header>
 
-<main class="feed">
-    <div class="post-card">
-        <div class="post-header">
-            <div class="avatar-mini"></div>
-            <strong>Ana Fitness</strong>
-        </div>
-        <div class="media-container">
-            <div class="locked-media"></div>
-            <div class="lock-overlay">
-                <p>🔒 Contenido exclusivo</p>
-                <a href="#" class="btn-subscribe">Suscribirse para ver</a>
+<div class="container">
+
+    <div class="books-grid">
+
+        <!-- LIBRO 1 -->
+        <div class="book-card">
+
+            <img
+                src="https://via.placeholder.com/500x700?text=PORTADA+LIBRO"
+                class="book-cover"
+                alt="Portada del libro">
+
+            <div class="book-content">
+
+                <h2 class="book-title">
+                    Aprende Marketing Digital
+                </h2>
+
+                <div class="price">
+                    S/ 15.00
+                </div>
+
+                <p class="summary">
+                    Aprende publicidad en redes sociales,
+                    embudos de venta, estrategias de contenido
+                    y técnicas modernas para vender online.
+                </p>
+
+                <div class="qr-box">
+                    <p><strong>Escanea para pagar</strong></p>
+                    <br>
+
+                    <!-- CAMBIA POR TU QR -->
+                    <img
+                        src="https://via.placeholder.com/300x300?text=QR+DE+PAGO"
+                        alt="QR de pago">
+                </div>
+
+                <a
+                    class="whatsapp-btn"
+                    href="https://wa.me/51999999999?text=Hola,%20ya%20realicé%20el%20pago%20del%20ebook."
+                    target="_blank">
+
+                    Enviar comprobante por WhatsApp
+                </a>
+
             </div>
         </div>
-    </div>
 
-    <div class="post-card">
-        <div class="post-header">
-            <div class="avatar-mini"></div>
-            <strong>Carlos Music</strong>
-        </div>
-        <div class="media-container">
-            <div class="locked-media"></div>
-            <div class="lock-overlay">
-                <p>🔒 Suscríbete para acceder al audio</p>
-                <a href="#" class="btn-subscribe">Suscribirse</a>
+        <!-- LIBRO 2 -->
+        <div class="book-card">
+
+            <img
+                src="https://via.placeholder.com/500x700?text=PORTADA+LIBRO+2"
+                class="book-cover"
+                alt="Portada">
+
+            <div class="book-content">
+
+                <h2 class="book-title">
+                    Finanzas para Emprendedores
+                </h2>
+
+                <div class="price">
+                    S/ 20.00
+                </div>
+
+                <p class="summary">
+                    Aprende a administrar dinero,
+                    controlar gastos, aumentar ganancias
+                    y crear un negocio rentable.
+                </p>
+
+                <div class="qr-box">
+                    <p><strong>Escanea para pagar</strong></p>
+                    <br>
+
+                    <img
+                        src="https://via.placeholder.com/300x300?text=QR+DE+PAGO"
+                        alt="QR">
+                </div>
+
+                <a
+                    class="whatsapp-btn"
+                    href="https://wa.me/51999999999?text=Hola,%20ya%20realicé%20el%20pago%20del%20ebook."
+                    target="_blank">
+
+                    Enviar comprobante por WhatsApp
+                </a>
+
             </div>
         </div>
-    </div>
-</main>
 
-<div class="mobile-sticky-bar">
-    <a href="#" class="btn-subscribe" style="width: 90%;">Desbloquear todo el contenido</a>
+    </div>
+
 </div>
+
+<footer>
+    © 2026 Biblioteca Digital
+</footer>
 
 </body>
 </html>
