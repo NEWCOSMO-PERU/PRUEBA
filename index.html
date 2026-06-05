@@ -3,606 +3,528 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Farmacia Salud Total | Premium Pro Ecommerce</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Manuales Premium | Elite Digital Learning</title>
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary: #0ea5e9;
-            --primary-dark: #0369a1;
-            --secondary: #10b981;
-            --secondary-dark: #047857;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --text: #334155;
-            --gray-border: #e2e8f0;
-            --whatsapp: #25D366;
-            --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-            --accent: #ff3b30;
+            --gold: #d4af37;
+            --gold-hover: #f3cf55;
+            --dark: #090b0e;
+            --card: #131722;
+            --white: #ffffff;
+            --text-muted: #8f9cae;
+            --border: rgba(212, 175, 55, 0.15);
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* Estilos Modo Claro */
+        body.light-mode {
+            --dark: #f4f6f9;
+            --card: #ffffff;
+            --white: #111111;
+            --text-muted: #555555;
+            --border: rgba(0, 0, 0, 0.1);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Poppins', sans-serif;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            scroll-behavior: smooth;
         }
 
-        html { scroll-behavior: smooth; }
-        body { background: var(--light); color: var(--text); padding-top: 70px; overflow-x: hidden; }
-
-        /* --- NAVBAR PREMIUM --- */
-        nav {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 70px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
-            z-index: 1000;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0 40px;
-            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+        body {
+            background: var(--dark);
+            color: var(--white);
+            transition: var(--transition);
+            overflow-x: hidden;
         }
 
-        nav .logo {
-            font-size: 1.3rem; font-weight: 700; color: var(--dark);
-            text-decoration: none; display: flex; align-items: center; gap: 8px;
-        }
-        nav .logo span { color: var(--primary); }
-
-        nav .nav-links { display: flex; gap: 25px; list-style: none; }
-        nav .nav-links a {
-            text-decoration: none; color: var(--text); font-weight: 500;
-            transition: 0.3s; font-size: 0.95rem; position: relative;
-        }
-        nav .nav-links a::after {
-            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
-            background: var(--primary); transition: 0.3s;
-        }
-        nav .nav-links a:hover::after { width: 100%; }
-        nav .nav-links a:hover { color: var(--primary); }
-
-        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
-
-        /* --- BOTON NAV CART --- */
-        .cart-nav-btn {
-            background: var(--dark); color: white; border: none;
-            padding: 10px 18px; border-radius: 30px; font-weight: 600;
-            cursor: pointer; display: flex; align-items: center; gap: 8px;
-            transition: 0.3s; position: relative;
-        }
-        .cart-nav-btn:hover { background: var(--primary); transform: translateY(-2px); }
-        .cart-count {
-            background: var(--accent); color: white; font-size: 0.75rem;
-            padding: 2px 7px; border-radius: 50%; position: absolute; top: -5px; right: -5px;
-        }
-
-        /* --- HERO BLUR GLASS --- */
+        /* --- HEADER --- */
         header {
-            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent), radial-gradient(circle at top left, rgba(14, 165, 233, 0.15), transparent);
-            padding: 100px 20px; text-align: center; position: relative;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            background: rgba(17, 17, 17, 0.85);
+            backdrop-filter: blur(12px);
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
         }
-        header h1 { font-size: 3.5rem; color: var(--dark); font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
-        header p { font-size: 1.2rem; max-width: 600px; margin: auto; color: #64748b; }
-        
-        /* --- BUSCADOR PRO CON TAGS --- */
-        .search-area { max-width: 650px; margin: 0 auto; }
-        .search-box { position: relative; width: 100%; }
-        .search-box input {
-            width: 100%; padding: 18px 25px 18px 55px; border: 2px solid var(--gray-border);
-            border-radius: 16px; font-size: 16px; outline: none; transition: 0.3s; background: white;
+        body.light-mode header {
+            background: rgba(255, 255, 255, 0.85);
         }
-        .search-box input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15); }
-        .search-box i { position: absolute; left: 22px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 1.2rem; }
-        
-        .instant-tags { display: flex; gap: 10px; justify-content: center; margin-top: 15px; flex-wrap: wrap; }
-        .tag-btn {
-            background: white; border: 1px solid var(--gray-border); padding: 6px 14px;
-            border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: 0.2s; color: #64748b;
-        }
-        .tag-btn:hover { border-color: var(--primary); color: var(--primary); }
 
-        /* --- FILTROS Y CONTROLES --- */
-        .controls-wrapper {
-            display: flex; flex-direction: column; gap: 25px; margin-bottom: 40px;
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gold);
+            letter-spacing: -0.5px;
         }
-        .price-filter-box {
-            text-align: center; max-width: 300px; margin: 0 auto; background: white;
-            padding: 15px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);
-            border: 1px solid var(--gray-border);
-        }
-        .price-filter-box input { width: 100%; accent-color: var(--primary); margin-top: 8px; }
 
-        /* --- CATEGORÍAS GRID --- */
-        .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
-        .category {
-            background: white; padding: 20px 15px; border-radius: 16px; text-align: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.02); cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            border: 1px solid var(--gray-border); font-weight: 600; font-size: 0.9rem;
-            display: flex; flex-direction: column; align-items: center; gap: 10px;
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 25px;
         }
-        .category i { font-size: 1.4rem; color: var(--primary); transition: 0.2s; }
-        .category:hover { transform: translateY(-5px); border-color: var(--primary); color: var(--primary); }
-        .category.active { background: var(--dark); border-color: var(--dark); color: white; }
-        .category.active i { color: var(--primary); }
 
-        /* --- PRODUCTOS CARD PREMIUM --- */
-        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: var(--transition);
+        }
+
+        nav a:hover {
+            color: var(--gold);
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .icon-btn {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 20px;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .icon-btn:hover {
+            color: var(--gold);
+        }
+
+        #cartBadge {
+            position: absolute;
+            top: -8px;
+            right: -10px;
+            background: #e74c3c;
+            color: white;
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 50%;
+            font-weight: bold;
+        }
+
+        /* --- HERO --- */
+        .hero {
+            padding: 140px 8% 100px;
+            text-align: center;
+            background: radial-gradient(circle at top, #1a1a1a 0%, var(--dark) 70%);
+            position: relative;
+        }
+        body.light-mode .hero {
+            background: radial-gradient(circle at top, #e2e8f0 0%, var(--dark) 70%);
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 800;
+            color: var(--white);
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+            background: linear-gradient(45deg, #d4af37, #f3cf55);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 19px;
+            max-width: 650px;
+            margin: 0 auto 35px;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: var(--gold);
+            color: #000;
+            font-weight: 600;
+            border-radius: 12px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(212,175,55,0.3);
+            transition: var(--transition);
+        }
+
+        .btn:hover {
+            background: var(--gold-hover);
+            transform: translateY(-2px);
+        }
+
+        /* --- STATS --- */
+        .stats {
+            padding: 40px 8%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: -40px;
+        }
+
+        .stat {
+            background: var(--card);
+            padding: 30px 20px;
+            border-radius: 16px;
+            text-align: center;
+            border: 1px solid var(--border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        }
+
+        .stat h2 {
+            color: var(--gold);
+            font-size: 38px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .stat p {
+            color: var(--text-muted);
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* --- FILTROS Y BUSCADOR --- */
+        .controls-container {
+            padding: 60px 8% 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 550px;
+        }
+
+        .search-wrapper i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .search {
+            width: 100%;
+            padding: 16px 16px 16px 50px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            color: var(--white);
+            font-size: 16px;
+            outline: none;
+            transition: var(--transition);
+        }
+
+        .search:focus {
+            border-color: var(--gold);
+            box-shadow: 0 0 0 3px rgba(212,175,55,0.1);
+        }
+
+        .filter-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tag {
+            padding: 8px 18px;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            font-size: 14px;
+            cursor: pointer;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .tag.active, .tag:hover {
+            background: var(--gold);
+            color: #000;
+            border-color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* --- CATALOGO PRODUCTOS --- */
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            font-weight: 700;
+            margin: 40px 0 10px;
+        }
+
+        .products {
+            padding: 30px 8% 80px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+            gap: 30px;
+        }
+
         .card {
-            background: white; border-radius: 24px; overflow: hidden;
-            border: 1px solid var(--gray-border); display: flex; flex-direction: column;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative;
-        }
-        .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-premium); }
-        
-        .badge-promo {
-            position: absolute; top: 15px; left: 15px; background: var(--accent);
-            color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; z-index: 2;
+            background: var(--card);
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
         }
 
-        .img-container { width: 100%; height: 240px; overflow: hidden; background: #f8fafc; position: relative; }
-        .card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
-        .card:hover img { transform: scale(1.08); }
-
-        .content { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
-        .content h3 { font-size: 1.2rem; color: var(--dark); margin-bottom: 8px; font-weight: 700; }
-        .content p { font-size: 0.9rem; color: #64748b; margin-bottom: 20px; flex-grow: 1; line-height: 1.5; }
-        
-        .price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
-        .price { font-size: 1.5rem; font-weight: 700; color: var(--dark); }
-
-        .add-cart-btn {
-            width: 100%; padding: 14px; background: var(--primary); color: white; border: none;
-            border-radius: 14px; font-weight: 600; cursor: pointer; transition: 0.3s;
-            display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 0.95rem;
-        }
-        .add-cart-btn:hover { background: var(--primary-dark); }
-        .add-cart-btn.added { background: var(--secondary); }
-
-        /* --- COPIED NO RESULTS --- */
-        .no-results {
-            text-align: center; grid-column: 1 / -1; color: #64748b; padding: 50px 20px; display: none;
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(212,175,55,0.1);
+            border-color: rgba(212,175,55,0.4);
         }
 
-        /* --- SIDEBAR PANEL CARRITO PRO --- */
+        .img-container {
+            position: relative;
+            overflow: hidden;
+            height: 210px;
+        }
+
+        .card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .card:hover img {
+            transform: scale(1.06);
+        }
+
+        .badge-cat {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0, 0, 0, 0.75);
+            color: var(--gold);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 11px;
+            font-weight: 600;
+            backdrop-filter: blur(5px);
+            border: 1px solid var(--gold);
+        }
+
+        .content {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .content h3 {
+            font-size: 20px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .content p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: auto;
+        }
+
+        .price {
+            font-size: 24px;
+            color: var(--gold);
+            font-weight: 700;
+        }
+
+        .buy {
+            background: var(--gold);
+            color: #000;
+            border: none;
+            padding: 12px 18px;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .buy:hover {
+            background: var(--gold-hover);
+            transform: scale(1.03);
+        }
+
+        /* --- SIDEBAR CARRITO --- */
         .cart-sidebar {
-            position: fixed; top: 0; right: -400px; width: 400px; height: 100%;
-            background: white; box-shadow: -10px 0 30px rgba(0,0,0,0.05); z-index: 2000;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 100%;
+            max-width: 400px;
+            height: 100vh;
+            background: #11141a;
+            border-left: 1px solid var(--border);
+            box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+            z-index: 2000;
+            transition: var(--transition);
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
         }
-        .cart-sidebar.open { right: 0; }
-        
-        .cart-header { padding: 25px; border-bottom: 1px solid var(--gray-border); display: flex; justify-content: space-between; align-items: center; }
-        .cart-header h2 { font-size: 1.3rem; font-weight: 700; }
-        .close-cart { font-size: 1.5rem; cursor: pointer; color: var(--text); border: none; background: none; }
-        
-        .cart-items-container { flex-grow: 1; padding: 25px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
-        
-        .cart-item { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--gray-border); padding-bottom: 15px; }
-        .cart-item-info { flex-grow: 1; }
-        .cart-item-title { font-weight: 600; font-size: 0.95rem; }
-        .cart-item-price { color: var(--secondary); font-weight: 700; font-size: 0.9rem; }
-        .cart-item-qty { font-size: 0.85rem; color: #64748b; margin-top: 4px; }
-        .remove-item { background: none; border: none; color: var(--accent); cursor: pointer; font-size: 1rem; }
+        body.light-mode .cart-sidebar {
+            background: #ffffff;
+        }
 
-        .cart-footer { padding: 25px; border-top: 1px solid var(--gray-border); background: #f8fafc; }
-        .total-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: 700; font-size: 1.2rem; }
-        
+        .cart-sidebar.open {
+            right: 0;
+        }
+
+        .cart-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .cart-items {
+            flex-grow: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card);
+            padding: 12px;
+            border-radius: 10px;
+            border: 1px solid var(--border);
+        }
+
+        .item-info h4 { font-size: 14px; margin-bottom: 3px; }
+        .item-info p { color: var(--gold); font-weight: 600; font-size: 14px; }
+
+        .remove-item {
+            background: none;
+            border: none;
+            color: #e74c3c;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .cart-footer-btn {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid var(--border);
+        }
+
+        .total-box {
+            display: flex;
+            justify-content: space-between;
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 15px;
+        }
+
         .checkout-btn {
-            width: 100%; padding: 16px; background: var(--whatsapp); color: white; border: none;
-            border-radius: 14px; font-weight: 700; font-size: 1rem; cursor: pointer;
-            display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.3s;
-            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
-        }
-        .checkout-btn:hover { background: #1eb855; transform: translateY(-2px); }
-
-        .cart-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3);
-            z-index: 1999; display: none; backdrop-filter: blur(4px);
-        }
-        .cart-overlay.open { display: block; }
-
-        /* --- NOTIFICACIONES SOCIAL PROOF --- */
-        .notification-toast {
-            position: fixed; bottom: 25px; left: -400px; background: white;
-            padding: 15px 20px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            display: flex; align-items: center; gap: 15px; z-index: 3000;
-            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            border: 1px solid var(--gray-border); max-width: 350px;
-        }
-        .notification-toast.show { left: 25px; }
-        .notification-toast i { font-size: 1.5rem; color: var(--secondary); }
-        .notification-text p { font-size: 0.85rem; color: #64748b; }
-        .notification-text strong { color: var(--dark); font-size: 0.9rem; }
-
-        /* --- SECCIÓN RECETA --- */
-        .prescription-box {
-            background: linear-gradient(135deg, var(--dark), #1e293b); color: white;
-            border-radius: 24px; padding: 50px 40px; text-align: center; max-width: 700px; margin: 0 auto;
-        }
-        .prescription-box p { opacity: 0.8; margin-bottom: 25px; }
-        .prescription-box .btn-prescription {
-            background: var(--primary); color: white; border: none; padding: 15px 35px;
-            border-radius: 50px; font-weight: 600; cursor: pointer; text-decoration: none;
-            display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
-        }
-        .prescription-box .btn-prescription:hover { background: var(--primary-dark); transform: translateY(-3px); }
-
-        section { max-width: 1200px; margin: auto; padding: 60px 20px; }
-        .title { text-align: center; margin-bottom: 40px; }
-        .title h2 { font-size: 2.2rem; color: var(--dark); font-weight: 700; }
-
-        footer { background: var(--dark); color: #94a3b8; text-align: center; padding: 40px 20px; font-size: 0.9rem; }
-
-        /* --- RESPONSIVE --- */
-        @media(max-width: 768px) {
-            nav { padding: 0 20px; }
-            .menu-toggle { display: block; }
-            nav .nav-links {
-                position: absolute; top: 70px; left: 0; width: 100%; background: white;
-                flex-direction: column; gap: 0; box-shadow: 0 10px 15px rgba(0,0,0,0.05);
-                max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
-            }
-            nav .nav-links.active { max-height: 350px; }
-            nav .nav-links a { display: block; padding: 15px 20px; border-bottom: 1px solid var(--gray-border); }
-            .cart-sidebar { width: 100%; right: -100%; }
-            header h1 { font-size: 2.4rem; }
-        }
-    </style>
-</head>
-<body>
-
-    <nav>
-        <a href="#" class="logo"><i class="fa-solid fa-heart-pulse text-primary" style="color:var(--primary)"></i> Salud<span>Total</span></a>
-        <div class="menu-toggle" id="mobile-menu"><i class="fa-solid fa-bars"></i></div>
-        <ul class="nav-links" id="nav-list">
-            <li><a href="#buscar">Buscador</a></li>
-            <li><a href="#categorias">Categorías</a></li>
-            <li><a href="#productos">Productos</a></li>
-            <li><a href="#receta">Recetas</a></li>
-        </ul>
-        <button class="cart-nav-btn" id="open-cart-btn">
-            <i class="fa-solid fa-bag-shopping"></i> Pedido
-            <span class="cart-count" id="cart-badge">0</span>
-        </button>
-    </nav>
-
-    <header>
-        <div class="badge-promo" style="position:relative; display:inline-block; margin-bottom:15px; top:0; left:0">Premium Delivery Express</div>
-        <h1>Tu Farmacia Digital</h1>
-        <p>Agrega múltiples productos a tu lista y envíalos listos para procesar en un solo mensaje de WhatsApp.</p>
-    </header>
-
-    <section id="buscar">
-        <div class="controls-wrapper">
-            <div class="search-area">
-                <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="search-input" placeholder="¿Qué medicamento o producto buscas?">
-                </div>
-                <div class="instant-tags">
-                    <button class="tag-btn" onclick="setSearchTag('Vitamina')">Vitaminas</button>
-                    <button class="tag-btn" onclick="setSearchTag('Alcohol')">Alcohol</button>
-                    <button class="tag-btn" onclick="setSearchTag('Kit')">Botiquín</button>
-                </div>
-            </div>
-
-            <div class="price-filter-box">
-                <label for="price-range" style="font-weight:500; font-size:0.9rem">Precio Máximo: <strong id="price-val">S/ 50.00</strong></label>
-                <input type="range" id="price-range" min="0" max="50" step="1" value="50">
-            </div>
-        </div>
-        <p class="results-count" id="results-count">Mostrando todo el catálogo</p>
-    </section>
-
-    <section id="categorias" style="padding-top:0">
-        <div class="categories">
-            <div class="category active" data-cat="all"><i class="fa-solid fa-border-all"></i>Todos</div>
-            <div class="category" data-cat="otc"><i class="fa-solid fa-capsules"></i>Medicamentos</div>
-            <div class="category" data-cat="personal"><i class="fa-solid fa-pump-soap"></i>Cuidado Personal</div>
-            <div class="category" data-cat="vitaminas"><i class="fa-solid fa-heart-pulse"></i>Vitaminas</div>
-            <div class="category" data-cat="auxilios"><i class="fa-solid fa-kit-medical"></i>Primeros Auxilios</div>
-        </div>
-    </section>
-
-    <section id="productos">
-        <div class="grid" id="products-grid">
-            
-            <div class="card" data-category="vitaminas" data-price="29.90">
-                <div class="badge-promo">Top Ventas</div>
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800" alt="Vitaminas Multivitamínicas">
-                </div>
-                <div class="content">
-                    <h3>Vitaminas Multivitamínicas</h3>
-                    <p>Suplemento diario completo de alta concentración para mejorar tus defensas y energía diaria.</p>
-                    <div class="price-row">
-                        <div class="price">S/ 29.90</div>
-                    </div>
-                    <button class="add-cart-btn" onclick="addToCart('Vitaminas Multivitamínicas', 29.90)">
-                        <i class="fa-solid fa-plus"></i> Añadir al Pedido
-                    </button>
-                </div>
-            </div>
-
-            <div class="card" data-category="auxilios" data-price="8.90">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800" alt="Alcohol Antiséptico">
-                </div>
-                <div class="content">
-                    <h3>Alcohol Antiséptico 70°</h3>
-                    <p>Uso externo medicinal purificado. Ideal para protocolos de desinfección sanitaria.</p>
-                    <div class="price-row">
-                        <div class="price">S/ 8.90</div>
-                    </div>
-                    <button class="add-cart-btn" onclick="addToCart('Alcohol Antiséptico 70°', 8.90)">
-                        <i class="fa-solid fa-plus"></i> Añadir al Pedido
-                    </button>
-                </div>
-            </div>
-
-            <div class="card" data-category="auxilios" data-price="24.90">
-                <div class="img-container">
-                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800" alt="Kit de Primeros Auxilios">
-                </div>
-                <div class="content">
-                    <h3>Kit de Primeros Auxilios Pro</h3>
-                    <p>Estuche completo semirrígido ideal para respuesta rápida en vehículos u hogares.</p>
-                    <div class="price-row">
-                        <div class="price">S/ 24.90</div>
-                    </div>
-                    <button class="add-cart-btn" onclick="addToCart('Kit de Primeros Auxilios Pro', 24.90)">
-                        <i class="fa-solid fa-plus"></i> Añadir al Pedido
-                    </button>
-                </div>
-            </div>
-
-            <div class="no-results" id="no-results-msg">
-                <i class="fa-solid fa-magnifying-glass-minus" style="font-size:2.5rem; color:var(--primary); margin-bottom:10px"></i>
-                <p>No se encontraron productos bajo esos filtros específicos.</p>
-            </div>
-
-        </div>
-    </section>
-
-    <section id="receta">
-        <div class="prescription-box">
-            <h2><i class="fa-solid fa-receipt"></i> ¿Tienes una Receta Médica?</h2>
-            <p>No pierdas tiempo buscando. Envíanos una foto clara y un farmacéutico colegiado la cotizará al instante.</p>
-            <a href="https://wa.me/51999999999?text=Hola,%20adjunto%20la%20foto%20de%20mi%20receta%20médica%20para%20cotización." target="_blank" rel="noopener" class="btn-prescription">
-                <i class="fa-brands fa-whatsapp"></i> Subir Receta vía WhatsApp
-            </a>
-        </div>
-    </section>
-
-    <div class="cart-overlay" id="cart-overlay"></div>
-    <div class="cart-sidebar" id="cart-sidebar">
-        <div class="cart-header">
-            <h2><i class="fa-solid fa-basket-shopping"></i> Tu Lista de Pedido</h2>
-            <button class="close-cart" id="close-cart-btn">&times;</button>
-        </div>
-        <div class="cart-items-container" id="cart-items-wrapper">
-            </div>
-        <div class="cart-footer">
-            <div class="total-row">
-                <span>Total estimado:</span>
-                <span id="cart-total-val">S/ 0.00</span>
-            </div>
-            <button class="checkout-btn" onclick="sendCartToWhatsApp()">
-                <i class="fa-brands fa-whatsapp"></i> Enviar Pedido Completo
-            </button>
-        </div>
-    </div>
-
-    <div class="notification-toast" id="social-proof">
-        <i class="fa-solid fa-circle-check"></i>
-        <div class="notification-text">
-            <strong id="sp-user">María R. de Trujillo</strong>
-            <p id="sp-action">Acaba de pedir Kit de Primeros Auxilios Pro</p>
-        </div>
-    </div>
-
-    <footer>
-        <p>&copy; 2026 Farmacia Salud Total. Todos los derechos reservados e infraestructura Web Premium.</p>
-    </footer>
-
-    <script>
-        // Menú Móvil
-        const menuToggle = document.getElementById('mobile-menu');
-        const navList = document.getElementById('nav-list');
-        menuToggle.addEventListener('click', () => navList.classList.toggle('active'));
-
-        // Gestión del Estado del Carrito (Memoria Volátil)
-        let cart = [];
-
-        function openCart() {
-            document.getElementById('cart-sidebar').classList.add('open');
-            document.getElementById('cart-overlay').classList.add('open');
+            width: 100%;
+            padding: 15px;
+            background: #25D366;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            transition: var(--transition);
         }
 
-        function closeCart() {
-            document.getElementById('cart-sidebar').classList.remove('open');
-            document.getElementById('cart-overlay').classList.remove('open');
+        .checkout-btn:hover {
+            background: #1ebd58;
+            transform: translateY(-2px);
         }
 
-        document.getElementById('open-cart-btn').addEventListener('click', openCart);
-        document.getElementById('close-cart-btn').addEventListener('click', closeCart);
-        document.getElementById('cart-overlay').addEventListener('click', closeCart);
-
-        function addToCart(name, price) {
-            const existingItem = cart.find(item => item.name === name);
-            if(existingItem) {
-                existingItem.qty += 1;
-            } else {
-                cart.push({ name, price, qty: 1 });
-            }
-            updateCartUI();
-            
-            // Efecto Visual Premium Temporal en el botón
-            event.target.innerHTML = `<i class="fa-solid fa-check"></i> ¡Agregado!`;
-            event.target.style.background = "#10b981";
-            setTimeout(() => {
-                event.target.innerHTML = `<i class="fa-solid fa-plus"></i> Añadir al Pedido`;
-                event.target.style.background = "#0ea5e9";
-            }, 1000);
+        .close-cart {
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 20px;
+            cursor: pointer;
         }
 
-        function removeFromCart(name) {
-            cart = cart.filter(item => item.name !== name);
-            updateCartUI();
+        /* --- TESTIMONIALS & FAQ --- */
+        .testimonials {
+            padding: 40px 8% 60px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
         }
 
-        function updateCartUI() {
-            const wrapper = document.getElementById('cart-items-wrapper');
-            const badge = document.getElementById('cart-badge');
-            const totalVal = document.getElementById('cart-total-val');
-            
-            wrapper.innerHTML = "";
-            let total = 0;
-            let count = 0;
-
-            if (cart.length === 0) {
-                wrapper.innerHTML = `<p style="text-align:center; color:#64748b; margin-top:40px">Tu lista está vacía.</p>`;
-            }
-
-            cart.forEach(item => {
-                total += item.price * item.qty;
-                count += item.qty;
-
-                const itemEl = document.createElement('div');
-                itemEl.classList.add('cart-item');
-                itemEl.innerHTML = `
-                    <div class="cart-item-info">
-                        <div class="cart-item-title">${item.name}</div>
-                        <div class="cart-item-price">S/ ${item.price.toFixed(2)}</div>
-                        <div class="cart-item-qty">Cantidad: ${item.qty}</div>
-                    </div>
-                    <button class="remove-item" onclick="removeFromCart('${item.name}')"><i class="fa-solid fa-trash-can"></i></button>
-                `;
-                wrapper.appendChild(itemEl);
-            });
-
-            badge.textContent = count;
-            totalVal.textContent = `S/ ${total.toFixed(2)}`;
+        .testimonial {
+            background: var(--card);
+            padding: 30px;
+            border-radius: 16px;
+            border: 1px solid var(--border);
         }
 
-        // MOTOR DE ENVÍO DE DATOS AVANZADO A WHATSAPP
-        function sendCartToWhatsApp() {
-            if(cart.length === 0) {
-                alert("Por favor, agrega al menos un producto a tu lista.");
-                return;
-            }
+        .stars { color: var(--gold); margin-bottom: 12px; }
+        .testimonial p { font-style: italic; color: var(--text-muted); font-size: 15px; margin-bottom: 15px;}
 
-            let message = "🏥 *NUEVO PEDIDO - FARMACIA SALUD TOTAL*\n";
-            message += "===================================\n\n";
-            
-            cart.forEach((item, index) => {
-                message += `*${index + 1}.* ${item.name}\n`;
-                message += `   » Cantidad: ${item.qty}\n`;
-                message += `   » Subtotal: S/ ${(item.price * item.qty).toFixed(2)}\n\n`;
-            });
-
-            const totalAmount = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
-            message += "===================================\n";
-            message += `💰 *TOTAL ESTIMADO: S/ ${totalAmount.toFixed(2)}*\n\n`;
-            message += "Por favor, confírmenme disponibilidad de stock e indiquen métodos de pago. ¡Gracias!";
-
-            const encodedMessage = encodeURIComponent(message);
-            const phoneNumber = "51999999999"; // Reemplazar con número real
-            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        .faq { padding: 40px 8% 60px; max-width: 800px; margin: 0 auto; }
+        details {
+            background: var(--card);
+            padding: 18px;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            cursor: pointer;
+            transition: var(--transition);
         }
+        details summary { font-weight: 600; font-size: 16px; outline: none; }
+        details p { margin-top: 12px; color: var(--text-muted); font-size: 15px; line-height: 1.6; }
 
-        // CONTROLADOR DE FILTRADO CON PRECIOS Y CATEGORÍAS
-        const searchInput = document.getElementById('search-input');
-        const priceRange = document.getElementById('price-range');
-        const priceVal = document.getElementById('price-val');
-        const cards = document.querySelectorAll('.card');
-        const categories = document.querySelectorAll('.category');
-        const noResultsMsg = document.getElementById('no-results-msg');
-        const resultsCount = document.getElementById('results-count');
-
-        let activeCategory = 'all';
-
-        function cleanText(text) {
-            return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-        }
-
-        function setSearchTag(tag) {
-            searchInput.value = tag;
-            filterProducts();
-        }
-
-        priceRange.addEventListener('input', () => {
-            priceVal.textContent = `S/ ${parseFloat(priceRange.value).toFixed(2)}`;
-            filterProducts();
-        });
-
-        function filterProducts() {
-            const searchText = cleanText(searchInput.value.trim());
-            const maxPrice = parseFloat(priceRange.value);
-            let visibleCount = 0;
-
-            cards.forEach(card => {
-                const productName = cleanText(card.querySelector('h3').textContent);
-                const productCategory = card.getAttribute('data-category');
-                const productPrice = parseFloat(card.getAttribute('data-price'));
-
-                const matchesSearch = productName.includes(searchText);
-                const matchesCategory = (activeCategory === 'all' || productCategory === activeCategory);
-                const matchesPrice = productPrice <= maxPrice;
-
-                if (matchesSearch && matchesCategory && matchesPrice) {
-                    card.style.display = "flex";
-                    visibleCount++;
-                } else {
-                    card.style.display = "none";
-                }
-            });
-
-            resultsCount.textContent = (searchText !== "" || activeCategory !== 'all' || maxPrice < 50) 
-                ? `Se encontraron ${visibleCount} producto(s) bajo los filtros`
-                : "Mostrando todo el catálogo";
-
-            noResultsMsg.style.display = (visibleCount === 0) ? "block" : "none";
-        }
-
-        searchInput.addEventListener('input', filterProducts);
-
-        categories.forEach(btn => {
-            btn.addEventListener('click', () => {
-                categories.forEach(c => c.classList.remove('active'));
-                btn.classList.add('active');
-                activeCategory = btn.getAttribute('data-cat');
-                filterProducts();
-            });
-        });
-
-        // SIMULADOR SOCIAL PROOF (NOTIFICACIONES DINÁMICAS PREMIUM)
-        const users = ["Alejandro M. de San Isidro", "Rosa P. de Miraflores", "Juan C. de Trujillo", "Beatriz L. de Surco"];
-        const actions = ["pidió Vitaminas Multivitamínicas", "solicitó cotización de Receta Médica", "añadió Alcohol Antiséptico 70°", "compró Kit de Primeros Auxilios Pro"];
-
-        function showSocialProof() {
-            const toast = document.getElementById('social-proof');
-            const userEl = document.getElementById('sp-user');
-            const actionEl = document.getElementById('sp-action');
-
-            const randomUser = users[Math.floor(Math.random() * users.length)];
-            const randomAction = actions[Math.floor(Math.random() * actions.length)];
-
-            userEl.textContent = randomUser;
-            actionEl.textContent = randomAction;
-
-            toast.classList.add('show');
-
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 5000);
-        }
-
-        // Lanzar cada 20 segundos para simular actividad constante
-        setTimeout(showSocialProof, 4000);
-        setInterval(showSocialProof, 22000);
-    </script>
-</body>
-</html>
+        /* --- NOTIFICACIONES FLOJAS (TOASTS) --- */
+        .toast-container {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index:
