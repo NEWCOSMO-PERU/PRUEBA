@@ -527,4 +527,340 @@
             position: fixed;
             bottom: 20px;
             left: 20px;
-            z-index:
+            z-index: 3000;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .toast {
+            background: #111;
+            color: white;
+            border-left: 4px solid var(--gold);
+            padding: 15px 25px;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+            font-size: 14px;
+            animation: slideIn 0.3s ease forwards;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(-100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* --- FOOTER & FLOATING --- */
+        footer {
+            background: #0b0d10;
+            padding: 50px 8%;
+            text-align: center;
+            border-top: 1px solid var(--border);
+        }
+        body.light-mode footer { background: #eaedf2; }
+
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 50%;
+            font-size: 28px;
+            color: white;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(37,211,102,0.4);
+            z-index: 998;
+            transition: var(--transition);
+        }
+        .whatsapp-float:hover { transform: scale(1.1) rotate(10deg); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="logo">📚 Manuales Premium</div>
+        <nav>
+            <a href="#catalogo">Catálogo</a>
+            <a href="#opiniones">Opiniones</a>
+            <a href="#faq">FAQ</a>
+        </nav>
+        <div class="header-actions">
+            <button class="icon-btn" onclick="toggleDark()">
+                <i class="fas fa-moon" id="themeIcon"></i>
+            </button>
+            <button class="icon-btn" onclick="toggleCart()">
+                <i class="fas fa-shopping-bag"></i>
+                <span id="cartBadge">0</span>
+            </button>
+        </div>
+    </header>
+
+    <div class="cart-sidebar" id="cartSidebar">
+        <div class="cart-header">
+            <h3>Tu Carrito</h3>
+            <button class="close-cart" onclick="toggleCart()"><i class="fas fa-times"></i></button>
+        </div>
+        <div class="cart-items" id="cartItemsContainer">
+            </div>
+        <div class="cart-footer-btn">
+            <div class="total-box">
+                <span>Total:</span>
+                <span id="cartTotal">S/0.00</span>
+            </div>
+            <a href="#" target="_blank" class="checkout-btn" id="whatsappCheckout">
+                <i class="fab fa-whatsapp"></i> Confirmar por WhatsApp
+            </a>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <section class="hero">
+        <h1>Lleva tu conocimiento al <span>Nivel Premium</span></h1>
+        <p>Aprende habilidades de alta demanda con manuales digitales minuciosamente estructurados para optimizar tu aprendizaje.</p>
+        <a href="#catalogo" class="btn">Explorar Catálogo <i class="fas fa-arrow-right"></i></a>
+    </section>
+
+    <section class="stats">
+        <div class="stat">
+            <h2>500+</h2>
+            <p>Alumnos Satisfechos</p>
+        </div>
+        <div class="stat">
+            <h2>10</h2>
+            <p>Ebooks Elite</p>
+        </div>
+        <div class="stat">
+            <h2>98%</h2>
+            <p>Casos de Éxito</p>
+        </div>
+        <div class="stat">
+            <h2>24/7</h2>
+            <p>Soporte VIP</p>
+        </div>
+    </section>
+
+    <div class="controls-container" id="catalogo">
+        <h2 class="section-title">Catálogo de Guías Profesionales</h2>
+        
+        <div class="search-wrapper">
+            <i class="fas fa-search"></i>
+            <input type="text" class="search" placeholder="¿Qué habilidad deseas dominar hoy?..." id="search">
+        </div>
+
+        <div class="filter-tags">
+            <span class="tag active" onclick="filterCategory('todos')">Todos</span>
+            <span class="tag" onclick="filterCategory('tecnologia')">Tecnología</span>
+            <span class="tag" onclick="filterCategory('marketing')">Marketing & Negocios</span>
+            <span class="tag" onclick="filterCategory('otros')">Productividad & Oficios</span>
+        </div>
+    </div>
+
+    <section class="products" id="productsContainer"></section>
+
+    <h2 class="section-title" id="opiniones">Casos de Éxito</h2>
+    <section class="testimonials">
+        <div class="testimonial">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"El manual de Inteligencia Artificial va al grano, sin rodeos teóricos innecesarios. Implementé las automatizaciones de inmediato en mi negocio."</p>
+            <b>Carlos M.</b>
+        </div>
+        <div class="testimonial">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"Excelente servicio. Pagué mediante Yape y en menos de 5 minutos ya tenía el enlace de descarga en mi WhatsApp."</p>
+            <b>Ana P.</b>
+        </div>
+        <div class="testimonial">
+            <div class="stars">⭐⭐⭐⭐⭐</div>
+            <p>"Es una inversión muy baja para el altísimo valor que recibes. El ebook de Excel salvó mi puesto de trabajo."</p>
+            <b>José R.</b>
+        </div>
+    </section>
+
+    <h2 class="section-title" id="faq">Resolviendo tus Dudas</h2>
+    <section class="faq">
+        <details>
+            <summary>¿Cómo se realiza la entrega del manual?</summary>
+            <p>Inmediatamente después de verificar tu pago por WhatsApp, te enviaremos un enlace de descarga directa en formato PDF de alta definición, compatible con tu celular, tablet o computadora.</p>
+        </details>
+        <details>
+            <summary>¿Cuáles son los métodos de pago disponibles?</summary>
+            <p>Para tu total comodidad y seguridad, aceptamos transferencias directas, Yape y Plin.</p>
+        </details>
+        <details>
+            <summary>¿Tendré acceso permanente a las actualizaciones?</summary>
+            <p>Sí, al adquirir cualquier manual Premium entras a nuestra base de datos selecta y recibirás futuras actualizaciones del material sin costo adicional.</p>
+        </details>
+    </section>
+
+    <footer>
+        <h3>📚 Manuales Premium</h3>
+        <p style="color: var(--text-muted); margin: 10px 0 20px;">Soporte Oficial WhatsApp: 959493921</p>
+        <p style="font-size: 14px; opacity: 0.6;">© 2026 Todos los derechos reservados. Elite Digital Learning.</p>
+    </footer>
+
+    <a class="whatsapp-float" href="https://wa.me/51959493921?text=Hola,%20deseo%20solicitar%20información%20sobre%20los%20manuales" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // Array de Productos para Gestión Pro
+        const products = [
+            { id: 1, title: "Inteligencia Artificial", description: "Aprende Ingeniería de Prompts e integración de IA desde cero.", price: 19.90, cat: "tecnologia", img: "https://picsum.photos/400/300?1" },
+            { id: 2, title: "Excel Avanzado", description: "Domina Macros, Tablas Dinámicas y Dashboards profesionales.", price: 14.90, cat: "otros", img: "https://picsum.photos/400/300?2" },
+            { id: 3, title: "Marketing Digital", description: "Estrategias de tráfico pagado y embudos de venta de alta conversión.", price: 24.90, cat: "marketing", img: "https://picsum.photos/400/300?3" },
+            { id: 4, title: "Programación Web", description: "Desarrolla tus propios sitios profesionales con HTML, CSS y JS.", price: 29.90, cat: "tecnologia", img: "https://picsum.photos/400/300?4" },
+            { id: 5, title: "Diseño Gráfico", description: "Composición visual, teoría del color y uso experto de herramientas.", price: 17.90, cat: "marketing", img: "https://picsum.photos/400/300?5" },
+            { id: 6, title: "Criptomonedas", description: "Análisis técnico básico, trading estratégico y resguardo de activos.", price: 21.90, cat: "marketing", img: "https://picsum.photos/400/300?6" },
+            { id: 7, title: "Negocios Online", description: "Modelos de monetización digital escalables y automatizados.", price: 18.90, cat: "marketing", img: "https://picsum.photos/400/300?7" },
+            { id: 8, title: "Inglés Básico", description: "Estructuras fundamentales y vocabulario clave para entornos globales.", price: 12.90, cat: "otros", img: "https://picsum.photos/400/300?8" },
+            { id: 9, title: "Cocina Profesional", description: "Técnicas culinarias de vanguardia aplicadas a la alta cocina.", price: 15.90, cat: "otros", img: "https://picsum.photos/400/300?9" },
+            { id: 10, title: "Reparación de Celulares", description: "Diagnóstico de fallas en hardware y software para microelectrónica.", price: 34.90, cat: "otros", img: "https://picsum.photos/400/300?10" }
+        ];
+
+        let cart = JSON.parse(localStorage.getItem('premium_cart')) || [];
+        let currentCategory = 'todos';
+
+        // Renderizar Productos Iniciales
+        function renderProducts(productsToRender) {
+            const container = document.getElementById("productsContainer");
+            container.innerHTML = "";
+            
+            if(productsToRender.length === 0) {
+                container.innerHTML = `<p style="grid-column: 1/-1; text-align: center; color: var(--text-muted);">No se encontraron manuales coincidentes.</p>`;
+                return;
+            }
+
+            productsToRender.forEach(prod => {
+                container.innerHTML += `
+                    <div class="card" data-category="${prod.cat}">
+                        <div class="img-container">
+                            <span class="badge-cat">${prod.cat.toUpperCase()}</span>
+                            <img src="${prod.img}" alt="${prod.title}">
+                        </div>
+                        <div class="content">
+                            <h3>${prod.title}</h3>
+                            <p>${prod.description}</p>
+                            <div class="card-footer">
+                                <div class="price">S/${prod.price.toFixed(2)}</div>
+                                <button class="buy" onclick="addToCart(${prod.id})">
+                                    <i class="fas fa-shopping-cart"></i> Agregar
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            });
+        }
+
+        // Sistema de Carrito Lógica
+        function addToCart(id) {
+            const product = products.find(p => p.id === id);
+            if (!cart.some(item => item.id === id)) {
+                cart.push(product);
+                updateCart();
+                showToast(`✅ ${product.title} agregado al carrito`);
+            } else {
+                showToast(`ℹ️ El manual ya está en tu carrito`);
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            updateCart();
+        }
+
+        function updateCart() {
+            localStorage.setItem('premium_cart', JSON.stringify(cart));
+            document.getElementById("cartBadge").innerText = cart.length;
+            
+            const container = document.getElementById("cartItemsContainer");
+            container.innerHTML = "";
+            
+            let total = 0;
+            let whatsappText = "Hola Manuales Premium, deseo adquirir los siguientes ebooks:\n\n";
+
+            cart.forEach(item => {
+                total += item.price;
+                whatsappText += `▪️ *${item.title}* - S/${item.price.toFixed(2)}\n`;
+                container.innerHTML += `
+                    <div class="cart-item">
+                        <div class="item-info">
+                            <h4>${item.title}</h4>
+                            <p>S/${item.price.toFixed(2)}</p>
+                        </div>
+                        <button class="remove-item" onclick="removeFromCart(${item.id})">
+                            <i class="fas fa-trash-alt"></i>
+                        </button>
+                    </div>
+                `;
+            });
+
+            if(cart.length === 0) {
+                container.innerHTML = `<p style="text-align:center; margin-top:20px; color:var(--text-muted)">Tu carrito está vacío.</p>`;
+            }
+
+            document.getElementById("cartTotal").innerText = `S/${total.toFixed(2)}`;
+            whatsappText += `\n💰 *Total a pagar:* S/${total.toFixed(2)}\n\nMétodo de pago sugerido: Yape/Plin.`;
+            
+            document.getElementById("whatsappCheckout").href = `https://wa.me/51959493921?text=${encodeURIComponent(whatsappText)}`;
+        }
+
+        function toggleCart() {
+            document.getElementById("cartSidebar").classList.toggle("open");
+        }
+
+        // Buscador y Filtros combinados
+        function applyFilters() {
+            const query = document.getElementById("search").value.toLowerCase();
+            const filtered = products.filter(prod => {
+                const matchesSearch = prod.title.toLowerCase().includes(query) || prod.description.toLowerCase().includes(query);
+                const matchesCat = currentCategory === 'todos' || prod.cat === currentCategory;
+                return matchesSearch && matchesCat;
+            });
+            renderProducts(filtered);
+        }
+
+        document.getElementById("search").addEventListener("keyup", applyFilters);
+
+        function filterCategory(category) {
+            currentCategory = category;
+            document.querySelectorAll(".tag").forEach(tag => tag.classList.remove("active"));
+            event.target.classList.add("active");
+            applyFilters();
+        }
+
+        // Toasts Informativos
+        function showToast(message) {
+            const container = document.getElementById("toastContainer");
+            const toast = document.createElement("div");
+            toast.className = "toast";
+            toast.innerText = message;
+            container.appendChild(toast);
+            setTimeout(() => toast.remove(), 3000);
+        }
+
+        // Modo Claro / Oscuro Estable
+        function toggleDark() {
+            const body = document.body;
+            const icon = document.getElementById("themeIcon");
+            body.classList.toggle("light-mode");
+            
+            if(body.classList.contains("light-mode")) {
+                icon.className = "fas fa-sun";
+            } else {
+                icon.className = "fas fa-moon";
+            }
+        }
+
+        // Inicialización
+        window.onload = () => {
+            renderProducts(products);
+            updateCart();
+        };
+    </script>
+</body>
+</html>
