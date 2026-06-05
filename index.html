@@ -1,562 +1,608 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Plantillas Web Premium</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia Salud Total | Premium Pro Ecommerce</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <style>
+        :root {
+            --primary: #0ea5e9;
+            --primary-dark: #0369a1;
+            --secondary: #10b981;
+            --secondary-dark: #047857;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --text: #334155;
+            --gray-border: #e2e8f0;
+            --whatsapp: #25D366;
+            --shadow-premium: 0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            --accent: #ff3b30;
+        }
 
-<style>
-:root{
---gold:#d4af37;
---dark:#0f1115;
---card:#181d26;
---white:#fff;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:'Segoe UI',sans-serif;
-}
+        html { scroll-behavior: smooth; }
+        body { background: var(--light); color: var(--text); padding-top: 70px; overflow-x: hidden; }
 
-body{
-background:var(--dark);
-color:white;
-}
+        /* --- NAVBAR PREMIUM --- */
+        nav {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 70px;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
+            z-index: 1000;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 40px;
+            border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+        }
 
-header{
-position:fixed;
-width:100%;
-top:0;
-background:rgba(0,0,0,.95);
-backdrop-filter:blur(10px);
-padding:15px 5%;
-display:flex;
-justify-content:space-between;
-align-items:center;
-z-index:1000;
-border-bottom:1px solid rgba(212,175,55,.2);
-}
+        nav .logo {
+            font-size: 1.3rem; font-weight: 700; color: var(--dark);
+            text-decoration: none; display: flex; align-items: center; gap: 8px;
+        }
+        nav .logo span { color: var(--primary); }
 
-.logo{
-font-size:28px;
-font-weight:bold;
-color:var(--gold);
-}
+        nav .nav-links { display: flex; gap: 25px; list-style: none; }
+        nav .nav-links a {
+            text-decoration: none; color: var(--text); font-weight: 500;
+            transition: 0.3s; font-size: 0.95rem; position: relative;
+        }
+        nav .nav-links a::after {
+            content: ''; position: absolute; bottom: -5px; left: 0; width: 0; height: 2px;
+            background: var(--primary); transition: 0.3s;
+        }
+        nav .nav-links a:hover::after { width: 100%; }
+        nav .nav-links a:hover { color: var(--primary); }
 
-nav a{
-color:white;
-text-decoration:none;
-margin-left:25px;
-transition:.3s;
-}
+        .menu-toggle { display: none; font-size: 1.5rem; cursor: pointer; }
 
-nav a:hover{
-color:var(--gold);
-}
+        /* --- BOTON NAV CART --- */
+        .cart-nav-btn {
+            background: var(--dark); color: white; border: none;
+            padding: 10px 18px; border-radius: 30px; font-weight: 600;
+            cursor: pointer; display: flex; align-items: center; gap: 8px;
+            transition: 0.3s; position: relative;
+        }
+        .cart-nav-btn:hover { background: var(--primary); transform: translateY(-2px); }
+        .cart-count {
+            background: var(--accent); color: white; font-size: 0.75rem;
+            padding: 2px 7px; border-radius: 50%; position: absolute; top: -5px; right: -5px;
+        }
 
-.hero{
-padding:150px 5% 100px;
-text-align:center;
-background:
-linear-gradient(rgba(0,0,0,.7),rgba(0,0,0,.8)),
-url("https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=1600");
-background-size:cover;
-background-position:center;
-}
+        /* --- HERO BLUR GLASS --- */
+        header {
+            background: radial-gradient(circle at top right, rgba(16, 185, 129, 0.1), transparent), radial-gradient(circle at top left, rgba(14, 165, 233, 0.15), transparent);
+            padding: 100px 20px; text-align: center; position: relative;
+        }
+        header h1 { font-size: 3.5rem; color: var(--dark); font-weight: 800; margin-bottom: 15px; letter-spacing: -1px; }
+        header p { font-size: 1.2rem; max-width: 600px; margin: auto; color: #64748b; }
+        
+        /* --- BUSCADOR PRO CON TAGS --- */
+        .search-area { max-width: 650px; margin: 0 auto; }
+        .search-box { position: relative; width: 100%; }
+        .search-box input {
+            width: 100%; padding: 18px 25px 18px 55px; border: 2px solid var(--gray-border);
+            border-radius: 16px; font-size: 16px; outline: none; transition: 0.3s; background: white;
+        }
+        .search-box input:focus { border-color: var(--primary); box-shadow: 0 0 0 4px rgba(14, 165, 233, 0.15); }
+        .search-box i { position: absolute; left: 22px; top: 50%; transform: translateY(-50%); color: #94a3b8; font-size: 1.2rem; }
+        
+        .instant-tags { display: flex; gap: 10px; justify-content: center; margin-top: 15px; flex-wrap: wrap; }
+        .tag-btn {
+            background: white; border: 1px solid var(--gray-border); padding: 6px 14px;
+            border-radius: 20px; font-size: 0.85rem; cursor: pointer; transition: 0.2s; color: #64748b;
+        }
+        .tag-btn:hover { border-color: var(--primary); color: var(--primary); }
 
-.hero h1{
-font-size:65px;
-color:var(--gold);
-margin-bottom:20px;
-}
+        /* --- FILTROS Y CONTROLES --- */
+        .controls-wrapper {
+            display: flex; flex-direction: column; gap: 25px; margin-bottom: 40px;
+        }
+        .price-filter-box {
+            text-align: center; max-width: 300px; margin: 0 auto; background: white;
+            padding: 15px; border-radius: 16px; box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+            border: 1px solid var(--gray-border);
+        }
+        .price-filter-box input { width: 100%; accent-color: var(--primary); margin-top: 8px; }
 
-.hero p{
-font-size:22px;
-max-width:700px;
-margin:auto;
-opacity:.9;
-}
+        /* --- CATEGORÍAS GRID --- */
+        .categories { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 15px; }
+        .category {
+            background: white; padding: 20px 15px; border-radius: 16px; text-align: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.02); cursor: pointer; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid var(--gray-border); font-weight: 600; font-size: 0.9rem;
+            display: flex; flex-direction: column; align-items: center; gap: 10px;
+        }
+        .category i { font-size: 1.4rem; color: var(--primary); transition: 0.2s; }
+        .category:hover { transform: translateY(-5px); border-color: var(--primary); color: var(--primary); }
+        .category.active { background: var(--dark); border-color: var(--dark); color: white; }
+        .category.active i { color: var(--primary); }
 
-.btn{
-display:inline-block;
-padding:15px 35px;
-background:var(--gold);
-color:black;
-font-weight:bold;
-text-decoration:none;
-border-radius:12px;
-margin-top:25px;
-}
+        /* --- PRODUCTOS CARD PREMIUM --- */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card {
+            background: white; border-radius: 24px; overflow: hidden;
+            border: 1px solid var(--gray-border); display: flex; flex-direction: column;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); position: relative;
+        }
+        .card:hover { transform: translateY(-8px); box-shadow: var(--shadow-premium); }
+        
+        .badge-promo {
+            position: absolute; top: 15px; left: 15px; background: var(--accent);
+            color: white; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; z-index: 2;
+        }
 
-.stats{
-padding:60px 5%;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:20px;
-}
+        .img-container { width: 100%; height: 240px; overflow: hidden; background: #f8fafc; position: relative; }
+        .card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card:hover img { transform: scale(1.08); }
 
-.stat{
-background:var(--card);
-padding:30px;
-border-radius:15px;
-text-align:center;
-}
+        .content { padding: 24px; display: flex; flex-direction: column; flex-grow: 1; }
+        .content h3 { font-size: 1.2rem; color: var(--dark); margin-bottom: 8px; font-weight: 700; }
+        .content p { font-size: 0.9rem; color: #64748b; margin-bottom: 20px; flex-grow: 1; line-height: 1.5; }
+        
+        .price-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px; }
+        .price { font-size: 1.5rem; font-weight: 700; color: var(--dark); }
 
-.stat h2{
-color:var(--gold);
-font-size:38px;
-}
+        .add-cart-btn {
+            width: 100%; padding: 14px; background: var(--primary); color: white; border: none;
+            border-radius: 14px; font-weight: 600; cursor: pointer; transition: 0.3s;
+            display: flex; justify-content: center; align-items: center; gap: 8px; font-size: 0.95rem;
+        }
+        .add-cart-btn:hover { background: var(--primary-dark); }
+        .add-cart-btn.added { background: var(--secondary); }
 
-.section-title{
-text-align:center;
-font-size:42px;
-margin:50px 0;
-color:var(--gold);
-}
+        /* --- COPIED NO RESULTS --- */
+        .no-results {
+            text-align: center; grid-column: 1 / -1; color: #64748b; padding: 50px 20px; display: none;
+        }
 
-.search{
-width:90%;
-max-width:500px;
-display:block;
-margin:auto;
-padding:15px;
-border:none;
-border-radius:12px;
-font-size:16px;
-}
+        /* --- SIDEBAR PANEL CARRITO PRO --- */
+        .cart-sidebar {
+            position: fixed; top: 0; right: -400px; width: 400px; height: 100%;
+            background: white; box-shadow: -10px 0 30px rgba(0,0,0,0.05); z-index: 2000;
+            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); display: flex; flex-direction: column;
+        }
+        .cart-sidebar.open { right: 0; }
+        
+        .cart-header { padding: 25px; border-bottom: 1px solid var(--gray-border); display: flex; justify-content: space-between; align-items: center; }
+        .cart-header h2 { font-size: 1.3rem; font-weight: 700; }
+        .close-cart { font-size: 1.5rem; cursor: pointer; color: var(--text); border: none; background: none; }
+        
+        .cart-items-container { flex-grow: 1; padding: 25px; overflow-y: auto; display: flex; flex-direction: column; gap: 20px; }
+        
+        .cart-item { display: flex; align-items: center; gap: 15px; border-bottom: 1px solid var(--gray-border); padding-bottom: 15px; }
+        .cart-item-info { flex-grow: 1; }
+        .cart-item-title { font-weight: 600; font-size: 0.95rem; }
+        .cart-item-price { color: var(--secondary); font-weight: 700; font-size: 0.9rem; }
+        .cart-item-qty { font-size: 0.85rem; color: #64748b; margin-top: 4px; }
+        .remove-item { background: none; border: none; color: var(--accent); cursor: pointer; font-size: 1rem; }
 
-.grid{
-padding:40px 5%;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:25px;
-}
+        .cart-footer { padding: 25px; border-top: 1px solid var(--gray-border); background: #f8fafc; }
+        .total-row { display: flex; justify-content: space-between; margin-bottom: 15px; font-weight: 700; font-size: 1.2rem; }
+        
+        .checkout-btn {
+            width: 100%; padding: 16px; background: var(--whatsapp); color: white; border: none;
+            border-radius: 14px; font-weight: 700; font-size: 1rem; cursor: pointer;
+            display: flex; justify-content: center; align-items: center; gap: 10px; transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+        .checkout-btn:hover { background: #1eb855; transform: translateY(-2px); }
 
-.card{
-background:var(--card);
-border-radius:15px;
-overflow:hidden;
-transition:.3s;
-box-shadow:0 10px 30px rgba(0,0,0,.3);
-}
+        .cart-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.3);
+            z-index: 1999; display: none; backdrop-filter: blur(4px);
+        }
+        .cart-overlay.open { display: block; }
 
-.card:hover{
-transform:translateY(-10px);
-}
+        /* --- NOTIFICACIONES SOCIAL PROOF --- */
+        .notification-toast {
+            position: fixed; bottom: 25px; left: -400px; background: white;
+            padding: 15px 20px; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            display: flex; align-items: center; gap: 15px; z-index: 3000;
+            transition: 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: 1px solid var(--gray-border); max-width: 350px;
+        }
+        .notification-toast.show { left: 25px; }
+        .notification-toast i { font-size: 1.5rem; color: var(--secondary); }
+        .notification-text p { font-size: 0.85rem; color: #64748b; }
+        .notification-text strong { color: var(--dark); font-size: 0.9rem; }
 
-.card img{
-width:100%;
-height:220px;
-object-fit:cover;
-}
+        /* --- SECCIÓN RECETA --- */
+        .prescription-box {
+            background: linear-gradient(135deg, var(--dark), #1e293b); color: white;
+            border-radius: 24px; padding: 50px 40px; text-align: center; max-width: 700px; margin: 0 auto;
+        }
+        .prescription-box p { opacity: 0.8; margin-bottom: 25px; }
+        .prescription-box .btn-prescription {
+            background: var(--primary); color: white; border: none; padding: 15px 35px;
+            border-radius: 50px; font-weight: 600; cursor: pointer; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 10px; transition: 0.3s;
+        }
+        .prescription-box .btn-prescription:hover { background: var(--primary-dark); transform: translateY(-3px); }
 
-.content{
-padding:20px;
-}
+        section { max-width: 1200px; margin: auto; padding: 60px 20px; }
+        .title { text-align: center; margin-bottom: 40px; }
+        .title h2 { font-size: 2.2rem; color: var(--dark); font-weight: 700; }
 
-.content h3{
-margin-bottom:10px;
-}
+        footer { background: var(--dark); color: #94a3b8; text-align: center; padding: 40px 20px; font-size: 0.9rem; }
 
-.price{
-color:var(--gold);
-font-size:28px;
-font-weight:bold;
-margin:15px 0;
-}
-
-.tags{
-margin-bottom:15px;
-}
-
-.tag{
-display:inline-block;
-background:#222;
-padding:6px 10px;
-border-radius:20px;
-font-size:12px;
-margin-right:5px;
-}
-
-.buttons{
-display:flex;
-gap:10px;
-}
-
-.demo,.buy{
-flex:1;
-padding:12px;
-border:none;
-border-radius:10px;
-font-weight:bold;
-cursor:pointer;
-}
-
-.demo{
-background:#2b2f39;
-color:white;
-}
-
-.buy{
-background:var(--gold);
-color:black;
-}
-
-.features{
-padding:60px 5%;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.feature{
-background:var(--card);
-padding:25px;
-border-radius:15px;
-text-align:center;
-}
-
-.feature i{
-font-size:40px;
-color:var(--gold);
-margin-bottom:15px;
-}
-
-.testimonials{
-padding:50px 5%;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:20px;
-}
-
-.testimonial{
-background:var(--card);
-padding:25px;
-border-radius:15px;
-}
-
-.faq{
-padding:50px 5%;
-}
-
-details{
-background:var(--card);
-padding:15px;
-margin-bottom:15px;
-border-radius:10px;
-}
-
-footer{
-background:#111;
-padding:40px;
-text-align:center;
-margin-top:50px;
-}
-
-.whatsapp{
-position:fixed;
-bottom:20px;
-right:20px;
-width:65px;
-height:65px;
-background:#25D366;
-display:flex;
-justify-content:center;
-align-items:center;
-border-radius:50%;
-font-size:32px;
-color:white;
-text-decoration:none;
-}
-
-.cart{
-position:fixed;
-top:90px;
-right:20px;
-background:var(--gold);
-color:black;
-padding:12px 18px;
-border-radius:12px;
-font-weight:bold;
-z-index:999;
-}
-</style>
+        /* --- RESPONSIVE --- */
+        @media(max-width: 768px) {
+            nav { padding: 0 20px; }
+            .menu-toggle { display: block; }
+            nav .nav-links {
+                position: absolute; top: 70px; left: 0; width: 100%; background: white;
+                flex-direction: column; gap: 0; box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+                max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+            }
+            nav .nav-links.active { max-height: 350px; }
+            nav .nav-links a { display: block; padding: 15px 20px; border-bottom: 1px solid var(--gray-border); }
+            .cart-sidebar { width: 100%; right: -100%; }
+            header h1 { font-size: 2.4rem; }
+        }
+    </style>
 </head>
-
 <body>
 
-<header>
-<div class="logo">🚀 Web Premium</div>
+    <nav>
+        <a href="#" class="logo"><i class="fa-solid fa-heart-pulse text-primary" style="color:var(--primary)"></i> Salud<span>Total</span></a>
+        <div class="menu-toggle" id="mobile-menu"><i class="fa-solid fa-bars"></i></div>
+        <ul class="nav-links" id="nav-list">
+            <li><a href="#buscar">Buscador</a></li>
+            <li><a href="#categorias">Categorías</a></li>
+            <li><a href="#productos">Productos</a></li>
+            <li><a href="#receta">Recetas</a></li>
+        </ul>
+        <button class="cart-nav-btn" id="open-cart-btn">
+            <i class="fa-solid fa-bag-shopping"></i> Pedido
+            <span class="cart-count" id="cart-badge">0</span>
+        </button>
+    </nav>
 
-<nav>
-<a href="#plantillas">Plantillas</a>
-<a href="#beneficios">Beneficios</a>
-<a href="#opiniones">Opiniones</a>
-<a href="#faq">FAQ</a>
-</nav>
-</header>
+    <header>
+        <div class="badge-promo" style="position:relative; display:inline-block; margin-bottom:15px; top:0; left:0">Premium Delivery Express</div>
+        <h1>Tu Farmacia Digital</h1>
+        <p>Agrega múltiples productos a tu lista y envíalos listos para procesar en un solo mensaje de WhatsApp.</p>
+    </header>
 
-<div class="cart">
-🛒 <span id="cart">0</span>
-</div>
+    <section id="buscar">
+        <div class="controls-wrapper">
+            <div class="search-area">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" id="search-input" placeholder="¿Qué medicamento o producto buscas?">
+                </div>
+                <div class="instant-tags">
+                    <button class="tag-btn" onclick="setSearchTag('Vitamina')">Vitaminas</button>
+                    <button class="tag-btn" onclick="setSearchTag('Alcohol')">Alcohol</button>
+                    <button class="tag-btn" onclick="setSearchTag('Kit')">Botiquín</button>
+                </div>
+            </div>
 
-<section class="hero">
-<h1>Plantillas Web Premium</h1>
-<p>
-Diseños profesionales listos para usar.
-HTML, CSS y JavaScript optimizados para negocios.
-</p>
+            <div class="price-filter-box">
+                <label for="price-range" style="font-weight:500; font-size:0.9rem">Precio Máximo: <strong id="price-val">S/ 50.00</strong></label>
+                <input type="range" id="price-range" min="0" max="50" step="1" value="50">
+            </div>
+        </div>
+        <p class="results-count" id="results-count">Mostrando todo el catálogo</p>
+    </section>
 
-<a href="#plantillas" class="btn">
-Ver Plantillas
-</a>
-</section>
+    <section id="categorias" style="padding-top:0">
+        <div class="categories">
+            <div class="category active" data-cat="all"><i class="fa-solid fa-border-all"></i>Todos</div>
+            <div class="category" data-cat="otc"><i class="fa-solid fa-capsules"></i>Medicamentos</div>
+            <div class="category" data-cat="personal"><i class="fa-solid fa-pump-soap"></i>Cuidado Personal</div>
+            <div class="category" data-cat="vitaminas"><i class="fa-solid fa-heart-pulse"></i>Vitaminas</div>
+            <div class="category" data-cat="auxilios"><i class="fa-solid fa-kit-medical"></i>Primeros Auxilios</div>
+        </div>
+    </section>
 
-<section class="stats">
-<div class="stat">
-<h2>120+</h2>
-<p>Plantillas</p>
-</div>
+    <section id="productos">
+        <div class="grid" id="products-grid">
+            
+            <div class="card" data-category="vitaminas" data-price="29.90">
+                <div class="badge-promo">Top Ventas</div>
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?w=800" alt="Vitaminas Multivitamínicas">
+                </div>
+                <div class="content">
+                    <h3>Vitaminas Multivitamínicas</h3>
+                    <p>Suplemento diario completo de alta concentración para mejorar tus defensas y energía diaria.</p>
+                    <div class="price-row">
+                        <div class="price">S/ 29.90</div>
+                    </div>
+                    <button class="add-cart-btn" onclick="addToCart('Vitaminas Multivitamínicas', 29.90)">
+                        <i class="fa-solid fa-plus"></i> Añadir al Pedido
+                    </button>
+                </div>
+            </div>
 
-<div class="stat">
-<h2>1500+</h2>
-<p>Clientes</p>
-</div>
+            <div class="card" data-category="auxilios" data-price="8.90">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1607619056574-7b8d3ee536b2?w=800" alt="Alcohol Antiséptico">
+                </div>
+                <div class="content">
+                    <h3>Alcohol Antiséptico 70°</h3>
+                    <p>Uso externo medicinal purificado. Ideal para protocolos de desinfección sanitaria.</p>
+                    <div class="price-row">
+                        <div class="price">S/ 8.90</div>
+                    </div>
+                    <button class="add-cart-btn" onclick="addToCart('Alcohol Antiséptico 70°', 8.90)">
+                        <i class="fa-solid fa-plus"></i> Añadir al Pedido
+                    </button>
+                </div>
+            </div>
 
-<div class="stat">
-<h2>99%</h2>
-<p>Satisfacción</p>
-</div>
+            <div class="card" data-category="auxilios" data-price="24.90">
+                <div class="img-container">
+                    <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=800" alt="Kit de Primeros Auxilios">
+                </div>
+                <div class="content">
+                    <h3>Kit de Primeros Auxilios Pro</h3>
+                    <p>Estuche completo semirrígido ideal para respuesta rápida en vehículos u hogares.</p>
+                    <div class="price-row">
+                        <div class="price">S/ 24.90</div>
+                    </div>
+                    <button class="add-cart-btn" onclick="addToCart('Kit de Primeros Auxilios Pro', 24.90)">
+                        <i class="fa-solid fa-plus"></i> Añadir al Pedido
+                    </button>
+                </div>
+            </div>
 
-<div class="stat">
-<h2>24/7</h2>
-<p>Soporte</p>
-</div>
-</section>
+            <div class="no-results" id="no-results-msg">
+                <i class="fa-solid fa-magnifying-glass-minus" style="font-size:2.5rem; color:var(--primary); margin-bottom:10px"></i>
+                <p>No se encontraron productos bajo esos filtros específicos.</p>
+            </div>
 
-<h2 class="section-title" id="plantillas">
-Catálogo Premium
-</h2>
+        </div>
+    </section>
 
-<input
-type="text"
-id="search"
-class="search"
-placeholder="Buscar plantilla...">
+    <section id="receta">
+        <div class="prescription-box">
+            <h2><i class="fa-solid fa-receipt"></i> ¿Tienes una Receta Médica?</h2>
+            <p>No pierdas tiempo buscando. Envíanos una foto clara y un farmacéutico colegiado la cotizará al instante.</p>
+            <a href="https://wa.me/51999999999?text=Hola,%20adjunto%20la%20foto%20de%20mi%20receta%20médica%20para%20cotización." target="_blank" rel="noopener" class="btn-prescription">
+                <i class="fa-brands fa-whatsapp"></i> Subir Receta vía WhatsApp
+            </a>
+        </div>
+    </section>
 
-<section class="grid">
+    <div class="cart-overlay" id="cart-overlay"></div>
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2><i class="fa-solid fa-basket-shopping"></i> Tu Lista de Pedido</h2>
+            <button class="close-cart" id="close-cart-btn">&times;</button>
+        </div>
+        <div class="cart-items-container" id="cart-items-wrapper">
+            </div>
+        <div class="cart-footer">
+            <div class="total-row">
+                <span>Total estimado:</span>
+                <span id="cart-total-val">S/ 0.00</span>
+            </div>
+            <button class="checkout-btn" onclick="sendCartToWhatsApp()">
+                <i class="fa-brands fa-whatsapp"></i> Enviar Pedido Completo
+            </button>
+        </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/600/400?1">
-<div class="content">
-<h3>Tienda Online Pro</h3>
-<div class="tags">
-<span class="tag">Ecommerce</span>
-<span class="tag">Responsive</span>
-</div>
-<div class="price">S/49</div>
-<div class="buttons">
-<button class="demo">Demo</button>
-<button class="buy">Comprar</button>
-</div>
-</div>
-</div>
+    <div class="notification-toast" id="social-proof">
+        <i class="fa-solid fa-circle-check"></i>
+        <div class="notification-text">
+            <strong id="sp-user">María R. de Trujillo</strong>
+            <p id="sp-action">Acaba de pedir Kit de Primeros Auxilios Pro</p>
+        </div>
+    </div>
 
-<div class="card">
-<img src="https://picsum.photos/600/400?2">
-<div class="content">
-<h3>Restaurante Premium</h3>
-<div class="price">S/39</div>
-<div class="buttons">
-<button class="demo">Demo</button>
-<button class="buy">Comprar</button>
-</div>
-</div>
-</div>
+    <footer>
+        <p>&copy; 2026 Farmacia Salud Total. Todos los derechos reservados e infraestructura Web Premium.</p>
+    </footer>
 
-<div class="card">
-<img src="https://picsum.photos/600/400?3">
-<div class="content">
-<h3>Licorería Deluxe</h3>
-<div class="price">S/39</div>
-<div class="buttons">
-<button class="demo">Demo</button>
-<button class="buy">Comprar</button>
-</div>
-</div>
-</div>
+    <script>
+        // Menú Móvil
+        const menuToggle = document.getElementById('mobile-menu');
+        const navList = document.getElementById('nav-list');
+        menuToggle.addEventListener('click', () => navList.classList.toggle('active'));
 
-<div class="card">
-<img src="https://picsum.photos/600/400?4">
-<div class="content">
-<h3>Farmacia Digital</h3>
-<div class="price">S/45</div>
-<div class="buttons">
-<button class="demo">Demo</button>
-<button class="buy">Comprar</button>
-</div>
-</div>
-</div>
+        // Gestión del Estado del Carrito (Memoria Volátil)
+        let cart = [];
 
-<div class="card">
-<img src="https://picsum.photos/600/400?5">
-<div class="content">
-<h3>Landing Page IA</h3>
-<div class="price">S/29</div>
-<div class="buttons">
-<button class="demo">Demo</button>
-<button class="buy">Comprar</button>
-</div>
-</div>
-</div>
+        function openCart() {
+            document.getElementById('cart-sidebar').classList.add('open');
+            document.getElementById('cart-overlay').classList.add('open');
+        }
 
-<div class="card">
-<img src="https://picsum.photos/600/400?6">
-<div class="content">
-<h3>Portafolio Profesional</h3>
-<div class="price">S/25</div>
-<div class="buttons">
-<button class="demo">Demo</button>
-<button class="buy">Comprar</button>
-</div>
-</div>
-</div>
+        function closeCart() {
+            document.getElementById('cart-sidebar').classList.remove('open');
+            document.getElementById('cart-overlay').classList.remove('open');
+        }
 
-</section>
+        document.getElementById('open-cart-btn').addEventListener('click', openCart);
+        document.getElementById('close-cart-btn').addEventListener('click', closeCart);
+        document.getElementById('cart-overlay').addEventListener('click', closeCart);
 
-<h2 class="section-title" id="beneficios">
-¿Por qué elegirnos?
-</h2>
+        function addToCart(name, price) {
+            const existingItem = cart.find(item => item.name === name);
+            if(existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ name, price, qty: 1 });
+            }
+            updateCartUI();
+            
+            // Efecto Visual Premium Temporal en el botón
+            event.target.innerHTML = `<i class="fa-solid fa-check"></i> ¡Agregado!`;
+            event.target.style.background = "#10b981";
+            setTimeout(() => {
+                event.target.innerHTML = `<i class="fa-solid fa-plus"></i> Añadir al Pedido`;
+                event.target.style.background = "#0ea5e9";
+            }, 1000);
+        }
 
-<section class="features">
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCartUI();
+        }
 
-<div class="feature">
-<i class="fas fa-mobile-screen"></i>
-<h3>Responsive</h3>
-<p>Compatible con móviles y PC.</p>
-</div>
+        function updateCartUI() {
+            const wrapper = document.getElementById('cart-items-wrapper');
+            const badge = document.getElementById('cart-badge');
+            const totalVal = document.getElementById('cart-total-val');
+            
+            wrapper.innerHTML = "";
+            let total = 0;
+            let count = 0;
 
-<div class="feature">
-<i class="fas fa-bolt"></i>
-<h3>Rápidas</h3>
-<p>Carga optimizada.</p>
-</div>
+            if (cart.length === 0) {
+                wrapper.innerHTML = `<p style="text-align:center; color:#64748b; margin-top:40px">Tu lista está vacía.</p>`;
+            }
 
-<div class="feature">
-<i class="fas fa-code"></i>
-<h3>Código Limpio</h3>
-<p>Fácil de editar.</p>
-</div>
+            cart.forEach(item => {
+                total += item.price * item.qty;
+                count += item.qty;
 
-<div class="feature">
-<i class="fas fa-headset"></i>
-<h3>Soporte</h3>
-<p>Ayuda personalizada.</p>
-</div>
+                const itemEl = document.createElement('div');
+                itemEl.classList.add('cart-item');
+                itemEl.innerHTML = `
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">S/ ${item.price.toFixed(2)}</div>
+                        <div class="cart-item-qty">Cantidad: ${item.qty}</div>
+                    </div>
+                    <button class="remove-item" onclick="removeFromCart('${item.name}')"><i class="fa-solid fa-trash-can"></i></button>
+                `;
+                wrapper.appendChild(itemEl);
+            });
 
-</section>
+            badge.textContent = count;
+            totalVal.textContent = `S/ ${total.toFixed(2)}`;
+        }
 
-<h2 class="section-title" id="opiniones">
-Opiniones
-</h2>
+        // MOTOR DE ENVÍO DE DATOS AVANZADO A WHATSAPP
+        function sendCartToWhatsApp() {
+            if(cart.length === 0) {
+                alert("Por favor, agrega al menos un producto a tu lista.");
+                return;
+            }
 
-<section class="testimonials">
+            let message = "🏥 *NUEVO PEDIDO - FARMACIA SALUD TOTAL*\n";
+            message += "===================================\n\n";
+            
+            cart.forEach((item, index) => {
+                message += `*${index + 1}.* ${item.name}\n`;
+                message += `   » Cantidad: ${item.qty}\n`;
+                message += `   » Subtotal: S/ ${(item.price * item.qty).toFixed(2)}\n\n`;
+            });
 
-<div class="testimonial">
-⭐⭐⭐⭐⭐
-<p>Excelente calidad y fácil instalación.</p>
-<b>Carlos M.</b>
-</div>
+            const totalAmount = cart.reduce((acc, item) => acc + (item.price * item.qty), 0);
+            message += "===================================\n";
+            message += `💰 *TOTAL ESTIMADO: S/ ${totalAmount.toFixed(2)}*\n\n`;
+            message += "Por favor, confírmenme disponibilidad de stock e indiquen métodos de pago. ¡Gracias!";
 
-<div class="testimonial">
-⭐⭐⭐⭐⭐
-<p>Muy profesional y rápida.</p>
-<b>Andrea P.</b>
-</div>
+            const encodedMessage = encodeURIComponent(message);
+            const phoneNumber = "51999999999"; // Reemplazar con número real
+            window.open(`https://wa.me/${phoneNumber}?text=${encodedMessage}`, '_blank');
+        }
 
-<div class="testimonial">
-⭐⭐⭐⭐⭐
-<p>Perfecta para mi negocio.</p>
-<b>Luis R.</b>
-</div>
+        // CONTROLADOR DE FILTRADO CON PRECIOS Y CATEGORÍAS
+        const searchInput = document.getElementById('search-input');
+        const priceRange = document.getElementById('price-range');
+        const priceVal = document.getElementById('price-val');
+        const cards = document.querySelectorAll('.card');
+        const categories = document.querySelectorAll('.category');
+        const noResultsMsg = document.getElementById('no-results-msg');
+        const resultsCount = document.getElementById('results-count');
 
-</section>
+        let activeCategory = 'all';
 
-<h2 class="section-title" id="faq">
-Preguntas Frecuentes
-</h2>
+        function cleanText(text) {
+            return text.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+        }
 
-<section class="faq">
+        function setSearchTag(tag) {
+            searchInput.value = tag;
+            filterProducts();
+        }
 
-<details>
-<summary>¿Recibo el código fuente?</summary>
-<p>Sí, recibirás todos los archivos.</p>
-</details>
+        priceRange.addEventListener('input', () => {
+            priceVal.textContent = `S/ ${parseFloat(priceRange.value).toFixed(2)}`;
+            filterProducts();
+        });
 
-<details>
-<summary>¿Funcionan en GitHub Pages?</summary>
-<p>Sí, están optimizadas para GitHub Pages.</p>
-</details>
+        function filterProducts() {
+            const searchText = cleanText(searchInput.value.trim());
+            const maxPrice = parseFloat(priceRange.value);
+            let visibleCount = 0;
 
-<details>
-<summary>¿Incluyen soporte?</summary>
-<p>Sí, vía WhatsApp.</p>
-</details>
+            cards.forEach(card => {
+                const productName = cleanText(card.querySelector('h3').textContent);
+                const productCategory = card.getAttribute('data-category');
+                const productPrice = parseFloat(card.getAttribute('data-price'));
 
-</section>
+                const matchesSearch = productName.includes(searchText);
+                const matchesCategory = (activeCategory === 'all' || productCategory === activeCategory);
+                const matchesPrice = productPrice <= maxPrice;
 
-<footer>
-<h3>🚀 Web Premium</h3>
-<p>WhatsApp: 959493921</p>
-<p>© 2026 Todos los derechos reservados.</p>
-</footer>
+                if (matchesSearch && matchesCategory && matchesPrice) {
+                    card.style.display = "flex";
+                    visibleCount++;
+                } else {
+                    card.style.display = "none";
+                }
+            });
 
-<a
-href="https://wa.me/51959493921"
-target="_blank"
-class="whatsapp">
-<i class="fab fa-whatsapp"></i>
-</a>
+            resultsCount.textContent = (searchText !== "" || activeCategory !== 'all' || maxPrice < 50) 
+                ? `Se encontraron ${visibleCount} producto(s) bajo los filtros`
+                : "Mostrando todo el catálogo";
 
-<script>
-let cart=0;
+            noResultsMsg.style.display = (visibleCount === 0) ? "block" : "none";
+        }
 
-document.querySelectorAll(".buy").forEach(btn=>{
-btn.onclick=()=>{
-cart++;
-document.getElementById("cart").innerText=cart;
-localStorage.setItem("cart",cart);
-}
-});
+        searchInput.addEventListener('input', filterProducts);
 
-window.onload=()=>{
-let saved=localStorage.getItem("cart");
-if(saved){
-cart=saved;
-document.getElementById("cart").innerText=saved;
-}
-};
+        categories.forEach(btn => {
+            btn.addEventListener('click', () => {
+                categories.forEach(c => c.classList.remove('active'));
+                btn.classList.add('active');
+                activeCategory = btn.getAttribute('data-cat');
+                filterProducts();
+            });
+        });
 
-document.getElementById("search").addEventListener("keyup",function(){
+        // SIMULADOR SOCIAL PROOF (NOTIFICACIONES DINÁMICAS PREMIUM)
+        const users = ["Alejandro M. de San Isidro", "Rosa P. de Miraflores", "Juan C. de Trujillo", "Beatriz L. de Surco"];
+        const actions = ["pidió Vitaminas Multivitamínicas", "solicitó cotización de Receta Médica", "añadió Alcohol Antiséptico 70°", "compró Kit de Primeros Auxilios Pro"];
 
-let value=this.value.toLowerCase();
+        function showSocialProof() {
+            const toast = document.getElementById('social-proof');
+            const userEl = document.getElementById('sp-user');
+            const actionEl = document.getElementById('sp-action');
 
-document.querySelectorAll(".card").forEach(card=>{
+            const randomUser = users[Math.floor(Math.random() * users.length)];
+            const randomAction = actions[Math.floor(Math.random() * actions.length)];
 
-let text=card.innerText.toLowerCase();
+            userEl.textContent = randomUser;
+            actionEl.textContent = randomAction;
 
-card.style.display=text.includes(value)
-? "block"
-: "none";
+            toast.classList.add('show');
 
-});
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 5000);
+        }
 
-});
-</script>
-
+        // Lanzar cada 20 segundos para simular actividad constante
+        setTimeout(showSocialProof, 4000);
+        setInterval(showSocialProof, 22000);
+    </script>
 </body>
 </html>
