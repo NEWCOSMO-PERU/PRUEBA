@@ -189,3 +189,81 @@ body {
     color: #333;
     grid-column: span 1;
 }
+
+
+/* --- ADAPTACIÓN PARA MÓVILES (Media Queries) --- */
+@media (max-width: 768px) {
+    /* Cambiamos la disposición de horizontal a vertical */
+    .dashboard-container {
+        flex-direction: column;
+    }
+
+    /* La barra lateral ahora ocupa todo el ancho y se adapta */
+    .sidebar {
+        width: 100%;
+        padding: 10px 0;
+    }
+
+    .profile-section {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .profile-section .avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 1.2rem;
+        margin: 0;
+    }
+
+    .menu {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin-top: 10px;
+    }
+
+    .menu-item {
+        padding: 10px;
+        font-size: 0.8rem;
+    }
+
+    .menu-item .arrow, .sidebar-footer {
+        display: none; /* Ocultamos flechas y botón back en móvil para ahorrar espacio */
+    }
+
+    /* La barra de búsqueda se adapta al ancho */
+    .top-bar {
+        flex-direction: column;
+        gap: 15px;
+        align-items: flex-start;
+    }
+
+    .search-box {
+        width: 100%;
+    }
+
+    .search-box input {
+        width: 100%;
+    }
+
+    /* Rediseñamos la cuadrícula para que todo vaya en una sola columna */
+    .grid-container {
+        grid-template-columns: 1fr;
+    }
+
+    /* Forzamos a que las tarjetas grandes ocupen solo su fila */
+    .card-large-double {
+        grid-column: span 1;
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+    }
+
+    .card-white-bars {
+        grid-column: span 1;
+    }
+}
