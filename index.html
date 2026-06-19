@@ -1,84 +1,505 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Tony Stan</title>
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>NEWCOSMO SOLUCIONES</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
 </head>
+
 <body>
 
-    <div class="dashboard-container">
-        <aside class="sidebar">
-            <div class="profile-section">
-                <div class="avatar"><i class="fa-solid fa-user"></i></div>
-                <h2>TONY STAN</h2>
-                <p>LOREM IPSUM</p>
-            </div>
-            
-            <nav class="menu">
-                <a href="#" class="menu-item active"><i class="fa-solid fa-square"></i> DASHBOARD <i class="fa-solid fa-chevron-right arrow"></i></a>
-                <a href="#" class="menu-item"><i class="fa-solid fa-crosshairs"></i> TARGET <i class="fa-solid fa-chevron-right arrow"></i></a>
-                <a href="#" class="menu-item"><i class="fa-solid fa-chart-bar"></i> CHARTS <i class="fa-solid fa-chevron-right arrow"></i></a>
-                <a href="#" class="menu-item"><i class="fa-solid fa-gear"></i> SETTINGS <i class="fa-solid fa-chevron-right arrow"></i></a>
-                <a href="#" class="menu-item"><i class="fa-solid fa-envelope"></i> MESSAGES <i class="fa-solid fa-chevron-right arrow"></i></a>
-                <a href="#" class="menu-item"><i class="fa-solid fa-wifi"></i> NETWORK <i class="fa-solid fa-chevron-right arrow"></i></a>
-            </nav>
+<!-- SIDEBAR -->
 
-            <div class="sidebar-footer">
-                <a href="#"><i class="fa-solid fa-chevron-left"></i> BACK</a>
-            </div>
-        </aside>
+<aside class="sidebar">
 
-        <main class="main-content">
-            <header class="top-bar">
-                <div class="left-header">
-                    <i class="fa-solid fa-bars toggle-menu"></i>
-                    <i class="fa-regular fa-question-circle"></i>
-                    <span>OVERVIEW</span>
-                </div>
-                <div class="search-box">
-                    <input type="text" placeholder="Buscar...">
-                    <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                </div>
-            </header>
+<div class="logo">
 
-            <div class="grid-container">
-                <div class="card card-purple">
-                    <h3>Lorem Ipsum</h3>
-                    <div class="card-value">56 <span class="up">(+4)</span></div>
-                    <div class="chart-placeholder">[Gráfico de línea]</div>
-                </div>
-                <div class="card card-orange">
-                    <h3>Lorem Ipsum</h3>
-                    <div class="card-value">$ 226 <span class="down">(-12)</span></div>
-                    <div class="chart-placeholder">[Gráfico de línea]</div>
-                </div>
-                <div class="card card-teal">
-                    <h3>Lorem Ipsum</h3>
-                    <div class="card-value">24 <span class="up">(+5)</span></div>
-                    <div class="chart-placeholder">[Gráfico de línea]</div>
-                </div>
+<h1>NEWCOSMO</h1>
+<span>SOLUCIONES</span>
 
-                <div class="card-large-double">
-                    <div class="donut-section">
-                        <h3>Lorem Ipsum</h3>
-                        <div class="donut-chart color-teal">50%</div>
-                    </div>
-                    <div class="donut-section">
-                        <h3>Lorem Ipsum</h3>
-                        <div class="donut-chart color-orange">15%</div>
-                    </div>
-                </div>
+</div>
 
-                <div class="card card-white-bars">
-                    <h3>Lorem Ipsum</h3>
-                    <div class="bar-chart-placeholder">[Gráfico de Barras A, B, C]</div>
-                </div>
-            </div>
-        </main>
-    </div>
+<nav>
+
+<ul>
+
+<li class="active">
+<i class="fas fa-home"></i>
+<span>Inicio</span>
+</li>
+
+<li>
+<i class="fas fa-music"></i>
+<span>Tonos</span>
+</li>
+
+<li>
+<i class="fas fa-book"></i>
+<span>Manuales</span>
+</li>
+
+<li>
+<i class="fas fa-image"></i>
+<span>Fondos</span>
+</li>
+
+<li>
+<i class="fas fa-toolbox"></i>
+<span>Herramientas</span>
+</li>
+
+<li>
+<i class="fas fa-crown"></i>
+<span>Zona VIP</span>
+</li>
+
+</ul>
+
+</nav>
+
+</aside>
+
+<!-- CONTENIDO -->
+
+<main class="main-content">
+
+<!-- TOP BAR -->
+
+<header class="topbar">
+
+<div class="search-box">
+
+<i class="fas fa-search"></i>
+
+<input
+type="text"
+placeholder="Buscar contenido..."
+id="searchInput">
+
+</div>
+
+<div class="top-actions">
+
+<a href="#vip" class="vip-btn">
+<i class="fas fa-crown"></i>
+VIP
+</a>
+
+</div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-overlay"></div>
+
+<div class="hero-content">
+
+<h1>
+NEWCOSMO SOLUCIONES
+</h1>
+
+<p>
+
+Biblioteca digital premium con tonos,
+manuales, fondos HD y herramientas
+exclusivas.
+
+</p>
+
+<div class="hero-buttons">
+
+<a href="#catalogo" class="btn-primary">
+Explorar Catálogo
+</a>
+
+<a
+href="https://onlyfans.com/"
+target="_blank"
+class="btn-secondary">
+
+Suscribirme en OnlyFans
+
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ESTADISTICAS -->
+
+<section class="stats">
+
+<div class="stat-card">
+
+<h2>500+</h2>
+<p>Tonos</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2>120+</h2>
+<p>Manuales</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2>300+</h2>
+<p>Fondos HD</p>
+
+</div>
+
+<div class="stat-card">
+
+<h2>50+</h2>
+<p>Herramientas</p>
+
+</div>
+
+</section>
+
+<!-- TONOS -->
+
+<section id="catalogo">
+
+<div class="section-header">
+
+<h2>
+🎵 Tonos Premium
+</h2>
+
+<a href="#">
+Ver Todo
+</a>
+
+</div>
+
+<div class="cards-row">
+
+<div class="media-card">
+
+<div class="badge free">
+GRATIS
+</div>
+
+<img
+src="https://picsum.photos/300/180?1">
+
+<h3>Tono Electrónico</h3>
+
+<button class="play-btn">
+
+<i class="fas fa-play"></i>
+
+</button>
+
+</div>
+
+<div class="media-card vip-card">
+
+<div class="badge vip">
+VIP
+</div>
+
+<img
+src="https://picsum.photos/300/180?2">
+
+<h3>Tono Gamer Pro</h3>
+
+<button class="vip-access">
+
+Desbloquear
+
+</button>
+
+</div>
+
+<div class="media-card vip-card">
+
+<div class="badge vip">
+VIP
+</div>
+
+<img
+src="https://picsum.photos/300/180?3">
+
+<h3>Pack Premium</h3>
+
+<button class="vip-access">
+
+Desbloquear
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- MANUALES -->
+
+<section>
+
+<div class="section-header">
+
+<h2>
+📚 Manuales Premium
+</h2>
+
+<a href="#">
+Ver Todo
+</a>
+
+</div>
+
+<div class="cards-row">
+
+<div class="media-card">
+
+<img
+src="https://picsum.photos/300/180?4">
+
+<h3>Guía Android</h3>
+
+<a href="#" class="download-btn">
+
+Descargar
+
+</a>
+
+</div>
+
+<div class="media-card vip-card">
+
+<div class="badge vip">
+VIP
+</div>
+
+<img
+src="https://picsum.photos/300/180?5">
+
+<h3>Manual Avanzado</h3>
+
+<button class="vip-access">
+
+Desbloquear
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- FONDOS -->
+
+<section>
+
+<div class="section-header">
+
+<h2>
+🖼️ Fondos HD
+</h2>
+
+<a href="#">
+Ver Todo
+</a>
+
+</div>
+
+<div class="cards-row">
+
+<div class="media-card">
+
+<img
+src="https://picsum.photos/300/180?6">
+
+<h3>Wallpaper Neon</h3>
+
+<a href="#" class="download-btn">
+
+Descargar
+
+</a>
+
+</div>
+
+<div class="media-card vip-card">
+
+<div class="badge vip">
+VIP
+</div>
+
+<img
+src="https://picsum.photos/300/180?7">
+
+<h3>Pack 4K</h3>
+
+<button class="vip-access">
+
+Desbloquear
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- HERRAMIENTAS -->
+
+<section>
+
+<div class="section-header">
+
+<h2>
+🛠️ Herramientas
+</h2>
+
+</div>
+
+<div class="tools-grid">
+
+<div class="tool-card">
+
+<i class="fas fa-file-pdf"></i>
+
+<h3>PDF a Word</h3>
+
+</div>
+
+<div class="tool-card">
+
+<i class="fas fa-image"></i>
+
+<h3>Convertir Imágenes</h3>
+
+</div>
+
+<div class="tool-card">
+
+<i class="fas fa-qrcode"></i>
+
+<h3>Generar QR</h3>
+
+</div>
+
+<div class="tool-card">
+
+<i class="fas fa-compress"></i>
+
+<h3>Comprimir Imagen</h3>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ZONA VIP -->
+
+<section id="vip" class="vip-section">
+
+<h2>
+
+💎 ZONA VIP
+
+</h2>
+
+<p>
+
+Obtén acceso completo a todos
+los recursos premium.
+
+</p>
+
+<a
+href="https://onlyfans.com/"
+target="_blank"
+class="onlyfans-button">
+
+SUSCRIBIRME EN ONLYFANS
+
+</a>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+
+<div class="footer-logo">
+
+NEWCOSMO SOLUCIONES
+
+</div>
+
+<p>
+
+contacto@newcosmo.com
+
+</p>
+
+</footer>
+
+</main>
+
+<!-- MODAL VIP -->
+
+<div id="vipModal" class="modal">
+
+<div class="modal-content">
+
+<span class="close-modal">
+&times;
+</span>
+
+<h2>
+
+🔒 Contenido Premium
+
+</h2>
+
+<p>
+
+Suscríbete en OnlyFans para
+obtener acceso completo.
+
+</p>
+
+<a
+href="https://onlyfans.com/"
+target="_blank"
+class="onlyfans-button">
+
+IR A ONLYFANS
+
+</a>
+
+</div>
+
+</div>
+
+<script src="app.js"></script>
 
 </body>
 </html>
