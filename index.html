@@ -1,113 +1,87 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 
 <title>Dashboard Hub</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
-```css
 *{
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Inter,sans-serif;
+font-family:Inter;
 }
 
 body{
 
 background:
-radial-gradient(circle at top,#08164a,#010515);
+linear-gradient(
+180deg,
+#071348,
+#02061b
+);
+
+color:white;
 
 height:100vh;
 
 overflow:hidden;
 
-color:white;
-
 }
 
-.wrapper{
+.container{
 
 display:grid;
 
 grid-template-columns:
-250px 1fr;
+260px 1fr;
 
 height:100vh;
 
 }
 
-/* SIDEBAR */
+/* MENU */
 
 .sidebar{
 
-padding:22px;
+padding:28px;
 
 background:
-linear-gradient(
-180deg,
-#02061a,
-#03071b
-);
-
-display:flex;
-
-flex-direction:column;
+#02081d;
 
 border-right:
-1px solid rgba(255,255,255,.05);
+1px solid rgba(255,255,255,.06);
 
 }
 
 .logo{
 
-display:flex;
-
-gap:12px;
-
-align-items:center;
-
-margin-bottom:28px;
+margin-bottom:40px;
 
 }
 
-.hex{
+.logo h1{
 
-width:42px;
+font-size:32px;
 
-height:42px;
-
-background:
-linear-gradient(
-135deg,
-#6f55ff,
-#2685ff
-);
-
-clip-path:
-polygon(
-25% 0,
-75% 0,
-100% 50%,
-75% 100%,
-25% 100%,
-0 50%
-);
+font-weight:800;
 
 }
 
-.logo h2{
+.logo span{
 
-font-size:16px;
+opacity:.7;
 
 }
 
@@ -117,281 +91,113 @@ display:flex;
 
 flex-direction:column;
 
-gap:8px;
+gap:12px;
 
 }
 
 .item{
 
-padding:14px;
+padding:16px;
 
-border-radius:14px;
+border-radius:16px;
 
-font-size:15px;
+cursor:pointer;
+
+font-weight:600;
 
 }
 
+.item:hover,
 .active{
 
 background:
 
 linear-gradient(
 90deg,
-#3539a7,
-#1c255b
+#3139aa,
+#1d2458
 );
 
 }
 
-.bottom{
-
-margin-top:auto;
-
-display:flex;
-
-flex-direction:column;
-
-gap:12px;
-
-font-size:14px;
-
-}
-
-/* MAIN */
+/* CONTENIDO */
 
 .content{
 
+padding:50px;
+
+overflow:auto;
+
+}
+
+.panel{
+
+display:none;
+
+animation:
+fade .25s;
+
+}
+
+.panel.active{
+
+display:block;
+
+}
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+transform:translateY(10px);
+
+}
+
+to{
+
+opacity:1;
+transform:none;
+
+}
+
+}
+
+h2{
+
+font-size:42px;
+
+margin-bottom:18px;
+
+}
+
+p{
+
+font-size:18px;
+
+line-height:1.7;
+
+color:#c4d0ff;
+
+}
+
+.box{
+
+margin-top:30px;
+
 padding:26px;
 
-overflow:hidden;
-
-}
-
-.header{
-
-display:flex;
-
-justify-content:space-between;
-
-margin-bottom:26px;
-
-}
-
-.hero h1{
-
-font-size:48px;
-
-margin-bottom:6px;
-
-}
-
-.hero p{
-
-font-size:16px;
-
-color:#c3cff3;
-
-}
-
-.search{
-
-display:flex;
-
-gap:12px;
-
-}
-
-.search input{
-
-width:300px;
-
-height:54px;
-
-border:none;
-
-border-radius:16px;
-
-background:#08143b;
-
-padding:18px;
-
-color:white;
-
-}
-
-.user{
-
-width:54px;
-
-height:54px;
-
-border-radius:50%;
-
-background:#08143b;
-
-display:grid;
-
-place-items:center;
-
-}
-
-/* CARDS */
-
-.grid{
-
-display:grid;
-
-grid-template-columns:
-repeat(3,1fr);
-
-gap:18px;
-
-height:calc(100vh - 180px);
-
-}
-
-.card{
-
-height:240px;
-
-padding:28px;
-
-border-radius:24px;
+border-radius:22px;
 
 background:
 
-linear-gradient(
-180deg,
-rgba(12,20,56,.95),
-rgba(8,13,35,.95)
-);
+rgba(255,255,255,.04);
 
-position:relative;
+border:
 
-overflow:hidden;
+1px solid rgba(255,255,255,.06);
 
 }
-
-.card::before{
-
-content:"";
-
-position:absolute;
-
-right:-180px;
-
-top:-180px;
-
-width:420px;
-
-height:420px;
-
-border-radius:50%;
-
-opacity:.30;
-
-filter:blur(60px);
-
-}
-
-.purple::before{
-background:#8756ff;
-}
-
-.blue::before{
-background:#2a82ff;
-}
-
-.green::before{
-background:#00d38f;
-}
-
-.pink::before{
-background:#d33da6;
-}
-
-.orange::before{
-background:#ff9f24;
-}
-
-.icon{
-
-width:62px;
-
-height:62px;
-
-font-size:26px;
-
-border-radius:18px;
-
-background:
-rgba(255,255,255,.08);
-
-display:flex;
-
-justify-content:center;
-
-align-items:center;
-
-margin-bottom:20px;
-
-}
-
-.card h3{
-
-font-size:34px;
-
-margin-bottom:12px;
-
-}
-
-.card p{
-
-font-size:16px;
-
-line-height:1.6;
-
-max-width:240px;
-
-color:#d7ddff;
-
-}
-
-.btn{
-
-position:absolute;
-
-left:28px;
-
-bottom:24px;
-
-padding:12px 18px;
-
-font-size:14px;
-
-border-radius:12px;
-
-background:#6166ff;
-
-}
-
-.large{
-
-grid-column:span 2;
-
-}
-
-footer{
-
-margin-top:16px;
-
-font-size:13px;
-
-opacity:.6;
-
-}
-```
-
 
 </style>
 
@@ -399,178 +205,171 @@ opacity:.6;
 
 <body>
 
-<div class="wrapper">
+<div class="container">
 
-<aside class="sidebar">
+<div class="sidebar">
 
 <div class="logo">
 
-<div class="hex"></div>
-
-<div>
-
-<h2>DASHBOARD</h2>
+<h1>DASHBOARD</h1>
 
 <span>HUB</span>
 
 </div>
 
-</div>
 
 <div class="menu">
 
-<div class="item active">🏠 Inicio</div>
+<div class="item active"
+onclick="openTab('home',this)">
+🏠 Inicio
+</div>
 
-<div class="item">📚 BOOKS</div>
+<div class="item"
+onclick="openTab('books',this)">
+📚 BOOKS
+</div>
 
-<div class="item">📘 MANUALES</div>
+<div class="item"
+onclick="openTab('manuales',this)">
+📘 MANUALES
+</div>
 
-<div class="item">🛒 STORE</div>
+<div class="item"
+onclick="openTab('store',this)">
+🛒 STORE
+</div>
 
-<div class="item">🎵 TONOS</div>
+<div class="item"
+onclick="openTab('tonos',this)">
+🎵 TONOS
+</div>
 
-<div class="item">🛠 UTILIDADES</div>
+<div class="item"
+onclick="openTab('utilidades',this)">
+🛠 UTILIDADES
+</div>
 
 </div>
 
-<div class="bottom">
-
-<div>ⓘ Acerca</div>
-
-<div>✉ Contacto</div>
-
-<div>🌙 Modo oscuro</div>
-
 </div>
 
-</aside>
 
+<div class="content">
 
-<main class="content">
+<div id="home" class="panel active">
 
-<div class="header">
-
-<div class="hero">
-
-<h1>¡Bienvenido!</h1>
+<h2>¡Bienvenido!</h2>
 
 <p>
-Explora todo el contenido disponible en tu Dashboard Hub.
+Selecciona una opción del menú para mostrar información aquí.
 </p>
 
 </div>
 
-<div class="search">
 
-<input placeholder="Buscar...">
+<div id="books" class="panel">
 
-<div class="user">
-👤
+<h2>📚 BOOKS</h2>
+
+<div class="box">
+
+Contenido de libros.
+
+Puedes agregar:
+<ul>
+<li>PDF</li>
+<li>Enlaces</li>
+<li>Categorías</li>
+</ul>
+
+</div>
+
+</div>
+
+
+<div id="manuales" class="panel">
+
+<h2>📘 MANUALES</h2>
+
+<div class="box">
+
+Tutoriales y documentación.
+
+</div>
+
+</div>
+
+
+<div id="store" class="panel">
+
+<h2>🛒 STORE</h2>
+
+<div class="box">
+
+Productos y recursos.
+
+</div>
+
+</div>
+
+
+<div id="tonos" class="panel">
+
+<h2>🎵 TONOS</h2>
+
+<div class="box">
+
+Colección de tonos.
+
+</div>
+
+</div>
+
+
+<div id="utilidades" class="panel">
+
+<h2>🛠 UTILIDADES</h2>
+
+<div class="box">
+
+Herramientas disponibles.
+
 </div>
 
 </div>
 
 </div>
 
-
-<div class="grid">
-
-<div class="card purple">
-
-<div class="icon">📚</div>
-
-<h3>BOOKS</h3>
-
-<p>
-Explora libros, guías y colecciones digitales.
-</p>
-
-<div class="btn">
-Abrir sección →
 </div>
 
-</div>
+<script>
 
+function openTab(id,el){
 
-<div class="card blue">
+document
+.querySelectorAll(".panel")
+.forEach(x=>
+x.classList.remove("active")
+);
 
-<div class="icon">📘</div>
+document
+.getElementById(id)
+.classList.add("active");
 
-<h3>MANUALES</h3>
+document
+.querySelectorAll(".item")
+.forEach(x=>
+x.classList.remove("active")
+);
 
-<p>
-Documentación, tutoriales y recursos organizados.
-</p>
+el.classList.add("active");
 
-<div class="btn">
-Ver manuales →
-</div>
+}
 
-</div>
-
-
-<div class="card green">
-
-<div class="icon">🛒</div>
-
-<h3>STORE</h3>
-
-<p>
-Productos y contenido premium.
-</p>
-
-<div class="btn">
-Entrar →
-</div>
-
-</div>
-
-
-<div class="card pink large">
-
-<div class="icon">🎵</div>
-
-<h3>TONOS</h3>
-
-<p>
-Colección de tonos descargables.
-</p>
-
-<div class="btn">
-Explorar →
-</div>
-
-</div>
-
-
-<div class="card orange">
-
-<div class="icon">🛠</div>
-
-<h3>UTILIDADES</h3>
-
-<p>
-Herramientas y recursos adicionales.
-</p>
-
-<div class="btn">
-Abrir →
-</div>
-
-</div>
-
-</div>
-
-<footer>
-
-© 2026 Dashboard Hub
-
-</footer>
-
-</main>
-
-</div>
+</script>
 
 </body>
 
 </html>
+```
