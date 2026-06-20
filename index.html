@@ -1,142 +1,554 @@
+```html
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+
 <title>Dashboard Hub</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;500;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Inter,sans-serif;
+}
+
+body{
+
+background:
+radial-gradient(circle at top,#07185a,#010515);
+
+height:100vh;
+
+overflow:hidden;
+
+color:white;
+
+}
+
+.wrapper{
+
+display:grid;
+
+grid-template-columns:300px 1fr;
+
+height:100vh;
+
+}
+
+/* SIDEBAR */
+
+.sidebar{
+
+padding:32px;
+
+background:
+linear-gradient(
+180deg,
+#02071d,
+#03081d
+);
+
+border-right:
+1px solid rgba(255,255,255,.06);
+
+display:flex;
+
+flex-direction:column;
+
+}
+
+.logo{
+
+display:flex;
+
+gap:16px;
+
+margin-bottom:40px;
+
+}
+
+.hex{
+
+width:60px;
+
+height:60px;
+
+background:
+
+linear-gradient(
+135deg,
+#7850ff,
+#3a8cff
+);
+
+clip-path:
+polygon(
+25% 5%,
+75% 5%,
+100% 50%,
+75% 95%,
+25% 95%,
+0 50%
+);
+
+}
+
+.logo h2{
+
+font-size:18px;
+
+}
+
+.logo span{
+
+opacity:.8;
+
+}
+
+.menu{
+
+display:flex;
+
+flex-direction:column;
+
+gap:12px;
+
+}
+
+.link{
+
+padding:18px;
+
+border-radius:18px;
+
+font-size:18px;
+
+font-weight:600;
+
+}
+
+.active{
+
+background:
+linear-gradient(
+90deg,
+#2f318e,
+#1b215d
+);
+
+}
+
+.bottom{
+
+margin-top:auto;
+
+display:flex;
+
+flex-direction:column;
+
+gap:16px;
+
+}
+
+/* MAIN */
+
+.content{
+
+padding:40px;
+
+}
+
+.top{
+
+display:flex;
+
+justify-content:space-between;
+
+}
+
+.top h1{
+
+font-size:70px;
+
+}
+
+.top p{
+
+margin-top:10px;
+
+color:#bcc6ef;
+
+}
+
+.search{
+
+display:flex;
+
+gap:20px;
+
+}
+
+.search input{
+
+width:360px;
+
+height:70px;
+
+background:#07163c;
+
+border:none;
+
+border-radius:18px;
+
+padding:0 30px;
+
+color:white;
+
+}
+
+.user{
+
+width:70px;
+
+height:70px;
+
+background:#07163c;
+
+border-radius:50%;
+
+display:grid;
+
+place-items:center;
+
+}
+
+/* GRID */
+
+.grid{
+
+margin-top:50px;
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr 1fr;
+
+gap:28px;
+
+}
+
+.box{
+
+height:340px;
+
+padding:40px;
+
+border-radius:32px;
+
+position:relative;
+
+overflow:hidden;
+
+background:
+linear-gradient(
+180deg,
+rgba(14,22,60,.95),
+rgba(9,16,40,.95)
+);
+
+border:
+1px solid rgba(255,255,255,.08);
+
+}
+
+.box::before{
+
+content:"";
+
+position:absolute;
+
+right:-180px;
+
+top:-180px;
+
+width:500px;
+
+height:500px;
+
+border-radius:50%;
+
+filter:blur(60px);
+
+opacity:.35;
+
+}
+
+.p1::before{
+background:#8554ff;
+}
+
+.p2::before{
+background:#1683ff;
+}
+
+.p3::before{
+background:#00db7f;
+}
+
+.p4::before{
+background:#d93da6;
+}
+
+.p5::before{
+background:#ff9f24;
+}
+
+.icon{
+
+width:90px;
+
+height:90px;
+
+border-radius:30px;
+
+background:
+rgba(255,255,255,.08);
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:40px;
+
+}
+
+.box h3{
+
+margin-top:34px;
+
+font-size:56px;
+
+}
+
+.box p{
+
+margin-top:14px;
+
+font-size:20px;
+
+line-height:1.7;
+
+max-width:350px;
+
+color:#d5dbfa;
+
+}
+
+.btn{
+
+position:absolute;
+
+left:40px;
+
+bottom:40px;
+
+padding:18px 26px;
+
+background:#5f62ff;
+
+border-radius:18px;
+
+}
+
+.big{
+
+grid-column:1 / span 2;
+
+}
+
+footer{
+
+margin-top:24px;
+
+opacity:.5;
+
+}
+
+</style>
 
 </head>
 
 <body>
 
-<div class="app">
+<div class="wrapper">
 
-<aside>
+<div class="sidebar">
 
-<div class="brand">
+<div class="logo">
 
-<div class="logo"></div>
+<div class="hex"></div>
 
 <div>
-<h3>DASHBOARD</h3>
+
+<h2>DASHBOARD</h2>
+
 <span>HUB</span>
-</div>
 
 </div>
 
+</div>
 
-<nav>
 
-<div class="item active">🏠 Inicio</div>
+<div class="menu">
 
-<div class="item">📚 BOOKS</div>
+<div class="link active">🏠 Inicio</div>
 
-<div class="item">📘 MANUALES</div>
+<div class="link">📚 BOOKS</div>
 
-<div class="item">🛒 STORE</div>
+<div class="link">📘 MANUALES</div>
 
-<div class="item">🎵 TONOS</div>
+<div class="link">🛒 STORE</div>
 
-<div class="item">🛠 UTILIDADES</div>
+<div class="link">🎵 TONOS</div>
 
-</nav>
+<div class="link">🛠 UTILIDADES</div>
 
-<div class="foot">
+</div>
+
+<div class="bottom">
 
 <div>ⓘ Acerca</div>
 
 <div>✉ Contacto</div>
 
-<div class="mode">
-🌙
-<div class="switch"></div>
-</div>
+<div>🌙 Modo oscuro</div>
 
 </div>
 
-</aside>
+</div>
 
 
-<main>
+<div class="content">
 
-<header>
+<div class="top">
 
 <div>
 
 <h1>¡Bienvenido!</h1>
 
-<p>
-Explora todo el contenido disponible en tu Dashboard Hub.
-</p>
+<p>Explora todo el contenido disponible en tu Dashboard Hub.</p>
 
 </div>
 
-
-<div class="tools">
+<div class="search">
 
 <input placeholder="Buscar...">
 
-<div class="avatar">👤</div>
+<div class="user">👤</div>
 
 </div>
 
-</header>
+</div>
 
 
+<div class="grid">
 
-<section class="cards">
+<div class="box p1">
 
-<div class="card purple">
 <div class="icon">📚</div>
-<h2>BOOKS</h2>
-<p>Explora libros, guías y colecciones digitales.</p>
-<button>Abrir sección →</button>
+
+<h3>BOOKS</h3>
+
+<p>Explora libros y colecciones digitales.</p>
+
+<div class="btn">
+Abrir sección →
+</div>
+
 </div>
 
 
-<div class="card blue">
+<div class="box p2">
+
 <div class="icon">📘</div>
-<h2>MANUALES</h2>
-<p>Documentación, tutoriales y recursos organizados.</p>
-<button>Ver manuales →</button>
+
+<h3>MANUALES</h3>
+
+<p>Documentación organizada.</p>
+
+<div class="btn">
+Ver →
+</div>
+
 </div>
 
 
-<div class="card green">
+<div class="box p3">
+
 <div class="icon">🛒</div>
-<h2>STORE</h2>
-<p>Productos y contenido premium.</p>
-<button>Entrar al Store →</button>
+
+<h3>STORE</h3>
+
+<p>Productos premium.</p>
+
+<div class="btn">
+Entrar →
+</div>
+
 </div>
 
 
-<div class="card pink">
+<div class="box p4 big">
+
 <div class="icon">🎵</div>
-<h2>TONOS</h2>
-<p>Colección de tonos descargables.</p>
-<button>Explorar tonos →</button>
+
+<h3>TONOS</h3>
+
+<p>Colección descargable.</p>
+
+<div class="btn">
+Explorar →
+</div>
+
 </div>
 
 
-<div class="card orange">
+<div class="box p5">
+
 <div class="icon">🛠</div>
-<h2>UTILIDADES</h2>
-<p>Herramientas y recursos adicionales.</p>
-<button>Abrir utilidades →</button>
+
+<h3>UTILIDADES</h3>
+
+<p>Herramientas adicionales.</p>
+
+<div class="btn">
+Abrir →
 </div>
 
-</section>
+</div>
+
+</div>
 
 <footer>
 © 2026 Dashboard Hub
 </footer>
 
-</main>
+</div>
 
 </div>
 
 </body>
 </html>
+```
