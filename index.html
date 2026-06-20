@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="es">
 
@@ -11,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 
@@ -19,27 +18,36 @@
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Inter,sans-serif;
 }
 
 body{
 
-background:
-radial-gradient(circle at top,#07185a,#010515);
+font-family:"Inter",sans-serif;
 
 height:100vh;
 
 overflow:hidden;
 
+background:
+radial-gradient(
+circle at top,
+#081a5d 0%,
+#020726 50%,
+#010516 100%
+);
+
 color:white;
 
 }
+
+/* LAYOUT */
 
 .wrapper{
 
 display:grid;
 
-grid-template-columns:300px 1fr;
+grid-template-columns:
+300px 1fr;
 
 height:100vh;
 
@@ -52,13 +60,15 @@ height:100vh;
 padding:32px;
 
 background:
+
 linear-gradient(
 180deg,
-#02071d,
-#03081d
+#030820,
+#02061a
 );
 
 border-right:
+
 1px solid rgba(255,255,255,.06);
 
 display:flex;
@@ -71,7 +81,9 @@ flex-direction:column;
 
 display:flex;
 
-gap:16px;
+gap:18px;
+
+align-items:center;
 
 margin-bottom:40px;
 
@@ -79,25 +91,25 @@ margin-bottom:40px;
 
 .hex{
 
-width:60px;
+width:56px;
 
-height:60px;
+height:56px;
 
 background:
 
 linear-gradient(
 135deg,
-#7850ff,
-#3a8cff
+#6e52ff,
+#2f8cff
 );
 
 clip-path:
 polygon(
-25% 5%,
-75% 5%,
+25% 0,
+75% 0,
 100% 50%,
-75% 95%,
-25% 95%,
+75% 100%,
+25% 100%,
 0 50%
 );
 
@@ -107,13 +119,17 @@ polygon(
 
 font-size:18px;
 
+font-weight:800;
+
 }
 
 .logo span{
 
-opacity:.8;
+opacity:.7;
 
 }
+
+/* MENU */
 
 .menu{
 
@@ -125,26 +141,36 @@ gap:12px;
 
 }
 
-.link{
+.item{
 
-padding:18px;
+padding:18px 22px;
 
 border-radius:18px;
 
-font-size:18px;
-
 font-weight:600;
+
+color:#dce4ff;
+
+cursor:pointer;
+
+transition:.25s;
 
 }
 
+.item:hover,
 .active{
 
 background:
+
 linear-gradient(
 90deg,
-#2f318e,
-#1b215d
+#3137a9,
+#1d2668
 );
+
+box-shadow:
+
+0 0 40px rgba(98,82,255,.25);
 
 }
 
@@ -158,35 +184,47 @@ flex-direction:column;
 
 gap:16px;
 
+color:#96a6da;
+
 }
 
-/* MAIN */
+/* CONTENT */
 
 .content{
 
 padding:40px;
 
+overflow:auto;
+
 }
 
-.top{
+.header{
 
 display:flex;
 
 justify-content:space-between;
 
-}
+align-items:flex-start;
 
-.top h1{
-
-font-size:70px;
+margin-bottom:42px;
 
 }
 
-.top p{
+.hero h1{
 
-margin-top:10px;
+font-size:72px;
 
-color:#bcc6ef;
+font-weight:800;
+
+margin-bottom:10px;
+
+}
+
+.hero p{
+
+font-size:22px;
+
+color:#b8c5f3;
 
 }
 
@@ -194,7 +232,9 @@ color:#bcc6ef;
 
 display:flex;
 
-gap:20px;
+gap:16px;
+
+align-items:center;
 
 }
 
@@ -202,33 +242,37 @@ gap:20px;
 
 width:360px;
 
-height:70px;
+height:64px;
 
-background:#07163c;
+background:#09153c;
 
 border:none;
 
 border-radius:18px;
 
-padding:0 30px;
+padding:0 26px;
 
 color:white;
+
+font-size:18px;
 
 }
 
 .user{
 
-width:70px;
+width:64px;
 
-height:70px;
+height:64px;
 
-background:#07163c;
+background:#09153c;
 
 border-radius:50%;
 
-display:grid;
+display:flex;
 
-place-items:center;
+align-items:center;
+
+justify-content:center;
 
 }
 
@@ -236,123 +280,132 @@ place-items:center;
 
 .grid{
 
-margin-top:50px;
-
 display:grid;
 
 grid-template-columns:
-1fr 1fr 1fr;
+repeat(3,1fr);
 
 gap:28px;
 
 }
 
-.box{
-
-height:340px;
-
-padding:40px;
-
-border-radius:32px;
+.card{
 
 position:relative;
+
+height:320px;
+
+padding:38px;
+
+border-radius:30px;
 
 overflow:hidden;
 
 background:
+
 linear-gradient(
 180deg,
-rgba(14,22,60,.95),
-rgba(9,16,40,.95)
+rgba(12,18,52,.95),
+rgba(8,13,36,.95)
 );
 
 border:
-1px solid rgba(255,255,255,.08);
+
+1px solid rgba(255,255,255,.06);
 
 }
 
-.box::before{
+.card::before{
 
 content:"";
 
 position:absolute;
 
-right:-180px;
-
-top:-180px;
-
 width:500px;
 
 height:500px;
 
-border-radius:50%;
+right:-250px;
 
-filter:blur(60px);
+top:-200px;
+
+border-radius:50%;
 
 opacity:.35;
 
+filter:blur(60px);
+
 }
 
-.p1::before{
-background:#8554ff;
+.purple::before{
+background:#8355ff;
 }
 
-.p2::before{
-background:#1683ff;
+.blue::before{
+background:#2480ff;
 }
 
-.p3::before{
-background:#00db7f;
+.green::before{
+background:#00d890;
 }
 
-.p4::before{
-background:#d93da6;
+.pink::before{
+background:#d245be;
 }
 
-.p5::before{
-background:#ff9f24;
+.orange::before{
+background:#ffab2d;
 }
 
 .icon{
 
-width:90px;
+width:82px;
 
-height:90px;
+height:82px;
 
-border-radius:30px;
-
-background:
-rgba(255,255,255,.08);
+border-radius:24px;
 
 display:flex;
 
-justify-content:center;
-
 align-items:center;
 
-font-size:40px;
+justify-content:center;
+
+font-size:34px;
+
+background:
+
+rgba(255,255,255,.06);
+
+margin-bottom:30px;
+
+position:relative;
 
 }
 
-.box h3{
+.card h3{
 
-margin-top:34px;
+font-size:48px;
 
-font-size:56px;
+font-weight:800;
+
+margin-bottom:16px;
+
+position:relative;
 
 }
 
-.box p{
-
-margin-top:14px;
+.card p{
 
 font-size:20px;
 
-line-height:1.7;
+line-height:1.6;
 
-max-width:350px;
+max-width:320px;
 
-color:#d5dbfa;
+color:#d4ddff;
+
+position:relative;
 
 }
 
@@ -360,29 +413,70 @@ color:#d5dbfa;
 
 position:absolute;
 
-left:40px;
+left:38px;
 
-bottom:40px;
+bottom:34px;
 
-padding:18px 26px;
+padding:18px 24px;
 
-background:#5f62ff;
+border-radius:16px;
 
-border-radius:18px;
+background:#5d62ff;
+
+font-weight:700;
 
 }
 
-.big{
+.large{
 
-grid-column:1 / span 2;
+grid-column:
+span 2;
 
 }
 
 footer{
 
-margin-top:24px;
+margin-top:28px;
 
-opacity:.5;
+color:#8492c8;
+
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1200px){
+
+.wrapper{
+
+grid-template-columns:1fr;
+
+}
+
+.sidebar{
+
+display:none;
+
+}
+
+.grid{
+
+grid-template-columns:1fr;
+
+}
+
+.large{
+
+grid-column:auto;
+
+}
+
+.header{
+
+flex-direction:column;
+
+gap:30px;
+
+}
 
 }
 
@@ -394,7 +488,7 @@ opacity:.5;
 
 <div class="wrapper">
 
-<div class="sidebar">
+<aside class="sidebar">
 
 <div class="logo">
 
@@ -410,20 +504,19 @@ opacity:.5;
 
 </div>
 
-
 <div class="menu">
 
-<div class="link active">🏠 Inicio</div>
+<div class="item active">🏠 Inicio</div>
 
-<div class="link">📚 BOOKS</div>
+<div class="item">📚 BOOKS</div>
 
-<div class="link">📘 MANUALES</div>
+<div class="item">📘 MANUALES</div>
 
-<div class="link">🛒 STORE</div>
+<div class="item">🛒 STORE</div>
 
-<div class="link">🎵 TONOS</div>
+<div class="item">🎵 TONOS</div>
 
-<div class="link">🛠 UTILIDADES</div>
+<div class="item">🛠 UTILIDADES</div>
 
 </div>
 
@@ -437,18 +530,20 @@ opacity:.5;
 
 </div>
 
-</div>
+</aside>
 
 
-<div class="content">
+<main class="content">
 
-<div class="top">
+<div class="header">
 
-<div>
+<div class="hero">
 
 <h1>¡Bienvenido!</h1>
 
-<p>Explora todo el contenido disponible en tu Dashboard Hub.</p>
+<p>
+Explora todo el contenido disponible en tu Dashboard Hub.
+</p>
 
 </div>
 
@@ -456,7 +551,9 @@ opacity:.5;
 
 <input placeholder="Buscar...">
 
-<div class="user">👤</div>
+<div class="user">
+👤
+</div>
 
 </div>
 
@@ -465,13 +562,15 @@ opacity:.5;
 
 <div class="grid">
 
-<div class="box p1">
+<div class="card purple">
 
 <div class="icon">📚</div>
 
 <h3>BOOKS</h3>
 
-<p>Explora libros y colecciones digitales.</p>
+<p>
+Explora libros, guías y colecciones digitales.
+</p>
 
 <div class="btn">
 Abrir sección →
@@ -480,28 +579,32 @@ Abrir sección →
 </div>
 
 
-<div class="box p2">
+<div class="card blue">
 
 <div class="icon">📘</div>
 
 <h3>MANUALES</h3>
 
-<p>Documentación organizada.</p>
+<p>
+Documentación, tutoriales y recursos organizados.
+</p>
 
 <div class="btn">
-Ver →
+Ver manuales →
 </div>
 
 </div>
 
 
-<div class="box p3">
+<div class="card green">
 
 <div class="icon">🛒</div>
 
 <h3>STORE</h3>
 
-<p>Productos premium.</p>
+<p>
+Productos y contenido premium.
+</p>
 
 <div class="btn">
 Entrar →
@@ -510,13 +613,15 @@ Entrar →
 </div>
 
 
-<div class="box p4 big">
+<div class="card pink large">
 
 <div class="icon">🎵</div>
 
 <h3>TONOS</h3>
 
-<p>Colección descargable.</p>
+<p>
+Colección de tonos descargables.
+</p>
 
 <div class="btn">
 Explorar →
@@ -525,13 +630,15 @@ Explorar →
 </div>
 
 
-<div class="box p5">
+<div class="card orange">
 
 <div class="icon">🛠</div>
 
 <h3>UTILIDADES</h3>
 
-<p>Herramientas adicionales.</p>
+<p>
+Herramientas y recursos adicionales.
+</p>
 
 <div class="btn">
 Abrir →
@@ -542,13 +649,15 @@ Abrir →
 </div>
 
 <footer>
+
 © 2026 Dashboard Hub
+
 </footer>
 
-</div>
+</main>
 
 </div>
 
 </body>
+
 </html>
-```
