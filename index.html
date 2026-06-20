@@ -30,7 +30,7 @@ body{
 background:
 linear-gradient(
 180deg,
-#071447,
+#08134d,
 #02061b
 );
 
@@ -47,13 +47,13 @@ overflow:hidden;
 display:grid;
 
 grid-template-columns:
-260px 1fr;
+250px 1fr;
 
 height:100vh;
 
 }
 
-/* MENU */
+/* SIDEBAR */
 
 .sidebar{
 
@@ -61,53 +61,18 @@ background:#02081d;
 
 padding:20px;
 
+display:flex;
+
+flex-direction:column;
+
 border-right:
-1px solid rgba(255,255,255,.06);
-
-display:flex;
-
-flex-direction:column;
-
-}
-
-.menu{
-
-display:flex;
-
-flex-direction:column;
-
-gap:10px;
-
-}
-
-.item{
-
-padding:14px;
-
-border-radius:14px;
-
-cursor:pointer;
-
-font-weight:600;
-
-}
-
-.item:hover,
-.item.active{
-
-background:
-
-linear-gradient(
-90deg,
-#3840b8,
-#20295f
-);
+1px solid rgba(255,255,255,.05);
 
 }
 
 /* LOGO */
 
-.logo-center{
+.logo{
 
 display:flex;
 
@@ -115,22 +80,22 @@ flex-direction:column;
 
 align-items:center;
 
-padding-top:30px;
+margin-bottom:25px;
 
 }
 
 .hex{
 
-width:72px;
+width:60px;
 
-height:72px;
+height:60px;
 
 background:
 
 linear-gradient(
 135deg,
-#6f55ff,
-#2f8cff
+#7258ff,
+#2687ff
 );
 
 clip-path:
@@ -143,19 +108,54 @@ polygon(
 0 50%
 );
 
-margin-bottom:14px;
+margin-bottom:10px;
 
 }
 
-.logo-center h1{
+.logo h1{
 
-font-size:28px;
+font-size:26px;
 
 }
 
-.logo-center span{
+.logo span{
 
 opacity:.7;
+
+}
+
+/* MENU */
+
+.menu{
+
+display:flex;
+
+flex-direction:column;
+
+gap:8px;
+
+}
+
+.item{
+
+padding:14px;
+
+border-radius:14px;
+
+cursor:pointer;
+
+}
+
+.active,
+.item:hover{
+
+background:
+
+linear-gradient(
+90deg,
+#3640b8,
+#1d245c
+);
 
 }
 
@@ -179,59 +179,32 @@ display:none;
 
 display:block;
 
-animation:
-fade .25s;
-
-}
-
-@keyframes fade{
-
-from{
-opacity:0;
-transform:translateY(8px);
-}
-
-to{
-opacity:1;
-transform:none;
-}
-
 }
 
 h2{
 
-font-size:42px;
+font-size:34px;
 
-margin-bottom:14px;
-
-}
-
-p{
-
-color:#c4d0ff;
-
-line-height:1.8;
+margin-bottom:12px;
 
 }
 
 .box{
 
-margin-top:24px;
+margin-top:20px;
 
-padding:24px;
+padding:22px;
 
 border-radius:20px;
 
 background:
-rgba(255,255,255,.05);
+rgba(255,255,255,.04);
 
 }
 
-/* UTILIDADES */
+/* TOOLS */
 
-.tools-grid{
-
-margin-top:30px;
+.tools{
 
 display:grid;
 
@@ -240,15 +213,17 @@ repeat(auto-fit,minmax(220px,1fr));
 
 gap:18px;
 
+margin-top:30px;
+
 }
 
 .tool{
 
 background:
 
-rgba(255,255,255,.05);
+rgba(255,255,255,.04);
 
-padding:26px;
+padding:24px;
 
 border-radius:20px;
 
@@ -256,38 +231,17 @@ text-align:center;
 
 }
 
-.tool:hover{
-
-transform:
-translateY(-5px);
-
-transition:.25s;
-
-}
-
 .icon{
 
-font-size:46px;
+font-size:44px;
 
-margin-bottom:16px;
-
-}
-
-.tool h3{
-
-margin-bottom:10px;
-
-}
-
-.tool p{
-
-font-size:14px;
-
-margin-bottom:18px;
+margin-bottom:14px;
 
 }
 
 button{
+
+margin-top:16px;
 
 border:none;
 
@@ -295,17 +249,71 @@ padding:12px 18px;
 
 border-radius:12px;
 
-color:white;
-
 background:
 
 linear-gradient(
 90deg,
-#5f61ff,
-#3088ff
+#5960ff,
+#2b87ff
 );
 
+color:white;
+
 cursor:pointer;
+
+}
+
+/* APP WINDOWS */
+
+.app{
+
+display:none;
+
+margin-top:20px;
+
+padding:25px;
+
+border-radius:18px;
+
+background:
+
+rgba(255,255,255,.04);
+
+}
+
+.app.active{
+
+display:block;
+
+}
+
+input{
+
+width:100%;
+
+padding:14px;
+
+border:none;
+
+border-radius:12px;
+
+margin-top:12px;
+
+}
+
+textarea{
+
+width:100%;
+
+height:120px;
+
+padding:14px;
+
+border:none;
+
+border-radius:12px;
+
+margin-top:12px;
 
 }
 
@@ -323,15 +331,11 @@ display:flex;
 
 flex-direction:column;
 
-height:auto;
-
 }
 
 .sidebar{
 
 width:100%;
-
-padding:16px;
 
 }
 
@@ -339,12 +343,8 @@ padding:16px;
 
 flex-direction:row;
 
-overflow-x:auto;
+overflow:auto;
 
-}
-
-.menu::-webkit-scrollbar{
-display:none;
 }
 
 .item{
@@ -353,21 +353,9 @@ white-space:nowrap;
 
 }
 
-.logo-center{
-
-padding-top:18px;
-
-}
-
 .content{
 
 padding:20px;
-
-}
-
-h2{
-
-font-size:30px;
 
 }
 
@@ -383,47 +371,48 @@ font-size:30px;
 
 <div class="sidebar">
 
-<div class="menu">
-
-<div class="item active"
-onclick="openTab('home',this)">
-🏠 Inicio
-</div>
-
-<div class="item"
-onclick="openTab('books',this)">
-📚 BOOKS
-</div>
-
-<div class="item"
-onclick="openTab('manuales',this)">
-📘 MANUALES
-</div>
-
-<div class="item"
-onclick="openTab('store',this)">
-🛒 STORE
-</div>
-
-<div class="item"
-onclick="openTab('tonos',this)">
-🎵 TONOS
-</div>
-
-<div class="item"
-onclick="openTab('utilidades',this)">
-🛠 UTILIDADES
-</div>
-
-</div>
-
-<div class="logo-center">
+<div class="logo">
 
 <div class="hex"></div>
 
 <h1>DASHBOARD</h1>
 
 <span>HUB</span>
+
+</div>
+
+
+<div class="menu">
+
+<div class="item active"
+onclick="show('home',this)">
+Inicio
+</div>
+
+<div class="item"
+onclick="show('books',this)">
+BOOKS
+</div>
+
+<div class="item"
+onclick="show('manuales',this)">
+MANUALES
+</div>
+
+<div class="item"
+onclick="show('store',this)">
+STORE
+</div>
+
+<div class="item"
+onclick="show('tonos',this)">
+TONOS
+</div>
+
+<div class="item"
+onclick="show('utilidades',this)">
+UTILIDADES
+</div>
 
 </div>
 
@@ -435,10 +424,10 @@ onclick="openTab('utilidades',this)">
 <div id="home"
 class="panel active">
 
-<h2>¡Bienvenido!</h2>
+<h2>Bienvenido</h2>
 
 <p>
-Selecciona una opción del menú.
+Selecciona una sección.
 </p>
 
 </div>
@@ -447,13 +436,7 @@ Selecciona una opción del menú.
 <div id="books"
 class="panel">
 
-<h2>📚 BOOKS</h2>
-
-<div class="box">
-
-Libros y colecciones.
-
-</div>
+<h2>BOOKS</h2>
 
 </div>
 
@@ -461,13 +444,7 @@ Libros y colecciones.
 <div id="manuales"
 class="panel">
 
-<h2>📘 MANUALES</h2>
-
-<div class="box">
-
-Documentación y tutoriales.
-
-</div>
+<h2>MANUALES</h2>
 
 </div>
 
@@ -475,13 +452,7 @@ Documentación y tutoriales.
 <div id="store"
 class="panel">
 
-<h2>🛒 STORE</h2>
-
-<div class="box">
-
-Productos disponibles.
-
-</div>
+<h2>STORE</h2>
 
 </div>
 
@@ -489,13 +460,7 @@ Productos disponibles.
 <div id="tonos"
 class="panel">
 
-<h2>🎵 TONOS</h2>
-
-<div class="box">
-
-Biblioteca de tonos.
-
-</div>
+<h2>TONOS</h2>
 
 </div>
 
@@ -503,13 +468,9 @@ Biblioteca de tonos.
 <div id="utilidades"
 class="panel">
 
-<h2>🛠 UTILIDADES</h2>
+<h2>UTILIDADES</h2>
 
-<p>
-Herramientas disponibles.
-</p>
-
-<div class="tools-grid">
+<div class="tools">
 
 <div class="tool">
 
@@ -517,15 +478,10 @@ Herramientas disponibles.
 📄
 </div>
 
-<h3>
 Convertidor Documentos
-</h3>
 
-<p>
-PDF · DOC · TXT
-</p>
-
-<button>
+<button
+onclick="tool('doc')">
 Abrir
 </button>
 
@@ -538,15 +494,10 @@ Abrir
 🖼️
 </div>
 
-<h3>
 Convertidor Imagen
-</h3>
 
-<p>
-PNG · JPG · WEBP
-</p>
-
-<button>
+<button
+onclick="tool('img')">
 Abrir
 </button>
 
@@ -559,19 +510,44 @@ Abrir
 📱
 </div>
 
-<h3>
 Generador QR
-</h3>
 
-<p>
-Texto · URL · WiFi
-</p>
-
-<button>
+<button
+onclick="tool('qr')">
 Abrir
 </button>
 
 </div>
+
+</div>
+
+
+<div id="doc"
+class="app">
+
+<h3>Convertidor Documentos</h3>
+
+<input placeholder="Subir archivo">
+
+</div>
+
+
+<div id="img"
+class="app">
+
+<h3>Convertidor Imagen</h3>
+
+<input placeholder="PNG → JPG">
+
+</div>
+
+
+<div id="qr"
+class="app">
+
+<h3>Generador QR</h3>
+
+<textarea placeholder="Escribe texto o URL"></textarea>
 
 </div>
 
@@ -583,7 +559,7 @@ Abrir
 
 <script>
 
-function openTab(id,el){
+function show(id,el){
 
 document
 .querySelectorAll(".panel")
@@ -602,6 +578,20 @@ x=>x.classList.remove("active")
 );
 
 el.classList.add("active");
+
+}
+
+function tool(id){
+
+document
+.querySelectorAll(".app")
+.forEach(
+x=>x.classList.remove("active")
+);
+
+document
+.getElementById(id)
+.classList.add("active");
 
 }
 
