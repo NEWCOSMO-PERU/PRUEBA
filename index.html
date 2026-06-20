@@ -5,7 +5,9 @@
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1">
 
 <title>Dashboard Hub</title>
 
@@ -15,6 +17,8 @@ href="https://fonts.googleapis.com">
 <link
 href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
 rel="stylesheet">
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
 <style>
 
@@ -47,13 +51,11 @@ overflow:hidden;
 display:grid;
 
 grid-template-columns:
-250px 1fr;
+260px 1fr;
 
 height:100vh;
 
 }
-
-/* SIDEBAR */
 
 .sidebar{
 
@@ -61,54 +63,13 @@ background:#02081d;
 
 padding:20px;
 
-display:flex;
-
-flex-direction:column;
-
-border-right:
-1px solid rgba(255,255,255,.05);
-
 }
-
-/* LOGO */
 
 .logo{
 
-display:flex;
-
-flex-direction:column;
-
-align-items:center;
+text-align:center;
 
 margin-bottom:25px;
-
-}
-
-.hex{
-
-width:60px;
-
-height:60px;
-
-background:
-
-linear-gradient(
-135deg,
-#7258ff,
-#2687ff
-);
-
-clip-path:
-polygon(
-25% 0,
-75% 0,
-100% 50%,
-75% 100%,
-25% 100%,
-0 50%
-);
-
-margin-bottom:10px;
 
 }
 
@@ -124,15 +85,13 @@ opacity:.7;
 
 }
 
-/* MENU */
-
 .menu{
 
 display:flex;
 
 flex-direction:column;
 
-gap:8px;
+gap:10px;
 
 }
 
@@ -150,20 +109,17 @@ cursor:pointer;
 .item:hover{
 
 background:
-
 linear-gradient(
 90deg,
-#3640b8,
-#1d245c
+#3941b7,
+#20275f
 );
 
 }
 
-/* CONTENT */
-
 .content{
 
-padding:40px;
+padding:30px;
 
 overflow:auto;
 
@@ -183,100 +139,61 @@ display:block;
 
 h2{
 
-font-size:34px;
-
-margin-bottom:12px;
+margin-bottom:16px;
 
 }
-
-.box{
-
-margin-top:20px;
-
-padding:22px;
-
-border-radius:20px;
-
-background:
-rgba(255,255,255,.04);
-
-}
-
-/* TOOLS */
 
 .tools{
 
 display:grid;
 
 grid-template-columns:
-repeat(auto-fit,minmax(220px,1fr));
+repeat(auto-fit,minmax(230px,1fr));
 
 gap:18px;
-
-margin-top:30px;
 
 }
 
 .tool{
 
-background:
-
-rgba(255,255,255,.04);
-
 padding:24px;
 
 border-radius:20px;
 
-text-align:center;
+background:
+rgba(255,255,255,.04);
 
 }
 
-.icon{
+.tool button{
 
-font-size:44px;
-
-margin-bottom:14px;
-
-}
-
-button{
-
-margin-top:16px;
-
-border:none;
+margin-top:15px;
 
 padding:12px 18px;
 
-border-radius:12px;
+border:none;
 
-background:
-
-linear-gradient(
-90deg,
-#5960ff,
-#2b87ff
-);
+background:#5762ff;
 
 color:white;
+
+border-radius:10px;
 
 cursor:pointer;
 
 }
 
-/* APP WINDOWS */
-
 .app{
 
 display:none;
 
-margin-top:20px;
+margin-top:25px;
 
-padding:25px;
+padding:20px;
 
-border-radius:18px;
+border-radius:20px;
 
 background:
-
 rgba(255,255,255,.04);
 
 }
@@ -289,35 +206,39 @@ display:block;
 
 input{
 
+margin-top:14px;
+
 width:100%;
 
 padding:14px;
 
 border:none;
 
-border-radius:12px;
-
-margin-top:12px;
+border-radius:10px;
 
 }
 
-textarea{
+img{
 
-width:100%;
+max-width:250px;
 
-height:120px;
+margin-top:20px;
 
-padding:14px;
-
-border:none;
-
-border-radius:12px;
-
-margin-top:12px;
+border-radius:14px;
 
 }
 
-/* MOBILE */
+#qrcode{
+
+margin-top:20px;
+
+background:white;
+
+padding:10px;
+
+display:inline-block;
+
+}
 
 @media(max-width:768px){
 
@@ -330,12 +251,6 @@ overflow:auto;
 display:flex;
 
 flex-direction:column;
-
-}
-
-.sidebar{
-
-width:100%;
 
 }
 
@@ -353,12 +268,6 @@ white-space:nowrap;
 
 }
 
-.content{
-
-padding:20px;
-
-}
-
 }
 
 </style>
@@ -373,8 +282,6 @@ padding:20px;
 
 <div class="logo">
 
-<div class="hex"></div>
-
 <h1>DASHBOARD</h1>
 
 <span>HUB</span>
@@ -386,32 +293,32 @@ padding:20px;
 
 <div class="item active"
 onclick="show('home',this)">
-Inicio
+🏠 Inicio
 </div>
 
 <div class="item"
 onclick="show('books',this)">
-BOOKS
+📚 Books
 </div>
 
 <div class="item"
 onclick="show('manuales',this)">
-MANUALES
+📘 Manuales
 </div>
 
 <div class="item"
 onclick="show('store',this)">
-STORE
+🛒 Store
 </div>
 
 <div class="item"
 onclick="show('tonos',this)">
-TONOS
+🎵 Tonos
 </div>
 
 <div class="item"
 onclick="show('utilidades',this)">
-UTILIDADES
+🛠 Utilidades
 </div>
 
 </div>
@@ -421,13 +328,14 @@ UTILIDADES
 
 <div class="content">
 
-<div id="home"
+<div
+id="home"
 class="panel active">
 
 <h2>Bienvenido</h2>
 
 <p>
-Selecciona una sección.
+Selecciona una opción.
 </p>
 
 </div>
@@ -436,7 +344,7 @@ Selecciona una sección.
 <div id="books"
 class="panel">
 
-<h2>BOOKS</h2>
+<h2>📚 BOOKS</h2>
 
 </div>
 
@@ -444,7 +352,7 @@ class="panel">
 <div id="manuales"
 class="panel">
 
-<h2>MANUALES</h2>
+<h2>📘 MANUALES</h2>
 
 </div>
 
@@ -452,7 +360,7 @@ class="panel">
 <div id="store"
 class="panel">
 
-<h2>STORE</h2>
+<h2>🛒 STORE</h2>
 
 </div>
 
@@ -460,7 +368,7 @@ class="panel">
 <div id="tonos"
 class="panel">
 
-<h2>TONOS</h2>
+<h2>🎵 TONOS</h2>
 
 </div>
 
@@ -468,21 +376,23 @@ class="panel">
 <div id="utilidades"
 class="panel">
 
-<h2>UTILIDADES</h2>
+<h2>🛠 UTILIDADES</h2>
 
 <div class="tools">
 
 <div class="tool">
 
-<div class="icon">
 📄
-</div>
 
+<h3>
 Convertidor Documentos
+</h3>
 
 <button
-onclick="tool('doc')">
+onclick="openTool('doc')">
+
 Abrir
+
 </button>
 
 </div>
@@ -490,15 +400,17 @@ Abrir
 
 <div class="tool">
 
-<div class="icon">
 🖼️
-</div>
 
+<h3>
 Convertidor Imagen
+</h3>
 
 <button
-onclick="tool('img')">
+onclick="openTool('img')">
+
 Abrir
+
 </button>
 
 </div>
@@ -506,15 +418,17 @@ Abrir
 
 <div class="tool">
 
-<div class="icon">
 📱
-</div>
 
+<h3>
 Generador QR
+</h3>
 
 <button
-onclick="tool('qr')">
+onclick="openTool('qr')">
+
 Abrir
+
 </button>
 
 </div>
@@ -522,32 +436,52 @@ Abrir
 </div>
 
 
-<div id="doc"
+<div
+id="doc"
 class="app">
 
-<h3>Convertidor Documentos</h3>
+<h3>Convertir documento</h3>
 
-<input placeholder="Subir archivo">
+<input
+type="file">
 
 </div>
 
 
-<div id="img"
+<div
+id="img"
 class="app">
 
-<h3>Convertidor Imagen</h3>
+<h3>Convertir imagen</h3>
 
-<input placeholder="PNG → JPG">
+<input
+type="file"
+accept="image/*"
+onchange="preview(event)">
+
+<img id="preview">
 
 </div>
 
 
-<div id="qr"
+<div
+id="qr"
 class="app">
 
 <h3>Generador QR</h3>
 
-<textarea placeholder="Escribe texto o URL"></textarea>
+<input
+id="qrText"
+placeholder="Escribe texto">
+
+<button
+onclick="generateQR()">
+
+Generar
+
+</button>
+
+<div id="qrcode"></div>
 
 </div>
 
@@ -556,6 +490,7 @@ class="app">
 </div>
 
 </div>
+
 
 <script>
 
@@ -581,7 +516,7 @@ el.classList.add("active");
 
 }
 
-function tool(id){
+function openTool(id){
 
 document
 .querySelectorAll(".app")
@@ -592,6 +527,36 @@ x=>x.classList.remove("active")
 document
 .getElementById(id)
 .classList.add("active");
+
+}
+
+function preview(e){
+
+document
+.getElementById(
+"preview"
+).src=
+URL.createObjectURL(
+e.target.files[0]
+);
+
+}
+
+function generateQR(){
+
+let box=
+document.getElementById(
+"qrcode"
+);
+
+box.innerHTML="";
+
+new QRCode(
+box,
+document.getElementById(
+"qrText"
+).value
+);
 
 }
 
