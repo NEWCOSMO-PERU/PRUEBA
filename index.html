@@ -84,10 +84,11 @@
             flex-direction: column;
         }
 
-        /* Contenedor optimizado para los apartados con Iframe (Books, Manuales y Store) */
+        /* Contenedor optimizado para los apartados con Iframe (Books, Manuales, Store y Tonos) */
         #books.panel.active,
         #manuales.panel.active,
-        #store.panel.active {
+        #store.panel.active,
+        #tonos.panel.active {
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -242,7 +243,7 @@
                 </div>
             </div>
 
-            <!-- Panel Store (NUEVO CAMBIO AQUÍ: Integración de la web externa de Store) -->
+            <!-- Panel Store -->
             <div id="store" class="panel">
                 <h2>🛒 STORE</h2>
                 <div class="iframe-container">
@@ -250,10 +251,12 @@
                 </div>
             </div>
 
-            <!-- Panel Tonos -->
+            <!-- Panel Tonos (NUEVO CAMBIO AQUÍ: Integración de la web externa de Tonos) -->
             <div id="tonos" class="panel">
                 <h2>🎵 TONOS</h2>
-                <p>Sección en desarrollo.</p>
+                <div class="iframe-container">
+                    <iframe src="https://newcosmo-peru.github.io/TONOS/" title="Tonos Newcosmo"></iframe>
+                </div>
             </div>
 
             <!-- Panel Utilidades -->
