@@ -84,8 +84,9 @@
             flex-direction: column;
         }
 
-        /* Contenedor optimizado para el apartado de Books */
-        #books.panel.active {
+        /* Contenedor optimizado para los apartados de Books y Manuales con Iframe */
+        #books.panel.active,
+        #manuales.panel.active {
             display: flex;
             flex-direction: column;
             height: 100%;
@@ -198,6 +199,7 @@
 
     <div class="container">
 
+        <!-- Barra lateral de navegación -->
         <div class="sidebar">
             <div class="logo">
                 <h1>NEWCOSMO</h1>
@@ -214,13 +216,16 @@
             </div>
         </div>
 
+        <!-- Contenido principal -->
         <div class="content">
 
+            <!-- Panel Inicio -->
             <div id="home" class="panel active">
                 <h2>Bienvenido</h2>
                 <p>Selecciona una opción del menú lateral.</p>
             </div>
 
+            <!-- Panel Books -->
             <div id="books" class="panel">
                 <h2>📚 BOOKS</h2>
                 <div class="iframe-container">
@@ -228,21 +233,27 @@
                 </div>
             </div>
 
+            <!-- Panel Manuales (NUEVO CAMBIO AQUÍ: Integración de la web externa de Manuales) -->
             <div id="manuales" class="panel">
                 <h2>📘 MANUALES</h2>
-                <p>Sección en desarrollo.</p>
+                <div class="iframe-container">
+                    <iframe src="https://newcosmo-peru.github.io/MANUALES/" title="Manuales Newcosmo"></iframe>
+                </div>
             </div>
 
+            <!-- Panel Store -->
             <div id="store" class="panel">
                 <h2>🛒 STORE</h2>
                 <p>Sección en desarrollo.</p>
             </div>
 
+            <!-- Panel Tonos -->
             <div id="tonos" class="panel">
                 <h2>🎵 TONOS</h2>
                 <p>Sección en desarrollo.</p>
             </div>
 
+            <!-- Panel Utilidades -->
             <div id="utilidades" class="panel">
                 <h2>🛠 UTILIDADES</h2>
                 <div class="tools">
@@ -263,6 +274,7 @@
                     </div>
                 </div>
 
+                <!-- Apps internas de Utilidades -->
                 <div id="doc" class="app">
                     <h3>Convertir documento</h3>
                     <input type="file">
@@ -285,6 +297,7 @@
         </div>
     </div>
 
+    <!-- Lógica de control JavaScript -->
     <script>
         function show(id, el) {
             // Ocultar todos los paneles y quitar la clase active
