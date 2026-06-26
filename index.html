@@ -2,566 +2,323 @@
 <html lang="es">
 
 <head>
-
-<meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width,initial-scale=1">
-
-<title>NEWCOSMO</title>
-
-<link rel="preconnect"
-href="https://fonts.googleapis.com">
-
-<link
-href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap"
-rel="stylesheet">
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
-
-<style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Inter;
-}
-
-body{
-
-background:
-linear-gradient(
-180deg,
-#08134d,
-#02061b
-);
-
-color:white;
-
-height:100vh;
-
-overflow:hidden;
-
-}
-
-.container{
-
-display:grid;
-
-grid-template-columns:
-260px 1fr;
-
-height:100vh;
-
-}
-
-.sidebar{
-
-background:#02081d;
-
-padding:20px;
-
-}
-
-.logo{
-
-text-align:center;
-
-margin-bottom:25px;
-
-}
-
-.logo h1{
-
-font-size:26px;
-
-}
-
-.logo span{
-
-opacity:.7;
-
-}
-
-.menu{
-
-display:flex;
-
-flex-direction:column;
-
-gap:10px;
-
-}
-
-.item{
-
-padding:14px;
-
-border-radius:14px;
-
-cursor:pointer;
-
-}
-
-.active,
-.item:hover{
-
-background:
-linear-gradient(
-90deg,
-#3941b7,
-#20275f
-);
-
-}
-
-.content{
-
-padding:30px;
-
-overflow:auto;
-
-}
-
-.panel{
-
-display:none;
-
-}
-
-.panel.active{
-
-display:block;
-
-}
-
-h2{
-
-margin-bottom:16px;
-
-}
-
-.tools{
-
-display:grid;
-
-grid-template-columns:
-repeat(auto-fit,minmax(230px,1fr));
-
-gap:18px;
-
-}
-
-.tool{
-
-padding:24px;
-
-border-radius:20px;
-
-background:
-rgba(255,255,255,.04);
-
-}
-
-.tool button{
-
-margin-top:15px;
-
-padding:12px 18px;
-
-border:none;
-
-background:#5762ff;
-
-color:white;
-
-border-radius:10px;
-
-cursor:pointer;
-
-}
-
-.app{
-
-display:none;
-
-margin-top:25px;
-
-padding:20px;
-
-border-radius:20px;
-
-background:
-rgba(255,255,255,.04);
-
-}
-
-.app.active{
-
-display:block;
-
-}
-
-input{
-
-margin-top:14px;
-
-width:100%;
-
-padding:14px;
-
-border:none;
-
-border-radius:10px;
-
-}
-
-img{
-
-max-width:250px;
-
-margin-top:20px;
-
-border-radius:14px;
-
-}
-
-#qrcode{
-
-margin-top:20px;
-
-background:white;
-
-padding:10px;
-
-display:inline-block;
-
-}
-
-@media(max-width:768px){
-
-body{
-overflow:auto;
-}
-
-.container{
-
-display:flex;
-
-flex-direction:column;
-
-}
-
-.menu{
-
-flex-direction:row;
-
-overflow:auto;
-
-}
-
-.item{
-
-white-space:nowrap;
-
-}
-
-}
-
-</style>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>NEWCOSMO</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Inter, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(180deg, #08134d, #02061b);
+            color: white;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            display: grid;
+            grid-template-columns: 260px 1fr;
+            height: 100vh;
+        }
+
+        .sidebar {
+            background: #02081d;
+            padding: 20px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .logo h1 {
+            font-size: 26px;
+        }
+
+        .logo span {
+            opacity: .7;
+        }
+
+        .menu {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .item {
+            padding: 14px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+
+        .active,
+        .item:hover {
+            background: linear-gradient(90deg, #3941b7, #20275f);
+        }
+
+        .content {
+            padding: 30px;
+            overflow: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .panel {
+            display: none;
+            height: 100%;
+            width: 100%;
+        }
+
+        .panel.active {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Contenedor optimizado para el apartado de Books */
+        #books.panel.active {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .iframe-container {
+            flex-grow: 1;
+            width: 100%;
+            border-radius: 15px;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.02);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+        }
+
+        .iframe-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        h2 {
+            margin-bottom: 16px;
+        }
+
+        .tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 18px;
+        }
+
+        .tool {
+            padding: 24px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .04);
+        }
+
+        .tool button {
+            margin-top: 15px;
+            padding: 12px 18px;
+            border: none;
+            background: #5762ff;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .app {
+            display: none;
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, .04);
+        }
+
+        .app.active {
+            display: block;
+        }
+
+        input {
+            margin-top: 14px;
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 10px;
+            color: black;
+        }
+
+        img {
+            max-width: 250px;
+            margin-top: 20px;
+            border-radius: 14px;
+        }
+
+        #qrcode {
+            margin-top: 20px;
+            background: white;
+            padding: 10px;
+            display: inline-block;
+        }
+
+        @media(max-width:768px) {
+            body {
+                overflow: auto;
+            }
+
+            .container {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .menu {
+                flex-direction: row;
+                overflow: auto;
+                padding-bottom: 5px;
+            }
+
+            .item {
+                white-space: nowrap;
+            }
+            
+            .content {
+                height: calc(100vh - 140px);
+                padding: 15px;
+            }
+        }
+    </style>
 </head>
 
 <body>
 
-<div class="container">
-
-<div class="sidebar">
-
-<div class="logo">
-
-<h1>NEWCOSMO</h1>
-
-<span>SOLUCIONES</span>
-
-</div>
-
-
-<div class="menu">
-
-<div class="item active"
-onclick="show('home',this)">
-🏠 Inicio
-</div>
-
-<div class="item"
-onclick="show('books',this)">
-📚 Books
-</div>
-
-<div class="item"
-onclick="show('manuales',this)">
-📘 Manuales
-</div>
-
-<div class="item"
-onclick="show('store',this)">
-🛒 Store
-</div>
-
-<div class="item"
-onclick="show('tonos',this)">
-🎵 Tonos
-</div>
-
-<div class="item"
-onclick="show('utilidades',this)">
-🛠 Utilidades
-</div>
-
-</div>
-
-</div>
-
-
-<div class="content">
-
-<div
-id="home"
-class="panel active">
-
-<h2>Bienvenido</h2>
-
-<p>
-Selecciona una opción.
-</p>
-
-</div>
-
-
-<div id="books"
-class="panel">
-
-<h2>📚 BOOKS</h2>
-
-</div>
-
-
-<div id="manuales"
-class="panel">
-
-<h2>📘 MANUALES</h2>
-
-</div>
-
-
-<div id="store"
-class="panel">
-
-<h2>🛒 STORE</h2>
-
-</div>
-
-
-<div id="tonos"
-class="panel">
-
-<h2>🎵 TONOS</h2>
-
-</div>
-
-
-<div id="utilidades"
-class="panel">
-
-<h2>🛠 UTILIDADES</h2>
-
-<div class="tools">
-
-<div class="tool">
-
-📄
-
-<h3>
-Convertidor Documentos
-</h3>
-
-<button
-onclick="openTool('doc')">
-
-Abrir
-
-</button>
-
-</div>
-
-
-<div class="tool">
-
-🖼️
-
-<h3>
-Convertidor Imagen
-</h3>
-
-<button
-onclick="openTool('img')">
-
-Abrir
-
-</button>
-
-</div>
-
-
-<div class="tool">
-
-📱
-
-<h3>
-Generador QR
-</h3>
-
-<button
-onclick="openTool('qr')">
-
-Abrir
-
-</button>
-
-</div>
-
-</div>
-
-
-<div
-id="doc"
-class="app">
-
-<h3>Convertir documento</h3>
-
-<input
-type="file">
-
-</div>
-
-
-<div
-id="img"
-class="app">
-
-<h3>Convertir imagen</h3>
-
-<input
-type="file"
-accept="image/*"
-onchange="preview(event)">
-
-<img id="preview">
-
-</div>
-
-
-<div
-id="qr"
-class="app">
-
-<h3>Generador QR</h3>
-
-<input
-id="qrText"
-placeholder="Escribe texto">
-
-<button
-onclick="generateQR()">
-
-Generar
-
-</button>
-
-<div id="qrcode"></div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-
-<script>
-
-function show(id,el){
-
-document
-.querySelectorAll(".panel")
-.forEach(
-x=>x.classList.remove("active")
-);
-
-document
-.getElementById(id)
-.classList.add("active");
-
-document
-.querySelectorAll(".item")
-.forEach(
-x=>x.classList.remove("active")
-);
-
-el.classList.add("active");
-
-}
-
-function openTool(id){
-
-document
-.querySelectorAll(".app")
-.forEach(
-x=>x.classList.remove("active")
-);
-
-document
-.getElementById(id)
-.classList.add("active");
-
-}
-
-function preview(e){
-
-document
-.getElementById(
-"preview"
-).src=
-URL.createObjectURL(
-e.target.files[0]
-);
-
-}
-
-function generateQR(){
-
-let box=
-document.getElementById(
-"qrcode"
-);
-
-box.innerHTML="";
-
-new QRCode(
-box,
-document.getElementById(
-"qrText"
-).value
-);
-
-}
-
-</script>
-
+    <div class="container">
+
+        <div class="sidebar">
+            <div class="logo">
+                <h1>NEWCOSMO</h1>
+                <span>SOLUCIONES</span>
+            </div>
+
+            <div class="menu">
+                <div class="item active" onclick="show('home',this)">🏠 Inicio</div>
+                <div class="item" onclick="show('books',this)">📚 Books</div>
+                <div class="item" onclick="show('manuales',this)">📘 Manuales</div>
+                <div class="item" onclick="show('store',this)">🛒 Store</div>
+                <div class="item" onclick="show('tonos',this)">🎵 Tonos</div>
+                <div class="item" onclick="show('utilidades',this)">🛠 Utilidades</div>
+            </div>
+        </div>
+
+        <div class="content">
+
+            <div id="home" class="panel active">
+                <h2>Bienvenido</h2>
+                <p>Selecciona una opción del menú lateral.</p>
+            </div>
+
+            <div id="books" class="panel">
+                <h2>📚 BOOKS</h2>
+                <div class="iframe-container">
+                    <iframe src="https://newcosmo-peru.github.io/BOOKS/" title="Books Newcosmo"></iframe>
+                </div>
+            </div>
+
+            <div id="manuales" class="panel">
+                <h2>📘 MANUALES</h2>
+                <p>Sección en desarrollo.</p>
+            </div>
+
+            <div id="store" class="panel">
+                <h2>🛒 STORE</h2>
+                <p>Sección en desarrollo.</p>
+            </div>
+
+            <div id="tonos" class="panel">
+                <h2>🎵 TONOS</h2>
+                <p>Sección en desarrollo.</p>
+            </div>
+
+            <div id="utilidades" class="panel">
+                <h2>🛠 UTILIDADES</h2>
+                <div class="tools">
+                    <div class="tool">
+                        📄
+                        <h3>Convertidor Documentos</h3>
+                        <button onclick="openTool('doc')">Abrir</button>
+                    </div>
+                    <div class="tool">
+                        🖼️
+                        <h3>Convertidor Imagen</h3>
+                        <button onclick="openTool('img')">Abrir</button>
+                    </div>
+                    <div class="tool">
+                        📱
+                        <h3>Generador QR</h3>
+                        <button onclick="openTool('qr')">Abrir</button>
+                    </div>
+                </div>
+
+                <div id="doc" class="app">
+                    <h3>Convertir documento</h3>
+                    <input type="file">
+                </div>
+
+                <div id="img" class="app">
+                    <h3>Convertir imagen</h3>
+                    <input type="file" accept="image/*" onchange="preview(event)">
+                    <img id="preview" alt="Vista previa">
+                </div>
+
+                <div id="qr" class="app">
+                    <h3>Generador QR</h3>
+                    <input id="qrText" placeholder="Escribe el texto o enlace aquí">
+                    <button onclick="generateQR()">Generar</button>
+                    <div id="qrcode"></div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        function show(id, el) {
+            // Ocultar todos los paneles y quitar la clase active
+            document.querySelectorAll(".panel").forEach(x => x.classList.remove("active"));
+            
+            // Mostrar el panel seleccionado
+            document.getElementById(id).classList.add("active");
+            
+            // Gestionar estado activo en los botones del menú
+            document.querySelectorAll(".item").forEach(x => x.classList.remove("active"));
+            el.classList.add("active");
+        }
+
+        function openTool(id) {
+            document.querySelectorAll(".app").forEach(x => x.classList.remove("active"));
+            document.getElementById(id).classList.add("active");
+        }
+
+        function preview(e) {
+            if(e.target.files[0]) {
+                document.getElementById("preview").src = URL.createObjectURL(e.target.files[0]);
+            }
+        }
+
+        function generateQR() {
+            let box = document.getElementById("qrcode");
+            let text = document.getElementById("qrText").value;
+            
+            box.innerHTML = "";
+            if(text.trim() !== "") {
+                new QRCode(box, text);
+            }
+        }
+    </script>
 </body>
 
 </html>
-
