@@ -12,7 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
     <style>
-        /* --- REESTRUCTURACIÓN Y DISEÑO DE SISTEMA BASE --- */
         :root {
             --bg-gradient: linear-gradient(135deg, #070b19 0%, #0c1536 50%, #050814 100%);
             --sidebar-bg: #030712;
@@ -46,7 +45,7 @@
             height: 100vh;
         }
 
-        /* --- CONTENEDOR LATERAL (SIDEBAR) --- */
+        /* --- SIDEBAR --- */
         .sidebar {
             background: var(--sidebar-bg);
             border-right: 1px solid var(--border-color);
@@ -55,10 +54,6 @@
             flex-direction: column;
             gap: 35px;
             z-index: 10;
-        }
-
-        .logo {
-            padding-left: 10px;
         }
 
         .logo h1 {
@@ -111,11 +106,10 @@
             box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
         }
 
-        /* --- ÁREA DE CONTENIDO PRINCIPAL --- */
+        /* --- CONTENIDO PRINCIPAL --- */
         .content {
             padding: 40px;
             overflow-y: auto;
-            position: relative;
         }
 
         .panel {
@@ -128,16 +122,6 @@
             display: block;
         }
 
-        /* Estructuración para vistas con iframe completo */
-        #books.panel.active,
-        #manuales.panel.active,
-        #store.panel.active,
-        #tonos.panel.active {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
         h2 {
             font-size: 28px;
             font-weight: 700;
@@ -145,157 +129,213 @@
             letter-spacing: -0.5px;
         }
 
-        p {
-            color: var(--text-muted);
-            font-size: 15px;
-            line-height: 1.6;
-        }
-
-        /* --- CONTENEDOR DE IFRAMES MEJORADO --- */
-        .iframe-container {
-            flex-grow: 1;
-            width: 100%;
-            height: 100%;
-            border-radius: 16px;
-            overflow: hidden;
-            border: 1px solid var(--border-color);
-            background: rgba(0, 0, 0, 0.2);
-            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
-        }
-
-        .iframe-container iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-        }
-
-        /* --- TARJETAS DE HERRAMIENTAS (UTILIDADES) --- */
-        .tools {
+        /* --- GRILLAS DE CONTENIDO PROPIO --- */
+        .native-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
         }
 
-        .tool {
-            padding: 28px;
-            border-radius: 16px;
+        /* Tarjetas de Contenido Propio (Libros, Store, etc.) */
+        .native-card {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
+            border-radius: 16px;
+            overflow: hidden;
             transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .native-card:hover {
+            transform: translateY(-5px);
+            background: var(--card-hover);
+            border-color: rgba(255, 255, 255, 0.15);
+        }
+
+        .card-banner {
+            height: 160px;
+            background: linear-gradient(45deg, #1e1b4b, #312e81);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            position: relative;
+        }
+
+        .card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            gap: 8px;
+        }
+
+        .card-body h3 {
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        .card-body p {
+            color: var(--text-muted);
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .card-price {
+            font-size: 20px;
+            font-weight: 700;
+            color: #10b981;
+            margin-top: auto;
+            padding-top: 10px;
+        }
+
+        .card-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--accent-gradient);
+            border: none;
+            color: white;
+            font-weight: 600;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: opacity 0.2s;
+        }
+
+        .card-btn:hover {
+            opacity: 0.9;
+        }
+
+        /* --- DISEÑO NATIVO: ACORDEÓN (MANUALES) --- */
+        .accordion {
             display: flex;
             flex-direction: column;
             gap: 12px;
         }
 
-        .tool:hover {
-            background: var(--card-hover);
-            transform: translateY(-4px);
-            border-color: rgba(255, 255, 255, 0.12);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        .accordion-item {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            overflow: hidden;
         }
 
-        .tool-icon {
-            font-size: 24px;
-            margin-bottom: 4px;
-        }
-
-        .tool h3 {
-            font-size: 18px;
+        .accordion-header {
+            padding: 18px 20px;
             font-weight: 600;
-        }
-
-        .tool button {
-            align-self: flex-start;
-            margin-top: 8px;
-            padding: 10px 22px;
-            border: none;
-            background: rgba(255, 255, 255, 0.06);
-            color: var(--text-main);
-            font-weight: 600;
-            font-size: 14px;
-            border-radius: 10px;
             cursor: pointer;
-            transition: all 0.2s ease;
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
         }
 
-        .tool button:hover {
-            background: var(--text-main);
-            color: #000;
-            transform: scale(1.02);
+        .accordion-header:hover {
+            background: var(--card-hover);
         }
 
-        /* --- FORMULARIOS E INTERFACES DE MINI-APPS --- */
-        .app {
-            display: none;
-            margin-top: 30px;
-            padding: 30px;
-            border-radius: 16px;
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-color);
-            backdrop-filter: blur(10px);
-            animation: slideUp 0.3s ease-out;
-        }
-
-        .app.active {
-            display: block;
-        }
-
-        .app h3 {
-            font-size: 18px;
-            margin-bottom: 16px;
-            font-weight: 600;
-        }
-
-        input[type="text"] {
-            margin-top: 12px;
-            width: 100%;
-            padding: 14px 16px;
-            border: 1px solid var(--border-color);
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            color: #fff;
-            font-size: 15px;
-            transition: all 0.2s ease;
-        }
-
-        input[type="text"]:focus {
-            outline: none;
-            border-color: var(--accent-primary);
-            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
-        }
-
-        /* Input file estilizado por encima del nativo */
-        input[type="file"] {
-            margin-top: 12px;
+        .accordion-content {
+            padding: 0 20px;
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.3s ease-out;
             color: var(--text-muted);
             font-size: 14px;
+            line-height: 1.6;
         }
 
-        .app button {
-            margin-top: 16px;
-            padding: 12px 24px;
+        /* --- DISEÑO NATIVO: LISTA DE AUDIO (TONOS) --- */
+        .audio-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .audio-track {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            padding: 16px 20px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .track-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .track-icon {
+            font-size: 24px;
+            background: rgba(255,255,255,0.05);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        audio {
+            height: 40px;
+            border-radius: 8px;
+            background: #f1f3f4;
+        }
+
+        /* --- UTILIDADES INTERNAS --- */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .tool-card {
+            padding: 28px;
+            border-radius: 16px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .tool-card:hover {
+            background: var(--card-hover);
+            transform: translateY(-4px);
+        }
+
+        .tool-card button {
+            margin-top: 15px;
+            padding: 10px 22px;
             border: none;
             background: var(--accent-gradient);
             color: white;
             font-weight: 600;
             border-radius: 10px;
             cursor: pointer;
-            transition: all 0.2s ease;
         }
 
-        .app button:hover {
-            opacity: 0.9;
-            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.4);
-        }
-
-        img#preview {
-            max-width: 250px;
-            margin-top: 20px;
-            border-radius: 12px;
+        .app-box {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-color);
+        }
+
+        .app-box.active {
             display: block;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 14px;
+            margin-top: 10px;
+            background: rgba(0,0,0,0.2);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            color: #fff;
         }
 
         #qrcode {
@@ -304,70 +344,20 @@
             padding: 12px;
             border-radius: 12px;
             display: inline-block;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
         }
 
-        /* --- ANIMACIONES --- */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(4px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- ADAPTABILIDAD MÓVIL (RESPONSIVE DESIGN) --- */
+        /* --- RESPONSIVE MÓVIL --- */
         @media(max-width: 992px) {
-            .container {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto 1fr;
-                height: 100vh;
-            }
-
-            .sidebar {
-                padding: 15px 20px;
-                gap: 15px;
-                border-right: none;
-                border-bottom: 1px solid var(--border-color);
-            }
-
-            .logo {
-                text-align: center;
-                padding: 0;
-            }
-
-            .menu {
-                flex-direction: row;
-                overflow-x: auto;
-                padding-bottom: 5px;
-                scrollbar-width: none; /* Ocultar scroll en Firefox */
-            }
-
-            .menu::-webkit-scrollbar {
-                display: none; /* Ocultar scroll en Chrome/Safari */
-            }
-
-            .item {
-                padding: 10px 16px;
-                white-space: nowrap;
-                font-size: 14px;
-            }
-
-            .item:hover {
-                padding-left: 16px;
-            }
-
-            .content {
-                padding: 20px;
-                height: calc(100vh - 125px);
-            }
-            
-            h2 {
-                font-size: 24px;
-                margin-bottom: 16px;
-            }
+            .container { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
+            .sidebar { padding: 15px 20px; gap: 15px; border-bottom: 1px solid var(--border-color); }
+            .menu { flex-direction: row; overflow-x: auto; }
+            .item { white-space: nowrap; }
+            .content { padding: 20px; height: calc(100vh - 125px); }
         }
     </style>
 </head>
@@ -376,13 +366,12 @@
 
     <div class="container">
 
-        <!-- Barra lateral de navegación -->
+        <!-- Sidebar -->
         <div class="sidebar">
             <div class="logo">
                 <h1>NEWCOSMO</h1>
                 <span>Soluciones</span>
             </div>
-
             <div class="menu">
                 <div class="item active" onclick="show('home',this)">🏠 Inicio</div>
                 <div class="item" onclick="show('books',this)">📚 Books</div>
@@ -393,148 +382,202 @@
             </div>
         </div>
 
-        <!-- Área de visualización del Contenido -->
+        <!-- Dashboard Content -->
         <div class="content">
 
             <!-- Panel Inicio -->
             <div id="home" class="panel active">
-                <h2>Bienvenido a NEWCOSMO</h2>
-                <p>Explora nuestras diferentes plataformas y herramientas optimizadas desde el panel de navegación.</p>
+                <h2>Bienvenido a tu Dashboard NATIVO</h2>
+                <p>Todo el contenido que ves aquí es propio, veloz y personalizable de forma directa en el código HTML.</p>
             </div>
 
-            <!-- Panel Books -->
+            <!-- Panel Books (PROPIO) -->
             <div id="books" class="panel">
-                <h2>📚 BOOKS</h2>
-                <div class="iframe-container">
-                    <iframe src="https://newcosmo-peru.github.io/BOOKS/" title="Books Newcosmo"></iframe>
+                <h2>📚 Biblioteca Digital Propia</h2>
+                <div class="native-grid">
+                    <div class="native-card">
+                        <div class="card-banner">🚀</div>
+                        <div class="card-body">
+                            <h3>Aprende JavaScript</h3>
+                            <p>Manual nativo completo desde variables hasta asincronía avanzada.</p>
+                            <button class="card-btn">Leer Libro</button>
+                        </div>
+                    </div>
+                    <div class="native-card">
+                        <div class="card-banner">🎨</div>
+                        <div class="card-body">
+                            <h3>Diseño UI/UX</h3>
+                            <p>Principios fundamentales para crear interfaces oscuras hermosas.</p>
+                            <button class="card-btn">Leer Libro</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Panel Manuales -->
+            <!-- Panel Manuales (PROPIO: Estilo Acordeón) -->
             <div id="manuales" class="panel">
-                <h2>📘 MANUALES</h2>
-                <div class="iframe-container">
-                    <iframe src="https://newcosmo-peru.github.io/MANUALES/" title="Manuales Newcosmo"></iframe>
+                <h2>📘 Manuales y Guías Técnicas</h2>
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>1. Configuración del Servidor Inicial</span> ➕
+                        </div>
+                        <div class="accordion-content">
+                            <p style="padding: 15px 0;">Para iniciar el despliegue nativo, ejecuta los comandos de clonación del repositorio y levanta el entorno de producción local mediante contenedores aislados.</p>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <div class="accordion-header" onclick="toggleAccordion(this)">
+                            <span>2. Mantenimiento y Respaldos</span> ➕
+                        </div>
+                        <div class="accordion-content">
+                            <p style="padding: 15px 0;">Los respaldos automáticos se programan en la base de datos de manera semanal a través de una tarea cron sincronizada localmente.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Panel Store -->
+            <!-- Panel Store (PROPIO) -->
             <div id="store" class="panel">
-                <h2>🛒 STORE</h2>
-                <div class="iframe-container">
-                    <iframe src="https://newcosmo-peru.github.io/STORE/" title="Store Newcosmo"></iframe>
+                <h2>🛒 Store de Productos Propios</h2>
+                <div class="native-grid">
+                    <div class="native-card">
+                        <div class="card-banner" style="background: #111827;">💻</div>
+                        <div class="card-body">
+                            <h3>Licencia Premium</h3>
+                            <p>Acceso ilimitado de por vida a todas nuestras herramientas.</p>
+                            <div class="card-price">$49.99</div>
+                            <button class="card-btn" style="background: #10b981;">Comprar</button>
+                        </div>
+                    </div>
+                    <div class="native-card">
+                        <div class="card-banner" style="background: #111827;">⚡</div>
+                        <div class="card-body">
+                            <h3>Soporte Técnico Especializado</h3>
+                            <p>Asesoramiento prioritario 24/7 directo con desarrolladores.</p>
+                            <div class="card-price">$19.99 / mes</div>
+                            <button class="card-btn" style="background: #10b981;">Suscribirse</button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- Panel Tonos -->
+            <!-- Panel Tonos (PROPIO: Reproductor de Audio Nativo) -->
             <div id="tonos" class="panel">
-                <h2>🎵 TONOS</h2>
-                <div class="iframe-container">
-                    <iframe src="https://newcosmo-peru.github.io/TONOS/" title="Tonos Newcosmo"></iframe>
+                <h2>🎵 Galería de Tonos y Audios</h2>
+                <div class="audio-list">
+                    <div class="audio-track">
+                        <div class="track-info">
+                            <div class="track-icon">🔔</div>
+                            <div>
+                                <h4>Notificación Futurista</h4>
+                                <p style="font-size:12px; color:var(--text-muted)">Formato MP3 - 24kb</p>
+                            </div>
+                        </div>
+                        <!-- Reemplaza el src con tus archivos de música locales o URLs de audio -->
+                        <audio controls src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+                    </div>
+                    <div class="audio-track">
+                        <div class="track-info">
+                            <div class="track-icon">⏰</div>
+                            <div>
+                                <h4>Alarma Corporativa</h4>
+                                <p style="font-size:12px; color:var(--text-muted)">Formato MP3 - 120kb</p>
+                            </div>
+                        </div>
+                        <audio controls src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
+                    </div>
                 </div>
             </div>
 
             <!-- Panel Utilidades -->
             <div id="utilidades" class="panel">
-                <h2>🛠 UTILIDADES INTERNAS</h2>
-                <div class="tools">
-                    <div class="tool">
-                        <div class="tool-icon">📄</div>
+                <h2>🛠 Utilidades Internas</h2>
+                <div class="tools-grid">
+                    <div class="tool-card">
                         <h3>Convertidor Documentos</h3>
-                        <p>Convierte formatos de texto y archivos digitales de manera ágil.</p>
-                        <button onclick="openTool('doc')">Abrir herramienta</button>
+                        <button onclick="openTool('doc')">Abrir</button>
                     </div>
-                    <div class="tool">
-                        <div class="tool-icon">🖼️</div>
+                    <div class="tool-card">
                         <h3>Convertidor Imagen</h3>
-                        <p>Procesa o visualiza tus archivos de imágenes locales de forma segura.</p>
-                        <button onclick="openTool('img')">Abrir herramienta</button>
+                        <button onclick="openTool('img')">Abrir</button>
                     </div>
-                    <div class="tool">
-                        <div class="tool-icon">📱</div>
+                    <div class="tool-card">
                         <h3>Generador QR</h3>
-                        <p>Crea códigos QR instantáneos para tus enlaces, textos o contactos.</p>
-                        <button onclick="openTool('qr')">Abrir herramienta</button>
+                        <button onclick="openTool('qr')">Abrir</button>
                     </div>
                 </div>
 
-                <!-- Módulos de Utilidades -->
-                <div id="doc" class="app">
-                    <h3>Convertir documento</h3>
-                    <p>Selecciona el archivo de tu dispositivo:</p>
+                <div id="doc" class="app-box">
+                    <h3>Convertir Documento</h3>
                     <input type="file">
                 </div>
 
-                <div id="img" class="app">
-                    <h3>Convertir imagen</h3>
-                    <p>Carga una imagen para generar una vista previa:</p>
+                <div id="img" class="app-box">
+                    <h3>Convertir Imagen</h3>
                     <input type="file" accept="image/*" onchange="preview(event)">
-                    <img id="preview" alt="Vista previa ausente" src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='100' height='100'><rect width='100' height='100' fill='rgba(255,255,255,0.05)'/></svg>">
+                    <img id="preview" src="" alt="Vista previa" style="display:none;">
                 </div>
 
-                <div id="qr" class="app">
-                    <h3>Generador de Código QR</h3>
-                    <p>Ingresa la URL o el texto que desees encriptar:</p>
-                    <input id="qrText" type="text" placeholder="Ej. https://newcosmo-peru.github.io/">
-                    <button onclick="generateQR()">Generar Código</button>
-                    <br>
-                    <div id="qrcode"></div>
+                <div id="qr" class="app-box">
+                    <h3>Generador QR</h3>
+                    <input id="qrText" type="text" placeholder="Escribe tu enlace aquí">
+                    <button onclick="generateQR()">Generar</button>
+                    <br><div id="qrcode"></div>
                 </div>
             </div>
 
         </div>
     </div>
 
-    <!-- Script de Gestión Interna de Eventos -->
     <script>
+        // Cambiar pestañas principales
         function show(id, el) {
-            // Ocultación total de las ventanas centrales
             document.querySelectorAll(".panel").forEach(x => x.classList.remove("active"));
-            
-            // Activación del panel deseado
             document.getElementById(id).classList.add("active");
-            
-            // Mutación del estado visual en los botones del menú lateral
             document.querySelectorAll(".item").forEach(x => x.classList.remove("active"));
             el.classList.add("active");
-
-            // Si se cambia de sección principal, se resetean las sub-aplicaciones de utilidades
             if(id !== 'utilidades') {
-                document.querySelectorAll(".app").forEach(x => x.classList.remove("active"));
+                document.querySelectorAll(".app-box").forEach(x => x.classList.remove("active"));
             }
         }
 
+        // Abrir sub-herramientas de Utilidades
         function openTool(id) {
-            // Apagado de módulos de utilidad activos
-            document.querySelectorAll(".app").forEach(x => x.classList.remove("active"));
-            
-            // Encendido de la sub-app clickeada
+            document.querySelectorAll(".app-box").forEach(x => x.classList.remove("active"));
             document.getElementById(id).classList.add("active");
         }
 
-        function preview(e) {
-            if(e.target.files && e.target.files[0]) {
-                document.getElementById("preview").src = URL.createObjectURL(e.target.files[0]);
+        // Lógica del acordeón propio
+        function toggleAccordion(element) {
+            const content = element.nextElementSibling;
+            if (content.style.maxHeight && content.style.maxHeight !== "0px") {
+                content.style.maxHeight = "0px";
+                element.innerHTML = element.innerHTML.replace("➖", "➕");
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+                element.innerHTML = element.innerHTML.replace("➕", "➖");
             }
         }
 
+        // Vista previa de imagen
+        function preview(e) {
+            let img = document.getElementById("preview");
+            if(e.target.files[0]) {
+                img.src = URL.createObjectURL(e.target.files[0]);
+                img.style.display = "block";
+            }
+        }
+
+        // Generar código QR
         function generateQR() {
             let box = document.getElementById("qrcode");
             let text = document.getElementById("qrText").value;
-            
             box.innerHTML = "";
-            if(text && text.trim() !== "") {
-                new QRCode(box, {
-                    text: text,
-                    width: 160,
-                    height: 160,
-                    colorDark : "#000000",
-                    colorLight : "#ffffff",
-                    correctLevel : QRCode.CorrectLevel.H
-                });
+            if(text.trim() !== "") {
+                new QRCode(box, { text: text, width: 128, height: 128 });
             }
         }
     </script>
 </body>
-
 </html>
