@@ -75,16 +75,15 @@
 
         .panel {
             display: none;
-            height: 100%;
             width: 100%;
         }
 
+        /* Paneles principales activos */
         .panel.active {
-            display: flex;
-            flex-direction: column;
+            display: block;
         }
 
-        /* Contenedor optimizado para los apartados con Iframe (Books, Manuales, Store y Tonos) */
+        /* Comportamiento especial en pantallas completas para iframes */
         #books.panel.active,
         #manuales.panel.active,
         #store.panel.active,
@@ -97,6 +96,7 @@
         .iframe-container {
             flex-grow: 1;
             width: 100%;
+            height: 100%;
             border-radius: 15px;
             overflow: hidden;
             background: rgba(255, 255, 255, 0.02);
@@ -135,6 +135,7 @@
             cursor: pointer;
         }
 
+        /* Apps internas arregladas */
         .app {
             display: none;
             margin-top: 25px;
@@ -251,7 +252,7 @@
                 </div>
             </div>
 
-            <!-- Panel Tonos (NUEVO CAMBIO AQUÍ: Integración de la web externa de Tonos) -->
+            <!-- Panel Tonos -->
             <div id="tonos" class="panel">
                 <h2>🎵 TONOS</h2>
                 <div class="iframe-container">
@@ -306,19 +307,27 @@
     <!-- Lógica de control JavaScript -->
     <script>
         function show(id, el) {
-            // Ocultar todos los paneles y quitar la clase active
+            // Ocultar todos los paneles principales
             document.querySelectorAll(".panel").forEach(x => x.classList.remove("active"));
             
             // Mostrar el panel seleccionado
             document.getElementById(id).classList.add("active");
             
-            // Gestionar estado activo en los botones del menú
+            // Gestionar estado activo en los botones del menú lateral
             document.querySelectorAll(".item").forEach(x => x.classList.remove("active"));
             el.classList.add("active");
+
+            // Si cambiamos de pestaña principal, reiniciamos las mini-apps internas de utilidades
+            if(id !== 'utilidades') {
+                document.querySelectorAll(".app").forEach(x => x.classList.remove("active"));
+            }
         }
 
         function openTool(id) {
+            // Ocultar primero cualquier mini-app abierta en utilidades
             document.querySelectorAll(".app").forEach(x => x.classList.remove("active"));
+            
+            // Mostrar específicamente la herramienta solicitada
             document.getElementById(id).classList.add("active");
         }
 
