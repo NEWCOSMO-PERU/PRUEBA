@@ -1,641 +1,320 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NEWCOSMO | Soluciones Digitales</title>
-    
-    <!-- Fuentes y Librerías -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>NEWCOSMO | Ecosistema Digital</title>
 
-    <style>
-        :root {
-            --bg-gradient: linear-gradient(135deg, #070b19 0%, #0c1536 50%, #050814 100%);
-            --sidebar-bg: #030712;
-            --accent-primary: #4f46e5;
-            --accent-gradient: linear-gradient(135deg, #6366f1, #4338ca);
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-hover: rgba(255, 255, 255, 0.07);
-            --border-color: rgba(255, 255, 255, 0.06);
-            --text-main: #f3f4f6;
-            --text-muted: #9ca3af;
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', sans-serif;
-            -webkit-font-smoothing: antialiased;
-        }
+<style>
 
-        body {
-            background: var(--bg-gradient);
-            color: var(--text-main);
-            height: 100vh;
-            overflow: hidden;
-        }
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Poppins,sans-serif;
+}
 
-        .container {
-            display: grid;
-            grid-template-columns: 280px 1fr;
-            height: 100vh;
-        }
+body{
 
-        /* --- SIDEBAR --- */
-        .sidebar {
-            background: var(--sidebar-bg);
-            border-right: 1px solid var(--border-color);
-            padding: 30px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 35px;
-            z-index: 10;
-        }
+background:#070707;
+color:#fff;
 
-        .logo h1 {
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: 1px;
-            background: linear-gradient(120deg, #fff, var(--text-muted));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+background-image:
+radial-gradient(circle at top,#d4af3730,transparent 40%),
+linear-gradient(#090909,#000);
 
-        .logo span {
-            font-size: 11px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--accent-primary);
-            display: block;
-            margin-top: 2px;
-        }
+min-height:100vh;
 
-        .menu {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
+}
 
-        .item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 14px 16px;
-            border-radius: 12px;
-            font-size: 15px;
-            font-weight: 500;
-            color: var(--text-muted);
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
+header{
 
-        .item:hover {
-            color: var(--text-main);
-            background: rgba(255, 255, 255, 0.03);
-            padding-left: 20px;
-        }
+padding:30px;
+display:flex;
+justify-content:space-between;
+align-items:center;
 
-        .item.active {
-            color: #ffffff;
-            background: var(--accent-gradient);
-            box-shadow: 0 4px 20px rgba(79, 70, 229, 0.3);
-        }
+backdrop-filter:blur(12px);
 
-        /* --- CONTENIDO PRINCIPAL --- */
-        .content {
-            padding: 40px;
-            overflow-y: auto;
-        }
+}
 
-        .panel {
-            display: none;
-            width: 100%;
-            animation: fadeIn 0.4s ease-out;
-        }
+.logo{
 
-        .panel.active {
-            display: block;
-        }
+display:flex;
+align-items:center;
+gap:15px;
 
-        h2 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 24px;
-            letter-spacing: -0.5px;
-        }
+}
 
-        /* --- GRILLAS DE PRODUCTOS --- */
-        .native-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-            gap: 24px;
-            margin-top: 20px;
-        }
+.logo img{
 
-        .native-card {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
+width:70px;
 
-        .native-card:hover {
-            transform: translateY(-5px);
-            background: var(--card-hover);
-            border-color: rgba(255, 255, 255, 0.15);
-        }
+}
 
-        .card-banner {
-            height: 150px;
-            background: linear-gradient(45deg, #1e1b4b, #312e81);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 44px;
-        }
+.logo h1{
 
-        .card-body {
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1;
-            gap: 8px;
-        }
+color:#FFD54A;
+font-size:32px;
 
-        .card-body h3 {
-            font-size: 17px;
-            font-weight: 600;
-        }
+}
 
-        .card-body p {
-            color: var(--text-muted);
-            font-size: 13px;
-            line-height: 1.4;
-        }
+nav a{
 
-        .card-price {
-            font-size: 18px;
-            font-weight: 700;
-            color: #10b981;
-            margin-top: auto;
-            padding-top: 8px;
-        }
+color:white;
+text-decoration:none;
+margin-left:25px;
+font-weight:600;
 
-        .card-btn {
-            width: 100%;
-            padding: 10px;
-            background: var(--accent-gradient);
-            border: none;
-            color: white;
-            font-weight: 600;
-            border-radius: 10px;
-            cursor: pointer;
-            margin-top: 10px;
-            font-size: 13px;
-        }
+}
 
-        /* --- TONOS DE MUESTRA (BLOQUEO DE DESCARGA) --- */
-        .audio-list {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
-        }
+nav a:hover{
 
-        .audio-track {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 16px 20px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 20px;
-            user-select: none;
-        }
+color:#FFD54A;
 
-        audio {
-            height: 40px;
-            border-radius: 8px;
-            /* Bloqueo visual de controles adicionales en navegadores web */
-            outline: none;
-        }
+}
 
-        /* --- SECCIÓN DEL CARRITO DE COMPRAS --- */
-        .cart-section {
-            background: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-color);
-            border-radius: 16px;
-            padding: 25px;
-            margin-top: 30px;
-        }
+.hero{
 
-        .cart-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            font-size: 14px;
-        }
+height:80vh;
 
-        .cart-table th, .cart-table td {
-            text-align: left;
-            padding: 12px;
-            border-bottom: 1px solid var(--border-color);
-        }
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
 
-        .cart-total {
-            text-align: right;
-            font-size: 18px;
-            font-weight: 700;
-            margin-top: 15px;
-            color: #10b981;
-        }
+text-align:center;
 
-        .checkout-box {
-            margin-top: 25px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.2);
-            padding: 20px;
-            border-radius: 12px;
-        }
+padding:20px;
 
-        .checkout-actions button {
-            width: 100%;
-            padding: 14px;
-            background: #25d366; /* Color Whatsapp */
-            color: black;
-            font-weight: 700;
-            border: none;
-            border-radius: 10px;
-            cursor: pointer;
-            font-size: 15px;
-            margin-bottom: 10px;
-        }
+}
 
-        #qrCheckoutContainer {
-            text-align: center;
-        }
+.hero h2{
 
-        #qrCheckout {
-            background: white;
-            padding: 10px;
-            border-radius: 8px;
-            display: inline-block;
-        }
+font-size:60px;
+margin-bottom:20px;
 
-        .delete-btn {
-            background: transparent;
-            border: none;
-            color: #ef4444;
-            cursor: pointer;
-            font-weight: bold;
-        }
+}
 
-        /* --- UTILIDADES --- */
-        .tools-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .tool-card { padding: 24px; border-radius: 16px; background: var(--card-bg); border: 1px solid var(--border-color); }
-        .tool-card button { margin-top: 15px; padding: 10px 20px; border: none; background: var(--accent-gradient); color: white; border-radius: 8px; cursor: pointer; }
-        .app-box { display: none; margin-top: 25px; padding: 25px; border-radius: 16px; background: rgba(255,255,255,0.02); border: 1px solid var(--border-color); }
-        .app-box.active { display: block; }
-        input[type="text"] { width: 100%; padding: 12px; margin-top: 10px; background: rgba(0,0,0,0.2); border: 1px solid var(--border-color); border-radius: 8px; color: white; }
+.hero span{
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(4px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+color:#FFD54A;
 
-        @media(max-width: 992px) {
-            .container { grid-template-columns: 1fr; grid-template-rows: auto 1fr; }
-            .sidebar { padding: 15px 20px; gap: 15px; border-bottom: 1px solid var(--border-color); }
-            .menu { flex-direction: row; overflow-x: auto; }
-            .item { white-space: nowrap; }
-            .content { padding: 20px; height: calc(100vh - 125px); }
-            .checkout-box { grid-template-columns: 1fr; }
-        }
-    </style>
+}
+
+.hero p{
+
+max-width:700px;
+opacity:.8;
+font-size:20px;
+
+margin-bottom:40px;
+
+}
+
+.grid{
+
+max-width:1200px;
+margin:auto;
+
+display:grid;
+
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+
+gap:30px;
+
+padding:40px;
+
+}
+
+.card{
+
+background:#121212;
+
+border:1px solid #d4af3740;
+
+border-radius:20px;
+
+padding:35px;
+
+transition:.4s;
+
+text-align:center;
+
+}
+
+.card:hover{
+
+transform:translateY(-10px);
+
+box-shadow:0 0 40px #d4af3730;
+
+}
+
+.card h3{
+
+color:#FFD54A;
+
+margin-bottom:15px;
+
+}
+
+.card p{
+
+opacity:.8;
+margin-bottom:25px;
+
+}
+
+.btn{
+
+display:inline-block;
+
+padding:14px 30px;
+
+background:#FFD54A;
+
+color:#000;
+
+font-weight:bold;
+
+text-decoration:none;
+
+border-radius:10px;
+
+transition:.3s;
+
+}
+
+.btn:hover{
+
+transform:scale(1.05);
+
+}
+
+footer{
+
+padding:40px;
+
+text-align:center;
+
+opacity:.6;
+
+}
+
+</style>
+
 </head>
 
 <body>
 
-    <div class="container">
+<header>
 
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="logo">
-                <h1>NEWCOSMO</h1>
-                <span>Soluciones</span>
-            </div>
-            <div class="menu">
-                <div class="item active" onclick="show('home',this)">🏠 Inicio</div>
-                <div class="item" onclick="show('books',this)">📚 Books</div>
-                <div class="item" onclick="show('manuales',this)">📘 Manuales</div>
-                <div class="item" onclick="show('store',this)">🛒 Store</div>
-                <div class="item" onclick="show('tonos',this)">🎵 Tonos</div>
-                <div class="item" onclick="show('utilidades',this)">🛠 Utilidades</div>
-            </div>
-        </div>
+<div class="logo">
 
-        <!-- Dashboard Central -->
-        <div class="content">
+<img src="logo.png">
 
-            <!-- Panel Inicio -->
-            <div id="home" class="panel active">
-                <h2>Bienvenido a tu E-Commerce Digital</h2>
-                <p>Navega por los módulos, añade productos al carrito y genera tu orden automatizada por QR o WhatsApp.</p>
-            </div>
+<h1>NEWCOSMO</h1>
 
-            <!-- Panel Books -->
-            <div id="books" class="panel">
-                <h2>📚 Libros Disponibles</h2>
-                <div class="native-grid">
-                    <div class="native-card">
-                        <div class="card-banner">📘</div>
-                        <div class="card-body">
-                            <h3>JavaScript Completo</h3>
-                            <p>Domina desde bases hasta desarrollo asíncrono avanzado.</p>
-                            <div class="card-price">S/. 25.00</div>
-                            <button class="card-btn" onclick="addToCart('Libro JavaScript Completo', 25.00)">Añadir al Carrito</button>
-                        </div>
-                    </div>
-                    <div class="native-card">
-                        <div class="card-banner">📙</div>
-                        <div class="card-body">
-                            <h3>Diseño UI/UX Oscuro</h3>
-                            <p>Aprende las guías visuales modernas Glassmorphism.</p>
-                            <div class="card-price">S/. 30.00</div>
-                            <button class="card-btn" onclick="addToCart('Libro UI/UX Oscuro', 30.00)">Añadir al Carrito</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+</div>
 
-            <!-- Panel Manuales -->
-            <div id="manuales" class="panel">
-                <h2>📘 Manuales de Servidores</h2>
-                <div class="native-grid">
-                    <div class="native-card">
-                        <div class="card-banner" style="background: #111827;">⚙️</div>
-                        <div class="card-body">
-                            <h3>Manual Linux & VPS</h3>
-                            <p>Despliegue seguro y administración de consolas y servidores.</p>
-                            <div class="card-price">S/. 45.00</div>
-                            <button class="card-btn" onclick="addToCart('Manual Linux & VPS', 45.00)">Añadir al Carrito</button>
-                        </div>
-                    </div>
-                    <div class="native-card">
-                        <div class="card-banner" style="background: #111827;">🔒</div>
-                        <div class="card-body">
-                            <h3>Guía Ciberseguridad</h3>
-                            <p>Buenas prácticas para blindar sistemas web empresariales.</p>
-                            <div class="card-price">S/. 50.00</div>
-                            <button class="card-btn" onclick="addToCart('Guía Ciberseguridad', 50.00)">Añadir al Carrito</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<nav>
 
-            <!-- Panel Store -->
-            <div id="store" class="panel">
-                <h2>🛒 Store de Licencias</h2>
-                <div class="native-grid">
-                    <div class="native-card">
-                        <div class="card-banner" style="background: #064e3b;">🔑</div>
-                        <div class="card-body">
-                            <h3>Licencia Premium Anual</h3>
-                            <p>Acceso completo a herramientas y actualizaciones.</p>
-                            <div class="card-price">S/. 120.00</div>
-                            <button class="card-btn" onclick="addToCart('Licencia Premium Anual', 120.00)">Añadir al Carrito</button>
-                        </div>
-                    </div>
-                    <div class="native-card">
-                        <div class="card-banner" style="background: #064e3b;">⚡</div>
-                        <div class="card-body">
-                            <h3>API Key Corporativa</h3>
-                            <p>Consultas y peticiones web sin límites de velocidad.</p>
-                            <div class="card-price">S/. 85.00</div>
-                            <button class="card-btn" onclick="addToCart('API Key Corporativa', 85.00)">Añadir al Carrito</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<a href="#">Inicio</a>
 
-            <!-- Panel Tonos -->
-            <div id="tonos" class="panel">
-                <h2>🎵 Muestras de Audio (Protegidas)</h2>
-                <p>Escucha las muestras oficiales. Las descargas e inspección directa han sido bloqueadas.</p>
-                
-                <div class="audio-list">
-                    <div class="audio-track">
-                        <div>
-                            <h4>Tono de Alerta Futurista 1</h4>
-                            <p style="font-size:12px; color:var(--text-muted)">Solo Escucha - Licencia requerida</p>
-                        </div>
-                        <audio controls controlsList="nodownload" oncontextmenu="return false;" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
-                    </div>
-                    <div class="audio-track">
-                        <div>
-                            <h4>Ringtone Corporativo Elegante 2</h4>
-                            <p style="font-size:12px; color:var(--text-muted)">Solo Escucha - Licencia requerida</p>
-                        </div>
-                        <audio controls controlsList="nodownload" oncontextmenu="return false;" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3"></audio>
-                    </div>
-                    <div class="audio-track">
-                        <div>
-                            <h4>Efecto de Sonido Notificación 3</h4>
-                            <p style="font-size:12px; color:var(--text-muted)">Solo Escucha - Licencia requerida</p>
-                        </div>
-                        <audio controls controlsList="nodownload" oncontextmenu="return false;" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3"></audio>
-                    </div>
-                </div>
-            </div>
+<a href="#">Proyectos</a>
 
-            <!-- Panel Utilidades -->
-            <div id="utilidades" class="panel">
-                <h2>🛠 Herramientas</h2>
-                <div class="tools-grid">
-                    <div class="tool-card"><h3>Convertidor Documentos</h3><button onclick="openTool('doc')">Abrir</button></div>
-                    <div class="tool-card"><h3>Convertidor Imagen</h3><button onclick="openTool('img')">Abrir</button></div>
-                    <div class="tool-card"><h3>Generador QR</h3><button onclick="openTool('qr')">Abrir</button></div>
-                </div>
-                <div id="doc" class="app-box"><h3>Convertir Documento</h3><input type="file"></div>
-                <div id="img" class="app-box"><h3>Convertir Imagen</h3><input type="file" accept="image/*"></div>
-                <div id="qr" class="app-box">
-                    <h3>Generador QR Manual</h3>
-                    <input id="qrText" type="text" placeholder="Enlace personalizado">
-                    <button onclick="generateManualQR()">Generar</button>
-                    <br><div id="manualQROutput" style="margin-top:15px;"></div>
-                </div>
-            </div>
+<a href="#">Contacto</a>
 
-            <!-- --- ELEMENTO SECCIÓN INTERNA: CARRITO GLOBAL --- -->
-            <div class="cart-section">
-                <h2>🛒 Carrito de Compras actual</h2>
-                <table class="cart-table">
-                    <thead>
-                        <tr>
-                            <th>Producto</th>
-                            <th>Precio</th>
-                            <th>Acción</th>
-                        </tr>
-                    </thead>
-                    <tbody id="cartItems">
-                        <tr>
-                            <td colspan="3" style="text-align: center; color: var(--text-muted);">El carrito está vacío</td>
-                        </tr>
-                    </tbody>
-                </table>
-                <div class="cart-total" id="cartTotal">Total: S/. 0.00</div>
+</nav>
 
-                <!-- Bloqueo Dinámico de Checkout -->
-                <div class="checkout-box" id="checkoutBox" style="display: none;">
-                    <div class="checkout-actions">
-                        <h3>Procesar Pedido</h3>
-                        <p style="margin-bottom:15px; font-size:13px;">Haz clic abajo para enviar los datos de tu orden directo a nuestro soporte y obtener tus links.</p>
-                        <button onclick="sendWhatsApp()">💬 Enviar Orden por WhatsApp</button>
-                    </div>
-                    <div id="qrCheckoutContainer">
-                        <p style="font-size:12px; margin-bottom:8px; color:var(--text-muted)">Escanea este QR para pagar y procesar en otro móvil:</p>
-                        <div id="qrCheckout"></div>
-                    </div>
-                </div>
-            </div>
+</header>
 
-        </div>
-    </div>
+<section class="hero">
 
-    <script>
-        // Carrito de compras en memoria
-        let cart = [];
-        let qrObj = null;
+<h2>Bienvenido al <span>Ecosistema NEWCOSMO</span></h2>
 
-        function show(id, el) {
-            document.querySelectorAll(".panel").forEach(x => x.classList.remove("active"));
-            document.getElementById(id).classList.add("active");
-            document.querySelectorAll(".item").forEach(x => x.classList.remove("active"));
-            el.classList.add("active");
-            if(id !== 'utilidades') {
-                document.querySelectorAll(".app-box").forEach(x => x.classList.remove("active"));
-            }
-        }
+<p>
 
-        function openTool(id) {
-            document.querySelectorAll(".app-box").forEach(x => x.classList.remove("active"));
-            document.getElementById(id).classList.add("active");
-        }
+Todos nuestros proyectos digitales reunidos en un solo lugar.
 
-        /* --- LÓGICA DEL CARRITO --- */
-        function addToCart(name, price) {
-            cart.push({ name, price });
-            updateCartUI();
-        }
+</p>
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
-            updateCartUI();
-        }
+</section>
 
-        function updateCartUI() {
-            const container = document.getElementById("cartItems");
-            const totalText = document.getElementById("cartTotal");
-            const checkoutBox = document.getElementById("checkoutBox");
-            
-            if(cart.length === 0) {
-                container.innerHTML = `<tr><td colspan="3" style="text-align: center; color: var(--text-muted);">El carrito está vacío</td></tr>`;
-                totalText.innerText = "Total: S/. 0.00";
-                checkoutBox.style.display = "none";
-                return;
-            }
+<section class="grid">
 
-            container.innerHTML = "";
-            let total = 0;
-            
-            cart.forEach((item, index) => {
-                total += item.price;
-                container.innerHTML += `
-                    <tr>
-                        <td>${item.name}</td>
-                        <td>S/. ${item.price.toFixed(2)}</td>
-                        <td><button class="delete-btn" onclick="removeFromCart(${index})">❌</button></td>
-                    </tr>
-                `;
-            });
+<div class="card">
 
-            totalText.innerText = `Total: S/. ${total.toFixed(2)}`;
-            checkoutBox.style.display = "grid";
-            
-            // Generar QR Dinámico del Pago/WhatsApp
-            generateCheckoutQR(total);
-        }
+<h3>📚 Manuales Premium</h3>
 
-        function getWhatsAppLink() {
-            // Número de WhatsApp (puedes cambiarlo aquí por el tuyo, ej: 51999999999)
-            const phoneNumber = "51999999999"; 
-            let message = "🤖 *NUEVA ORDEN DESDE DASHBOARD NEWCOSMO*\n\n";
-            let total = 0;
-            
-            cart.forEach(item => {
-                message += `• ${item.name} - S/. ${item.price.toFixed(2)}\n`;
-                total += item.price;
-            });
-            
-            message += `\n*TOTAL A PAGAR:* S/. ${total.toFixed(2)}\n\n`;
-            message += "Solicito los datos de pago para activar mi link con el contenido disponible de inmediato. 👍";
-            
-            return `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodeURIComponent(message)}`;
-        }
+<p>Biblioteca de manuales profesionales.</p>
 
-        function sendWhatsApp() {
-            window.open(getWhatsAppLink(), '_blank');
-        }
+<a class="btn" href="https://TU-USUARIO.github.io/manuales/">Entrar</a>
 
-        function generateCheckoutQR(total) {
-            let qrBox = document.getElementById("qrCheckout");
-            qrBox.innerHTML = "";
-            
-            // El código QR contiene el link directo de compra de WhatsApp
-            const urlData = getWhatsAppLink();
+</div>
 
-            new QRCode(qrBox, {
-                text: urlData,
-                width: 128,
-                height: 128,
-                colorDark : "#000000",
-                colorLight : "#ffffff"
-            });
-        }
+<div class="card">
 
-        function generateManualQR() {
-            let box = document.getElementById("manualQROutput");
-            let text = document.getElementById("qrText").value;
-            box.innerHTML = "";
-            if(text.trim() !== "") {
-                new QRCode(box, { text: text, width: 128, height: 128 });
-            }
-        }
+<h3>🪙 Token PERU</h3>
 
-        /* --- PARTE DE PROTECCIÓN ANTIDESCARGA PARA AUDIO --- */
-        document.querySelectorAll("audio").forEach(audio => {
-            // Evitar menú contextual (clic derecho)
-            audio.addEventListener('contextmenu', e => e.preventDefault());
-        });
+<p>Proyecto Blockchain.</p>
 
-        // Bloqueo de combinación de teclas de guardado comunes (Ctrl+S, Ctrl+U)
-        document.addEventListener('keydown', function(e) {
-            if ((e.ctrlKey && e.keyCode === 83) || (e.ctrlKey && e.keyCode === 85)) {
-                e.preventDefault();
-            }
-        });
-    </script>
+<a class="btn" href="https://TU-USUARIO.github.io/token-peru/">Entrar</a>
+
+</div>
+
+<div class="card">
+
+<h3>💻 Tienda Digital</h3>
+
+<p>Productos y servicios digitales.</p>
+
+<a class="btn" href="https://TU-USUARIO.github.io/tienda/">Entrar</a>
+
+</div>
+
+<div class="card">
+
+<h3>🎥 Videos</h3>
+
+<p>Contenido multimedia.</p>
+
+<a class="btn" href="https://TU-USUARIO.github.io/videos/">Entrar</a>
+
+</div>
+
+<div class="card">
+
+<h3>🌐 Sitio Oficial</h3>
+
+<p>Información institucional.</p>
+
+<a class="btn" href="https://TU-USUARIO.github.io/">Entrar</a>
+
+</div>
+
+<div class="card">
+
+<h3>📞 Contacto</h3>
+
+<p>Comunícate con nosotros.</p>
+
+<a class="btn" href="https://wa.me/51959493921">WhatsApp</a>
+
+</div>
+
+</section>
+
+<footer>
+
+© 2026 NEWCOSMO • Todos los derechos reservados
+
+</footer>
+
 </body>
+
 </html>
