@@ -2,14 +2,14 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>NewCosmo Perú | Portal Oficial</title>
     <!-- Iconos para la barra lateral y navegación -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
             --bg-color: #03080f;
-            --sidebar-bg: rgba(3, 8, 15, 0.85);
+            --sidebar-bg: rgba(3, 8, 15, 0.95);
             --border-color: rgba(255, 255, 255, 0.05);
             --neon-blue: #00f2fe;
             --neon-cyan: #00ffd5;
@@ -18,6 +18,7 @@
             --text-main: #ffffff;
             --text-muted: #64748b;
             --text-secondary: #94a3b8;
+            --sidebar-width: 250px;
         }
 
         * {
@@ -36,7 +37,7 @@
             position: relative;
         }
 
-        /* Red Hexagonal y Efecto de Espacio Profundo de Fondo */
+        /* Fondo y Malla */
         body::before {
             content: "";
             position: absolute;
@@ -52,7 +53,6 @@
             z-index: -2;
         }
 
-        /* Malla digital simulada con líneas sutiles */
         .cyber-grid {
             position: absolute;
             top: 0;
@@ -66,9 +66,31 @@
             pointer-events: none;
         }
 
+        /* TRUCO CSS PARA MENU MÓVIL SIN JS */
+        #menu-toggle {
+            display: none;
+        }
+
+        /* Botón Hamburguesa (solo visible en móvil) */
+        .mobile-menu-btn {
+            display: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 110;
+            background: rgba(0, 242, 254, 0.1);
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            color: var(--neon-blue);
+            padding: 10px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+            backdrop-filter: blur(5px);
+        }
+
         /* BARRA LATERAL (SIDEBAR) */
         aside {
-            width: 250px;
+            width: var(--sidebar-width);
             background: var(--sidebar-bg);
             border-right: 1px solid var(--border-color);
             display: flex;
@@ -80,7 +102,7 @@
             left: 0;
             z-index: 100;
             backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
+            transition: left 0.3s ease; /* Animación para móvil */
         }
 
         .logo-section {
@@ -89,6 +111,7 @@
             gap: 0.75rem;
             margin-bottom: 4rem;
             text-decoration: none;
+            margin-top: 20px; /* Espacio para el botón móvil */
         }
 
         .logo-icon {
@@ -120,7 +143,7 @@
             list-style: none;
             display: flex;
             flex-direction: column;
-            gap: 1.2rem;
+            gap: 0.8rem;
         }
 
         .sidebar-menu li a {
@@ -146,7 +169,6 @@
             color: #fff;
             background: rgba(255, 255, 255, 0.03);
             border-left: 3px solid var(--neon-blue);
-            box-shadow: inset 10px 0 15px -10px rgba(0, 242, 254, 0.15);
         }
 
         .sidebar-menu li.active a i {
@@ -156,353 +178,309 @@
 
         /* CONTENIDO PRINCIPAL */
         main {
-            margin-left: 250px;
+            margin-left: var(--sidebar-width);
             flex: 1;
-            padding: 2rem 4rem;
+            padding: 2rem;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            transition: margin-left 0.3s ease;
         }
 
         /* NAVEGACIÓN SUPERIOR */
         nav {
             display: flex;
-            justify-content: space-between;
+            justify-content: flex-end; /* Alineado a la derecha en móvil por defecto */
             align-items: center;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
+            gap: 1rem;
         }
 
         .nav-links {
-            display: flex;
-            gap: 2.5rem;
+            display: none; /* Ocultos en móvil por defecto */
+            gap: 2rem;
             list-style: none;
-        }
-
-        .nav-links li a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: color 0.3s;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .nav-links li a:hover, .nav-links li.active a {
-            color: var(--neon-blue);
-        }
-
-        .nav-links li.active a::after {
-            content: "";
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: var(--neon-blue);
-            box-shadow: 0 0 10px var(--neon-blue);
         }
 
         .user-panel {
             display: flex;
             align-items: center;
-            gap: 1rem;
+            gap: 0.5rem;
         }
 
         .search-box {
             position: relative;
-            margin-right: 1.5rem;
         }
 
         .search-box input {
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-color);
-            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            padding: 0.5rem 0.5rem 0.5rem 2rem;
             border-radius: 20px;
             color: #fff;
             outline: none;
-            font-size: 0.85rem;
-            width: 200px;
+            font-size: 0.8rem;
+            width: 140px; /* Más estrecho en móvil */
             transition: all 0.3s;
-        }
-
-        .search-box input:focus {
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
-            width: 250px;
         }
 
         .search-box i {
             position: absolute;
-            left: 1rem;
+            left: 0.7rem;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-muted);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
         }
 
         .user-profile {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 0.5rem;
             background: rgba(255, 255, 255, 0.03);
-            padding: 0.4rem 1rem;
+            padding: 0.4rem 0.8rem;
             border-radius: 30px;
             border: 1px solid var(--border-color);
         }
 
         .user-avatar {
-            width: 30px;
-            height: 30px;
+            width: 25px;
+            height: 25px;
             border-radius: 50%;
             background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
             display: flex;
             justify-content: center;
             align-items: center;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             font-weight: bold;
-            box-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
         }
 
         .user-info {
-            text-align: left;
-        }
-
-        .user-info h4 {
-            font-size: 0.8rem;
-            font-weight: 600;
-        }
-
-        .user-info span {
-            font-size: 0.7rem;
-            color: var(--text-muted);
-            display: block;
+            display: none; /* Ocultar texto de usuario en móvil */
         }
 
         /* PANEL DE TARJETAS (HUB GRID) */
         .hub-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 2rem;
+            grid-template-columns: 1fr; /* Una columna por defecto (móvil) */
+            gap: 1.5rem;
             flex: 1;
-            margin-bottom: 3rem;
+            margin-bottom: 2rem;
         }
 
         .hub-card {
             background: rgba(5, 12, 24, 0.5);
-            border-radius: 20px;
-            padding: 2.5rem;
-            display: grid;
-            grid-template-columns: 1.2fr 0.8fr;
+            border-radius: 15px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column; /* Apilado vertical en móvil */
             align-items: center;
+            text-align: center;
             text-decoration: none;
             color: #fff;
             position: relative;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            transition: all 0.3s ease;
             overflow: hidden;
             border: 1px solid rgba(255, 255, 255, 0.03);
         }
 
-        /* Configuración de colores neón individuales por tarjeta */
-        .card-books {
-            box-shadow: inset 0 0 30px rgba(0, 242, 254, 0.05);
-            border-color: rgba(0, 242, 254, 0.15);
-        }
-        .card-books:hover {
-            box-shadow: 0 10px 40px -10px rgba(0, 242, 254, 0.3);
-            border-color: var(--neon-blue);
-        }
+        /* Colores Neón Individuales */
+        .card-books { border-color: rgba(0, 242, 254, 0.15); box-shadow: inset 0 0 15px rgba(0, 242, 254, 0.05); }
+        .card-books:hover { border-color: var(--neon-blue); box-shadow: 0 5px 20px -5px rgba(0, 242, 254, 0.3); }
 
-        .card-manuales {
-            box-shadow: inset 0 0 30px rgba(189, 0, 255, 0.05);
-            border-color: rgba(189, 0, 255, 0.15);
-        }
-        .card-manuales:hover {
-            box-shadow: 0 10px 40px -10px rgba(189, 0, 255, 0.3);
-            border-color: var(--neon-purple);
-        }
+        .card-manuales { border-color: rgba(189, 0, 255, 0.15); box-shadow: inset 0 0 15px rgba(189, 0, 255, 0.05); }
+        .card-manuales:hover { border-color: var(--neon-purple); box-shadow: 0 5px 20px -5px rgba(189, 0, 255, 0.3); }
 
-        .card-store {
-            box-shadow: inset 0 0 30px rgba(0, 255, 213, 0.05);
-            border-color: rgba(0, 255, 213, 0.15);
-        }
-        .card-store:hover {
-            box-shadow: 0 10px 40px -10px rgba(0, 255, 213, 0.3);
-            border-color: var(--neon-cyan);
-        }
+        .card-store { border-color: rgba(0, 255, 213, 0.15); box-shadow: inset 0 0 15px rgba(0, 255, 213, 0.05); }
+        .card-store:hover { border-color: var(--neon-cyan); box-shadow: 0 5px 20px -5px rgba(0, 255, 213, 0.3); }
 
-        .card-tonos {
-            box-shadow: inset 0 0 30px rgba(255, 0, 127, 0.05);
-            border-color: rgba(255, 0, 127, 0.15);
-        }
-        .card-tonos:hover {
-            box-shadow: 0 10px 40px -10px rgba(255, 0, 127, 0.3);
-            border-color: var(--neon-pink);
-        }
-
-        /* Animaciones sutiles hover */
-        .hub-card:hover {
-            transform: translateY(-5px);
-            background: rgba(7, 18, 36, 0.7);
-        }
+        .card-tonos { border-color: rgba(255, 0, 127, 0.15); box-shadow: inset 0 0 15px rgba(255, 0, 127, 0.05); }
+        .card-tonos:hover { border-color: var(--neon-pink); box-shadow: 0 5px 20px -5px rgba(255, 0, 127, 0.3); }
 
         .card-info h3 {
-            font-size: 1.8rem;
+            font-size: 1.4rem;
             font-weight: 800;
             letter-spacing: 1px;
             text-transform: uppercase;
-            margin-bottom: 0.8rem;
+            margin-bottom: 0.5rem;
+            margin-top: 1rem; /* Espacio tras el gráfico en móvil */
         }
-
-        .card-books h3 { color: #fff; }
-        .card-manuales h3 { color: #fff; }
-        .card-store h3 { color: #fff; }
-        .card-tonos h3 { color: #fff; }
 
         .card-info p {
             color: var(--text-secondary);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 2rem;
-            max-width: 90%;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 1.5rem;
         }
 
-        /* Botones de acción estilo interfaz de juego */
         .action-btn {
             display: inline-block;
-            padding: 0.75rem 1.8rem;
+            padding: 0.6rem 1.5rem;
             border-radius: 30px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
-            letter-spacing: 1.5px;
+            letter-spacing: 1px;
             transition: all 0.3s;
             background: transparent;
             border: 1px solid;
-            text-align: center;
         }
 
-        .card-books .action-btn {
-            color: var(--neon-blue);
-            border-color: rgba(0, 242, 254, 0.3);
-        }
-        .card-books:hover .action-btn {
-            background: var(--neon-blue);
-            color: #000;
-            box-shadow: 0 0 15px var(--neon-blue);
-            border-color: transparent;
-        }
+        /* Estilos de botones individuales */
+        .card-books .action-btn { color: var(--neon-blue); border-color: rgba(0, 242, 254, 0.3); }
+        .card-books:hover .action-btn { background: var(--neon-blue); color: #000; box-shadow: 0 0 10px var(--neon-blue); }
 
-        .card-manuales .action-btn {
-            color: var(--neon-purple);
-            border-color: rgba(189, 0, 255, 0.3);
-        }
-        .card-manuales:hover .action-btn {
-            background: var(--neon-purple);
-            color: #fff;
-            box-shadow: 0 0 15px var(--neon-purple);
-            border-color: transparent;
-        }
+        .card-manuales .action-btn { color: var(--neon-purple); border-color: rgba(189, 0, 255, 0.3); }
+        .card-manuales:hover .action-btn { background: var(--neon-purple); color: #fff; box-shadow: 0 0 10px var(--neon-purple); }
 
-        .card-store .action-btn {
-            color: var(--neon-cyan);
-            border-color: rgba(0, 255, 213, 0.3);
-        }
-        .card-store:hover .action-btn {
-            background: var(--neon-cyan);
-            color: #000;
-            box-shadow: 0 0 15px var(--neon-cyan);
-            border-color: transparent;
-        }
+        .card-store .action-btn { color: var(--neon-cyan); border-color: rgba(0, 255, 213, 0.3); }
+        .card-store:hover .action-btn { background: var(--neon-cyan); color: #000; box-shadow: 0 0 10px var(--neon-cyan); }
 
-        .card-tonos .action-btn {
-            color: var(--neon-pink);
-            border-color: rgba(255, 0, 127, 0.3);
-        }
-        .card-tonos:hover .action-btn {
-            background: var(--neon-pink);
-            color: #fff;
-            box-shadow: 0 0 15px var(--neon-pink);
-            border-color: transparent;
-        }
+        .card-tonos .action-btn { color: var(--neon-pink); border-color: rgba(255, 0, 127, 0.3); }
+        .card-tonos:hover .action-btn { background: var(--neon-pink); color: #fff; box-shadow: 0 0 10px var(--neon-pink); }
 
-        /* Gráficos Holográficos a la derecha */
+        /* Gráficos Holográficos */
         .card-graphic {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100%;
+            order: -1; /* Gráfico arriba en móvil */
+            margin-bottom: 1rem;
         }
 
         .card-graphic svg {
-            width: 130px;
-            height: 130px;
-            filter: drop-shadow(0 0 12px currentColor);
-            transition: transform 0.5s ease;
+            width: 80px; /* Más pequeños en móvil */
+            height: 80px;
+            filter: drop-shadow(0 0 8px currentColor);
         }
 
-        .hub-card:hover .card-graphic svg {
-            transform: scale(1.1) rotate(3deg);
-        }
-
-        /* FOOTER DE LA NAVEGACIÓN */
+        /* FOOTER NAVEGACIÓN */
         footer {
             display: flex;
             justify-content: center;
-            gap: 2rem;
-            padding: 1.5rem 0;
+            gap: 1rem;
+            padding: 1rem 0;
             border-top: 1px solid var(--border-color);
             margin-top: auto;
+            flex-wrap: wrap; /* Envoltura para pantallas muy pequeñas */
         }
 
         footer a {
             color: var(--text-muted);
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 1px;
             font-weight: 600;
-            transition: color 0.3s;
         }
 
-        footer a:hover {
-            color: var(--neon-blue);
-        }
-
-        /* RESPONSIVO */
-        @media (max-width: 1100px) {
-            .hub-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (max-width: 768px) {
+        /* =========================================
+           MEDIA QUERY: PANTALLAS GRANDES (Escritorio)
+           Se aplican estos estilos si la pantalla mide más de 992px
+           ========================================= */
+        @media (min-width: 992px) {
             aside {
-                display: none; /* Se oculta para dar espacio en móviles */
+                left: 0 !important; /* Siempre visible */
             }
+
+            main {
+                margin-left: var(--sidebar-width);
+                padding: 2rem 4rem;
+            }
+
+            .mobile-menu-btn {
+                display: none !important;
+            }
+
+            .logo-section {
+                margin-top: 0;
+            }
+
+            nav {
+                justify-content: space-between;
+                margin-bottom: 3rem;
+            }
+
+            .nav-links {
+                display: flex;
+            }
+
+            .search-box input {
+                width: 200px;
+            }
+
+            .user-info {
+                display: block;
+            }
+
+            .hub-grid {
+                grid-template-columns: repeat(2, 1fr); /* Dos columnas */
+                gap: 2rem;
+            }
+
+            .hub-card {
+                flex-direction: row; /* Horizontal */
+                text-align: left;
+                padding: 2.5rem;
+            }
+
+            .card-info h3 {
+                font-size: 1.8rem;
+                margin-top: 0;
+            }
+
+            .card-info p {
+                max-width: 90%;
+            }
+
+            .card-graphic {
+                order: 1; /* Gráfico a la derecha */
+                margin-bottom: 0;
+                margin-left: 2rem;
+            }
+
+            .card-graphic svg {
+                width: 130px;
+                height: 130px;
+            }
+        }
+
+        /* =========================================
+           MEDIA QUERY: COMPORTAMIENTO MENÚ MÓVIL
+           ========================================= */
+        @media (max-width: 991px) {
+            /* Estado oculto del sidebar */
+            aside {
+                left: calc(-1 * var(--sidebar-width));
+            }
+
             main {
                 margin-left: 0;
-                padding: 1.5rem;
+                padding-top: 70px; /* Espacio para el botón flotante */
             }
-            .hub-card {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-                text-align: center;
+
+            .mobile-menu-btn {
+                display: block; /* Mostrar botón hamburguesa */
             }
-            .card-graphic {
-                order: -1;
+
+            /* Cuando el checkbox está activado, mostramos el sidebar */
+            #menu-toggle:checked ~ aside {
+                left: 0;
+                box-shadow: 10px 0 30px rgba(0,0,0,0.5);
             }
-            .card-info p {
-                max-width: 100%;
-            }
+
+            /* Capa oscura de fondo al abrir menu (opcional, requiere elemento extra) */
         }
     </style>
 </head>
 <body>
 
     <div class="cyber-grid"></div>
+
+    <!-- Checkbox oculto para controlar el menu móvil -->
+    <input type="checkbox" id="menu-toggle">
+
+    <!-- Botón Hamburguesa visible solo en móvil -->
+    <label for="menu-toggle" class="mobile-menu-btn">
+        <i class="fa-solid fa-bars"></i>
+    </label>
 
     <!-- BARRA LATERAL IZQUIERDA -->
     <aside>
@@ -539,7 +517,7 @@
             <div class="user-panel">
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Buscar recursos...">
+                    <input type="text" placeholder="Buscar...">
                 </div>
                 <div class="user-profile">
                     <div class="user-avatar">NC</div>
@@ -556,71 +534,63 @@
             
             <!-- TARJETA 1: BOOKS -->
             <a href="https://newcosmo-peru.github.io/BOOKS/" class="hub-card card-books" target="_blank">
-                <div class="card-info">
-                    <h3>BOOKS & LITERATURE</h3>
-                    <p>Explora miles de e-books, recursos literarios interactivos y géneros seleccionados especialmente para ti.</p>
-                    <div class="action-btn">Browse Collection</div>
-                </div>
                 <div class="card-graphic" style="color: var(--neon-blue);">
-                    <!-- Icono Libro Holográfico -->
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20 25C20 25 35 20 50 28C65 20 80 25 80 25V75C80 75 65 70 50 78C35 70 20 75 20 75V25Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M50 28V78" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M25 35H45M25 47H45M25 59H45M55 35H75M55 47H75M55 59H75" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
                     </svg>
+                </div>
+                <div class="card-info">
+                    <h3>BOOKS</h3>
+                    <p>E-books y recursos literarios interactivos.</p>
+                    <div class="action-btn">Explorar</div>
                 </div>
             </a>
 
             <!-- TARJETA 2: MANUALES -->
             <a href="https://newcosmo-peru.github.io/MANUALES/" class="hub-card card-manuales" target="_blank">
-                <div class="card-info">
-                    <h3>MANUALS & GUIDES</h3>
-                    <p>Documentación técnica, guías paso a paso, diagramas de configuración y asistencia técnica especializada.</p>
-                    <div class="action-btn">Access Repository</div>
-                </div>
                 <div class="card-graphic" style="color: var(--neon-purple);">
-                    <!-- Icono Microchip Holográfico -->
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="25" y="25" width="50" height="50" rx="6" stroke="currentColor" stroke-width="3"/>
-                        <rect x="38" y="38" width="24" height="24" rx="3" stroke="currentColor" stroke-width="2" opacity="0.8"/>
-                        <path d="M50 15V25M50 75V85M15 50H25M75 50H85M35 15V25M65 15V25M35 75V85M65 75V85M15 35H25M15 65H25M75 35H85M75 65H85" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                        <path d="M50 15V25M50 75V85M15 50H25M75 50H85" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
                     </svg>
+                </div>
+                <div class="card-info">
+                    <h3>MANUALES</h3>
+                    <p>Documentación técnica y guías de configuración.</p>
+                    <div class="action-btn">Acceder</div>
                 </div>
             </a>
 
             <!-- TARJETA 3: STORE -->
             <a href="https://newcosmo-peru.github.io/STORE/" class="hub-card card-store" target="_blank">
-                <div class="card-info">
-                    <h3>DIGITAL STORE</h3>
-                    <p>Mercado digital con las últimas herramientas tecnológicas, dispositivos, licencias y packs especiales para ti.</p>
-                    <div class="action-btn">View Storefront</div>
-                </div>
                 <div class="card-graphic" style="color: var(--neon-cyan);">
-                    <!-- Icono Carrito Holográfico -->
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="40" cy="80" r="6" fill="currentColor"/>
                         <circle cx="70" cy="80" r="6" fill="currentColor"/>
-                        <path d="M20 25H30L42 62H75L85 35H35" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M55 42H60M50 48H65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        <path d="M20 25H30L42 62H75L85 35H35" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
                     </svg>
+                </div>
+                <div class="card-info">
+                    <h3>TIENDA</h3>
+                    <p>Herramientas tecnológicas y licencias digitales.</p>
+                    <div class="action-btn">Visitar</div>
                 </div>
             </a>
 
             <!-- TARJETA 4: TONOS -->
             <a href="https://newcosmo-peru.github.io/TONOS/" class="hub-card card-tonos" target="_blank">
-                <div class="card-info">
-                    <h3>RINGTONES & AUDIO</h3>
-                    <p>Descubre colecciones de audio exclusivas, tonos espaciales, sonidos ambientales y efectos personalizados.</p>
-                    <div class="action-btn">Browse Tones</div>
-                </div>
                 <div class="card-graphic" style="color: var(--neon-pink);">
-                    <!-- Icono Auriculares Holográfico con Ondas -->
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M25 55C25 40 37 25 50 25C63 25 75 40 75 55" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
                         <rect x="20" y="50" width="10" height="18" rx="4" fill="currentColor"/>
                         <rect x="70" y="50" width="10" height="18" rx="4" fill="currentColor"/>
-                        <path d="M40 50V60M45 45V65M50 40V70M55 48V62M60 52V58" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
                     </svg>
+                </div>
+                <div class="card-info">
+                    <h3>TONOS</h3>
+                    <p>Audio exclusivo, tonos espaciales y efectos.</p>
+                    <div class="action-btn">Descargar</div>
                 </div>
             </a>
 
