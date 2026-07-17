@@ -4,8 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NexaTech | Servicios Tecnológicos</title>
+    
+    <!-- Metatags SEO Básicos -->
+    <meta name="description" content="NexaTech ofrece soluciones digitales innovadoras: Desarrollo web, Cloud, Ciberseguridad e Inteligencia Artificial para impulsar tu negocio.">
+    <meta name="keywords" content="desarrollo web, cloud, ciberseguridad, inteligencia artificial, nexatech, portafolio github">
+    <meta name="author" content="NexaTech">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook (Para cuando compartas tu link de GitHub Pages) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://tu-usuario.github.io/tu-repositorio/">
+    <meta property="og:title" content="NexaTech | Servicios Tecnológicos e Innovación">
+    <meta property="og:description" content="Transformamos el futuro con tecnología. Desarrollo de Software, DevOps y soluciones Cloud a medida.">
+    <meta property="og:image" content="https://tu-usuario.github.io/tu-repositorio/assets/images/og-preview.jpg">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://tu-usuario.github.io/tu-repositorio/">
+    <meta property="twitter:title" content="NexaTech | Servicios Tecnológicos e Innovación">
+    <meta property="twitter:description" content="Transformamos el futuro con tecnología. Desarrollo de Software, DevOps y soluciones Cloud a medida.">
+    <meta property="twitter:image" content="https://tu-usuario.github.io/tu-repositorio/assets/images/og-preview.jpg">
+
+    <!-- Fuentes e Iconos -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
 /* Reset & Base */
 * {
@@ -29,6 +54,10 @@
     --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
     --radius: 12px;
     --transition: all 0.3s ease;
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 body {
@@ -286,6 +315,7 @@ ul {
 .hero-content {
     max-width: 600px;
     padding: 0 24px;
+    z-index: 2;
 }
 
 .hero-content h1 {
@@ -301,6 +331,7 @@ ul {
     color: var(--gray);
     margin-bottom: 40px;
     line-height: 1.7;
+    min-height: 80px; /* Evita saltos de diseño durante el tipeo */
 }
 
 .hero-buttons {
@@ -314,6 +345,7 @@ ul {
     width: 400px;
     height: 400px;
     margin-right: 60px;
+    z-index: 2;
 }
 
 .floating-card {
@@ -1018,8 +1050,8 @@ ul {
     <!-- Navbar -->
     <nav class="navbar" id="navbar">
         <div class="container">
-            <a href="#" class="logo">
-                <i class="fas fa-microchip"></i>
+            <a href="#inicio" class="logo">
+                <i class="fas fa-microchip" aria-hidden="true"></i>
                 <span>NexaTech</span>
             </a>
             <ul class="nav-links" id="navLinks">
@@ -1029,11 +1061,11 @@ ul {
                 <li><a href="#proyectos">Proyectos</a></li>
                 <li><a href="#contacto" class="btn-nav">Contacto</a></li>
             </ul>
-            <div class="hamburger" id="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="Abrir menú de navegación" aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -1041,7 +1073,8 @@ ul {
     <section class="hero" id="inicio">
         <div class="hero-content">
             <h1>Transformamos el Futuro con <span class="gradient-text">Tecnología</span></h1>
-            <p>Soluciones digitales innovadoras que impulsan el crecimiento de tu empresa. Desarrollo, cloud, ciberseguridad y más.</p>
+            <!-- El texto se mantiene visible por defecto (SEO) y JS lo animará de forma segura -->
+            <p id="hero-text">Soluciones digitales innovadoras que impulsan el crecimiento de tu empresa. Desarrollo, cloud, ciberseguridad y más.</p>
             <div class="hero-buttons">
                 <a href="#servicios" class="btn btn-primary">Nuestros Servicios</a>
                 <a href="#contacto" class="btn btn-secondary">Contáctanos</a>
@@ -1049,19 +1082,19 @@ ul {
         </div>
         <div class="hero-visual">
             <div class="floating-card">
-                <i class="fas fa-code"></i>
+                <i class="fas fa-code" aria-hidden="true"></i>
                 <span>Desarrollo</span>
             </div>
             <div class="floating-card">
-                <i class="fas fa-cloud"></i>
+                <i class="fas fa-cloud" aria-hidden="true"></i>
                 <span>Cloud</span>
             </div>
             <div class="floating-card">
-                <i class="fas fa-shield-halved"></i>
+                <i class="fas fa-shield-halved" aria-hidden="true"></i>
                 <span>Seguridad</span>
             </div>
             <div class="floating-card">
-                <i class="fas fa-robot"></i>
+                <i class="fas fa-robot" aria-hidden="true"></i>
                 <span>IA</span>
             </div>
         </div>
@@ -1100,51 +1133,51 @@ ul {
             <div class="services-grid">
                 <div class="service-card">
                     <div class="icon-box">
-                        <i class="fas fa-laptop-code"></i>
+                        <i class="fas fa-laptop-code" aria-hidden="true"></i>
                     </div>
                     <h3>Desarrollo de Software</h3>
                     <p>Aplicaciones web, móviles y de escritorio a medida. Desarrollamos soluciones robustas y escalables con las últimas tecnologías.</p>
-                    <a href="#" class="link-arrow">Saber más <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contacto" class="link-arrow">Saber más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="icon-box">
-                        <i class="fas fa-cloud-arrow-up"></i>
+                        <i class="fas fa-cloud-arrow-up" aria-hidden="true"></i>
                     </div>
                     <h3>Cloud & DevOps</h3>
                     <p>Migración a la nube, infraestructura como código, CI/CD y automatización de procesos en AWS, Azure y Google Cloud.</p>
-                    <a href="#" class="link-arrow">Saber más <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contacto" class="link-arrow">Saber más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="icon-box">
-                        <i class="fas fa-shield-virus"></i>
+                        <i class="fas fa-shield-virus" aria-hidden="true"></i>
                     </div>
                     <h3>Ciberseguridad</h3>
                     <p>Auditorías de seguridad, protección de datos, pentesting y consultoría para salvaguardar tu información crítica.</p>
-                    <a href="#" class="link-arrow">Saber más <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contacto" class="link-arrow">Saber más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="icon-box">
-                        <i class="fas fa-brain"></i>
+                        <i class="fas fa-brain" aria-hidden="true"></i>
                     </div>
                     <h3>Inteligencia Artificial</h3>
                     <p>Implementación de modelos de ML, NLP, automatización con IA y análisis predictivo para decisiones inteligentes.</p>
-                    <a href="#" class="link-arrow">Saber más <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contacto" class="link-arrow">Saber más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="icon-box">
-                        <i class="fas fa-chart-line"></i>
+                        <i class="fas fa-chart-line" aria-hidden="true"></i>
                     </div>
                     <h3>Data & Analytics</h3>
                     <p>Visualización de datos, dashboards interactivos, BI y análisis avanzado para extraer valor de tu información.</p>
-                    <a href="#" class="link-arrow">Saber más <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contacto" class="link-arrow">Saber más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
                 <div class="service-card">
                     <div class="icon-box">
-                        <i class="fas fa-mobile-screen"></i>
+                        <i class="fas fa-mobile-screen" aria-hidden="true"></i>
                     </div>
                     <h3>Consultoría IT</h3>
                     <p>Asesoría estratégica en transformación digital, arquitectura de sistemas y optimización de procesos tecnológicos.</p>
-                    <a href="#" class="link-arrow">Saber más <i class="fas fa-arrow-right"></i></a>
+                    <a href="#contacto" class="link-arrow">Saber más <i class="fas fa-arrow-right" aria-hidden="true"></i></a>
                 </div>
             </div>
         </div>
@@ -1157,7 +1190,7 @@ ul {
                 <div class="about-image">
                     <div class="image-frame">
                         <div class="image-placeholder">
-                            <i class="fas fa-users"></i>
+                            <i class="fas fa-users" aria-hidden="true"></i>
                         </div>
                         <div class="experience-badge">
                             <span>10+</span>
@@ -1170,10 +1203,10 @@ ul {
                     <h2>Somos Expertos en Transformación Digital</h2>
                     <p>En NexaTech combinamos tecnología de punta con un profundo entendimiento de los negocios para crear soluciones que realmente marcan la diferencia.</p>
                     <ul class="about-list">
-                        <li><i class="fas fa-check-circle"></i> Equipo multidisciplinario de ingenieros certificados</li>
-                        <li><i class="fas fa-check-circle"></i> Metodologías ágiles y enfoque en resultados</li>
-                        <li><i class="fas fa-check-circle"></i> Compromiso con la calidad y la innovación</li>
-                        <li><i class="fas fa-check-circle"></i> Relaciones de largo plazo con nuestros clientes</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Equipo multidisciplinario de ingenieros certificados</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Metodologías ágiles y enfoque en resultados</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Compromiso con la calidad y la innovación</li>
+                        <li><i class="fas fa-check-circle" aria-hidden="true"></i> Relaciones de largo plazo con nuestros clientes</li>
                     </ul>
                     <a href="#contacto" class="btn btn-primary">Trabaja con Nosotros</a>
                 </div>
@@ -1192,7 +1225,7 @@ ul {
             <div class="projects-grid">
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-building"></i>
+                        <i class="fas fa-building" aria-hidden="true"></i>
                     </div>
                     <div class="project-info">
                         <span class="project-tag">Finanzas</span>
@@ -1202,7 +1235,7 @@ ul {
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-truck-fast"></i>
+                        <i class="fas fa-truck-fast" aria-hidden="true"></i>
                     </div>
                     <div class="project-info">
                         <span class="project-tag">Logística</span>
@@ -1212,7 +1245,7 @@ ul {
                 </div>
                 <div class="project-card">
                     <div class="project-image">
-                        <i class="fas fa-heart-pulse"></i>
+                        <i class="fas fa-heart-pulse" aria-hidden="true"></i>
                     </div>
                     <div class="project-info">
                         <span class="project-tag">Salud</span>
@@ -1244,41 +1277,41 @@ ul {
             <div class="contact-grid">
                 <div class="contact-info">
                     <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
+                        <i class="fas fa-envelope" aria-hidden="true"></i>
                         <div>
                             <h4>Email</h4>
-                            <p>contacto@nexatech.com</p>
+                            <p><a href="mailto:contacto@nexatech.com">contacto@nexatech.com</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <i class="fas fa-phone"></i>
+                        <i class="fas fa-phone" aria-hidden="true"></i>
                         <div>
                             <h4>Teléfono</h4>
-                            <p>+1 (555) 123-4567</p>
+                            <p><a href="tel:+15551234567">+1 (555) 123-4567</a></p>
                         </div>
                     </div>
                     <div class="contact-item">
-                        <i class="fas fa-location-dot"></i>
+                        <i class="fas fa-location-dot" aria-hidden="true"></i>
                         <div>
                             <h4>Dirección</h4>
                             <p>Calle Tecnología 123, Ciudad Innovación</p>
                         </div>
                     </div>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener" aria-label="Visítanos en LinkedIn"><i class="fab fa-linkedin"></i></a>
+                        <a href="https://github.com" target="_blank" rel="noopener" aria-label="Visítanos en GitHub"><i class="fab fa-github"></i></a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener" aria-label="Visítanos en Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://instagram.com" target="_blank" rel="noopener" aria-label="Visítanos en Instagram"><i class="fab fa-instagram"></i></a>
                     </div>
                 </div>
                 <form class="contact-form" id="contactForm">
                     <div class="form-group">
                         <label for="name">Nombre</label>
-                        <input type="text" id="name" required>
+                        <input type="text" id="name" required placeholder="Tu nombre">
                     </div>
                     <div class="form-group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" required>
+                        <input type="email" id="email" required placeholder="tu@email.com">
                     </div>
                     <div class="form-group">
                         <label for="service">Servicio de Interés</label>
@@ -1294,7 +1327,7 @@ ul {
                     </div>
                     <div class="form-group">
                         <label for="message">Mensaje</label>
-                        <textarea id="message" rows="5" required></textarea>
+                        <textarea id="message" rows="5" required placeholder="Cuéntanos sobre tu idea o proyecto..."></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary btn-full">Enviar Mensaje</button>
                 </form>
@@ -1307,8 +1340,8 @@ ul {
         <div class="container">
             <div class="footer-grid">
                 <div class="footer-brand">
-                    <a href="#" class="logo">
-                        <i class="fas fa-microchip"></i>
+                    <a href="#inicio" class="logo">
+                        <i class="fas fa-microchip" aria-hidden="true"></i>
                         <span>NexaTech</span>
                     </a>
                     <p>Soluciones tecnológicas innovadoras para empresas que quieren liderar el futuro.</p>
@@ -1316,34 +1349,34 @@ ul {
                 <div class="footer-links">
                     <h4>Servicios</h4>
                     <ul>
-                        <li><a href="#">Desarrollo de Software</a></li>
-                        <li><a href="#">Cloud & DevOps</a></li>
-                        <li><a href="#">Ciberseguridad</a></li>
-                        <li><a href="#">Inteligencia Artificial</a></li>
+                        <li><a href="#servicios">Desarrollo de Software</a></li>
+                        <li><a href="#servicios">Cloud & DevOps</a></li>
+                        <li><a href="#servicios">Ciberseguridad</a></li>
+                        <li><a href="#servicios">Inteligencia Artificial</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h4>Empresa</h4>
                     <ul>
-                        <li><a href="#">Sobre Nosotros</a></li>
-                        <li><a href="#">Proyectos</a></li>
-                        <li><a href="#">Carreras</a></li>
-                        <li><a href="#">Blog</a></li>
+                        <li><a href="#nosotros">Sobre Nosotros</a></li>
+                        <li><a href="#proyectos">Proyectos</a></li>
+                        <li><a href="#contacto">Carreras</a></li>
+                        <li><a href="#contacto">Blog</a></li>
                     </ul>
                 </div>
                 <div class="footer-links">
                     <h4>Soporte</h4>
                     <ul>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Política de Privacidad</a></li>
-                        <li><a href="#">Términos de Servicio</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                        <li><a href="#contacto">FAQ</a></li>
+                        <li><a href="#contacto">Política de Privacidad</a></li>
+                        <li><a href="#contacto">Términos de Servicio</a></li>
                     </ul>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 NexaTech. Todos los derechos reservados.</p>
-                <p>Hecho con <i class="fas fa-heart"></i> para GitHub</p>
+                <p>Hecho con <i class="fas fa-heart" style="color: #ef4444;" aria-hidden="true"></i> para GitHub</p>
             </div>
         </div>
     </footer>
@@ -1381,9 +1414,10 @@ window.addEventListener('scroll', () => {
 
 // Mobile menu toggle
 hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
+    const isActive = hamburger.classList.toggle('active');
     navLinks.classList.toggle('active');
-    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+    hamburger.setAttribute('aria-expanded', isActive);
+    document.body.style.overflow = isActive ? 'hidden' : '';
 });
 
 // Close mobile menu on link click
@@ -1391,6 +1425,7 @@ navItems.forEach(link => {
     link.addEventListener('click', () => {
         hamburger.classList.remove('active');
         navLinks.classList.remove('active');
+        hamburger.setAttribute('aria-expanded', 'false');
         document.body.style.overflow = '';
     });
 });
@@ -1490,8 +1525,8 @@ document.querySelectorAll('.service-card, .project-card, .stat-item, .about-list
     observer.observe(el);
 });
 
-// Typing effect for hero subtitle
-const heroSubtitle = document.querySelector('.hero-content p');
+// Typing effect for hero subtitle (SEO-Friendly Setup)
+const heroSubtitle = document.getElementById('hero-text');
 if (heroSubtitle) {
     const text = heroSubtitle.textContent;
     heroSubtitle.textContent = '';
@@ -1501,11 +1536,14 @@ if (heroSubtitle) {
         if (i < text.length) {
             heroSubtitle.textContent += text.charAt(i);
             i++;
-            setTimeout(typeWriter, 20);
+            setTimeout(typeWriter, 15);
         }
     }
 
-    setTimeout(typeWriter, 500);
+    // Se ejecuta tras cargar el DOM
+    window.addEventListener('DOMContentLoaded', () => {
+        setTimeout(typeWriter, 400);
+    });
 }
     </script>
 </body>
