@@ -3,132 +3,282 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portafolio | Hub de Proyectos</title>
+    <title>NewCosmo Perú | Portal Oficial</title>
+    <!-- Iconos de FontAwesome para darle más vida -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-color: #0d1117;
-            --card-bg: #161b22;
-            --text-color: #c9d1d9;
-            --accent-color: #58a6ff;
-            --border-color: #30363d;
+            --bg-dark: #060913;
+            --neon-blue: #00f2fe;
+            --neon-purple: #4facfe;
+            --glass-bg: rgba(255, 255, 255, 0.03);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            margin: 0;
-            padding: 0;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
             align-items: center;
-            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Fondo de estrellas animado */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
+                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
+                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
+            background-size: 550px 550px, 350px 350px, 250px 250px;
+            background-position: 0 0, 40px 60px, 130px 270px;
+            opacity: 0.25;
+            z-index: -1;
+            animation: backgroundMove 100s linear infinite;
+        }
+
+        @keyframes backgroundMove {
+            from { background-position: 0 0, 40px 60px, 130px 270px; }
+            to { background-position: 550px 550px, 390px 410px, 380px 820px; }
+        }
+
+        /* Glow decorativo de fondo */
+        .orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--neon-purple) 0%, transparent 70%);
+            filter: blur(80px);
+            opacity: 0.15;
+            z-index: -1;
+            top: 10%;
+            left: 10%;
+        }
+        .orb-2 {
+            right: 10%;
+            bottom: 10%;
+            background: radial-gradient(circle, var(--neon-blue) 0%, transparent 70%);
         }
 
         header {
             text-align: center;
-            padding: 4rem 2rem 2rem;
-            max-width: 600px;
+            padding: 5rem 1.5rem 3rem;
+            z-index: 10;
         }
 
         header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: #ffffff;
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            background: linear-gradient(135deg, #ffffff 0%, var(--neon-blue) 50%, var(--neon-purple) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.8rem;
+            text-transform: uppercase;
         }
 
         header p {
             font-size: 1.1rem;
-            color: #8b949e;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin: 0 auto;
             line-height: 1.6;
         }
 
-        .grid {
+        /* Contenedor de las tarjetas */
+        .hub-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 2rem;
             width: 90%;
-            max-width: 1000px;
-            padding: 2rem 0;
+            max-width: 1200px;
+            padding: 1rem 0 5rem;
+            z-index: 10;
         }
 
-        .card {
-            background-color: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            padding: 1.5rem;
-            transition: transform 0.2s, border-color 0.2s;
+        /* Estilo Glassmorphism para las tarjetas */
+        .hub-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
             text-decoration: none;
-            color: inherit;
+            color: var(--text-main);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            overflow: hidden;
         }
 
-        .card:hover {
-            transform: translateY(-5px);
-            border-color: var(--accent-color);
+        /* Efecto hover interactivo */
+        .hub-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(225deg, transparent, rgba(0, 242, 254, 0.05), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
         }
 
-        .card h3 {
-            margin-top: 0;
+        .hub-card:hover::before {
+            transform: translateX(100%);
+        }
+
+        .hub-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 242, 254, 0.4);
+            box-shadow: 0 10px 30px -10px rgba(0, 242, 254, 0.15);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        /* Iconos con luces de neón */
+        .icon-box {
+            width: 70px;
+            height: 70px;
+            border-radius: 16px;
+            background: rgba(0, 242, 254, 0.05);
+            border: 1px solid rgba(0, 242, 254, 0.2);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            color: var(--neon-blue);
+            transition: all 0.4s ease;
+        }
+
+        .hub-card:hover .icon-box {
             color: #ffffff;
-            font-size: 1.3rem;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            border-color: transparent;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
         }
 
-        .card p {
-            color: #8b949e;
+        .hub-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.75rem;
+            letter-spacing: 0.5px;
+        }
+
+        .hub-card p {
             font-size: 0.95rem;
+            color: var(--text-muted);
             line-height: 1.5;
         }
 
-        .tag {
-            display: inline-block;
-            background-color: #21262d;
-            color: var(--accent-color);
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            margin-top: 1rem;
+        .arrow-indicator {
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--neon-blue);
+            opacity: 0;
+            transform: translateY(10px);
+            transition: all 0.3s ease;
+        }
+
+        .hub-card:hover .arrow-indicator {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         footer {
-            margin-top: auto;
-            padding: 2rem;
-            color: #8b949e;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            color: var(--text-muted);
             font-size: 0.9rem;
+            z-index: 10;
+        }
+
+        footer a {
+            color: var(--neon-blue);
+            text-decoration: none;
         }
     </style>
 </head>
 <body>
 
+    <div class="orb"></div>
+    <div class="orb orb-2"></div>
+
     <header>
-        <h1>Hola, soy [Tu Nombre] 👋</h1>
-        <p>Bienvenido a mi rincón en GitHub. Aquí puedes explorar algunos de los proyectos y aplicaciones web que he construido.</p>
+        <h1>NewCosmo Perú</h1>
+        <p>Tu portal de recursos digitales. Explora nuestras plataformas interactivas, tiendas y materiales exclusivos.</p>
     </header>
 
-    <main class="grid">
-        <!-- Proyecto 1 -->
-        <a href="https://tu-usuario.github.io/nombre-del-proyecto-1/" class="card" target="_blank">
-            <h3>🚀 Proyecto Uno</h3>
-            <p>Una breve descripción de lo que hace este proyecto. Qué tecnologías usaste y por qué es genial.</p>
-            <span class="tag">HTML / CSS / JS</span>
+    <main class="hub-grid">
+        
+        <!-- CARD 1: BOOKS -->
+        <a href="https://newcosmo-peru.github.io/BOOKS/" class="hub-card" target="_blank">
+            <div class="icon-box">
+                <i class="fa-solid fa-book-open"></i>
+            </div>
+            <h3>BOOKS</h3>
+            <p>Accede a nuestra biblioteca digital, lecturas seleccionadas y material educativo exclusivo.</p>
+            <div class="arrow-indicator">Ingresar <i class="fa-solid fa-arrow-right"></i></div>
         </a>
 
-        <!-- Proyecto 2 -->
-        <a href="https://tu-usuario.github.io/nombre-del-proyecto-2/" class="card" target="_blank">
-            <h3>📊 Proyecto Dos</h3>
-            <p>Otra aplicación increíble que desarrollaste. Puede ser un clon, una herramienta o un dashboard.</p>
-            <span class="tag">React / Tailwind</span>
+        <!-- CARD 2: MANUALES -->
+        <a href="https://newcosmo-peru.github.io/MANUALES/" class="hub-card" target="_blank">
+            <div class="icon-box">
+                <i class="fa-solid fa-gears"></i>
+            </div>
+            <h3>MANUALES</h3>
+            <p>Guías técnicas, documentación de soporte y manuales paso a paso para usuarios y profesionales.</p>
+            <div class="arrow-indicator">Explorar <i class="fa-solid fa-arrow-right"></i></div>
         </a>
 
-        <!-- Proyecto 3 (Enlace externo si quieres) -->
-        <a href="https://github.com/tu-usuario" class="card" target="_blank">
-            <h3>🐙 Mi Perfil de GitHub</h3>
-            <p>¿Quieres ver mi código directamente? Explora mis repositorios públicos y contribuciones.</p>
-            <span class="tag">Perfil</span>
+        <!-- CARD 3: STORE -->
+        <a href="https://newcosmo-peru.github.io/STORE/" class="hub-card" target="_blank">
+            <div class="icon-box">
+                <i class="fa-solid fa-bag-shopping"></i>
+            </div>
+            <h3>STORE</h3>
+            <p>Nuestra tienda virtual donde encontrarás las mejores soluciones tecnológicas y productos seleccionados.</p>
+            <div class="arrow-indicator">Ver Tienda <i class="fa-solid fa-arrow-right"></i></div>
         </a>
+
+        <!-- CARD 4: TONOS -->
+        <a href="https://newcosmo-peru.github.io/TONOS/" class="hub-card" target="_blank">
+            <div class="icon-box">
+                <i class="fa-solid fa-music"></i>
+            </div>
+            <h3>TONOS</h3>
+            <p>Galería multimedia, ringtones, archivos de audio y recursos sonoros listos para usar.</p>
+            <div class="arrow-indicator">Escuchar <i class="fa-solid fa-arrow-right"></i></div>
+        </a>
+
     </main>
 
     <footer>
-        <p>© 2026 [Tu Nombre]. Creado con ☕ y código.</p>
+        <p>© 2026 <a href="https://github.com/newcosmo-peru" target="_blank">NewCosmo Perú</a>. Desarrollado para la excelencia digital.</p>
     </footer>
 
 </body>
