@@ -2,25 +2,25 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>NewCosmo Perú | Portal Oficial</title>
-    <!-- Iconos para la barra lateral y navegación -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NewCosmo Perú | Aetherial Hub</title>
+    <!-- Incluimos iconos modernos de FontAwesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* --- VARIABLES DE DISEÑO (COLORES Y ESTILO) --- */
         :root {
-            --bg-color: #03080f;
-            --sidebar-bg: rgba(3, 8, 15, 0.95);
-            --border-color: rgba(255, 255, 255, 0.05);
-            --neon-blue: #00f2fe;
-            --neon-cyan: #00ffd5;
-            --neon-purple: #bd00ff;
-            --neon-pink: #ff007f;
+            --bg-color: #03070b; /* Fondo ultra oscuro */
+            --nav-bg: rgba(3, 7, 11, 0.9); /* Fondo nav con transparencia */
+            --card-bg: rgba(7, 14, 24, 0.6); /* Fondo tarjetas translúcido */
             --text-main: #ffffff;
-            --text-muted: #64748b;
-            --text-secondary: #94a3b8;
-            --sidebar-width: 250px;
+            --text-muted: #8b9bb4;
+            --neon-blue: #00f2fe; /* Azul neón brillante */
+            --neon-purple: #bd00ff; /* Púrpura neón */
+            --border-color: rgba(255, 255, 255, 0.06);
+            --transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
+        /* --- RESET BÁSICO Y ESTILOS GLOBALES --- */
         * {
             box-sizing: border-box;
             margin: 0;
@@ -28,583 +28,527 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-main);
-            min-height: 100vh;
-            display: flex;
+            line-height: 1.6;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Fondo y Malla */
+        /* Efecto de fondo con malla digital sutil */
         body::before {
             content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background-image: 
-                radial-gradient(circle at 30% 20%, rgba(0, 242, 254, 0.08) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(189, 0, 255, 0.08) 0%, transparent 45%),
-                radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 40px 40px;
-            z-index: -2;
+                radial-gradient(circle at 10% 20%, rgba(0, 242, 254, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(189, 0, 255, 0.05) 0%, transparent 40%),
+                linear-gradient(rgba(18, 30, 49, 0.2) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(18, 30, 49, 0.2) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
+            z-index: -1;
         }
 
-        .cyber-grid {
-            position: absolute;
+        /* --- NAVEGACIÓN SUPERIOR MODIFICADA (OPCIÓN 1) --- */
+        header {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: linear-gradient(rgba(18, 30, 49, 0.2) 1px, transparent 1px),
-                        linear-gradient(90deg, rgba(18, 30, 49, 0.2) 1px, transparent 1px);
-            background-size: 80px 80px;
-            z-index: -1;
-            pointer-events: none;
+            background-color: var(--nav-bg);
+            backdrop-filter: blur(10px); /* Efecto de vidrio esmerilado */
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+            padding: 0 1rem;
         }
 
-        /* TRUCO CSS PARA MENU MÓVIL SIN JS */
-        #menu-toggle {
-            display: none;
-        }
-
-        /* Botón Hamburguesa (solo visible en móvil) */
-        .mobile-menu-btn {
-            display: none;
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 110;
-            background: rgba(0, 242, 254, 0.1);
-            border: 1px solid rgba(0, 242, 254, 0.3);
-            color: var(--neon-blue);
-            padding: 10px 12px;
-            border-radius: 8px;
-            cursor: pointer;
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
-            backdrop-filter: blur(5px);
-        }
-
-        /* BARRA LATERAL (SIDEBAR) */
-        aside {
-            width: var(--sidebar-width);
-            background: var(--sidebar-bg);
-            border-right: 1px solid var(--border-color);
+        .navbar {
+            max-width: 1400px;
+            margin: 0 auto;
+            height: 80px;
             display: flex;
-            flex-direction: column;
-            padding: 2rem 1.5rem;
-            height: 100vh;
-            position: fixed;
-            top: 0;
-            left: 0;
-            z-index: 100;
-            backdrop-filter: blur(20px);
-            transition: left 0.3s ease; /* Animación para móvil */
+            justify-content: space-between;
+            align-items: center;
         }
 
+        /* Sección Logo */
         .logo-section {
             display: flex;
             align-items: center;
             gap: 0.75rem;
-            margin-bottom: 4rem;
             text-decoration: none;
-            margin-top: 20px; /* Espacio para el botón móvil */
+            color: inherit;
         }
 
         .logo-icon {
-            font-size: 1.8rem;
+            font-size: 2rem;
             background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.6));
+            filter: drop-shadow(0 0 5px rgba(0, 242, 254, 0.5));
         }
 
-        .logo-text h2 {
-            font-size: 1.1rem;
-            letter-spacing: 1.5px;
+        .logo-text h1 {
+            font-size: 1.2rem;
             text-transform: uppercase;
+            letter-spacing: 2px;
             font-weight: 800;
-            color: #fff;
         }
 
         .logo-text span {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: var(--neon-blue);
-            letter-spacing: 2px;
             text-transform: uppercase;
+            letter-spacing: 3px;
             display: block;
-            margin-top: -2px;
+            margin-top: -3px;
         }
 
-        .sidebar-menu {
-            list-style: none;
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .sidebar-menu li a {
+        /* Menú Horizonal y Campo de Búsqueda */
+        .nav-content {
             display: flex;
             align-items: center;
-            gap: 1rem;
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.95rem;
-            font-weight: 500;
-            padding: 0.75rem 1rem;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .sidebar-menu li a i {
-            font-size: 1.1rem;
-            width: 20px;
-            text-align: center;
-        }
-
-        .sidebar-menu li a:hover, .sidebar-menu li.active a {
-            color: #fff;
-            background: rgba(255, 255, 255, 0.03);
-            border-left: 3px solid var(--neon-blue);
-        }
-
-        .sidebar-menu li.active a i {
-            color: var(--neon-blue);
-            filter: drop-shadow(0 0 5px var(--neon-blue));
-        }
-
-        /* CONTENIDO PRINCIPAL */
-        main {
-            margin-left: var(--sidebar-width);
-            flex: 1;
-            padding: 2rem;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            transition: margin-left 0.3s ease;
-        }
-
-        /* NAVEGACIÓN SUPERIOR */
-        nav {
-            display: flex;
-            justify-content: flex-end; /* Alineado a la derecha en móvil por defecto */
-            align-items: center;
-            margin-bottom: 2rem;
-            gap: 1rem;
+            gap: 1.5rem;
         }
 
         .nav-links {
-            display: none; /* Ocultos en móvil por defecto */
-            gap: 2rem;
             list-style: none;
-        }
-
-        .user-panel {
             display: flex;
-            align-items: center;
             gap: 0.5rem;
         }
 
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        /* Estilo para el enlace activo/hover */
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-main);
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+
+        .nav-links a.active {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
+        }
+
+        /* Campo de búsqueda estilo neón */
         .search-box {
             position: relative;
         }
 
         .search-box input {
-            background: rgba(255, 255, 255, 0.03);
+            background-color: rgba(255, 255, 255, 0.03);
             border: 1px solid var(--border-color);
-            padding: 0.5rem 0.5rem 0.5rem 2rem;
-            border-radius: 20px;
-            color: #fff;
+            padding: 0.7rem 1rem 0.7rem 2.5rem;
+            border-radius: 30px;
+            color: var(--text-main);
+            font-size: 0.85rem;
+            width: 250px;
+            transition: var(--transition);
             outline: none;
-            font-size: 0.8rem;
-            width: 140px; /* Más estrecho en móvil */
-            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
+            width: 300px;
         }
 
         .search-box i {
             position: absolute;
-            left: 0.7rem;
+            left: 1rem;
             top: 50%;
             transform: translateY(-50%);
             color: var(--text-muted);
-            font-size: 0.8rem;
+            font-size: 0.9rem;
+            pointer-events: none;
         }
 
-        .user-profile {
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: rgba(255, 255, 255, 0.03);
-            padding: 0.4rem 0.8rem;
-            border-radius: 30px;
+        /* --- BOTÓN DE MENÚ MÓVIL (OCULTO POR DEFECTO) --- */
+        .menu-toggle {
+            display: none;
+            background: none;
             border: 1px solid var(--border-color);
+            color: var(--neon-blue);
+            font-size: 1.5rem;
+            padding: 0.5rem 0.75rem;
+            border-radius: 8px;
+            cursor: pointer;
+            z-index: 1100;
+            backdrop-filter: blur(5px);
         }
 
-        .user-avatar {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+        /* --- SECCIÓN HERO PRINCIPAL --- */
+        .hero {
+            padding-top: 150px; /* Espacio para el nav fijo */
+            padding-bottom: 80px;
+            min-height: 80vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            font-size: 0.7rem;
-            font-weight: bold;
+            text-align: center;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding-left: 2rem;
+            padding-right: 2rem;
         }
 
-        .user-info {
-            display: none; /* Ocultar texto de usuario en móvil */
+        .hero h2 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 1rem;
+            line-height: 1.1;
         }
 
-        /* PANEL DE TARJETAS (HUB GRID) */
+        /* Gradiente de neón en el texto */
+        .hero h2 span {
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.4));
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-secondary);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            font-weight: 300;
+        }
+
+        /* Botón de acción principal */
+        .btn-primary {
+            text-decoration: none;
+            color: #000;
+            background-color: var(--neon-blue);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 30px rgba(0, 242, 254, 0.6);
+        }
+
+        /* --- CUADRÍCULA DE PROYECTOS (HUB) --- */
+        .hub-section {
+            max-width: 1200px;
+            margin: 0 auto 80px auto;
+            padding: 0 2rem;
+        }
+
         .hub-grid {
             display: grid;
-            grid-template-columns: 1fr; /* Una columna por defecto (móvil) */
-            gap: 1.5rem;
-            flex: 1;
-            margin-bottom: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
         }
 
+        /* Tarjetas de proyecto con efecto neón */
         .hub-card {
-            background: rgba(5, 12, 24, 0.5);
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
             border-radius: 15px;
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column; /* Apilado vertical en móvil */
-            align-items: center;
-            text-align: center;
+            padding: 2rem;
             text-decoration: none;
-            color: #fff;
+            color: inherit;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
             position: relative;
-            transition: all 0.3s ease;
             overflow: hidden;
-            border: 1px solid rgba(255, 255, 255, 0.03);
         }
 
-        /* Colores Neón Individuales */
-        .card-books { border-color: rgba(0, 242, 254, 0.15); box-shadow: inset 0 0 15px rgba(0, 242, 254, 0.05); }
-        .card-books:hover { border-color: var(--neon-blue); box-shadow: 0 5px 20px -5px rgba(0, 242, 254, 0.3); }
+        /* Hover: efecto de borde brillante */
+        .hub-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--neon-blue);
+            background-color: rgba(7, 14, 24, 0.9);
+            box-shadow: 0 10px 30px -10px rgba(0, 242, 254, 0.3);
+        }
 
-        .card-manuales { border-color: rgba(189, 0, 255, 0.15); box-shadow: inset 0 0 15px rgba(189, 0, 255, 0.05); }
-        .card-manuales:hover { border-color: var(--neon-purple); box-shadow: 0 5px 20px -5px rgba(189, 0, 255, 0.3); }
+        /* Línea de acento neón */
+        .hub-card::after {
+            content: "";
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 100%; height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
 
-        .card-store { border-color: rgba(0, 255, 213, 0.15); box-shadow: inset 0 0 15px rgba(0, 255, 213, 0.05); }
-        .card-store:hover { border-color: var(--neon-cyan); box-shadow: 0 5px 20px -5px rgba(0, 255, 213, 0.3); }
+        .hub-card:hover::after {
+            transform: scaleX(1);
+        }
 
-        .card-tonos { border-color: rgba(255, 0, 127, 0.15); box-shadow: inset 0 0 15px rgba(255, 0, 127, 0.05); }
-        .card-tonos:hover { border-color: var(--neon-pink); box-shadow: 0 5px 20px -5px rgba(255, 0, 127, 0.3); }
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
 
-        .card-info h3 {
-            font-size: 1.4rem;
-            font-weight: 800;
+        .card-icon {
+            font-size: 1.5rem;
+            color: var(--neon-blue);
+            background-color: rgba(0, 242, 254, 0.1);
+            width: 50px; height: 50px;
+            display: flex; justify-content: center; align-items: center;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 242, 254, 0.2);
+        }
+
+        .card-header h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
             letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
-            margin-top: 1rem; /* Espacio tras el gráfico en móvil */
         }
 
-        .card-info p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.5;
-            margin-bottom: 1.5rem;
+        .hub-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            flex-grow: 1; /* Empuja el botón al fondo */
         }
 
-        .action-btn {
-            display: inline-block;
-            padding: 0.6rem 1.5rem;
-            border-radius: 30px;
+        .card-action {
             font-size: 0.8rem;
             font-weight: 700;
             text-transform: uppercase;
             letter-spacing: 1px;
-            transition: all 0.3s;
-            background: transparent;
-            border: 1px solid;
+            color: var(--neon-blue);
+            margin-top: 1rem;
+            display: flex; align-items: center; gap: 0.5rem;
         }
 
-        /* Estilos de botones individuales */
-        .card-books .action-btn { color: var(--neon-blue); border-color: rgba(0, 242, 254, 0.3); }
-        .card-books:hover .action-btn { background: var(--neon-blue); color: #000; box-shadow: 0 0 10px var(--neon-blue); }
-
-        .card-manuales .action-btn { color: var(--neon-purple); border-color: rgba(189, 0, 255, 0.3); }
-        .card-manuales:hover .action-btn { background: var(--neon-purple); color: #fff; box-shadow: 0 0 10px var(--neon-purple); }
-
-        .card-store .action-btn { color: var(--neon-cyan); border-color: rgba(0, 255, 213, 0.3); }
-        .card-store:hover .action-btn { background: var(--neon-cyan); color: #000; box-shadow: 0 0 10px var(--neon-cyan); }
-
-        .card-tonos .action-btn { color: var(--neon-pink); border-color: rgba(255, 0, 127, 0.3); }
-        .card-tonos:hover .action-btn { background: var(--neon-pink); color: #fff; box-shadow: 0 0 10px var(--neon-pink); }
-
-        /* Gráficos Holográficos */
-        .card-graphic {
-            order: -1; /* Gráfico arriba en móvil */
-            margin-bottom: 1rem;
+        .hub-card:hover .card-action {
+            gap: 0.8rem;
         }
 
-        .card-graphic svg {
-            width: 80px; /* Más pequeños en móvil */
-            height: 80px;
-            filter: drop-shadow(0 0 8px currentColor);
-        }
-
-        /* FOOTER NAVEGACIÓN */
+        /* --- FOOTER --- */
         footer {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            padding: 1rem 0;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
             border-top: 1px solid var(--border-color);
-            margin-top: auto;
-            flex-wrap: wrap; /* Envoltura para pantallas muy pequeñas */
-        }
-
-        footer a {
+            text-align: center;
             color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-weight: 600;
+            font-size: 0.85rem;
+            font-weight: 300;
         }
 
-        /* =========================================
-           MEDIA QUERY: PANTALLAS GRANDES (Escritorio)
-           Se aplican estos estilos si la pantalla mide más de 992px
-           ========================================= */
-        @media (min-width: 992px) {
-            aside {
-                left: 0 !important; /* Siempre visible */
+        /* --- MEDIA QUERIES (RESPONSIVIDAD MÓVIL) --- */
+
+        /* Escritorio pequeño y tablets grandes */
+        @media (max-width: 1100px) {
+            .hero h2 { font-size: 3rem; }
+        }
+
+        /* Tablets y móviles grandes */
+        @media (max-width: 991px) {
+            .hero { padding-top: 120px; }
+            .hero h2 { font-size: 2.5rem; }
+            .search-box input { width: 200px; }
+            .search-box input:focus { width: 230px; }
+        }
+
+        /* Móviles (Menú se convierte en hamburguesa) */
+        @media (max-width: 767px) {
+            .menu-toggle { display: block; } /* Mostrar botón menú */
+
+            /* Ocultamos el contenido del nav por defecto */
+            .nav-content {
+                position: fixed;
+                top: 80px; /* Justo debajo del nav */
+                left: -100%; /* Oculto a la izquierda */
+                width: 100%;
+                height: calc(100vh - 80px);
+                background-color: var(--nav-bg);
+                backdrop-filter: blur(15px);
+                flex-direction: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                padding: 2rem;
+                transition: left 0.4s ease;
+                border-top: 1px solid var(--border-color);
             }
 
-            main {
-                margin-left: var(--sidebar-width);
-                padding: 2rem 4rem;
-            }
-
-            .mobile-menu-btn {
-                display: none !important;
-            }
-
-            .logo-section {
-                margin-top: 0;
-            }
-
-            nav {
-                justify-content: space-between;
-                margin-bottom: 3rem;
-            }
+            /* Clase para mostrar el menú móvil */
+            .nav-content.active { left: 0; }
 
             .nav-links {
-                display: flex;
+                flex-direction: column;
+                width: 100%;
+                gap: 0;
+                margin-bottom: 2rem;
             }
 
-            .search-box input {
-                width: 200px;
+            .nav-links li { width: 100%; }
+
+            .nav-links a {
+                width: 100%;
+                padding: 1rem;
+                font-size: 1rem;
             }
 
-            .user-info {
-                display: block;
-            }
+            .search-box { width: 100%; }
+            .search-box input { width: 100% !important; }
 
-            .hub-grid {
-                grid-template-columns: repeat(2, 1fr); /* Dos columnas */
-                gap: 2rem;
-            }
-
-            .hub-card {
-                flex-direction: row; /* Horizontal */
-                text-align: left;
-                padding: 2.5rem;
-            }
-
-            .card-info h3 {
-                font-size: 1.8rem;
-                margin-top: 0;
-            }
-
-            .card-info p {
-                max-width: 90%;
-            }
-
-            .card-graphic {
-                order: 1; /* Gráfico a la derecha */
-                margin-bottom: 0;
-                margin-left: 2rem;
-            }
-
-            .card-graphic svg {
-                width: 130px;
-                height: 130px;
-            }
-        }
-
-        /* =========================================
-           MEDIA QUERY: COMPORTAMIENTO MENÚ MÓVIL
-           ========================================= */
-        @media (max-width: 991px) {
-            /* Estado oculto del sidebar */
-            aside {
-                left: calc(-1 * var(--sidebar-width));
-            }
-
-            main {
-                margin-left: 0;
-                padding-top: 70px; /* Espacio para el botón flotante */
-            }
-
-            .mobile-menu-btn {
-                display: block; /* Mostrar botón hamburguesa */
-            }
-
-            /* Cuando el checkbox está activado, mostramos el sidebar */
-            #menu-toggle:checked ~ aside {
-                left: 0;
-                box-shadow: 10px 0 30px rgba(0,0,0,0.5);
-            }
-
-            /* Capa oscura de fondo al abrir menu (opcional, requiere elemento extra) */
+            .hero h2 { font-size: 2rem; }
+            .hero p { font-size: 1rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="cyber-grid"></div>
+    <!-- --- ENCABEZADO CON NAVEGACIÓN SUPERIOR (MODIFICADA) --- -->
+    <header>
+        <div class="navbar">
+            <!-- Logo a la izquierda -->
+            <a href="#" class="logo-section">
+                <i class="fa-solid fa-atom logo-icon"></i>
+                <div class="logo-text">
+                    <h1>NewCosmo Perú</h1>
+                    <span>Aetherial Hub</span>
+                </div>
+            </a>
 
-    <!-- Checkbox oculto para controlar el menu móvil -->
-    <input type="checkbox" id="menu-toggle">
+            <!-- Botón de menú móvil -->
+            <button class="menu-toggle" aria-label="Abrir menú">
+                <i class="fa-solid fa-bars"></i>
+            </button>
 
-    <!-- Botón Hamburguesa visible solo en móvil -->
-    <label for="menu-toggle" class="mobile-menu-btn">
-        <i class="fa-solid fa-bars"></i>
-    </label>
+            <!-- Contenido del nav (Menú Horizonal + Búsqueda) -->
+            <div class="nav-content">
+                <ul class="nav-links">
+                    <li><a href="#" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
+                    <li><a href="#"><i class="fa-solid fa-compass"></i> Discover</a></li>
+                    <li><a href="#hub"><i class="fa-solid fa-layer-group"></i> Projects</a></li>
+                    <li><a href="https://github.com/newcosmo-peru" target="_blank"><i class="fa-brands fa-github"></i> GitHub</a></li>
+                    <li><a href="#"><i class="fa-solid fa-circle-info"></i> Contact</a></li>
+                </ul>
 
-    <!-- BARRA LATERAL IZQUIERDA -->
-    <aside>
-        <a href="#" class="logo-section">
-            <i class="fa-solid fa-atom logo-icon"></i>
-            <div class="logo-text">
-                <h2>NewCosmo</h2>
-                <span>Aetherial Hub</span>
-            </div>
-        </a>
-
-        <ul class="sidebar-menu">
-            <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
-            <li class="active"><a href="#"><i class="fa-solid fa-compass"></i> Discover</a></li>
-            <li><a href="https://newcosmo-peru.github.io/BOOKS/" target="_blank"><i class="fa-solid fa-book-bookmark"></i> Library</a></li>
-            <li><a href="https://newcosmo-peru.github.io/STORE/" target="_blank"><i class="fa-solid fa-cart-shopping"></i> Shop</a></li>
-            <li><a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank"><i class="fa-solid fa-circle-info"></i> Support</a></li>
-        </ul>
-    </aside>
-
-    <!-- ÁREA DE CONTENIDO -->
-    <main>
-        
-        <!-- NAVEGACIÓN SUPERIOR -->
-        <nav>
-            <ul class="nav-links">
-                <li class="active"><a href="#">Home</a></li>
-                <li><a href="#">Discover</a></li>
-                <li><a href="#">Library</a></li>
-                <li><a href="#">Shop</a></li>
-                <li><a href="#">Support</a></li>
-            </ul>
-
-            <div class="user-panel">
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" placeholder="Buscar...">
-                </div>
-                <div class="user-profile">
-                    <div class="user-avatar">NC</div>
-                    <div class="user-info">
-                        <h4>NewCosmo</h4>
-                        <span>Admin</span>
-                    </div>
+                    <input type="text" placeholder="Buscar módulos...">
                 </div>
             </div>
-        </nav>
+        </div>
+    </header>
 
-        <!-- PORTAL GRID DE TUS 4 RECURSOS -->
+    <!-- --- SECCIÓN HERO PRINCIPAL --- -->
+    <main class="hero">
+        <h2>Uncover <span>Infinite Possibilities</span> | Explore The Cosmos</h2>
+        <p>Bienvenido al nexo digital de NewCosmo Perú. Desde aquí puedes acceder a todos nuestros módulos operativos, herramientas técnicas y repositorios de conocimiento en la red.</p>
+        <a href="#hub" class="btn-primary">Explorar Módulos</a>
+    </main>
+
+    <!-- --- SECCIÓN HUB DE PROYECTOS (ENLACES A TUS OTRAS WEBS) --- -->
+    <section id="hub" class="hub-section">
         <div class="hub-grid">
             
-            <!-- TARJETA 1: BOOKS -->
-            <a href="https://newcosmo-peru.github.io/BOOKS/" class="hub-card card-books" target="_blank">
-                <div class="card-graphic" style="color: var(--neon-blue);">
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 25C20 25 35 20 50 28C65 20 80 25 80 25V75C80 75 65 70 50 78C35 70 20 75 20 75V25Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M50 28V78" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                </div>
-                <div class="card-info">
+            <!-- PROYECTO 1: BOOKS -->
+            <a href="https://newcosmo-peru.github.io/BOOKS/" class="hub-card" target="_blank">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-book-bookmark"></i></div>
                     <h3>BOOKS</h3>
-                    <p>E-books y recursos literarios interactivos.</p>
-                    <div class="action-btn">Explorar</div>
                 </div>
+                <p>E-books, recursos literarios interactivos y material de lectura digital seleccionado para nuestra comunidad.</p>
+                <div class="card-action">Acceder <i class="fa-solid fa-arrow-right"></i></div>
             </a>
 
-            <!-- TARJETA 2: MANUALES -->
-            <a href="https://newcosmo-peru.github.io/MANUALES/" class="hub-card card-manuales" target="_blank">
-                <div class="card-graphic" style="color: var(--neon-purple);">
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="25" y="25" width="50" height="50" rx="6" stroke="currentColor" stroke-width="3"/>
-                        <path d="M50 15V25M50 75V85M15 50H25M75 50H85" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                    </svg>
-                </div>
-                <div class="card-info">
+            <!-- PROYECTO 2: MANUALES -->
+            <a href="https://newcosmo-peru.github.io/MANUALES/" class="hub-card" target="_blank">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-gears"></i></div>
                     <h3>MANUALES</h3>
-                    <p>Documentación técnica y guías de configuración.</p>
-                    <div class="action-btn">Acceder</div>
                 </div>
+                <p>Documentación técnica, guías paso a paso y diagramas de configuración de nuestros sistemas y herramientas.</p>
+                <div class="card-action">Acceder <i class="fa-solid fa-arrow-right"></i></div>
             </a>
 
-            <!-- TARJETA 3: STORE -->
-            <a href="https://newcosmo-peru.github.io/STORE/" class="hub-card card-store" target="_blank">
-                <div class="card-graphic" style="color: var(--neon-cyan);">
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="40" cy="80" r="6" fill="currentColor"/>
-                        <circle cx="70" cy="80" r="6" fill="currentColor"/>
-                        <path d="M20 25H30L42 62H75L85 35H35" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                    </svg>
+            <!-- PROYECTO 3: STORE -->
+            <a href="https://newcosmo-peru.github.io/STORE/" class="hub-card" target="_blank">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-cart-shopping"></i></div>
+                    <h3>STORE</h3>
                 </div>
-                <div class="card-info">
-                    <h3>TIENDA</h3>
-                    <p>Herramientas tecnológicas y licencias digitales.</p>
-                    <div class="action-btn">Visitar</div>
-                </div>
+                <p>Mercado digital con herramientas tecnológicas avanzadas, licencias de software y packs de recursos exclusivos.</p>
+                <div class="card-action">Acceder <i class="fa-solid fa-arrow-right"></i></div>
             </a>
 
-            <!-- TARJETA 4: TONOS -->
-            <a href="https://newcosmo-peru.github.io/TONOS/" class="hub-card card-tonos" target="_blank">
-                <div class="card-graphic" style="color: var(--neon-pink);">
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M25 55C25 40 37 25 50 25C63 25 75 40 75 55" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-                        <rect x="20" y="50" width="10" height="18" rx="4" fill="currentColor"/>
-                        <rect x="70" y="50" width="10" height="18" rx="4" fill="currentColor"/>
-                    </svg>
-                </div>
-                <div class="card-info">
+            <!-- PROYECTO 4: TONOS -->
+            <a href="https://newcosmo-peru.github.io/TONOS/" class="hub-card" target="_blank">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fa-solid fa-headset"></i></div>
                     <h3>TONOS</h3>
-                    <p>Audio exclusivo, tonos espaciales y efectos.</p>
-                    <div class="action-btn">Descargar</div>
                 </div>
+                <p>Colección exclusiva de audio espacial, tonos de notificación futuristas y paisajes sonoros ambientales.</p>
+                <div class="card-action">Acceder <i class="fa-solid fa-arrow-right"></i></div>
             </a>
 
         </div>
+    </section>
 
-        <!-- FOOTER DE LA NAVEGACIÓN -->
-        <footer>
-            <a href="#">About</a>
-            <a href="#">Legal</a>
-            <a href="#">Help</a>
-            <a href="#">Status</a>
-        </footer>
+    <!-- --- FOOTER --- -->
+    <footer>
+        <p>&copy; 2026 NewCosmo Perú. Todos los derechos reservados. | Sistema de Acceso Centralizado | Trujillo, La Libertad.</p>
+    </footer>
 
-    </main>
+    <!-- --- PEQUEÑO SCRIPT PARA EL MENÚ MÓVIL --- -->
+    <script>
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navContent = document.querySelector('.nav-content');
+        const menuIcon = menuToggle.querySelector('i');
+
+        menuToggle.addEventListener('click', () => {
+            navContent.classList.toggle('active');
+            
+            // Cambiar icono de hamburguesa a X y viceversa
+            if (navContent.classList.contains('active')) {
+                menuIcon.classList.remove('fa-bars');
+                menuIcon.classList.add('fa-times');
+            } else {
+                menuIcon.classList.remove('fa-times');
+                menuIcon.classList.add('fa-bars');
+            }
+        });
+
+        // Cerrar menú móvil al hacer clic en un enlace
+        const navLinksArr = document.querySelectorAll('.nav-links a');
+        navLinksArr.forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 767) {
+                    navContent.classList.remove('active');
+                    menuIcon.classList.remove('fa-times');
+                    menuIcon.classList.add('fa-bars');
+                }
+            });
+        });
+    </script>
 
 </body>
 </html>
