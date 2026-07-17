@@ -3,1510 +3,616 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NexaTech | Servicios Tecnológicos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>Soluciones Tecnológicas & Estudio Digital | NewCosmo</title>
+    
+    <!-- Google Fonts & FontAwesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
     <style>
-/* Reset & Base */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-:root {
-    --primary: #6366f1;
-    --primary-dark: #4f46e5;
-    --secondary: #8b5cf6;
-    --accent: #06b6d4;
-    --dark: #0f172a;
-    --dark-light: #1e293b;
-    --gray: #64748b;
-    --light: #f8fafc;
-    --white: #ffffff;
-    --gradient: linear-gradient(135deg, #6366f1, #8b5cf6, #06b6d4);
-    --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
-    --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.1), 0 4px 6px -4px rgba(0,0,0,0.1);
-    --radius: 12px;
-    --transition: all 0.3s ease;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    color: var(--dark);
-    line-height: 1.6;
-    background: var(--white);
-    overflow-x: hidden;
-}
-
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-ul {
-    list-style: none;
-}
-
-/* Buttons */
-.btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    padding: 14px 32px;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: var(--transition);
-    border: none;
-}
-
-.btn-primary {
-    background: var(--gradient);
-    color: var(--white);
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.4);
-}
-
-.btn-primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.5);
-}
-
-.btn-secondary {
-    background: transparent;
-    color: var(--dark);
-    border: 2px solid var(--dark);
-}
-
-.btn-secondary:hover {
-    background: var(--dark);
-    color: var(--white);
-}
-
-.btn-light {
-    background: var(--white);
-    color: var(--primary);
-    font-weight: 700;
-}
-
-.btn-light:hover {
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-lg);
-}
-
-.btn-full {
-    width: 100%;
-}
-
-/* Section Tags */
-.section-tag {
-    display: inline-block;
-    padding: 6px 16px;
-    background: rgba(99, 102, 241, 0.1);
-    color: var(--primary);
-    border-radius: 50px;
-    font-size: 0.875rem;
-    font-weight: 600;
-    margin-bottom: 16px;
-}
-
-.section-header {
-    text-align: center;
-    max-width: 700px;
-    margin: 0 auto 64px;
-}
-
-.section-header h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-    color: var(--dark);
-}
-
-.section-header p {
-    color: var(--gray);
-    font-size: 1.125rem;
-}
-
-/* Gradient Text */
-.gradient-text {
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-}
-
-/* Navbar */
-.navbar {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    padding: 20px 0;
-    transition: var(--transition);
-}
-
-.navbar.scrolled {
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    box-shadow: var(--shadow);
-    padding: 14px 0;
-}
-
-.navbar .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--dark);
-}
-
-.logo i {
-    font-size: 1.75rem;
-    color: var(--primary);
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 32px;
-}
-
-.nav-links a {
-    font-weight: 500;
-    color: var(--dark);
-    transition: var(--transition);
-    position: relative;
-}
-
-.nav-links a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--primary);
-    transition: var(--transition);
-}
-
-.nav-links a:hover::after,
-.nav-links a.active::after {
-    width: 100%;
-}
-
-.nav-links a:hover,
-.nav-links a.active {
-    color: var(--primary);
-}
-
-.btn-nav {
-    background: var(--primary);
-    color: var(--white) !important;
-    padding: 10px 24px;
-    border-radius: 50px;
-}
-
-.btn-nav::after {
-    display: none !important;
-}
-
-.btn-nav:hover {
-    background: var(--primary-dark);
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 5px;
-    cursor: pointer;
-    z-index: 1001;
-}
-
-.hamburger span {
-    display: block;
-    width: 28px;
-    height: 3px;
-    background: var(--dark);
-    border-radius: 2px;
-    transition: var(--transition);
-}
-
-.hamburger.active span:nth-child(1) {
-    transform: rotate(45deg) translate(5px, 5px);
-}
-
-.hamburger.active span:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active span:nth-child(3) {
-    transform: rotate(-45deg) translate(5px, -5px);
-}
-
-/* Hero */
-.hero {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 120px 0 80px;
-    background: var(--light);
-    position: relative;
-    overflow: hidden;
-}
-
-.hero::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    right: -20%;
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, transparent 70%);
-    border-radius: 50%;
-}
-
-.hero-content {
-    max-width: 600px;
-    padding: 0 24px;
-}
-
-.hero-content h1 {
-    font-size: 4rem;
-    font-weight: 800;
-    line-height: 1.1;
-    margin-bottom: 24px;
-    color: var(--dark);
-}
-
-.hero-content p {
-    font-size: 1.25rem;
-    color: var(--gray);
-    margin-bottom: 40px;
-    line-height: 1.7;
-}
-
-.hero-buttons {
-    display: flex;
-    gap: 16px;
-    flex-wrap: wrap;
-}
-
-.hero-visual {
-    position: relative;
-    width: 400px;
-    height: 400px;
-    margin-right: 60px;
-}
-
-.floating-card {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 8px;
-    width: 120px;
-    height: 120px;
-    background: var(--white);
-    border-radius: var(--radius);
-    box-shadow: var(--shadow-lg);
-    animation: float 6s ease-in-out infinite;
-}
-
-.floating-card i {
-    font-size: 2rem;
-    color: var(--primary);
-}
-
-.floating-card span {
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--dark);
-}
-
-.floating-card:nth-child(1) {
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    animation-delay: 0s;
-}
-
-.floating-card:nth-child(2) {
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-    animation-delay: 1.5s;
-}
-
-.floating-card:nth-child(3) {
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    animation-delay: 3s;
-}
-
-.floating-card:nth-child(4) {
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-    animation-delay: 4.5s;
-}
-
-@keyframes float {
-    0%, 100% { transform: translateY(0) translateX(-50%); }
-    50% { transform: translateY(-20px) translateX(-50%); }
-}
-
-.floating-card:nth-child(2) { animation-name: float2; }
-.floating-card:nth-child(4) { animation-name: float4; }
-
-@keyframes float2 {
-    0%, 100% { transform: translateY(-50%) translateX(0); }
-    50% { transform: translateY(-50%) translateX(-20px); }
-}
-
-@keyframes float4 {
-    0%, 100% { transform: translateY(-50%) translateX(0); }
-    50% { transform: translateY(-50%) translateX(20px); }
-}
-
-/* Stats */
-.stats {
-    background: var(--dark);
-    padding: 80px 0;
-    color: var(--white);
-}
-
-.stats .container {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 32px;
-    text-align: center;
-}
-
-.stat-item h3 {
-    font-size: 3rem;
-    font-weight: 800;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    margin-bottom: 8px;
-}
-
-.stat-item p {
-    color: var(--gray);
-    font-size: 1rem;
-}
-
-/* Services */
-.services {
-    padding: 100px 0;
-    background: var(--white);
-}
-
-.services-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-}
-
-.service-card {
-    padding: 40px 32px;
-    border-radius: var(--radius);
-    background: var(--white);
-    border: 1px solid rgba(0,0,0,0.05);
-    transition: var(--transition);
-    position: relative;
-    overflow: hidden;
-}
-
-.service-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 3px;
-    background: var(--gradient);
-    transform: scaleX(0);
-    transition: var(--transition);
-}
-
-.service-card:hover::before {
-    transform: scaleX(1);
-}
-
-.service-card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-5px);
-    border-color: transparent;
-}
-
-.icon-box {
-    width: 64px;
-    height: 64px;
-    border-radius: var(--radius);
-    background: rgba(99, 102, 241, 0.1);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 24px;
-}
-
-.icon-box i {
-    font-size: 1.5rem;
-    color: var(--primary);
-}
-
-.service-card h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--dark);
-}
-
-.service-card p {
-    color: var(--gray);
-    font-size: 0.95rem;
-    margin-bottom: 20px;
-    line-height: 1.6;
-}
-
-.link-arrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    color: var(--primary);
-    font-weight: 600;
-    font-size: 0.95rem;
-    transition: var(--transition);
-}
-
-.link-arrow i {
-    transition: var(--transition);
-}
-
-.link-arrow:hover i {
-    transform: translateX(4px);
-}
-
-/* About */
-.about {
-    padding: 100px 0;
-    background: var(--light);
-}
-
-.about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: center;
-}
-
-.about-image {
-    position: relative;
-}
-
-.image-frame {
-    position: relative;
-    width: 100%;
-    max-width: 480px;
-}
-
-.image-placeholder {
-    width: 100%;
-    aspect-ratio: 4/5;
-    background: var(--gradient);
-    border-radius: var(--radius);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-lg);
-}
-
-.image-placeholder i {
-    font-size: 6rem;
-    color: var(--white);
-    opacity: 0.8;
-}
-
-.experience-badge {
-    position: absolute;
-    bottom: -20px;
-    right: -20px;
-    width: 120px;
-    height: 120px;
-    background: var(--white);
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    box-shadow: var(--shadow-lg);
-    border: 4px solid var(--light);
-}
-
-.experience-badge span {
-    font-size: 2.5rem;
-    font-weight: 800;
-    color: var(--primary);
-    line-height: 1;
-}
-
-.experience-badge small {
-    font-size: 0.875rem;
-    color: var(--gray);
-    font-weight: 600;
-}
-
-.about-content h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: var(--dark);
-}
-
-.about-content > p {
-    color: var(--gray);
-    font-size: 1.125rem;
-    margin-bottom: 32px;
-    line-height: 1.7;
-}
-
-.about-list {
-    margin-bottom: 32px;
-}
-
-.about-list li {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 16px;
-    font-size: 1rem;
-    color: var(--dark);
-}
-
-.about-list i {
-    color: var(--primary);
-    font-size: 1.25rem;
-}
-
-/* Projects */
-.projects {
-    padding: 100px 0;
-    background: var(--white);
-}
-
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 32px;
-}
-
-.project-card {
-    border-radius: var(--radius);
-    overflow: hidden;
-    background: var(--white);
-    border: 1px solid rgba(0,0,0,0.05);
-    transition: var(--transition);
-}
-
-.project-card:hover {
-    box-shadow: var(--shadow-lg);
-    transform: translateY(-5px);
-}
-
-.project-image {
-    height: 200px;
-    background: var(--gradient);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.project-image i {
-    font-size: 4rem;
-    color: var(--white);
-    opacity: 0.9;
-}
-
-.project-info {
-    padding: 32px;
-}
-
-.project-tag {
-    display: inline-block;
-    padding: 4px 12px;
-    background: rgba(99, 102, 241, 0.1);
-    color: var(--primary);
-    border-radius: 50px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    margin-bottom: 12px;
-}
-
-.project-info h3 {
-    font-size: 1.25rem;
-    font-weight: 700;
-    margin-bottom: 12px;
-    color: var(--dark);
-}
-
-.project-info p {
-    color: var(--gray);
-    font-size: 0.95rem;
-    line-height: 1.6;
-}
-
-/* CTA */
-.cta {
-    padding: 100px 0;
-    background: var(--gradient);
-    text-align: center;
-    color: var(--white);
-}
-
-.cta h2 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 16px;
-}
-
-.cta p {
-    font-size: 1.125rem;
-    opacity: 0.9;
-    margin-bottom: 32px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-/* Contact */
-.contact {
-    padding: 100px 0;
-    background: var(--light);
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 64px;
-    align-items: start;
-}
-
-.contact-info {
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-}
-
-.contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 20px;
-}
-
-.contact-item i {
-    font-size: 1.5rem;
-    color: var(--primary);
-    width: 48px;
-    height: 48px;
-    background: rgba(99, 102, 241, 0.1);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-}
-
-.contact-item h4 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin-bottom: 4px;
-    color: var(--dark);
-}
-
-.contact-item p {
-    color: var(--gray);
-    font-size: 0.95rem;
-}
-
-.social-links {
-    display: flex;
-    gap: 16px;
-    margin-top: 16px;
-}
-
-.social-links a {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
-    background: var(--white);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--primary);
-    font-size: 1.125rem;
-    transition: var(--transition);
-    box-shadow: var(--shadow);
-}
-
-.social-links a:hover {
-    background: var(--primary);
-    color: var(--white);
-    transform: translateY(-3px);
-}
-
-.contact-form {
-    background: var(--white);
-    padding: 48px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-}
-
-.form-group {
-    margin-bottom: 24px;
-}
-
-.form-group label {
-    display: block;
-    font-size: 0.875rem;
-    font-weight: 600;
-    color: var(--dark);
-    margin-bottom: 8px;
-}
-
-.form-group input,
-.form-group select,
-.form-group textarea {
-    width: 100%;
-    padding: 14px 18px;
-    border: 1px solid rgba(0,0,0,0.1);
-    border-radius: var(--radius);
-    font-family: inherit;
-    font-size: 1rem;
-    color: var(--dark);
-    transition: var(--transition);
-    background: var(--light);
-}
-
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary);
-    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
-}
-
-.form-group textarea {
-    resize: vertical;
-    min-height: 120px;
-}
-
-/* Footer */
-.footer {
-    background: var(--dark);
-    color: var(--white);
-    padding: 80px 0 0;
-}
-
-.footer-grid {
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr 1fr;
-    gap: 48px;
-    margin-bottom: 64px;
-}
-
-.footer-brand .logo {
-    color: var(--white);
-    margin-bottom: 20px;
-}
-
-.footer-brand p {
-    color: var(--gray);
-    line-height: 1.7;
-    max-width: 300px;
-}
-
-.footer-links h4 {
-    font-size: 1.125rem;
-    font-weight: 600;
-    margin-bottom: 24px;
-    color: var(--white);
-}
-
-.footer-links ul li {
-    margin-bottom: 12px;
-}
-
-.footer-links ul li a {
-    color: var(--gray);
-    transition: var(--transition);
-}
-
-.footer-links ul li a:hover {
-    color: var(--white);
-}
-
-.footer-bottom {
-    border-top: 1px solid rgba(255,255,255,0.1);
-    padding: 24px 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
-.footer-bottom p {
-    color: var(--gray);
-    font-size: 0.875rem;
-}
-
-.footer-bottom i {
-    color: #ef4444;
-}
-
-/* Animations for observer */
-.animate-in {
-    opacity: 1 !important;
-    transform: translateY(0) !important;
-}
-
-@keyframes slideIn {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
-}
-
-@keyframes slideOut {
-    from { transform: translateX(0); opacity: 1; }
-    to { transform: translateX(100%); opacity: 0; }
-}
-
-/* Responsive */
-@media (max-width: 1024px) {
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        padding: 140px 0 80px;
-    }
-    .hero-content {
-        max-width: 100%;
-    }
-    .hero-content h1 {
-        font-size: 3rem;
-    }
-    .hero-buttons {
-        justify-content: center;
-    }
-    .hero-visual {
-        margin: 60px 0 0;
-        width: 300px;
-        height: 300px;
-    }
-    .floating-card {
-        width: 90px;
-        height: 90px;
-    }
-    .services-grid,
-    .projects-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .about-grid {
-        grid-template-columns: 1fr;
-        gap: 48px;
-    }
-    .about-image {
-        display: flex;
-        justify-content: center;
-    }
-    .contact-grid {
-        grid-template-columns: 1fr;
-    }
-    .footer-grid {
-        grid-template-columns: repeat(2, 1fr);
-    }
-}
-
-@media (max-width: 768px) {
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        width: 70%;
-        max-width: 300px;
-        height: 100vh;
-        background: var(--white);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 32px;
-        transition: var(--transition);
-        box-shadow: -10px 0 30px rgba(0,0,0,0.1);
-    }
-    .nav-links.active {
-        right: 0;
-    }
-    .hamburger {
-        display: flex;
-    }
-    .hero-content h1 {
-        font-size: 2.5rem;
-    }
-    .stats .container {
-        grid-template-columns: repeat(2, 1fr);
-    }
-    .services-grid,
-    .projects-grid {
-        grid-template-columns: 1fr;
-    }
-    .section-header h2 {
-        font-size: 2rem;
-    }
-    .footer-grid {
-        grid-template-columns: 1fr;
-    }
-    .footer-bottom {
-        flex-direction: column;
-        text-align: center;
-    }
-    .contact-form {
-        padding: 32px 24px;
-    }
-}
-
-@media (max-width: 480px) {
-    .hero-content h1 {
-        font-size: 2rem;
-    }
-    .hero-visual {
-        display: none;
-    }
-    .experience-badge {
-        width: 90px;
-        height: 90px;
-    }
-    .experience-badge span {
-        font-size: 1.75rem;
-    }
-    .stats .container {
-        grid-template-columns: 1fr;
-    }
-}
+        :root {
+            --bg-main: #030712;
+            --bg-card: #0b1329;
+            --bg-card-hover: #111c3a;
+            --primary: #00f2fe;
+            --tech-color: #3b82f6;
+            --design-color: #ec4899;
+            --crypto-color: #f59e0b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.05);
+            --transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            --shadow-glow: 0 0 30px rgba(0, 242, 254, 0.15);
+        }
+
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+
+        body { background: var(--bg-main); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+
+        /* --- SPLASH DE BIENVENIDA CON MENSAJE --- */
+        #splash-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-main);
+            z-index: 9999;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
+        }
+        .splash-logo {
+            height: 160px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 30px rgba(245, 158, 11, 0.3));
+            animation: pulse-scale 2s infinite ease-in-out;
+        }
+        .splash-message {
+            margin-top: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            background: linear-gradient(135deg, #fff 30%, var(--primary), var(--design-color));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: fadeIn 1.2s ease forwards;
+            opacity: 0;
+            text-align: center;
+        }
+        .splash-loader {
+            margin-top: 25px;
+            width: 35px;
+            height: 35px;
+            border: 3px solid rgba(255, 255, 255, 0.05);
+            border-radius: 50%;
+            border-top-color: var(--primary);
+            animation: spin 1s linear infinite;
+        }
+        @keyframes pulse-scale {
+            0%, 100% { transform: scale(0.98); opacity: 0.85; }
+            50% { transform: scale(1.02); opacity: 1; }
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        @keyframes fadeIn {
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- MENÚ DE NAVEGACIÓN PRO --- */
+        nav {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            background: rgba(3, 7, 18, 0.7); backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 15px 40px; display: flex; justify-content: space-between; align-items: center;
+            transition: var(--transition);
+        }
+        .nav-brand { display: flex; align-items: center; gap: 12px; }
+        .nav-logo-img { height: 45px; width: auto; object-fit: contain; }
+        .nav-logo-text { font-weight: 700; font-size: 1.3rem; letter-spacing: -0.5px; background: linear-gradient(135deg, var(--primary), #2563eb); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .nav-links { display: flex; gap: 25px; list-style: none; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.95rem; transition: var(--transition); position: relative; }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px; left: 0; width: 0%; height: 2px;
+            background: var(--primary);
+            transition: var(--transition);
+        }
+        .nav-links a:hover { color: #fff; }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Botón de Hamburguesa para Móviles */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 6px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background-color: var(--text-main);
+            border-radius: 3px;
+            transition: var(--transition);
+        }
+
+        /* --- HERO HEADER ULTRA PREMIUM --- */
+        header {
+            background: radial-gradient(circle at top right, rgba(37, 99, 235, 0.2), transparent 50%),
+                        radial-gradient(circle at bottom left, rgba(236, 72, 153, 0.15), transparent 50%),
+                        var(--bg-main);
+            padding: 220px 20px 120px 20px; text-align: center; position: relative;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header::before {
+            content: ''; position: absolute; inset: 0;
+            background: linear-gradient(to bottom, transparent 80%, var(--bg-main));
+            pointer-events: none;
+        }
+
+        .hero-logo-container {
+            margin-bottom: 35px;
+            display: inline-block;
+            position: relative;
+        }
+        .hero-logo {
+            height: 280px; 
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 0 45px rgba(245, 158, 11, 0.45));
+            animation: float 6s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+            100% { transform: translateY(0px); }
+        }
+
+        header h1 { 
+            font-size: 4rem; font-weight: 700; margin-bottom: 20px; letter-spacing: -1.5px;
+            background: linear-gradient(135deg, #fff 40%, #00f2fe, #ec4899);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        header p { font-size: 1.25rem; max-width: 800px; margin: auto; color: var(--text-muted); line-height: 1.8; }
+
+        .btn {
+            display: inline-flex; align-items: center; gap: 10px; margin-top: 35px; padding: 15px 35px;
+            background: linear-gradient(135deg, var(--primary), #2563eb); color: #030712; text-decoration: none;
+            border-radius: 50px; font-weight: 700; transition: var(--transition);
+            box-shadow: 0 4px 25px rgba(0, 242, 254, 0.35);
+        }
+
+        .btn:hover { transform: translateY(-3px) scale(1.02); box-shadow: 0 8px 30px rgba(0, 242, 254, 0.6); }
+
+        /* --- SECCIONES GENERALES --- */
+        section { padding: 100px 20px; max-width: 1200px; margin: auto; }
+        
+        .title { text-align: center; margin-bottom: 40px; }
+        .title h2 { font-size: 2.5rem; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+        .title p { color: var(--text-muted); margin-top: 10px; font-size: 1.05rem; }
+
+        /* --- SISTEMA DE FILTROS INTERACTIVOS --- */
+        .filter-container {
+            display: flex; justify-content: center; gap: 12px; margin-bottom: 50px; flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--border-color); color: var(--text-muted);
+            padding: 10px 24px; border-radius: 30px; font-weight: 500; cursor: pointer; transition: var(--transition);
+        }
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--text-main); color: var(--bg-main); border-color: var(--text-main);
+            transform: translateY(-2px);
+        }
+
+        /* --- GRILLA DE SERVICIOS PREMIUM --- */
+        .services { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+            gap: 30px; 
+        }
+        
+        .card {
+            background: rgba(11, 19, 41, 0.4); 
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            padding: 40px 35px; 
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.04); 
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative; 
+            overflow: hidden;
+            opacity: 1; 
+            transform: scale(1);
+            will-change: transform, opacity;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .card::before {
+            content: ''; 
+            position: absolute; 
+            inset: 0; 
+            background: radial-gradient(300px circle at var(--mouse-x, 0px) var(--mouse-y, 0px), rgba(255, 255, 255, 0.08), transparent 60%);
+            z-index: 1;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .card:hover::before { opacity: 1; }
+        .card:hover { 
+            transform: translateY(-6px) scale(1.02); 
+            background: rgba(17, 28, 58, 0.55);
+        }
+
+        .card.tech-card:hover { border-color: rgba(59, 130, 246, 0.4); box-shadow: 0 20px 40px rgba(59, 130, 246, 0.1); }
+        .card.design-card:hover { border-color: rgba(236, 72, 153, 0.4); box-shadow: 0 20px 40px rgba(236, 72, 153, 0.1); }
+        .card.crypto-card:hover { border-color: rgba(245, 158, 11, 0.4); box-shadow: 0 20px 40px rgba(245, 158, 11, 0.1); }
+
+        .card i { font-size: 2.3rem; margin-bottom: 24px; display: inline-block; transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .card:hover i { transform: scale(1.1) translateY(-2px); }
+
+        .c-tech { color: var(--tech-color); filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.2)); }
+        .c-design { color: var(--design-color); filter: drop-shadow(0 0 10px rgba(236, 72, 147, 0.2)); }
+        .c-crypto { color: var(--crypto-color); filter: drop-shadow(0 0 10px rgba(245, 158, 11, 0.2)); }
+
+        .card:hover .c-tech { filter: drop-shadow(0 0 20px rgba(59, 130, 246, 0.6)); }
+        .card:hover .c-design { filter: drop-shadow(0 0 20px rgba(236, 72, 147, 0.6)); }
+        .card:hover .c-crypto { filter: drop-shadow(0 0 20px rgba(245, 158, 11, 0.6)); }
+
+        .card h3 { font-size: 1.35rem; margin-bottom: 14px; color: #fff; font-weight: 600; letter-spacing: -0.3px; }
+        .card p { color: var(--text-muted); font-size: 0.92rem; line-height: 1.75; }
+        
+        .card.hidden { 
+            opacity: 0; 
+            transform: scale(0.92); 
+            pointer-events: none;
+            position: absolute;
+            width: 0; height: 0; overflow: hidden; padding: 0; margin: 0; border: none;
+        }
+
+        /* --- SECCIÓN PLANES REFERENCIALES --- */
+        .pricing { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .price-card {
+            background: var(--bg-card); padding: 45px 30px; border-radius: 24px; text-align: center;
+            border: 1px solid var(--border-color); display: flex; flex-direction: column; justify-content: space-between;
+            transition: var(--transition); position: relative;
+        }
+        .price-card.featured { border-color: rgba(0, 242, 254, 0.3); background: linear-gradient(180deg, var(--bg-card), #080f21); }
+        .price-card.featured::after {
+            content: 'RECOMENDADO'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary), #2563eb); color: #030712; padding: 4px 16px;
+            font-size: 0.75rem; font-weight: 700; border-radius: 20px; letter-spacing: 0.5px;
+        }
+        .price-card:hover { transform: translateY(-5px); border-color: rgba(255,255,255,0.1); box-shadow: var(--shadow-glow); }
+        .price-card h3 { color: #fff; font-size: 1.5rem; font-weight: 600; }
+        .price { font-size: 3rem; font-weight: 700; color: #fff; margin: 20px 0; letter-spacing: -1px; }
+        .price span { font-size: 1rem; color: var(--text-muted); font-weight: 400; }
+        
+        .price-card ul { text-align: left; list-style: none; margin: 30px 0; color: var(--text-muted); font-size: 0.95rem; }
+        .price-card ul li { margin-bottom: 14px; display: flex; align-items: center; gap: 10px; }
+        .price-card ul li i { color: #10b981; font-size: 1.1rem; }
+
+        .btn-price { background: rgba(255,255,255,0.05); color: #fff; width: 100%; padding: 14px; border-radius: 12px; box-shadow: none; font-weight: 600; border: 1px solid var(--border-color); cursor: pointer; transition: var(--transition); text-decoration: none; display: inline-block; }
+        .btn-price:hover { background: #fff; color: var(--bg-main); }
+        .price-card.featured .btn-price { background: var(--text-main); color: var(--bg-main); }
+        .price-card.featured .btn-price:hover { background: var(--primary); color: var(--bg-main); }
+
+        /* --- CONTACTO DIRECTO --- */
+        .contact { 
+            text-align: center; background: radial-gradient(circle at top left, #0e172c, var(--bg-card)); 
+            border-radius: 32px; padding: 60px 40px; border: 1px solid var(--border-color);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.4);
+        }
+        .contact h2 { font-size: 2.2rem; font-weight: 700; color: #fff; }
+        .contact-info { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin: 35px 0; font-size: 1.1rem; color: var(--text-muted); }
+        .contact-info span { display: flex; align-items: center; gap: 8px; transition: var(--transition); }
+        .contact-info span:hover { color: #fff; }
+        .contact-info span i { color: var(--primary); font-size: 1.2rem; }
+
+        footer { background: #01040a; color: #4b5563; text-align: center; padding: 35px 20px; margin-top: 100px; font-size: 0.9rem; border-top: 1px solid var(--border-color); }
+
+        /* --- WHATSAPP FLOTANTE --- */
+        .whatsapp {
+            position: fixed; right: 30px; bottom: 30px; width: 65px; height: 65px;
+            background: #25D366; border-radius: 50%; display: flex; justify-content: center;
+            align-items: center; font-size: 35px; text-decoration: none; color: white;
+            box-shadow: 0 10px 25px rgba(37,211,102,0.4); z-index: 999; transition: var(--transition);
+        }
+        .whatsapp:hover { transform: scale(1.1) rotate(10deg); background: #1ea952; }
+
+        /* --- RESPONSIVE DESIGN --- */
+        @media(max-width:768px){
+            nav { padding: 15px 20px; }
+            .menu-toggle { display: flex; }
+            .nav-links {
+                position: fixed;
+                top: 76px; right: -100%;
+                width: 260px; height: calc(100vh - 76px);
+                background: rgba(3, 7, 18, 0.95);
+                backdrop-filter: blur(16px);
+                -webkit-backdrop-filter: blur(16px);
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 40px 30px;
+                gap: 30px;
+                transition: 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+                border-left: 1px solid var(--border-color);
+            }
+            .nav-links.active { right: 0; }
+            
+            /* Animación Menu Hamburguesa Abierto */
+            .menu-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(6px, 6px); }
+            .menu-toggle.active span:nth-child(2) { opacity: 0; }
+            .menu-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(6px, -7px); }
+
+            header { padding: 160px 20px 80px 20px; }
+            header h1 { font-size: 2.6rem; }
+            header p { font-size: 1.1rem; }
+            .hero-logo { height: 180px; }
+            .title h2 { font-size: 2rem; }
+            .contact { padding: 40px 20px; }
+            .contact-info { gap: 20px; flex-direction: column; align-items: center; }
+            .splash-message { font-size: 1.2rem; }
+        }
     </style>
 </head>
 <body>
-    <!-- Navbar -->
-    <nav class="navbar" id="navbar">
-        <div class="container">
-            <a href="#" class="logo">
-                <i class="fas fa-microchip"></i>
-                <span>NexaTech</span>
+
+<!-- PANTALLA DE BIENVENIDA (SPLASH SCREEN) -->
+<div id="splash-screen">
+    <img src="logo.png" alt="Logo NewCosmo" class="splash-logo">
+    <div class="splash-message">Bienvenidos a NewCosmo</div>
+    <div class="splash-loader"></div>
+</div>
+
+<!-- MENÚ DE NAVEGACIÓN FLOTANTE -->
+<nav>
+    <div class="nav-brand">
+        <img src="logo.png" alt="Logo NewCosmo" class="nav-logo-img">
+        <div class="nav-logo-text">NewCosmo</div>
+    </div>
+    <button class="menu-toggle" aria-label="Abrir menú" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+    <ul class="nav-links" id="nav-links">
+        <li><a href="#servicios" onclick="toggleMenu()">Servicios</a></li>
+        <li><a href="#precios" onclick="toggleMenu()">Precios</a></li>
+        <li><a href="#contacto" onclick="toggleMenu()">Contacto</a></li>
+    </ul>
+</nav>
+
+<!-- ENCABEZADO CYBER TECH -->
+<header>
+    <div class="hero-logo-container">
+        <img src="logo.png" alt="NewCosmo Core" class="hero-logo">
+    </div>
+    <h1>Tecnología, Diseño & Web3 Soluciones</h1>
+    <p>Impulsamos tus ideas y resolvemos tus problemas técnicos con rendimiento premium. Desde el soporte de tus equipos hasta el despliegue de infraestructura blockchain inteligente.</p>
+    <a href="#contacto" class="btn">Solicitar Servicio Directo <i class="fa-solid fa-arrow-right"></i></a>
+</header>
+
+<main>
+    <!-- NUESTROS SERVICIOS -->
+    <section id="servicios">
+        <div class="title">
+            <h2>Servicios Especializados</h2>
+            <p>Elige una categoría para filtrar las soluciones a tu medida.</p>
+        </div>
+
+        <div class="filter-container">
+            <button class="filter-btn active" onclick="filterServices('all', this)">Todos los servicios</button>
+            <button class="filter-btn" onclick="filterServices('tech', this)">Soporte Técnico</button>
+            <button class="filter-btn" onclick="filterServices('design', this)">Diseño & Multimedia</button>
+            <button class="filter-btn" onclick="filterServices('crypto', this)">Web3 & Blockchain</button>
+        </div>
+
+        <div class="services" id="services-grid">
+            <!-- Soporte Técnico -->
+            <div class="card tech-card" data-category="tech">
+                <i class="fa-solid fa-laptop-medical c-tech"></i>
+                <h3>Formateo y Optimización</h3>
+                <p>Instalación limpia de sistemas operativos avanzados (Windows/Mac), respaldo masivo seguro de información, erradicación de malware y calibración de rendimiento óptimo.</p>
+            </div>
+
+            <div class="card tech-card" data-category="tech">
+                <i class="fa-solid fa-download c-tech"></i>
+                <h3>Instalación de Programas</h3>
+                <p>Configuración integral de software profesional y entornos productivos de trabajo: suites creativas, ofimática avanzada, utilitarios corporativos y activación nítida.</p>
+            </div>
+
+            <div class="card tech-card" data-category="tech">
+                <i class="fa-solid fa-shield-halved c-tech"></i>
+                <h3>Ciberseguridad & Antivirus</h3>
+                <p>Análisis profundo de vulnerabilidades, remoción de ransomware encubierto, firewalls avanzados y auditorías locales para proteger contraseñas y transacciones bancarias.</p>
+            </div>
+
+            <div class="card tech-card" data-category="tech">
+                <i class="fa-solid fa-network-wired c-tech"></i>
+                <h3>Redes & Servidores NAS</h3>
+                <p>Configuración de enrutadores locales, cableado estructurado, repetidores WiFi estables y nubes privadas NAS locales para compartir archivos corporativos.</p>
+            </div>
+
+            <!-- Diseño y Multimedia -->
+            <div class="card design-card" data-category="design">
+                <i class="fa-solid fa-code c-design"></i>
+                <h3>Diseño Web Profesional</h3>
+                <p>Desarrollo y maquetación de plataformas web sofisticadas, landing pages optimizadas de alta conversión y ecommerce automatizados responsivos.</p>
+            </div>
+
+            <div class="card design-card" data-category="design">
+                <i class="fa-solid fa-pen-nib c-design"></i>
+                <h3>Logos e Identidad Visual</h3>
+                <p>Construcción de marcas únicas, isotipos de alto impacto, manuales normativos de marca modernos y papelería corporativa premium para destacar en el mercado.</p>
+            </div>
+
+            <div class="card design-card" data-category="design">
+                <i class="fa-solid fa-address-card c-design"></i>
+                <h3>Tarjetas de Presentación</h3>
+                <p>Modelado de tarjetas de presentación de alto nivel listas para imprentas offset comerciales de lujo o en formatos digitales inteligentes interactivos.</p>
+            </div>
+
+            <div class="card design-card" data-category="design">
+                <i class="fa-solid fa-video c-design"></i>
+                <h3>Edición Multimedia</h3>
+                <p>Postproducción audiovisual cinemática, motion graphics y edición de video vertical dinámica calibrada para retención en redes (TikTok, Reels, Shorts).</p>
+            </div>
+
+            <div class="card design-card" data-category="design">
+                <i class="fa-solid fa-palette c-design"></i>
+                <h3>Diseño UI/UX de Interfaces</h3>
+                <p>Prototipado interactivo de alta fidelidad para aplicaciones móviles y softwares web, centrado en la usabilidad y conversión final del usuario comercial.</p>
+            </div>
+
+            <!-- Desarrollo / Web3 / Blockchain -->
+            <div class="card crypto-card" data-category="crypto">
+                <i class="fa-solid fa-coins c-crypto"></i>
+                <h3>Creación de Tokens Cripto</h3>
+                <p>Programación y despliegue automatizado de contratos inteligentes auditados para tokens estables o personalizados (ERC-20, BEP-20) en Ethereum, BSC o Polygon.</p>
+            </div>
+
+            <div class="card crypto-card" data-category="crypto">
+                <i class="fa-solid fa-cubes c-crypto"></i>
+                <h3>Colecciones NFT & Arte</h3>
+                <p>Desarrollo de contratos inteligentes ERC-721A optimizados en gas, generación metadata algorítmica y acuñación de colecciones de arte digital exclusivas.</p>
+            </div>
+
+            <div class="card crypto-card" data-category="crypto">
+                <i class="fa-solid fa-server c-crypto"></i>
+                <h3>Integraciones DApps Web3</h3>
+                <p>Desarrollo front-end conectado a billeteras cripto descentralizadas (MetaMask, WalletConnect) para pagos Web3 automatizados sin intermediarios.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLANES REFERENCIALES -->
+    <section id="precios">
+        <div class="title">
+            <h2>Planes de Inversión</h2>
+            <p>Modelos de referencia competitivos adaptados al alcance de tu proyecto comercial.</p>
+        </div>
+
+        <div class="pricing">
+            <div class="price-card">
+                <div>
+                    <h3>Soporte Técnico</h3>
+                    <div class="price">S/ 50 <span>/ Base</span></div>
+                    <ul>
+                        <li><i class="fa-solid fa-circle-check"></i> Formateo limpio de PC/Laptop</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Instalación de software y controladores</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Optimización física y lógica completa</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/51999999999?text=Hola,%20solicito%20servicio%20de%20Formateo%20e%20Instalaci%C3%B3n%20de%20Programas." target="_blank" rel="noopener" class="btn-price">Solicitar Soporte</a>
+            </div>
+
+            <div class="price-card featured">
+                <div>
+                    <h3>Diseño & Multimedia</h3>
+                    <div class="price">S/ 150 <span>/ Base</span></div>
+                    <ul>
+                        <li><i class="fa-solid fa-circle-check"></i> Branding & Logotipos Corporativos</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Tarjetas personales de alto impacto</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Edición publicitaria de alta retención</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/51999999999?text=Hola,%20me%20interesa%20el%20servicio%20de%20Dise%C3%B1o,%20Logos%20y%20Edici%C3%B3n." target="_blank" rel="noopener" class="btn-price">Cotizar Diseño</a>
+            </div>
+
+            <div class="price-card">
+                <div>
+                    <h3>Desarrollo & Web3</h3>
+                    <div class="price">Cotizar</div>
+                    <ul>
+                        <li><i class="fa-solid fa-circle-check"></i> Arquitectura web y landing pages</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Creación y deploy de tokens cripto</li>
+                        <li><i class="fa-solid fa-circle-check"></i> Smart Contracts y Web3 DApps</li>
+                    </ul>
+                </div>
+                <a href="https://wa.me/51999999999?text=Hola,%20requiero%20informaci%C3%B3n%20para%20Dise%C3%B1o%20Web%20o%20Creaci%C3%B3n%20de%20Tokens%20Cripto." target="_blank" rel="noopener" class="btn-price">Consultar Proyecto</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO DIRECTO -->
+    <section id="contacto">
+        <div class="contact">
+            <h2>¿Listo para digitalizar tus ideas?</h2>
+            <p style="color: var(--text-muted); margin-top: 5px;">Escríbenos directamente para asignarte un especialista de inmediato.</p>
+            
+            <div class="contact-info">
+                <span><i class="fa-solid fa-envelope"></i> newcosmo@outlook.es</span>
+                <span><i class="fa-solid fa-phone"></i> +51 999 999 999</span>
+                <span><i class="fa-solid fa-location-dot"></i> Trujillo, Perú</span>
+            </div>
+
+            <a href="https://wa.me/51999999999?text=Hola,%20vengo%20de%20tu%20web%20y%20me%20gustar%C3%ADa%20hacer%20una%20consulta%20general." target="_blank" rel="noopener" class="btn" style="background:#25D366; color:white; box-shadow: 0 10px 20px rgba(37, 211, 102, 0.25);">
+                <i class="fa-brands fa-whatsapp" style="font-size: 1.2rem;"></i> Iniciar Conversación Directa
             </a>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#inicio" class="active">Inicio</a></li>
-                <li><a href="#servicios">Servicios</a></li>
-                <li><a href="#nosotros">Nosotros</a></li>
-                <li><a href="#proyectos">Proyectos</a></li>
-                <li><a href="#contacto" class="btn-nav">Contacto</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero" id="inicio">
-        <div class="hero-content">
-            <h1>Transformamos el Futuro con <span class="gradient-text">Tecnología</span></h1>
-            <p>Soluciones digitales innovadoras que impulsan el crecimiento de tu empresa. Desarrollo, cloud, ciberseguridad y más.</p>
-            <div class="hero-buttons">
-                <a href="#servicios" class="btn btn-primary">Nuestros Servicios</a>
-                <a href="#contacto" class="btn btn-secondary">Contáctanos</a>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="floating-card">
-                <i class="fas fa-code"></i>
-                <span>Desarrollo</span>
-            </div>
-            <div class="floating-card">
-                <i class="fas fa-cloud"></i>
-                <span>Cloud</span>
-            </div>
-            <div class="floating-card">
-                <i class="fas fa-shield-halved"></i>
-                <span>Seguridad</span>
-            </div>
-            <div class="floating-card">
-                <i class="fas fa-robot"></i>
-                <span>IA</span>
-            </div>
         </div>
     </section>
+</main>
 
-    <!-- Stats -->
-    <section class="stats">
-        <div class="container">
-            <div class="stat-item">
-                <h3>150+</h3>
-                <p>Proyectos Entregados</p>
-            </div>
-            <div class="stat-item">
-                <h3>50+</h3>
-                <p>Clientes Satisfechos</p>
-            </div>
-            <div class="stat-item">
-                <h3>10+</h3>
-                <p>Años de Experiencia</p>
-            </div>
-            <div class="stat-item">
-                <h3>24/7</h3>
-                <p>Soporte Técnico</p>
-            </div>
-        </div>
-    </section>
+<a class="whatsapp" href="https://wa.me/51999999999?text=Hola,%20vengo%20de%20tu%20p%C3%A1gina%20web%20y%20tengo%20una%20consulta." aria-label="Contacto por WhatsApp" target="_blank" rel="noopener">
+    <i class="fa-brands fa-whatsapp"></i>
+</a>
 
-    <!-- Servicios -->
-    <section class="services" id="servicios">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Servicios</span>
-                <h2>Soluciones que Impulsan tu Negocio</h2>
-                <p>Ofrecemos un portafolio completo de servicios tecnológicos diseñados para llevar tu empresa al siguiente nivel.</p>
-            </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="icon-box">
-                        <i class="fas fa-laptop-code"></i>
-                    </div>
-                    <h3>Desarrollo de Software</h3>
-                    <p>Aplicaciones web, móviles y de escritorio a medida. Desarrollamos soluciones robustas y escalables con las últimas tecnologías.</p>
-                    <a href="#" class="link-arrow">Saber más <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="service-card">
-                    <div class="icon-box">
-                        <i class="fas fa-cloud-arrow-up"></i>
-                    </div>
-                    <h3>Cloud & DevOps</h3>
-                    <p>Migración a la nube, infraestructura como código, CI/CD y automatización de procesos en AWS, Azure y Google Cloud.</p>
-                    <a href="#" class="link-arrow">Saber más <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="service-card">
-                    <div class="icon-box">
-                        <i class="fas fa-shield-virus"></i>
-                    </div>
-                    <h3>Ciberseguridad</h3>
-                    <p>Auditorías de seguridad, protección de datos, pentesting y consultoría para salvaguardar tu información crítica.</p>
-                    <a href="#" class="link-arrow">Saber más <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="service-card">
-                    <div class="icon-box">
-                        <i class="fas fa-brain"></i>
-                    </div>
-                    <h3>Inteligencia Artificial</h3>
-                    <p>Implementación de modelos de ML, NLP, automatización con IA y análisis predictivo para decisiones inteligentes.</p>
-                    <a href="#" class="link-arrow">Saber más <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="service-card">
-                    <div class="icon-box">
-                        <i class="fas fa-chart-line"></i>
-                    </div>
-                    <h3>Data & Analytics</h3>
-                    <p>Visualización de datos, dashboards interactivos, BI y análisis avanzado para extraer valor de tu información.</p>
-                    <a href="#" class="link-arrow">Saber más <i class="fas fa-arrow-right"></i></a>
-                </div>
-                <div class="service-card">
-                    <div class="icon-box">
-                        <i class="fas fa-mobile-screen"></i>
-                    </div>
-                    <h3>Consultoría IT</h3>
-                    <p>Asesoría estratégica en transformación digital, arquitectura de sistemas y optimización de procesos tecnológicos.</p>
-                    <a href="#" class="link-arrow">Saber más <i class="fas fa-arrow-right"></i></a>
-                </div>
-            </div>
-        </div>
-    </section>
+<footer>
+    © 2026 Soluciones Tecnológicas Integrales - Todos los derechos reservados.
+</footer>
 
-    <!-- Sobre Nosotros -->
-    <section class="about" id="nosotros">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-image">
-                    <div class="image-frame">
-                        <div class="image-placeholder">
-                            <i class="fas fa-users"></i>
-                        </div>
-                        <div class="experience-badge">
-                            <span>10+</span>
-                            <small>Años</small>
-                        </div>
-                    </div>
-                </div>
-                <div class="about-content">
-                    <span class="section-tag">Sobre Nosotros</span>
-                    <h2>Somos Expertos en Transformación Digital</h2>
-                    <p>En NexaTech combinamos tecnología de punta con un profundo entendimiento de los negocios para crear soluciones que realmente marcan la diferencia.</p>
-                    <ul class="about-list">
-                        <li><i class="fas fa-check-circle"></i> Equipo multidisciplinario de ingenieros certificados</li>
-                        <li><i class="fas fa-check-circle"></i> Metodologías ágiles y enfoque en resultados</li>
-                        <li><i class="fas fa-check-circle"></i> Compromiso con la calidad y la innovación</li>
-                        <li><i class="fas fa-check-circle"></i> Relaciones de largo plazo con nuestros clientes</li>
-                    </ul>
-                    <a href="#contacto" class="btn btn-primary">Trabaja con Nosotros</a>
-                </div>
-            </div>
-        </div>
-    </section>
+<script>
+    // CONTROL DEL SPLASH SCREEN
+    window.addEventListener('load', () => {
+        const splash = document.getElementById('splash-screen');
+        setTimeout(() => {
+            splash.style.opacity = '0';
+            splash.style.visibility = 'hidden';
+            setTimeout(() => splash.remove(), 600);
+        }, 2200);
+    });
 
-    <!-- Proyectos -->
-    <section class="projects" id="proyectos">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Proyectos</span>
-                <h2>Casos de Éxito</h2>
-                <p>Algunos ejemplos de cómo hemos ayudado a nuestros clientes a alcanzar sus objetivos.</p>
-            </div>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-building"></i>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-tag">Finanzas</span>
-                        <h3>Plataforma de Pagos Digitales</h3>
-                        <p>Desarrollo de una plataforma de pagos segura que procesa más de 1M de transacciones mensuales.</p>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-truck-fast"></i>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-tag">Logística</span>
-                        <h3>Sistema de Gestión de Flotas</h3>
-                        <p>Implementación de IoT y análisis de datos para optimizar rutas y reducir costos operativos en un 30%.</p>
-                    </div>
-                </div>
-                <div class="project-card">
-                    <div class="project-image">
-                        <i class="fas fa-heart-pulse"></i>
-                    </div>
-                    <div class="project-info">
-                        <span class="project-tag">Salud</span>
-                        <h3>Telemedicina Inteligente</h3>
-                        <p>Plataforma de telemedicina con IA para diagnóstico asistido, atendiendo a 50,000+ pacientes.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
+    // SISTEMA DE FILTRO DE SERVICIOS
+    function filterServices(category, element) {
+        const buttons = document.querySelectorAll('.filter-btn');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        if (element) element.classList.add('active');
 
-    <!-- CTA -->
-    <section class="cta">
-        <div class="container">
-            <h2>¿Listo para Impulsar tu Negocio?</h2>
-            <p>Contáctanos hoy y descubre cómo podemos ayudarte a alcanzar tus objetivos tecnológicos.</p>
-            <a href="#contacto" class="btn btn-light">Empezar Proyecto</a>
-        </div>
-    </section>
-
-    <!-- Contacto -->
-    <section class="contact" id="contacto">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Contacto</span>
-                <h2>Hablemos de tu Proyecto</h2>
-                <p>Completa el formulario y nos pondremos en contacto contigo en menos de 24 horas.</p>
-            </div>
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <h4>Email</h4>
-                            <p>contacto@nexatech.com</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-phone"></i>
-                        <div>
-                            <h4>Teléfono</h4>
-                            <p>+1 (555) 123-4567</p>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-location-dot"></i>
-                        <div>
-                            <h4>Dirección</h4>
-                            <p>Calle Tecnología 123, Ciudad Innovación</p>
-                        </div>
-                    </div>
-                    <div class="social-links">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                        <a href="#"><i class="fab fa-github"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </div>
-                </div>
-                <form class="contact-form" id="contactForm">
-                    <div class="form-group">
-                        <label for="name">Nombre</label>
-                        <input type="text" id="name" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="service">Servicio de Interés</label>
-                        <select id="service">
-                            <option value="">Selecciona un servicio</option>
-                            <option value="software">Desarrollo de Software</option>
-                            <option value="cloud">Cloud & DevOps</option>
-                            <option value="security">Ciberseguridad</option>
-                            <option value="ai">Inteligencia Artificial</option>
-                            <option value="data">Data & Analytics</option>
-                            <option value="consulting">Consultoría IT</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Mensaje</label>
-                        <textarea id="message" rows="5" required></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-full">Enviar Mensaje</button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <a href="#" class="logo">
-                        <i class="fas fa-microchip"></i>
-                        <span>NexaTech</span>
-                    </a>
-                    <p>Soluciones tecnológicas innovadoras para empresas que quieren liderar el futuro.</p>
-                </div>
-                <div class="footer-links">
-                    <h4>Servicios</h4>
-                    <ul>
-                        <li><a href="#">Desarrollo de Software</a></li>
-                        <li><a href="#">Cloud & DevOps</a></li>
-                        <li><a href="#">Ciberseguridad</a></li>
-                        <li><a href="#">Inteligencia Artificial</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Empresa</h4>
-                    <ul>
-                        <li><a href="#">Sobre Nosotros</a></li>
-                        <li><a href="#">Proyectos</a></li>
-                        <li><a href="#">Carreras</a></li>
-                        <li><a href="#">Blog</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Soporte</h4>
-                    <ul>
-                        <li><a href="#">Contacto</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Política de Privacidad</a></li>
-                        <li><a href="#">Términos de Servicio</a></li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 NexaTech. Todos los derechos reservados.</p>
-                <p>Hecho con <i class="fas fa-heart"></i> para GitHub</p>
-            </div>
-        </div>
-    </footer>
-
-    <script>
-// Navbar scroll effect
-const navbar = document.getElementById('navbar');
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-const navItems = document.querySelectorAll('.nav-links a');
-const sections = document.querySelectorAll('section[id]');
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
+        const cards = document.querySelectorAll('.card');
+        cards.forEach(card => {
+            const isMatch = category === 'all' || card.getAttribute('data-category') === category;
+            if (isMatch) {
+                card.classList.remove('hidden');
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'scale(1)';
+                }, 50);
+            } else {
+                card.style.opacity = '0';
+                card.style.transform = 'scale(0.92)';
+                setTimeout(() => {
+                    card.classList.add('hidden');
+                }, 400); // Concuerda con la transición de css
+            }
+        });
     }
 
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        if (window.scrollY >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
+    // INTERACTIVIDAD DE BRILLO 3D EN TARJETAS
+    const cards = document.querySelectorAll('.card');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.setProperty('--mouse-x', `${x}px`);
+            card.style.setProperty('--mouse-y', `${y}px`);
+        });
     });
 
-    navItems.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// Mobile menu toggle
-hamburger.addEventListener('click', () => {
-    hamburger.classList.toggle('active');
-    navLinks.classList.toggle('active');
-    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
-});
-
-// Close mobile menu on link click
-navItems.forEach(link => {
-    link.addEventListener('click', () => {
-        hamburger.classList.remove('active');
-        navLinks.classList.remove('active');
-        document.body.style.overflow = '';
-    });
-});
-
-// Smooth scroll for anchor links
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            const offset = 80;
-            const targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
-            window.scrollTo({
-                top: targetPosition,
-                behavior: 'smooth'
-            });
-        }
-    });
-});
-
-// Contact form
-const contactForm = document.getElementById('contactForm');
-
-contactForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    const name = document.getElementById('name').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const service = document.getElementById('service').value;
-    const message = document.getElementById('message').value.trim();
-
-    if (!name || !email || !message) {
-        showNotification('Por favor completa todos los campos requeridos.', 'error');
-        return;
-    }
-
-    if (!isValidEmail(email)) {
-        showNotification('Por favor ingresa un email válido.', 'error');
-        return;
-    }
-
-    const submitBtn = contactForm.querySelector('button[type="submit"]');
-    const originalText = submitBtn.innerHTML;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-    submitBtn.disabled = true;
-
-    setTimeout(() => {
-        showNotification('¡Mensaje enviado con éxito! Te contactaremos pronto.', 'success');
-        contactForm.reset();
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-    }, 1500);
-});
-
-function isValidEmail(email) {
-    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function showNotification(message, type) {
-    const existing = document.querySelector('.notification');
-    if (existing) existing.remove();
-
-    const notification = document.createElement('div');
-    notification.className = 'notification notification-' + type;
-    notification.innerHTML = '<i class="fas ' + (type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle') + '"></i><span>' + message + '</span>';
-
-    notification.style.cssText = 'position:fixed;top:100px;right:24px;padding:16px 24px;background:' + (type === 'success' ? '#10b981' : '#ef4444') + ';color:white;border-radius:12px;box-shadow:0 10px 15px -3px rgba(0,0,0,0.1);display:flex;align-items:center;gap:12px;font-weight:500;z-index:9999;animation:slideIn 0.3s ease;';
-
-    document.body.appendChild(notification);
-
-    setTimeout(() => {
-        notification.style.animation = 'slideOut 0.3s ease';
-        setTimeout(() => notification.remove(), 300);
-    }, 4000);
-}
-
-// Scroll animations with Intersection Observer
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('animate-in');
-            observer.unobserve(entry.target);
-        }
-    });
-}, observerOptions);
-
-document.querySelectorAll('.service-card, .project-card, .stat-item, .about-list li, .contact-item').forEach((el, index) => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(30px)';
-    el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-    el.style.transitionDelay = (index * 0.1) + 's';
-    observer.observe(el);
-});
-
-// Typing effect for hero subtitle
-const heroSubtitle = document.querySelector('.hero-content p');
-if (heroSubtitle) {
-    const text = heroSubtitle.textContent;
-    heroSubtitle.textContent = '';
-    let i = 0;
-
-    function typeWriter() {
-        if (i < text.length) {
-            heroSubtitle.textContent += text.charAt(i);
-            i++;
-            setTimeout(typeWriter, 20);
+    // NAVEGACIÓN MÓVIL (MENÚ HAMBURGUESA)
+    function toggleMenu() {
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.getElementById('nav-links');
+        
+        // Solo ejecuta en pantallas móviles
+        if(window.innerWidth <= 768) {
+            menuToggle.classList.toggle('active');
+            navLinks.classList.toggle('active');
         }
     }
+</script>
 
-    setTimeout(typeWriter, 500);
-}
-    </script>
 </body>
 </html>
