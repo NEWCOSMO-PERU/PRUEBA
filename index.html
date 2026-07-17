@@ -9,14 +9,14 @@
     <style>
         /* --- ESTILOS GLOBALES --- */
         :root {
-            --bg-color: #030a16; /* Fondo ultra oscuro */
-            --nav-bg: rgba(3, 10, 22, 0.95); /* Nav transparente con desenfoque */
+            --bg-color: #030a16; /* Fondo ultra oscuro de la imagen */
+            --nav-bg: rgba(3, 10, 22, 0.95); /* Fondo nav transparente con desenfoque */
             --border-color: rgba(0, 242, 254, 0.3); /* Borde neón sutil */
             --text-main: #ffffff;
             --text-muted: #8b9bb4;
-            --neon-cyan: #00f2fe; /* Azul neón brillante */
-            --neon-magenta: #bd00ff; /* Púrpura neón */
-            --neon-orange: #ff9f43; /* Naranja neón */
+            --neon-cyan: #00f2fe; /* Azul neón brillante de la imagen */
+            --neon-magenta: #bd00ff; /* Púrpura neón de la imagen */
+            --neon-orange: #ff9f43; /* Naranja neón de la imagen */
             --card-bg: rgba(7, 14, 24, 0.6); /* Fondo tarjetas translúcido */
             --transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
@@ -35,7 +35,7 @@
             position: relative;
         }
 
-        /* Red hexagonal y malla digital sutil */
+        /* Red hexagonal y malla digital de fondo, simulando la imagen */
         body::before {
             content: "";
             position: fixed;
@@ -209,7 +209,7 @@
             margin-bottom: 1.5rem;
         }
 
-        /* Gradiente de neón en el texto principal */
+        /* Gradiente de neón en el texto principal, igual a la imagen */
         .hero h1 span {
             background: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
             -webkit-background-clip: text;
@@ -357,8 +357,8 @@
         /* Tablets y móviles grandes */
         @media (max-width: 991px) {
             header { padding: 0 20px; }
-            .logo-section gap { 10px; }
-            .nav-content gap { 0.5rem; }
+            .logo-section .fa-atom { font-size: 1.8rem; }
+            .logo-text h1 { font-size: 0.9rem; }
             .hero { padding-top: 100px; }
             .hero h1 { font-size: 2.5rem; }
             .hero h2 { font-size: 1.1rem; }
@@ -465,22 +465,22 @@
     <main class="hero">
         <h2>NEWCOSMO</h2>
         <h1><span>AETHERIAL HUB</span></h1>
-        <p>Trujillo, La Libertad</p>
+        <p>UNCOVER INFINITE POSSIBILITIES | SECURE YOUR ASSETS | EXPLORE THE COSMOS</p>
     </main>
 
-    <!-- --- SECCIÓN HUB DE MÓDULOS --- -->
+    <!-- --- SECCIÓN HUB DE MÓDULOS (TARJETAS IDÉNTICAS A LA IMAGEN) --- -->
     <section class="hub-section">
         <div class="hub-grid">
             
-            <!-- TARJETA 1: BOOKS (Azul) -->
+            <!-- TARJETA 1: BOOKS & LITERATURE (Azul) -->
             <a href="https://newcosmo-peru.github.io/BOOKS/" class="hub-card" target="_blank">
                 <div class="card-content">
-                    <h3>BOOKS</h3>
-                    <p>Accede a nuestro repositorio digital de libros técnicos, manuales y recursos operativos en formato e-book.</p>
-                    <div class="action-btn">Explorar</div>
+                    <h3>BOOKS & LITERATURE</h3>
+                    <p>Explore thousands of ebooks, audiobooks & genres.</p>
+                    <div class="action-btn">Browse Collection</div>
                 </div>
                 <div class="card-graphic" style="color: var(--neon-cyan);">
-                    <!-- Icono Libro Neón -->
+                    <!-- Icono Libro Neón, simulando la imagen -->
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M 20 25 C 20 25 35 20 50 28 C 65 20 80 25 80 25 V 75 C 80 75 65 70 50 78 C 35 70 20 75 20 75 V 25 Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M 50 28 V 78" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -489,15 +489,15 @@
                 </div>
             </a>
 
-            <!-- TARJETA 2: MANUALES (Magenta) -->
+            <!-- TARJETA 2: MANUALS & GUIDES (Magenta) -->
             <a href="https://newcosmo-peru.github.io/MANUALES/" class="hub-card" target="_blank">
                 <div class="card-content">
-                    <h3>MANUALES</h3>
-                    <p>Guías técnicas, diagramas operativos y documentación de configuración para sistemas y equipos operativos.</p>
-                    <div class="action-btn">Acceder</div>
+                    <h3>MANUALS & GUIDES</h3>
+                    <p>Technical manuals, guides, schematics & documentation.</p>
+                    <div class="action-btn">Access Repository</div>
                 </div>
                 <div class="card-graphic" style="color: var(--neon-magenta);">
-                    <!-- Icono Chip/Manual Neón -->
+                    <!-- Icono Chip/Manual Neón, simulando la imagen -->
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="25" y="25" width="50" height="50" rx="6" stroke="currentColor" stroke-width="3"/>
                         <rect x="38" y="38" width="24" height="24" rx="3" stroke="currentColor" stroke-width="2" opacity="0.8"/>
@@ -506,15 +506,15 @@
                 </div>
             </a>
 
-            <!-- TARJETA 3: STORE (Naranja) -->
+            <!-- TARJETA 3: DIGITAL STORE (Naranja) -->
             <a href="https://newcosmo-peru.github.io/STORE/" class="hub-card" target="_blank">
                 <div class="card-content">
-                    <h3>STORE</h3>
-                    <p>Nuestra tienda operativa con herramientas, componentes técnicos, licencias y componentes operativos.</p>
-                    <div class="action-btn">Visitar</div>
+                    <h3>DIGITAL STORE</h3>
+                    <p>Secure marketplace for assets, tools, packs & licenses.</p>
+                    <div class="action-btn">View Storefront</div>
                 </div>
                 <div class="card-graphic" style="color: var(--neon-orange);">
-                    <!-- Icono Carrito Neón -->
+                    <!-- Icono Carrito Neón, simulando la imagen -->
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="40" cy="80" r="6" fill="currentColor"/>
                         <circle cx="70" cy="80" r="6" fill="currentColor"/>
@@ -524,15 +524,15 @@
                 </div>
             </a>
 
-            <!-- TARJETA 4: TONOS (Cian) -->
+            <!-- TARJETA 4: RINGTONES & AUDIO (Cian) -->
             <a href="https://newcosmo-peru.github.io/TONOS/" class="hub-card" target="_blank">
                 <div class="card-content">
-                    <h3>TONOS</h3>
-                    <p>Descarga recursos de audio, tonos operativos y efectos de sonido futuristas para nuestros sistemas.</p>
-                    <div class="action-btn">Descargar</div>
+                    <h3>RINGTONES & AUDIO</h3>
+                    <p>Unique ringtones, alerts, sounds & soundscapes.</p>
+                    <div class="action-btn">Browse Tones</div>
                 </div>
                 <div class="card-graphic" style="color: var(--neon-cyan);">
-                    <!-- Icono Auriculares Neón con Ondas -->
+                    <!-- Icono Auriculares Neón con Ondas, simulando la imagen -->
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M 25 55 C 25 40 37 25 50 25 C 63 25 75 40 75 55" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
                         <rect x="20" y="50" width="10" height="18" rx="4" fill="currentColor"/>
