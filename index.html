@@ -4,17 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NewCosmo Perú | Portal Oficial</title>
-    <!-- Iconos de FontAwesome para darle más vida -->
+    <!-- Iconos para la barra lateral y navegación -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --bg-dark: #060913;
+            --bg-color: #03080f;
+            --sidebar-bg: rgba(3, 8, 15, 0.85);
+            --border-color: rgba(255, 255, 255, 0.05);
             --neon-blue: #00f2fe;
-            --neon-purple: #4facfe;
-            --glass-bg: rgba(255, 255, 255, 0.03);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --text-main: #f1f5f9;
-            --text-muted: #94a3b8;
+            --neon-cyan: #00ffd5;
+            --neon-purple: #bd00ff;
+            --neon-pink: #ff007f;
+            --text-main: #ffffff;
+            --text-muted: #64748b;
+            --text-secondary: #94a3b8;
         }
 
         * {
@@ -24,19 +27,16 @@
         }
 
         body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-dark);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
             color: var(--text-main);
             min-height: 100vh;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
             overflow-x: hidden;
             position: relative;
         }
 
-        /* Fondo de estrellas animado */
+        /* Red Hexagonal y Efecto de Espacio Profundo de Fondo */
         body::before {
             content: "";
             position: absolute;
@@ -45,241 +45,596 @@
             width: 100%;
             height: 100%;
             background-image: 
-                radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px),
-                radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px),
-                radial-gradient(white, rgba(255,255,255,.1) 2px, transparent 40px);
-            background-size: 550px 550px, 350px 350px, 250px 250px;
-            background-position: 0 0, 40px 60px, 130px 270px;
-            opacity: 0.25;
-            z-index: -1;
-            animation: backgroundMove 100s linear infinite;
+                radial-gradient(circle at 30% 20%, rgba(0, 242, 254, 0.08) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(189, 0, 255, 0.08) 0%, transparent 45%),
+                radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
+            background-size: 100% 100%, 100% 100%, 40px 40px;
+            z-index: -2;
         }
 
-        @keyframes backgroundMove {
-            from { background-position: 0 0, 40px 60px, 130px 270px; }
-            to { background-position: 550px 550px, 390px 410px, 380px 820px; }
-        }
-
-        /* Glow decorativo de fondo */
-        .orb {
-            position: absolute;
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background: radial-gradient(circle, var(--neon-purple) 0%, transparent 70%);
-            filter: blur(80px);
-            opacity: 0.15;
-            z-index: -1;
-            top: 10%;
-            left: 10%;
-        }
-        .orb-2 {
-            right: 10%;
-            bottom: 10%;
-            background: radial-gradient(circle, var(--neon-blue) 0%, transparent 70%);
-        }
-
-        header {
-            text-align: center;
-            padding: 5rem 1.5rem 3rem;
-            z-index: 10;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            letter-spacing: -1px;
-            background: linear-gradient(135deg, #ffffff 0%, var(--neon-blue) 50%, var(--neon-purple) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.8rem;
-            text-transform: uppercase;
-        }
-
-        header p {
-            font-size: 1.1rem;
-            color: var(--text-muted);
-            max-width: 600px;
-            margin: 0 auto;
-            line-height: 1.6;
-        }
-
-        /* Contenedor de las tarjetas */
-        .hub-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 2rem;
-            width: 90%;
-            max-width: 1200px;
-            padding: 1rem 0 5rem;
-            z-index: 10;
-        }
-
-        /* Estilo Glassmorphism para las tarjetas */
-        .hub-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--glass-border);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 20px;
-            padding: 2.5rem 2rem;
-            text-decoration: none;
-            color: var(--text-main);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        /* Efecto hover interactivo */
-        .hub-card::before {
-            content: '';
+        /* Malla digital simulada con líneas sutiles */
+        .cyber-grid {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(225deg, transparent, rgba(0, 242, 254, 0.05), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
+            background: linear-gradient(rgba(18, 30, 49, 0.2) 1px, transparent 1px),
+                        linear-gradient(90deg, rgba(18, 30, 49, 0.2) 1px, transparent 1px);
+            background-size: 80px 80px;
+            z-index: -1;
+            pointer-events: none;
         }
 
-        .hub-card:hover::before {
-            transform: translateX(100%);
-        }
-
-        .hub-card:hover {
-            transform: translateY(-8px);
-            border-color: rgba(0, 242, 254, 0.4);
-            box-shadow: 0 10px 30px -10px rgba(0, 242, 254, 0.15);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
-        /* Iconos con luces de neón */
-        .icon-box {
-            width: 70px;
-            height: 70px;
-            border-radius: 16px;
-            background: rgba(0, 242, 254, 0.05);
-            border: 1px solid rgba(0, 242, 254, 0.2);
+        /* BARRA LATERAL (SIDEBAR) */
+        aside {
+            width: 250px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border-color);
             display: flex;
-            justify-content: center;
+            flex-direction: column;
+            padding: 2rem 1.5rem;
+            height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+
+        .logo-section {
+            display: flex;
             align-items: center;
-            margin-bottom: 1.5rem;
+            gap: 0.75rem;
+            margin-bottom: 4rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
             font-size: 1.8rem;
-            color: var(--neon-blue);
-            transition: all 0.4s ease;
-        }
-
-        .hub-card:hover .icon-box {
-            color: #ffffff;
             background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
-            border-color: transparent;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.6));
         }
 
-        .hub-card h3 {
-            font-size: 1.4rem;
-            font-weight: 700;
-            margin-bottom: 0.75rem;
-            letter-spacing: 0.5px;
+        .logo-text h2 {
+            font-size: 1.1rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 800;
+            color: #fff;
         }
 
-        .hub-card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            line-height: 1.5;
-        }
-
-        .arrow-indicator {
-            margin-top: 1.5rem;
-            font-size: 0.85rem;
-            font-weight: 600;
+        .logo-text span {
+            font-size: 0.75rem;
             color: var(--neon-blue);
-            opacity: 0;
-            transform: translateY(10px);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin-top: -2px;
+        }
+
+        .sidebar-menu {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+
+        .sidebar-menu li a {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
             transition: all 0.3s ease;
         }
 
-        .hub-card:hover .arrow-indicator {
-            opacity: 1;
-            transform: translateY(0);
+        .sidebar-menu li a i {
+            font-size: 1.1rem;
+            width: 20px;
+            text-align: center;
         }
 
-        footer {
-            padding: 3rem 1.5rem;
-            text-align: center;
-            color: var(--text-muted);
+        .sidebar-menu li a:hover, .sidebar-menu li.active a {
+            color: #fff;
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 3px solid var(--neon-blue);
+            box-shadow: inset 10px 0 15px -10px rgba(0, 242, 254, 0.15);
+        }
+
+        .sidebar-menu li.active a i {
+            color: var(--neon-blue);
+            filter: drop-shadow(0 0 5px var(--neon-blue));
+        }
+
+        /* CONTENIDO PRINCIPAL */
+        main {
+            margin-left: 250px;
+            flex: 1;
+            padding: 2rem 4rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* NAVEGACIÓN SUPERIOR */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 3rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            color: var(--text-secondary);
+            text-decoration: none;
             font-size: 0.9rem;
-            z-index: 10;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .nav-links li a:hover, .nav-links li.active a {
+            color: var(--neon-blue);
+        }
+
+        .nav-links li.active a::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .user-panel {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .search-box {
+            position: relative;
+            margin-right: 1.5rem;
+        }
+
+        .search-box input {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border-radius: 20px;
+            color: #fff;
+            outline: none;
+            font-size: 0.85rem;
+            width: 200px;
+            transition: all 0.3s;
+        }
+
+        .search-box input:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+            width: 250px;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            font-size: 0.85rem;
+        }
+
+        .user-profile {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: rgba(255, 255, 255, 0.03);
+            padding: 0.4rem 1rem;
+            border-radius: 30px;
+            border: 1px solid var(--border-color);
+        }
+
+        .user-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--neon-blue), var(--neon-purple));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+            box-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
+        }
+
+        .user-info {
+            text-align: left;
+        }
+
+        .user-info h4 {
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .user-info span {
+            font-size: 0.7rem;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        /* PANEL DE TARJETAS (HUB GRID) */
+        .hub-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            flex: 1;
+            margin-bottom: 3rem;
+        }
+
+        .hub-card {
+            background: rgba(5, 12, 24, 0.5);
+            border-radius: 20px;
+            padding: 2.5rem;
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+            text-decoration: none;
+            color: #fff;
+            position: relative;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        /* Configuración de colores neón individuales por tarjeta */
+        .card-books {
+            box-shadow: inset 0 0 30px rgba(0, 242, 254, 0.05);
+            border-color: rgba(0, 242, 254, 0.15);
+        }
+        .card-books:hover {
+            box-shadow: 0 10px 40px -10px rgba(0, 242, 254, 0.3);
+            border-color: var(--neon-blue);
+        }
+
+        .card-manuales {
+            box-shadow: inset 0 0 30px rgba(189, 0, 255, 0.05);
+            border-color: rgba(189, 0, 255, 0.15);
+        }
+        .card-manuales:hover {
+            box-shadow: 0 10px 40px -10px rgba(189, 0, 255, 0.3);
+            border-color: var(--neon-purple);
+        }
+
+        .card-store {
+            box-shadow: inset 0 0 30px rgba(0, 255, 213, 0.05);
+            border-color: rgba(0, 255, 213, 0.15);
+        }
+        .card-store:hover {
+            box-shadow: 0 10px 40px -10px rgba(0, 255, 213, 0.3);
+            border-color: var(--neon-cyan);
+        }
+
+        .card-tonos {
+            box-shadow: inset 0 0 30px rgba(255, 0, 127, 0.05);
+            border-color: rgba(255, 0, 127, 0.15);
+        }
+        .card-tonos:hover {
+            box-shadow: 0 10px 40px -10px rgba(255, 0, 127, 0.3);
+            border-color: var(--neon-pink);
+        }
+
+        /* Animaciones sutiles hover */
+        .hub-card:hover {
+            transform: translateY(-5px);
+            background: rgba(7, 18, 36, 0.7);
+        }
+
+        .card-info h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-books h3 { color: #fff; }
+        .card-manuales h3 { color: #fff; }
+        .card-store h3 { color: #fff; }
+        .card-tonos h3 { color: #fff; }
+
+        .card-info p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            max-width: 90%;
+        }
+
+        /* Botones de acción estilo interfaz de juego */
+        .action-btn {
+            display: inline-block;
+            padding: 0.75rem 1.8rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            transition: all 0.3s;
+            background: transparent;
+            border: 1px solid;
+            text-align: center;
+        }
+
+        .card-books .action-btn {
+            color: var(--neon-blue);
+            border-color: rgba(0, 242, 254, 0.3);
+        }
+        .card-books:hover .action-btn {
+            background: var(--neon-blue);
+            color: #000;
+            box-shadow: 0 0 15px var(--neon-blue);
+            border-color: transparent;
+        }
+
+        .card-manuales .action-btn {
+            color: var(--neon-purple);
+            border-color: rgba(189, 0, 255, 0.3);
+        }
+        .card-manuales:hover .action-btn {
+            background: var(--neon-purple);
+            color: #fff;
+            box-shadow: 0 0 15px var(--neon-purple);
+            border-color: transparent;
+        }
+
+        .card-store .action-btn {
+            color: var(--neon-cyan);
+            border-color: rgba(0, 255, 213, 0.3);
+        }
+        .card-store:hover .action-btn {
+            background: var(--neon-cyan);
+            color: #000;
+            box-shadow: 0 0 15px var(--neon-cyan);
+            border-color: transparent;
+        }
+
+        .card-tonos .action-btn {
+            color: var(--neon-pink);
+            border-color: rgba(255, 0, 127, 0.3);
+        }
+        .card-tonos:hover .action-btn {
+            background: var(--neon-pink);
+            color: #fff;
+            box-shadow: 0 0 15px var(--neon-pink);
+            border-color: transparent;
+        }
+
+        /* Gráficos Holográficos a la derecha */
+        .card-graphic {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+        }
+
+        .card-graphic svg {
+            width: 130px;
+            height: 130px;
+            filter: drop-shadow(0 0 12px currentColor);
+            transition: transform 0.5s ease;
+        }
+
+        .hub-card:hover .card-graphic svg {
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        /* FOOTER DE LA NAVEGACIÓN */
+        footer {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            padding: 1.5rem 0;
+            border-top: 1px solid var(--border-color);
+            margin-top: auto;
         }
 
         footer a {
-            color: var(--neon-blue);
+            color: var(--text-muted);
             text-decoration: none;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        footer a:hover {
+            color: var(--neon-blue);
+        }
+
+        /* RESPONSIVO */
+        @media (max-width: 1100px) {
+            .hub-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            aside {
+                display: none; /* Se oculta para dar espacio en móviles */
+            }
+            main {
+                margin-left: 0;
+                padding: 1.5rem;
+            }
+            .hub-card {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                text-align: center;
+            }
+            .card-graphic {
+                order: -1;
+            }
+            .card-info p {
+                max-width: 100%;
+            }
         }
     </style>
 </head>
 <body>
 
-    <div class="orb"></div>
-    <div class="orb orb-2"></div>
+    <div class="cyber-grid"></div>
 
-    <header>
-        <h1>NewCosmo Perú</h1>
-        <p>Tu portal de recursos digitales. Explora nuestras plataformas interactivas, tiendas y materiales exclusivos.</p>
-    </header>
+    <!-- BARRA LATERAL IZQUIERDA -->
+    <aside>
+        <a href="#" class="logo-section">
+            <i class="fa-solid fa-atom logo-icon"></i>
+            <div class="logo-text">
+                <h2>NewCosmo</h2>
+                <span>Aetherial Hub</span>
+            </div>
+        </a>
 
-    <main class="hub-grid">
+        <ul class="sidebar-menu">
+            <li><a href="#"><i class="fa-solid fa-house"></i> Home</a></li>
+            <li class="active"><a href="#"><i class="fa-solid fa-compass"></i> Discover</a></li>
+            <li><a href="https://newcosmo-peru.github.io/BOOKS/" target="_blank"><i class="fa-solid fa-book-bookmark"></i> Library</a></li>
+            <li><a href="https://newcosmo-peru.github.io/STORE/" target="_blank"><i class="fa-solid fa-cart-shopping"></i> Shop</a></li>
+            <li><a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank"><i class="fa-solid fa-circle-info"></i> Support</a></li>
+        </ul>
+    </aside>
+
+    <!-- ÁREA DE CONTENIDO -->
+    <main>
         
-        <!-- CARD 1: BOOKS -->
-        <a href="https://newcosmo-peru.github.io/BOOKS/" class="hub-card" target="_blank">
-            <div class="icon-box">
-                <i class="fa-solid fa-book-open"></i>
-            </div>
-            <h3>BOOKS</h3>
-            <p>Accede a nuestra biblioteca digital, lecturas seleccionadas y material educativo exclusivo.</p>
-            <div class="arrow-indicator">Ingresar <i class="fa-solid fa-arrow-right"></i></div>
-        </a>
+        <!-- NAVEGACIÓN SUPERIOR -->
+        <nav>
+            <ul class="nav-links">
+                <li class="active"><a href="#">Home</a></li>
+                <li><a href="#">Discover</a></li>
+                <li><a href="#">Library</a></li>
+                <li><a href="#">Shop</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
 
-        <!-- CARD 2: MANUALES -->
-        <a href="https://newcosmo-peru.github.io/MANUALES/" class="hub-card" target="_blank">
-            <div class="icon-box">
-                <i class="fa-solid fa-gears"></i>
+            <div class="user-panel">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Buscar recursos...">
+                </div>
+                <div class="user-profile">
+                    <div class="user-avatar">NC</div>
+                    <div class="user-info">
+                        <h4>NewCosmo</h4>
+                        <span>Admin</span>
+                    </div>
+                </div>
             </div>
-            <h3>MANUALES</h3>
-            <p>Guías técnicas, documentación de soporte y manuales paso a paso para usuarios y profesionales.</p>
-            <div class="arrow-indicator">Explorar <i class="fa-solid fa-arrow-right"></i></div>
-        </a>
+        </nav>
 
-        <!-- CARD 3: STORE -->
-        <a href="https://newcosmo-peru.github.io/STORE/" class="hub-card" target="_blank">
-            <div class="icon-box">
-                <i class="fa-solid fa-bag-shopping"></i>
-            </div>
-            <h3>STORE</h3>
-            <p>Nuestra tienda virtual donde encontrarás las mejores soluciones tecnológicas y productos seleccionados.</p>
-            <div class="arrow-indicator">Ver Tienda <i class="fa-solid fa-arrow-right"></i></div>
-        </a>
+        <!-- PORTAL GRID DE TUS 4 RECURSOS -->
+        <div class="hub-grid">
+            
+            <!-- TARJETA 1: BOOKS -->
+            <a href="https://newcosmo-peru.github.io/BOOKS/" class="hub-card card-books" target="_blank">
+                <div class="card-info">
+                    <h3>BOOKS & LITERATURE</h3>
+                    <p>Explora miles de e-books, recursos literarios interactivos y géneros seleccionados especialmente para ti.</p>
+                    <div class="action-btn">Browse Collection</div>
+                </div>
+                <div class="card-graphic" style="color: var(--neon-blue);">
+                    <!-- Icono Libro Holográfico -->
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 25C20 25 35 20 50 28C65 20 80 25 80 25V75C80 75 65 70 50 78C35 70 20 75 20 75V25Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M50 28V78" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M25 35H45M25 47H45M25 59H45M55 35H75M55 47H75M55 59H75" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+                    </svg>
+                </div>
+            </a>
 
-        <!-- CARD 4: TONOS -->
-        <a href="https://newcosmo-peru.github.io/TONOS/" class="hub-card" target="_blank">
-            <div class="icon-box">
-                <i class="fa-solid fa-music"></i>
-            </div>
-            <h3>TONOS</h3>
-            <p>Galería multimedia, ringtones, archivos de audio y recursos sonoros listos para usar.</p>
-            <div class="arrow-indicator">Escuchar <i class="fa-solid fa-arrow-right"></i></div>
-        </a>
+            <!-- TARJETA 2: MANUALES -->
+            <a href="https://newcosmo-peru.github.io/MANUALES/" class="hub-card card-manuales" target="_blank">
+                <div class="card-info">
+                    <h3>MANUALS & GUIDES</h3>
+                    <p>Documentación técnica, guías paso a paso, diagramas de configuración y asistencia técnica especializada.</p>
+                    <div class="action-btn">Access Repository</div>
+                </div>
+                <div class="card-graphic" style="color: var(--neon-purple);">
+                    <!-- Icono Microchip Holográfico -->
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect x="25" y="25" width="50" height="50" rx="6" stroke="currentColor" stroke-width="3"/>
+                        <rect x="38" y="38" width="24" height="24" rx="3" stroke="currentColor" stroke-width="2" opacity="0.8"/>
+                        <path d="M50 15V25M50 75V85M15 50H25M75 50H85M35 15V25M65 15V25M35 75V85M65 75V85M15 35H25M15 65H25M75 35H85M75 65H85" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </a>
+
+            <!-- TARJETA 3: STORE -->
+            <a href="https://newcosmo-peru.github.io/STORE/" class="hub-card card-store" target="_blank">
+                <div class="card-info">
+                    <h3>DIGITAL STORE</h3>
+                    <p>Mercado digital con las últimas herramientas tecnológicas, dispositivos, licencias y packs especiales para ti.</p>
+                    <div class="action-btn">View Storefront</div>
+                </div>
+                <div class="card-graphic" style="color: var(--neon-cyan);">
+                    <!-- Icono Carrito Holográfico -->
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="40" cy="80" r="6" fill="currentColor"/>
+                        <circle cx="70" cy="80" r="6" fill="currentColor"/>
+                        <path d="M20 25H30L42 62H75L85 35H35" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M55 42H60M50 48H65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </a>
+
+            <!-- TARJETA 4: TONOS -->
+            <a href="https://newcosmo-peru.github.io/TONOS/" class="hub-card card-tonos" target="_blank">
+                <div class="card-info">
+                    <h3>RINGTONES & AUDIO</h3>
+                    <p>Descubre colecciones de audio exclusivas, tonos espaciales, sonidos ambientales y efectos personalizados.</p>
+                    <div class="action-btn">Browse Tones</div>
+                </div>
+                <div class="card-graphic" style="color: var(--neon-pink);">
+                    <!-- Icono Auriculares Holográfico con Ondas -->
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M25 55C25 40 37 25 50 25C63 25 75 40 75 55" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+                        <rect x="20" y="50" width="10" height="18" rx="4" fill="currentColor"/>
+                        <rect x="70" y="50" width="10" height="18" rx="4" fill="currentColor"/>
+                        <path d="M40 50V60M45 45V65M50 40V70M55 48V62M60 52V58" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </a>
+
+        </div>
+
+        <!-- FOOTER DE LA NAVEGACIÓN -->
+        <footer>
+            <a href="#">About</a>
+            <a href="#">Legal</a>
+            <a href="#">Help</a>
+            <a href="#">Status</a>
+        </footer>
 
     </main>
-
-    <footer>
-        <p>© 2026 <a href="https://github.com/newcosmo-peru" target="_blank">NewCosmo Perú</a>. Desarrollado para la excelencia digital.</p>
-    </footer>
 
 </body>
 </html>
