@@ -12,11 +12,13 @@
             --bg-color: #030810; /* Fondo ultra oscuro */
             --nav-bg: rgba(3, 8, 16, 0.9); /* Nav transparente con desenfoque */
             --border-color: rgba(0, 242, 254, 0.3); /* Borde neón sutil */
+            --card-bg: rgba(7, 14, 24, 0.6);
             --text-main: #ffffff;
             --text-muted: #8b9bb4;
             --neon-blue: #00f2fe; /* Azul neón brillante */
             --neon-magenta: #bd00ff; /* Púrpura neón */
             --neon-orange: #ff9f43; /* Naranja neón */
+            --neon-green: #00ff88; /* Verde neón para soluciones */
             --transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
 
@@ -25,6 +27,10 @@
             box-sizing: border-box;
             margin: 0;
             padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
         }
 
         body {
@@ -302,6 +308,78 @@
             transform: scale(1.1) rotate(5deg);
         }
 
+        /* --- SECCIÓN INTEGRADA DE SOLUCIONES --- */
+        .solutions-section {
+            padding: 80px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--text-main);
+            margin-bottom: 0.5rem;
+        }
+
+        .section-header h2 span {
+            color: var(--neon-green);
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.4);
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        .solutions-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .solution-box {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            transition: var(--transition);
+        }
+
+        .solution-box:hover {
+            border-color: var(--neon-green);
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.2);
+            transform: translateY(-5px);
+        }
+
+        .solution-icon {
+            font-size: 2.5rem;
+            color: var(--neon-green);
+            margin-bottom: 1rem;
+        }
+
+        .solution-box h4 {
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-bottom: 0.8rem;
+            letter-spacing: 1px;
+        }
+
+        .solution-box p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
         /* --- RESPONSIVIDAD MÓVIL --- */
         @media (max-width: 900px) {
             header { padding: 0 20px; }
@@ -312,6 +390,7 @@
             .hub-card { flex-direction: column-reverse; align-items: center; text-align: center; padding: 1.5rem; }
             .card-content { padding-right: 0; }
             .card-graphic { margin-top: 1rem; width: 100px; height: 100px; }
+            .solutions-section { padding: 60px 20px; }
         }
     </style>
 </head>
@@ -329,7 +408,7 @@
         <div class="nav-content" style="display: flex; align-items: center; gap: 1.5rem;">
             <ul class="nav-links">
                 <li><a href="#" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li><a href="#"><i class="fa-solid fa-compass"></i> Discover</a></li>
+                <li><a href="#soluciones"><i class="fa-solid fa-lightbulb"></i> Soluciones</a></li>
                 <li><a href="#"><i class="fa-solid fa-book"></i> Library</a></li>
                 <li><a href="#"><i class="fa-solid fa-shopping-cart"></i> Shop</a></li>
                 <li><a href="#"><i class="fa-solid fa-circle-info"></i> Support</a></li>
@@ -423,6 +502,50 @@
                 </div>
             </a>
 
+            <!-- TARJETA 5: SOLUCIONES (Verde Neón) -->
+            <a href="#soluciones" class="hub-card">
+                <div class="card-content">
+                    <h3>SOLUCIONES</h3>
+                    <p>Respuestas integrales, soporte técnico y soluciones operativas desarrolladas a la medida.</p>
+                    <div class="action-btn" style="border-color: rgba(0, 255, 136, 0.3); color: var(--neon-green);">Ver Más</div>
+                </div>
+                <div class="card-graphic" style="color: var(--neon-green);">
+                    <!-- Icono Engranaje / Solución Neón -->
+                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="50" cy="50" r="15" stroke="currentColor" stroke-width="3"/>
+                        <path d="M50 20V28M50 72V80M20 50H28M72 50H80M29 29L35 35M65 65L71 71M29 71L35 65M65 35L71 29" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
+                    </svg>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- --- SECCIÓN DETALLADA DE SOLUCIONES (CONTENIDO PROPIO INTEGRADO) --- -->
+    <section id="soluciones" class="solutions-section">
+        <div class="section-header">
+            <h2>NUESTRAS <span>SOLUCIONES</span></h2>
+            <p>Servicios y Arquitectura Operativa Digital</p>
+        </div>
+
+        <div class="solutions-grid">
+            <div class="solution-box">
+                <i class="fa-solid fa-gears solution-icon"></i>
+                <h4>Integración de Sistemas</h4>
+                <p>Implementación y despliegue de arquitectura técnica avanzada adaptada a las necesidades operativas de la infraestructura.</p>
+            </div>
+
+            <div class="solution-box">
+                <i class="fa-solid fa-headset solution-icon"></i>
+                <h4>Soporte Técnico Operativo</h4>
+                <p>Asistencia especializada, resolución de incidencias y mantenimiento preventivo para garantizar la continuidad del flujo de trabajo.</p>
+            </div>
+
+            <div class="solution-box">
+                <i class="fa-solid fa-shield-halved solution-icon"></i>
+                <h4>Optimización y Seguridad</h4>
+                <p>Auditoría de rendimiento y securización de módulos para asegurar el correcto funcionamiento de todos los recursos del Aetherial Hub.</p>
+            </div>
         </div>
     </section>
 
