@@ -4,13 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Privatix - Herramientas de Privacidad 100% Locales</title>
-    <!-- Tailwind CSS para un diseño limpio y profesional -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- Header / Navbar -->
+    <!-- Header -->
     <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
@@ -20,105 +19,113 @@
             <nav class="hidden md:flex space-x-6 text-sm text-slate-300">
                 <a href="#herramientas" class="hover:text-emerald-400 transition">Herramientas</a>
                 <a href="#privacidad" class="hover:text-emerald-400 transition">¿Cómo funciona?</a>
-                <a href="https://github.com/tu-usuario/tu-repositorio" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-github text-lg"></i> Código Fuente</a>
             </nav>
         </div>
     </header>
 
     <!-- Hero Section -->
     <main class="flex-grow">
-        <section class="max-w-5xl mx-auto px-4 py-16 text-center">
+        <section class="max-w-5xl mx-auto px-4 py-12 text-center">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold mb-6 border border-emerald-500/20">
                 <i class="fa-solid fa-lock"></i> Procesamiento 100% Local en tu Navegador
             </div>
-            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-white">
+            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">
                 Tus archivos nunca <span class="text-emerald-400">abandonan</span> tu dispositivo.
             </h1>
-            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
-                Herramientas de privacidad ultraseguras, sin registros, sin servidores intermedios y sin límites de peso. Todo impulsado por tu navegador.
+            <p class="text-slate-400 max-w-xl mx-auto mb-8">
+                Herramientas de privacidad ultraseguras que se ejecutan directamente en tu memoria RAM.
             </p>
-            <div class="flex justify-center gap-4">
-                <a href="#herramientas" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-6 py-3 rounded-xl transition shadow-lg shadow-emerald-500/20">
-                    Explorar Herramientas
-                </a>
-                <a href="#privacidad" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-6 py-3 rounded-xl transition border border-slate-700">
-                    Verificar Código
-                </a>
-            </div>
         </section>
 
-        <!-- Seccion de Herramientas -->
-        <section id="herramientas" class="max-w-6xl mx-auto px-4 py-12">
-            <h2 class="text-2xl font-bold mb-8 text-center text-white">Elige una utilidad</h2>
-            <div class="grid md:grid-cols-3 gap-6">
-                
-                <!-- Tool 1: Encriptador -->
-                <div class="bg-slate-800/50 border border-slate-800 rounded-2xl p-6 hover:border-emerald-500/50 transition flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
-                            <i class="fa-solid fa-key"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 text-white">Encriptador Ultraseguro</h3>
-                        <p class="text-slate-400 text-sm mb-6">
-                            Cifra y descifra textos o archivos locales usando AES-256 bits con tu propia contraseña. Nadie más tiene la llave.
-                        </p>
+        <!-- Sección de Herramientas -->
+        <section id="herramientas" class="max-w-4xl mx-auto px-4 py-6">
+            
+            <!-- Herramienta Activa: Limpiador de Metadatos -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
                     </div>
-                    <button onclick="alert('Aquí puedes abrir la interfaz de encriptación')" class="w-full bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-emerald-400 font-medium py-2.5 rounded-xl transition border border-slate-700 text-sm">
-                        Usar Herramienta
-                    </button>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Limpiador de Metadatos de Imágenes</h3>
+                        <p class="text-slate-400 text-sm">Elimina el rastro GPS, fecha y modelo de cámara de tus fotos de forma instantánea.</p>
+                    </div>
                 </div>
 
-                <!-- Tool 2: Conversor -->
-                <div class="bg-slate-800/50 border border-slate-800 rounded-2xl p-6 hover:border-emerald-500/50 transition flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
-                            <i class="fa-solid fa-file-arrow-down"></i>
-                        </div>
-                        <h3 class="text-xl font-bold mb-2 text-white">Conversor Masivo Offline</h3>
-                        <p class="text-slate-400 text-sm mb-6">
-                            Transforma imágenes, HEIC a JPG y documentos sin restricciones de peso gracias a WebAssembly en tu cliente.
-                        </p>
-                    </div>
-                    <button onclick="alert('Aquí puedes abrir la interfaz del conversor')" class="w-full bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-emerald-400 font-medium py-2.5 rounded-xl transition border border-slate-700 text-sm">
-                        Usar Herramienta
-                    </button>
+                <!-- Área de Carga -->
+                <div class="border-2 border-dashed border-slate-700 rounded-xl p-8 text-center hover:border-emerald-500 transition cursor-pointer bg-slate-900/50" onclick="document.getElementById('fileInput').click()">
+                    <input type="file" id="fileInput" accept="image/*" class="hidden" onchange="procesarImagen(event)">
+                    <i class="fa-solid fa-cloud-arrow-up text-3xl text-emerald-400 mb-3"></i>
+                    <p class="text-slate-300 font-medium mb-1">Haz clic aquí para seleccionar una foto o arrástrala</p>
+                    <p class="text-xs text-slate-500">Compatible con JPG, PNG, WebP</p>
                 </div>
 
-                <!-- Tool 3: Limpiador de Metadatos -->
-                <div class="bg-slate-800/50 border border-slate-800 rounded-2xl p-6 hover:border-emerald-500/50 transition flex flex-col justify-between">
-                    <div>
-                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
-                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                <!-- Resultado -->
+                <div id="resultadoContainer" class="hidden mt-6 p-4 bg-slate-900 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <div class="flex items-center space-x-3">
+                        <i class="fa-solid fa-circle-check text-emerald-400 text-2xl"></i>
+                        <div>
+                            <p class="text-white font-medium text-sm" id="nombreArchivo">imagen_limpia.jpg</p>
+                            <p class="text-xs text-emerald-400">Metadatos eliminados con éxito</p>
                         </div>
-                        <h3 class="text-xl font-bold mb-2 text-white">Limpiador de Metadatos</h3>
-                        <p class="text-slate-400 text-sm mb-6">
-                            Elimina coordenadas GPS, fechas y datos ocultos de tus fotos y documentos antes de compartirlos en redes.
-                        </p>
                     </div>
-                    <button onclick="alert('Aquí puedes abrir la interfaz del limpiador')" class="w-full bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-emerald-400 font-medium py-2.5 rounded-xl transition border border-slate-700 text-sm">
-                        Usar Herramienta
-                    </button>
+                    <a id="downloadBtn" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-5 py-2.5 rounded-xl transition text-sm text-center">
+                        Descargar Imagen Limpia
+                    </a>
                 </div>
-
             </div>
+
         </section>
 
         <!-- Sección de Confianza -->
-        <section id="privacidad" class="max-w-4xl mx-auto px-4 py-16 text-center border-t border-slate-800 mt-12">
-            <h2 class="text-2xl font-bold mb-4 text-white">¿Por qué confiar en este sitio?</h2>
-            <p class="text-slate-400 text-sm max-w-xl mx-auto mb-8">
-                Al no tener backend (servidor), técnicamente es imposible que guardemos tus archivos. Todo el código JavaScript se ejecuta en tu propia computadora. Puedes comprobarlo abriendo las herramientas de desarrollo de tu navegador (F12) en la pestaña Red (Network).
+        <section id="privacidad" class="max-w-3xl mx-auto px-4 py-12 text-center border-t border-slate-800 mt-12">
+            <h2 class="text-xl font-bold mb-3 text-white">¿Cómo funciona técnicamente?</h2>
+            <p class="text-slate-400 text-xs leading-relaxed max-w-lg mx-auto">
+                Cuando seleccionas la imagen, el navegador la procesa mediante un elemento gráfico interno (Canvas) y extrae únicamente los pixeles visibles, descartando por completo los bloques binarios de metadatos (EXIF). Ningún archivo se transmite por internet.
             </p>
-            <a href="https://www.buymeacoffee.com" target="_blank" class="inline-flex items-center gap-2 bg-amber-500/10 text-amber-400 border border-amber-500/30 px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-amber-500/20 transition">
-                <i class="fa-solid fa-mug-hot"></i> Invítame un café para mantener el proyecto vivo
-            </a>
         </section>
     </main>
 
     <!-- Footer -->
     <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-        <p>Hecho con código abierto bajo licencia MIT. Tus datos te pertenecen.</p>
+        <p>Privatix - Herramientas de código abierto.</p>
     </footer>
 
+    <!-- Script de Funcionalidad Local -->
+    <script>
+        function procesarImagen(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    // Creamos un Canvas virtual en memoria RAM
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    
+                    const ctx = canvas.getContext('2d');
+                    // Dibujamos solo los pixeles (esto borra automáticamente todos los metadatos EXIF)
+                    ctx.drawImage(img, 0, 0);
+
+                    // Convertimos el canvas a un archivo limpio descargable
+                    canvas.toBlob(function(blob) {
+                        const url = URL.createObjectURL(blob);
+                        const downloadBtn = document.getElementById('downloadBtn');
+                        
+                        downloadBtn.href = url;
+                        downloadBtn.download = "limpia_" + file.name;
+                        
+                        document.getElementById('nombreArchivo').textContent = file.name;
+                        document.getElementById('resultadoContainer').classList.remove('hidden');
+                    }, file.type);
+                }
+                img.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
+        }
+    </script>
 </body>
 </html>
