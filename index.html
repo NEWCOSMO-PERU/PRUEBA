@@ -36,6 +36,45 @@
             position: relative;
         }
 
+        /* --- PANTALLA SPLASH --- */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background-color: var(--bg-color);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.8s ease, visibility 0.8s ease;
+        }
+
+        .splash-logo {
+            width: 180px;
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(255, 159, 67, 0.5));
+            animation: pulse-glow 2s infinite ease-in-out;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 15px rgba(255, 159, 67, 0.4));
+            }
+            50% {
+                transform: scale(1.05);
+                filter: drop-shadow(0 0 30px rgba(255, 159, 67, 0.8));
+            }
+        }
+
+        .splash-hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
         /* Efecto de fondo con malla digital y degradados radiales */
         body::before {
             content: "";
@@ -219,7 +258,7 @@
         }
 
         .hub-card {
-            background-color: var(--card-bg);
+            background-color: rgba(255, 255, 255, 0.02);
             border: 1px solid var(--border-color);
             border-radius: 20px;
             padding: 2.5rem;
@@ -318,6 +357,11 @@
 </head>
 <body>
 
+    <!-- --- PANTALLA SPLASH --- -->
+    <div id="splash-screen">
+        <img src="06.jpg" alt="Logo NewCosmo" class="splash-logo">
+    </div>
+
     <!-- --- BARRA DE NAVEGACIÓN --- -->
     <header>
         <!-- Logo a la izquierda con icono de FontAwesome -->
@@ -362,7 +406,6 @@
                     <div class="action-btn">Explorar</div>
                 </div>
                 <div class="card-graphic" style="color: var(--neon-blue);">
-                    <!-- Icono Libro Neón -->
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M20 25C20 25 35 20 50 28C65 20 80 25 80 25V75C80 75 65 70 50 78C35 70 20 75 20 75V25Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                         <path d="M50 28V78" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
@@ -379,7 +422,6 @@
                     <div class="action-btn">Acceder</div>
                 </div>
                 <div class="card-graphic" style="color: var(--neon-magenta);">
-                    <!-- Icono Chip/Manual Neón -->
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <rect x="25" y="25" width="50" height="50" rx="6" stroke="currentColor" stroke-width="3"/>
                         <rect x="38" y="38" width="24" height="24" rx="3" stroke="currentColor" stroke-width="2" opacity="0.8"/>
@@ -396,7 +438,6 @@
                     <div class="action-btn">Visitar</div>
                 </div>
                 <div class="card-graphic" style="color: var(--neon-orange);">
-                    <!-- Icono Carrito Neón -->
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <circle cx="40" cy="80" r="6" fill="currentColor"/>
                         <circle cx="70" cy="80" r="6" fill="currentColor"/>
@@ -414,7 +455,6 @@
                     <div class="action-btn">Descargar</div>
                 </div>
                 <div class="card-graphic" style="color: var(--neon-blue);">
-                    <!-- Icono Auriculares Neón con Ondas -->
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M25 55C25 40 37 25 50 25C63 25 75 40 75 55" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
                         <rect x="20" y="50" width="10" height="18" rx="4" fill="currentColor"/>
@@ -432,7 +472,6 @@
                     <div class="action-btn">Descubrir</div>
                 </div>
                 <div class="card-graphic" style="color: var(--neon-green);">
-                    <!-- Icono Engranaje/Solución Neón -->
                     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M50 35C41.7157 35 35 41.7157 35 50C35 58.2843 41.7157 65 50 65C58.2843 65 65 58.2843 65 50C65 41.7157 58.2843 35 50 35Z" stroke="currentColor" stroke-width="3"/>
                         <path d="M46 18H54V26H46V18ZM46 74H54V82H46V74ZM18 46H26V54H18V46ZM74 46H82V54H74V46ZM26.2 29.5L31.8 23.8L37.5 29.5L31.8 35.1L26.2 29.5ZM62.5 65.8L68.1 60.2L73.8 65.8L68.1 71.5L62.5 65.8ZM29.5 73.8L23.8 68.1L29.5 62.5L35.1 68.1L29.5 73.8ZM65.8 26.2L71.5 31.8L65.8 37.5L60.2 31.8L65.8 26.2Z" stroke="currentColor" stroke-width="2"/>
@@ -442,6 +481,16 @@
 
         </div>
     </section>
+
+    <!-- --- SCRIPT PARA EL DESVANECIMIENTO DEL SPLASH --- -->
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('splash-screen');
+                splash.classList.add('splash-hidden');
+            }, 2000); // 2 segundos de visualización antes de ocultarse
+        });
+    </script>
 
 </body>
 </html>
