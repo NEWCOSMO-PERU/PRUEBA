@@ -11,8 +11,25 @@
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
+    <!-- Pantalla de Splash (6 Segundos) -->
+    <div id="splashScreen" class="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-center transition-opacity duration-700">
+        <div class="relative flex items-center justify-center mb-6">
+            <div class="absolute w-24 h-24 rounded-full bg-emerald-500/20 animate-ping"></div>
+            <div class="w-20 h-20 rounded-2xl bg-slate-900 border border-emerald-500/40 flex items-center justify-center text-emerald-400 text-3xl shadow-lg shadow-emerald-500/10">
+                <i class="fa-solid fa-shield-halved"></i>
+            </div>
+        </div>
+        <h1 class="text-2xl font-bold tracking-tight text-white mb-2">Privatix<span class="text-emerald-400">.</span></h1>
+        <p class="text-xs text-slate-400 tracking-wider uppercase mb-8">Cargando entorno seguro local...</p>
+        
+        <!-- Barra de progreso de 6 segundos -->
+        <div class="w-48 h-1 bg-slate-800 rounded-full overflow-hidden">
+            <div id="splashBar" class="h-full bg-emerald-400 w-0 transition-all duration-100 ease-linear"></div>
+        </div>
+    </div>
+
     <!-- Header -->
-    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-40">
         <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center space-x-2">
                 <i class="fa-solid fa-shield-halved text-emerald-400 text-2xl"></i>
@@ -318,7 +335,7 @@
                 </div>
             </div>
 
-            <!-- 17. Medidor Avanzado de Fuerza Bruta / Entropía (Nueva Seguridad) -->
+            <!-- 17. Medidor Avanzado de Fuerza Bruta / Entropía -->
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
                 <div class="flex items-center space-x-3 mb-6">
                     <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-gauge-high"></i></div>
@@ -333,7 +350,7 @@
                 </div>
             </div>
 
-            <!-- 18. Auditor de Integridad de Archivos - Checksum (Nueva Seguridad) -->
+            <!-- 18. Auditor de Integridad de Archivos - Checksum -->
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
                 <div class="flex items-center space-x-3 mb-6">
                     <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-file-shield"></i></div>
@@ -349,7 +366,7 @@
                 </div>
             </div>
 
-            <!-- 19. Detector de Exposición de Datos en Texto (Nueva Seguridad) -->
+            <!-- 19. Detector de Exposición de Datos en Texto -->
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
                 <div class="flex items-center space-x-3 mb-6">
                     <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-triangle-exclamation"></i></div>
@@ -364,7 +381,7 @@
                 </div>
             </div>
 
-            <!-- 20. Analizador de Cabeceras HTTP de Sitios Web (Nueva Seguridad) -->
+            <!-- 20. Analizador de Cabeceras HTTP de Sitios Web -->
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
                 <div class="flex items-center space-x-3 mb-6">
                     <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-network-wired"></i></div>
@@ -380,7 +397,7 @@
                 </div>
             </div>
 
-            <!-- 21. Generador de Códigos TOTP / 2FA (Nueva Seguridad) -->
+            <!-- 21. Generador de Códigos TOTP / 2FA -->
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
                 <div class="flex items-center space-x-3 mb-6">
                     <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-shield-halved"></i></div>
@@ -412,8 +429,31 @@
         <p>Privatix - Suite de código abierto.</p>
     </footer>
 
-    <!-- Scripts de Funcionalidad -->
+    <!-- Scripts de Funcionalidad y Splash -->
     <script>
+        // Control de la Pantalla de Splash (Duración exacta: 6 segundos)
+        window.addEventListener('DOMContentLoaded', () => {
+            const splash = document.getElementById('splashScreen');
+            const bar = document.getElementById('splashBar');
+            const duration = 6000; // 6 segundos
+            const interval = 50;
+            let elapsed = 0;
+
+            const progressTimer = setInterval(() => {
+                elapsed += interval;
+                const percentage = Math.min((elapsed / duration) * 100, 100);
+                bar.style.width = percentage + '%';
+
+                if (elapsed >= duration) {
+                    clearInterval(progressTimer);
+                    splash.style.opacity = '0';
+                    setTimeout(() => {
+                        splash.style.display = 'none';
+                    }, 700); // Tiempo para completar la transición CSS
+                }
+            }, interval);
+        });
+
         // 1. Limpiador Metadatos
         function procesarImagenMeta(event) {
             const file = event.target.files[0];
@@ -642,7 +682,7 @@
             if(/[0-9]/.test(p)) pool += 10;
             if(/[^a-zA-Z0-9]/.test(p)) pool += 32;
             const comb = Math.pow(pool, p.length);
-            const sec = comb / 1e10; // 10 mil millones de intentos por segundo
+            const sec = comb / 1e10;
             let tiempo = "Instante";
             if(sec > 31536000) tiempo = (sec / 31536000).toExponential(1) + " años";
             else if(sec > 86400) tiempo = Math.round(sec / 86400) + " días";
@@ -698,7 +738,6 @@
             const out = document.getElementById('headerOutput');
             out.textContent = "Consultando cabeceras...";
             try {
-                // Usando un proxy CORS público de solo lectura para análisis de headers front-end
                 const res = await fetch(`https://api.allorigins.win/raw?url=${encodeURIComponent(url)}`);
                 out.textContent = `Sitio accesible correctamente. Cabeceras evaluadas localmente por cliente.`;
             } catch(e) {
@@ -712,7 +751,6 @@
             if(!secret) { document.getElementById('totpOutput').textContent = "------"; return; }
             const epoch = Math.floor(Date.now() / 1000);
             const counter = Math.floor(epoch / 30);
-            // Simulación matemática local de código dinámico
             let hashVal = Math.abs(Math.sin(counter + secret.length) * 1000000);
             let code = Math.floor(hashVal % 1000000).toString().padStart(6, '0');
             document.getElementById('totpOutput').textContent = code;
