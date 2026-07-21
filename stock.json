@@ -1,10 +1,20 @@
 [
   {
-    "nombre": "Camiseta Deportiva",
-    "cantidad": 25
+    "nombre": "Camiseta Minimalista",
+    "precio": 29.99,
+    "stock": 15,
+    "imagen": "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=400&auto=format&fit=crop"
   },
   {
-    "nombre": "Zapatillas Urbanas",
-    "cantidad": 10
+    "nombre": "Zapatillas Urbanas Clásicas",
+    "precio": 89.50,
+    "stock": 8,
+    "imagen": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400&auto=format&fit=crop"
+  },
+  {
+    "nombre": "Mochila Ergonómica para Laptop",
+    "precio": 45.00,
+    "stock": 4,
+    "imagen": "https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=400&auto=format&fit=crop"
   }
 ]
