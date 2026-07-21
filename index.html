@@ -109,15 +109,15 @@
         .logo-section {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             text-decoration: none;
             color: inherit;
         }
 
-        .logo-icon {
-            font-size: 2rem;
-            color: var(--neon-blue);
-            filter: drop-shadow(0 0 5px var(--neon-blue));
+        .header-logo-img {
+            height: 38px;
+            width: auto;
+            filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.4));
         }
 
         .logo-text {
@@ -359,14 +359,14 @@
 
     <!-- --- PANTALLA SPLASH --- -->
     <div id="splash-screen">
-        <img src="06.jpg" alt="Logo NewCosmo" class="splash-logo">
+        <img src="logo.png" alt="Logo NewCosmo" class="splash-logo">
     </div>
 
     <!-- --- BARRA DE NAVEGACIÓN --- -->
     <header>
-        <!-- Logo a la izquierda con icono de FontAwesome -->
+        <!-- Logo a la izquierda -->
         <a href="#" class="logo-section">
-            <i class="fa-solid fa-atom logo-icon"></i>
+            <img src="logo.png" alt="Logo NewCosmo" class="header-logo-img">
             <span class="logo-text">NEWCOSMO Perú</span>
         </a>
 
@@ -488,7 +488,7 @@
             setTimeout(() => {
                 const splash = document.getElementById('splash-screen');
                 splash.classList.add('splash-hidden');
-            }, 2000); // 2 segundos de visualización antes de ocultarse
+            }, 2000); // Permanece 2 segundos visible antes de desvanecerse
         });
     </script>
 
