@@ -35,7 +35,7 @@
                 Tus archivos nunca <span class="text-emerald-400">abandonan</span> tu dispositivo.
             </h1>
             <p class="text-slate-400 max-w-xl mx-auto mb-8">
-                Herramientas de privacidad ultraseguras que se ejecutan directamente en tu memoria RAM.
+                Suite completa de herramientas de privacidad ultraseguras ejecutadas directamente en tu memoria RAM.
             </p>
         </section>
 
@@ -95,8 +95,8 @@
                         <i class="fa-solid fa-file-arrow-down"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white">3. Conversor de Imágenes (Incluye HEIC a JPG)</h3>
-                        <p class="text-slate-400 text-sm">Convierte fotos de iPhone (HEIC) u otros formatos a JPG de forma masiva.</p>
+                        <h3 class="text-xl font-bold text-white">3. Conversor de Imágenes (HEIC a JPG)</h3>
+                        <p class="text-slate-400 text-sm">Transforma fotos de iPhone u otros formatos a JPG masivamente.</p>
                     </div>
                 </div>
 
@@ -109,6 +109,70 @@
                 <div id="resultadoConv" class="hidden mt-4 p-4 bg-slate-900 rounded-xl border border-slate-800 text-center">
                     <p class="text-emerald-400 font-medium text-sm mb-2" id="convStatus">Imágenes convertidas exitosamente</p>
                     <div id="convLinks" class="flex flex-wrap gap-2 justify-center"></div>
+                </div>
+            </div>
+
+            <!-- Herramienta 4: Generador de Contraseñas Seguras -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-shield-cat"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">4. Generador de Contraseñas Blindadas</h3>
+                        <p class="text-slate-400 text-sm">Crea claves imposibles de adivinar adaptadas a tus necesidades.</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <div class="flex items-center justify-between bg-slate-900 border border-slate-700 rounded-xl p-3">
+                        <span id="passOutput" class="text-emerald-400 font-mono text-sm tracking-wider select-all">Haz clic en generar</span>
+                        <button onclick="copiarPassword()" class="text-slate-400 hover:text-white text-sm"><i class="fa-regular fa-copy"></i> Copiar</button>
+                    </div>
+                    <button onclick="generarPassword()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold py-2.5 rounded-xl transition text-sm">Generar Contraseña Segura</button>
+                </div>
+            </div>
+
+            <!-- Herramienta 5: Censurador / Redactor de Texto -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-marker"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">5. Censurador de Datos Sensibles en Texto</h3>
+                        <p class="text-slate-400 text-sm">Oculta palabras clave, correos o números confidenciales antes de compartir.</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <textarea id="redactText" rows="3" placeholder="Pega aquí el texto que deseas redactar..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-emerald-500"></textarea>
+                    <input type="text" id="redactWord" placeholder="Palabra o dato a ocultar (ej: Juan, 555-1234)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-emerald-500">
+                    <button onclick="censurarTexto()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold py-2.5 rounded-xl transition text-sm">Censurar Texto</button>
+                </div>
+            </div>
+
+            <!-- Herramienta 6: Compresor Rápido de Imágenes -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-compress"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">6. Compresor Local de Imágenes</h3>
+                        <p class="text-slate-400 text-sm">Reduce el peso en MB de tus fotos ajustando la calidad al vuelo.</p>
+                    </div>
+                </div>
+
+                <div class="border-2 border-dashed border-slate-700 rounded-xl p-6 text-center hover:border-emerald-500 transition cursor-pointer bg-slate-900/50" onclick="document.getElementById('fileInputComp').click()">
+                    <input type="file" id="fileInputComp" accept="image/*" class="hidden" onchange="comprimirImagen(event)">
+                    <i class="fa-solid fa-cloud-arrow-up text-3xl text-emerald-400 mb-2"></i>
+                    <p class="text-slate-300 font-medium text-sm">Haz clic para seleccionar una foto pesada</p>
+                </div>
+
+                <div id="resultadoComp" class="hidden mt-4 p-4 bg-slate-900 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p class="text-white font-medium text-sm truncate" id="nombreComp">foto_comprimida.jpg</p>
+                    <a id="downloadComp" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-4 py-2 rounded-xl transition text-sm text-center">Descargar Comprimida</a>
                 </div>
             </div>
 
@@ -162,7 +226,6 @@
             const clave = document.getElementById('cryptoKey').value;
             if(!texto || !clave) { alert('Ingresa texto y contraseña'); return; }
             try {
-                // Cifrado simétrico básico basado en Base64 + clave combinada localmente
                 const encoded = btoa(encodeURIComponent(texto).split('').reverse().join('') + ":::" + clave);
                 document.getElementById('cryptoText').value = encoded;
             } catch(e) { alert('Error al cifrar'); }
@@ -192,7 +255,6 @@
 
             for (let file of files) {
                 let imageFile = file;
-                // Si es formato HEIC de iPhone
                 if (file.name.toLowerCase().endsWith('.heic') || file.type === "image/heic") {
                     try {
                         const convertedBlob = await heic2any({ blob: file, toType: "image/jpeg" });
@@ -223,6 +285,60 @@
                 }
                 reader.readAsDataURL(imageFile);
             }
+        }
+
+        // Herramienta 4: Generador de Contraseñas
+        function generarPassword() {
+            const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!-_";
+            let pass = "";
+            for (let i = 0; i < 16; i++) {
+                pass += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            document.getElementById('passOutput').textContent = pass;
+        }
+
+        function copiarPassword() {
+            const text = document.getElementById('passOutput').textContent;
+            navigator.clipboard.writeText(text);
+            alert("¡Contraseña copiada al portapapeles!");
+        }
+
+        // Herramienta 5: Censurador de Texto
+        function censurarTexto() {
+            const texto = document.getElementById('redactText').value;
+            const palabra = document.getElementById('redactWord').value;
+            if(!texto || !palabra) { alert('Ingresa el texto y la palabra a ocultar'); return; }
+            const regex = new RegExp(palabra, 'gi');
+            const redactado = texto.replace(regex, '█████');
+            document.getElementById('redactText').value = redactado;
+        }
+
+        // Herramienta 6: Compresor Rápido de Imágenes
+        function comprimirImagen(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                const img = new Image();
+                img.onload = function() {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.width;
+                    canvas.height = img.height;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    // Comprimir calidad al 70% para reducir peso
+                    canvas.toBlob(function(blob) {
+                        const url = URL.createObjectURL(blob);
+                        const btn = document.getElementById('downloadComp');
+                        btn.href = url;
+                        btn.download = "comprimida_" + file.name;
+                        document.getElementById('nombreComp').textContent = file.name + " (Reducida)";
+                        document.getElementById('resultadoComp').classList.remove('hidden');
+                    }, 'image/jpeg', 0.7);
+                }
+                img.src = e.target.result;
+            }
+            reader.readAsDataURL(file);
         }
     </script>
 </body>
