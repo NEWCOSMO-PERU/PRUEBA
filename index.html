@@ -3,494 +3,122 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NewCosmo Perú | Aetherial Hub</title>
-    <!-- Incluimos FontAwesome para los iconos de la barra de navegación -->
+    <title>Privatix - Herramientas de Privacidad 100% Locales</title>
+    <!-- Tailwind CSS para un diseño limpio y profesional -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        /* --- VARIABLES DE DISEÑO (COLORES Y ESTILO) --- */
-        :root {
-            --bg-color: #030810; /* Fondo ultra oscuro */
-            --nav-bg: rgba(3, 8, 16, 0.9); /* Nav transparente con desenfoque */
-            --border-color: rgba(0, 242, 254, 0.3); /* Borde neón sutil */
-            --text-main: #ffffff;
-            --text-muted: #8b9bb4;
-            --neon-blue: #00f2fe; /* Azul neón brillante */
-            --neon-magenta: #bd00ff; /* Púrpura neón */
-            --neon-orange: #ff9f43; /* Naranja neón */
-            --neon-green: #00ff88; /* Verde neón para Soluciones */
-            --transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
-        }
-
-        /* --- RESET BÁSICO Y ESTILOS GLOBALES --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            overflow-x: hidden;
-            position: relative;
-        }
-
-        /* --- PANTALLA SPLASH --- */
-        #splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: var(--bg-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            transition: opacity 0.8s ease, visibility 0.8s ease;
-        }
-
-        .splash-logo {
-            width: 180px;
-            height: auto;
-            filter: drop-shadow(0 0 20px rgba(255, 159, 67, 0.5));
-            animation: pulse-glow 2s infinite ease-in-out;
-        }
-
-        @keyframes pulse-glow {
-            0%, 100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 15px rgba(255, 159, 67, 0.4));
-            }
-            50% {
-                transform: scale(1.05);
-                filter: drop-shadow(0 0 30px rgba(255, 159, 67, 0.8));
-            }
-        }
-
-        .splash-hidden {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-
-        /* Efecto de fondo con malla digital y degradados radiales */
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(0, 242, 254, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(189, 0, 255, 0.05) 0%, transparent 40%),
-                linear-gradient(rgba(18, 30, 49, 0.2) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(18, 30, 49, 0.2) 1px, transparent 1px);
-            background-size: 100% 100%, 100% 100%, 50px 50px, 50px 50px;
-            z-index: -1;
-        }
-
-        /* --- BARRA DE NAVEGACIÓN --- */
-        header {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%;
-            height: 80px;
-            background-color: var(--nav-bg);
-            backdrop-filter: blur(10px); /* Efecto de vidrio esmerilado */
-            border-bottom: 1px solid var(--border-color);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 40px;
-            z-index: 1000;
-        }
-
-        .logo-section {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .header-logo-img {
-            height: 38px;
-            width: auto;
-            filter: drop-shadow(0 0 8px rgba(0, 242, 254, 0.4));
-        }
-
-        .logo-text {
-            font-size: 1rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 0.5rem;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            padding: 0.8rem 1.2rem;
-            border-radius: 8px;
-            transition: var(--transition);
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        /* Estilo para el enlace activo/hover */
-        .nav-links a:hover, .nav-links a.active {
-            color: var(--text-main);
-            background-color: rgba(255, 255, 255, 0.05);
-        }
-
-        .nav-links a.active {
-            color: var(--neon-blue);
-            text-shadow: 0 0 10px rgba(0, 242, 254, 0.6);
-        }
-
-        /* Campo de búsqueda estilo neón */
-        .search-box {
-            position: relative;
-        }
-
-        .search-box input {
-            background-color: rgba(255, 255, 255, 0.03);
-            border: 1px solid var(--border-color);
-            padding: 0.7rem 1.2rem 0.7rem 2.8rem;
-            border-radius: 30px;
-            color: var(--text-main);
-            font-size: 0.85rem;
-            width: 250px;
-            transition: var(--transition);
-            outline: none;
-        }
-
-        .search-box input:focus {
-            border-color: var(--neon-blue);
-            box-shadow: 0 0 15px rgba(0, 242, 254, 0.2);
-            width: 300px;
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 1.2rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            pointer-events: none;
-        }
-
-        /* --- SECCIÓN HERO PRINCIPAL --- */
-        .hero {
-            padding-top: 150px; /* Espacio para el nav fijo */
-            padding-bottom: 80px;
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            max-width: 1000px;
-            margin: 0 auto;
-            padding-left: 2rem;
-            padding-right: 2rem;
-        }
-
-        .hero h2 {
-            font-size: 1.2rem;
-            text-transform: uppercase;
-            letter-spacing: 5px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 0.5rem;
-            font-weight: 300;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            font-weight: 900;
-            line-height: 1.1;
-            margin-bottom: 1.5rem;
-        }
-
-        /* Gradiente de neón en el texto principal */
-        .hero h1 span {
-            background: linear-gradient(135deg, var(--neon-blue), var(--neon-magenta));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 15px rgba(0, 242, 254, 0.5));
-        }
-
-        .hero p {
-            font-size: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--text-muted);
-            font-weight: 300;
-        }
-
-        /* --- CUADRÍCULA DE TARJETAS (HUB MÓDULOS) --- */
-        .hub-section {
-            padding: 0 40px 100px 40px;
-            display: flex;
-            justify-content: center;
-        }
-
-        .hub-grid {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(300px, 1fr));
-            gap: 2.5rem;
-            width: 100%;
-            max-width: 1200px;
-        }
-
-        .hub-card {
-            background-color: rgba(255, 255, 255, 0.02);
-            border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 2.5rem;
-            text-decoration: none;
-            color: inherit;
-            transition: var(--transition);
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 5px 30px rgba(0,0,0,0.2);
-        }
-
-        /* Hover: efecto neón y desplazamiento */
-        .hub-card:hover {
-            transform: translateY(-8px);
-            background-color: rgba(7, 14, 24, 0.9);
-            box-shadow: 0 10px 40px -10px rgba(0, 242, 254, 0.3);
-            border-color: var(--neon-blue);
-        }
-
-        .card-content {
-            flex: 1;
-            padding-right: 2rem;
-        }
-
-        .card-content h3 {
-            font-size: 1.5rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 1rem;
-        }
-
-        .card-content p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            line-height: 1.6;
-            margin-bottom: 2.5rem;
-        }
-
-        .action-btn {
-            display: inline-block;
-            padding: 0.8rem 2rem;
-            border-radius: 30px;
-            font-size: 0.85rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1.5px;
-            transition: var(--transition);
-            background: transparent;
-            border: 1px solid rgba(0, 242, 254, 0.3);
-            color: var(--neon-blue);
-            text-align: center;
-        }
-
-        .hub-card:hover .action-btn {
-            background: var(--neon-blue);
-            color: #000;
-            box-shadow: 0 0 15px var(--neon-blue);
-            border-color: transparent;
-        }
-
-        .card-graphic {
-            width: 120px;
-            height: 120px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .card-graphic svg {
-            width: 100%;
-            height: 100%;
-            filter: drop-shadow(0 0 12px currentColor);
-            transition: transform 0.5s ease;
-        }
-
-        .hub-card:hover .card-graphic svg {
-            transform: scale(1.1) rotate(5deg);
-        }
-
-        /* --- RESPONSIVIDAD MÓVIL --- */
-        @media (max-width: 900px) {
-            header { padding: 0 20px; }
-            .hero h1 { font-size: 2.5rem; }
-            .search-box input { width: 180px; }
-            .search-box input:focus { width: 220px; }
-            .hub-grid { grid-template-columns: 1fr; gap: 1.5rem; }
-            .hub-card { flex-direction: column-reverse; align-items: center; text-align: center; padding: 1.5rem; }
-            .card-content { padding-right: 0; }
-            .card-graphic { margin-top: 1rem; width: 100px; height: 100px; }
-        }
-    </style>
 </head>
-<body>
+<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- --- PANTALLA SPLASH --- -->
-    <div id="splash-screen">
-        <img src="logo.png" alt="Logo NewCosmo" class="splash-logo">
-    </div>
-
-    <!-- --- BARRA DE NAVEGACIÓN --- -->
-    <header>
-        <!-- Logo a la izquierda -->
-        <a href="#" class="logo-section">
-            <img src="logo.png" alt="Logo NewCosmo" class="header-logo-img">
-            <span class="logo-text">NEWCOSMO Perú</span>
-        </a>
-
-        <!-- Menú y Búsqueda a la derecha -->
-        <div class="nav-content" style="display: flex; align-items: center; gap: 1.5rem;">
-            <ul class="nav-links">
-                <li><a href="#" class="active"><i class="fa-solid fa-house"></i> Home</a></li>
-                <li><a href="#"><i class="fa-solid fa-compass"></i> Discover</a></li>
-                <li><a href="#"><i class="fa-solid fa-book"></i> Library</a></li>
-                <li><a href="#"><i class="fa-solid fa-shopping-cart"></i> Shop</a></li>
-                <li><a href="#"><i class="fa-solid fa-circle-info"></i> Support</a></li>
-            </ul>
-
-            <div class="search-box">
-                <i class="fa-solid fa-magnifying-glass"></i>
-                <input type="text" placeholder="Search Aetherial Hub">
+    <!-- Header / Navbar -->
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-shield-halved text-emerald-400 text-2xl"></i>
+                <span class="text-xl font-bold tracking-tight">Privatix<span class="text-emerald-400">.</span></span>
             </div>
+            <nav class="hidden md:flex space-x-6 text-sm text-slate-300">
+                <a href="#herramientas" class="hover:text-emerald-400 transition">Herramientas</a>
+                <a href="#privacidad" class="hover:text-emerald-400 transition">¿Cómo funciona?</a>
+                <a href="https://github.com/tu-usuario/tu-repositorio" target="_blank" class="hover:text-emerald-400 transition"><i class="fa-brands fa-github text-lg"></i> Código Fuente</a>
+            </nav>
         </div>
     </header>
 
-    <!-- --- SECCIÓN HERO PRINCIPAL --- -->
-    <main class="hero">
-        <h2>NEWCOSMO</h2>
-        <h1><span>AETHERIAL HUB</span></h1>
-        <p>Trujillo, La Libertad</p>
+    <!-- Hero Section -->
+    <main class="flex-grow">
+        <section class="max-w-5xl mx-auto px-4 py-16 text-center">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold mb-6 border border-emerald-500/20">
+                <i class="fa-solid fa-lock"></i> Procesamiento 100% Local en tu Navegador
+            </div>
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-white">
+                Tus archivos nunca <span class="text-emerald-400">abandonan</span> tu dispositivo.
+            </h1>
+            <p class="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto mb-10">
+                Herramientas de privacidad ultraseguras, sin registros, sin servidores intermedios y sin límites de peso. Todo impulsado por tu navegador.
+            </p>
+            <div class="flex justify-center gap-4">
+                <a href="#herramientas" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-6 py-3 rounded-xl transition shadow-lg shadow-emerald-500/20">
+                    Explorar Herramientas
+                </a>
+                <a href="#privacidad" class="bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold px-6 py-3 rounded-xl transition border border-slate-700">
+                    Verificar Código
+                </a>
+            </div>
+        </section>
+
+        <!-- Seccion de Herramientas -->
+        <section id="herramientas" class="max-w-6xl mx-auto px-4 py-12">
+            <h2 class="text-2xl font-bold mb-8 text-center text-white">Elige una utilidad</h2>
+            <div class="grid md:grid-cols-3 gap-6">
+                
+                <!-- Tool 1: Encriptador -->
+                <div class="bg-slate-800/50 border border-slate-800 rounded-2xl p-6 hover:border-emerald-500/50 transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-key"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-white">Encriptador Ultraseguro</h3>
+                        <p class="text-slate-400 text-sm mb-6">
+                            Cifra y descifra textos o archivos locales usando AES-256 bits con tu propia contraseña. Nadie más tiene la llave.
+                        </p>
+                    </div>
+                    <button onclick="alert('Aquí puedes abrir la interfaz de encriptación')" class="w-full bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-emerald-400 font-medium py-2.5 rounded-xl transition border border-slate-700 text-sm">
+                        Usar Herramienta
+                    </button>
+                </div>
+
+                <!-- Tool 2: Conversor -->
+                <div class="bg-slate-800/50 border border-slate-800 rounded-2xl p-6 hover:border-emerald-500/50 transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-file-arrow-down"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-white">Conversor Masivo Offline</h3>
+                        <p class="text-slate-400 text-sm mb-6">
+                            Transforma imágenes, HEIC a JPG y documentos sin restricciones de peso gracias a WebAssembly en tu cliente.
+                        </p>
+                    </div>
+                    <button onclick="alert('Aquí puedes abrir la interfaz del conversor')" class="w-full bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-emerald-400 font-medium py-2.5 rounded-xl transition border border-slate-700 text-sm">
+                        Usar Herramienta
+                    </button>
+                </div>
+
+                <!-- Tool 3: Limpiador de Metadatos -->
+                <div class="bg-slate-800/50 border border-slate-800 rounded-2xl p-6 hover:border-emerald-500/50 transition flex flex-col justify-between">
+                    <div>
+                        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl mb-4">
+                            <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-2 text-white">Limpiador de Metadatos</h3>
+                        <p class="text-slate-400 text-sm mb-6">
+                            Elimina coordenadas GPS, fechas y datos ocultos de tus fotos y documentos antes de compartirlos en redes.
+                        </p>
+                    </div>
+                    <button onclick="alert('Aquí puedes abrir la interfaz del limpiador')" class="w-full bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-emerald-400 font-medium py-2.5 rounded-xl transition border border-slate-700 text-sm">
+                        Usar Herramienta
+                    </button>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- Sección de Confianza -->
+        <section id="privacidad" class="max-w-4xl mx-auto px-4 py-16 text-center border-t border-slate-800 mt-12">
+            <h2 class="text-2xl font-bold mb-4 text-white">¿Por qué confiar en este sitio?</h2>
+            <p class="text-slate-400 text-sm max-w-xl mx-auto mb-8">
+                Al no tener backend (servidor), técnicamente es imposible que guardemos tus archivos. Todo el código JavaScript se ejecuta en tu propia computadora. Puedes comprobarlo abriendo las herramientas de desarrollo de tu navegador (F12) en la pestaña Red (Network).
+            </p>
+            <a href="https://www.buymeacoffee.com" target="_blank" class="inline-flex items-center gap-2 bg-amber-500/10 text-amber-400 border border-amber-500/30 px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-amber-500/20 transition">
+                <i class="fa-solid fa-mug-hot"></i> Invítame un café para mantener el proyecto vivo
+            </a>
+        </section>
     </main>
 
-    <!-- --- SECCIÓN HUB DE MÓDULOS --- -->
-    <section class="hub-section">
-        <div class="hub-grid">
-            
-            <!-- TARJETA 1: BOOKS (Azul) -->
-            <a href="https://newcosmo-peru.github.io/BOOKS/" class="hub-card" target="_blank">
-                <div class="card-content">
-                    <h3>BOOKS</h3>
-                    <p>Accede a nuestro repositorio digital de libros técnicos, manuales y recursos operativos en formato e-book.</p>
-                    <div class="action-btn">Explorar</div>
-                </div>
-                <div class="card-graphic" style="color: var(--neon-blue);">
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M20 25C20 25 35 20 50 28C65 20 80 25 80 25V75C80 75 65 70 50 78C35 70 20 75 20 75V25Z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M50 28V78" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M25 35H45M25 47H45M25 59H45M55 35H75M55 47H75M55 59H75" stroke="currentColor" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
-                    </svg>
-                </div>
-            </a>
-
-            <!-- TARJETA 2: MANUALES (Magenta) -->
-            <a href="https://newcosmo-peru.github.io/MANUALES/" class="hub-card" target="_blank">
-                <div class="card-content">
-                    <h3>MANUALES</h3>
-                    <p>Guías técnicas, diagramas operativos y documentación de configuración para sistemas y equipos operativos.</p>
-                    <div class="action-btn">Acceder</div>
-                </div>
-                <div class="card-graphic" style="color: var(--neon-magenta);">
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <rect x="25" y="25" width="50" height="50" rx="6" stroke="currentColor" stroke-width="3"/>
-                        <rect x="38" y="38" width="24" height="24" rx="3" stroke="currentColor" stroke-width="2" opacity="0.8"/>
-                        <path d="M50 15V25M50 75V85M15 50H25M75 50H85M35 15V25M65 15V25M35 75V85M65 75V85M15 35H25M15 65H25M75 35H85M75 65H85" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                    </svg>
-                </div>
-            </a>
-
-            <!-- TARJETA 3: STORE (Naranja) -->
-            <a href="https://newcosmo-peru.github.io/STORE/" class="hub-card" target="_blank">
-                <div class="card-content">
-                    <h3>STORE</h3>
-                    <p>Nuestra tienda operativa con herramientas, componentes técnicos, licencias y componentes operativos.</p>
-                    <div class="action-btn">Visitar</div>
-                </div>
-                <div class="card-graphic" style="color: var(--neon-orange);">
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="40" cy="80" r="6" fill="currentColor"/>
-                        <circle cx="70" cy="80" r="6" fill="currentColor"/>
-                        <path d="M20 25H30L42 62H75L85 35H35" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M55 42H60M50 48H65" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </div>
-            </a>
-
-            <!-- TARJETA 4: TONOS (Cian) -->
-            <a href="https://newcosmo-peru.github.io/TONOS/" class="hub-card" target="_blank">
-                <div class="card-content">
-                    <h3>TONOS</h3>
-                    <p>Descarga recursos de audio, tonos operativos y efectos de sonido futuristas para nuestros sistemas.</p>
-                    <div class="action-btn">Descargar</div>
-                </div>
-                <div class="card-graphic" style="color: var(--neon-blue);">
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M25 55C25 40 37 25 50 25C63 25 75 40 75 55" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-                        <rect x="20" y="50" width="10" height="18" rx="4" fill="currentColor"/>
-                        <rect x="70" y="50" width="10" height="18" rx="4" fill="currentColor"/>
-                        <path d="M40 50V60M45 45V65M50 40V70M55 48V62M60 52V58" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                    </svg>
-                </div>
-            </a>
-
-            <!-- TARJETA 5: SOLUCIONES (Verde Neón) -->
-            <a href="https://newcosmo-peru.github.io/SOLUCIONES/" class="hub-card" target="_blank">
-                <div class="card-content">
-                    <h3>SOLUCIONES</h3>
-                    <p>Descubre nuestras soluciones integrales, resolución de incidencias y soporte técnico especializado.</p>
-                    <div class="action-btn">Descubrir</div>
-                </div>
-                <div class="card-graphic" style="color: var(--neon-green);">
-                    <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M50 35C41.7157 35 35 41.7157 35 50C35 58.2843 41.7157 65 50 65C58.2843 65 65 58.2843 65 50C65 41.7157 58.2843 35 50 35Z" stroke="currentColor" stroke-width="3"/>
-                        <path d="M46 18H54V26H46V18ZM46 74H54V82H46V74ZM18 46H26V54H18V46ZM74 46H82V54H74V46ZM26.2 29.5L31.8 23.8L37.5 29.5L31.8 35.1L26.2 29.5ZM62.5 65.8L68.1 60.2L73.8 65.8L68.1 71.5L62.5 65.8ZM29.5 73.8L23.8 68.1L29.5 62.5L35.1 68.1L29.5 73.8ZM65.8 26.2L71.5 31.8L65.8 37.5L60.2 31.8L65.8 26.2Z" stroke="currentColor" stroke-width="2"/>
-                    </svg>
-                </div>
-            </a>
-
-        </div>
-    </section>
-
-    <!-- --- SCRIPT PARA EL DESVANECIMIENTO DEL SPLASH --- -->
-    <script>
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const splash = document.getElementById('splash-screen');
-                splash.classList.add('splash-hidden');
-            }, 2000); // Permanece 2 segundos visible antes de desvanecerse
-        });
-    </script>
+    <!-- Footer -->
+    <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
+        <p>Hecho con código abierto bajo licencia MIT. Tus datos te pertenecen.</p>
+    </footer>
 
 </body>
 </html>
