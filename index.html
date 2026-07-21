@@ -3,544 +3,187 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmniConvert - Suite Universal de Conversión y Utilidades 100% Local</title>
+    <title>Control de Stock en GitHub</title>
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 </head>
-<body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
+<body class="bg-gray-100 min-h-screen p-6">
+    <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
+        <h1 class="text-2xl font-bold mb-4 text-gray-800">📦 Control de Stock con GitHub</h1>
 
-    <!-- Pantalla de Splash (6 Segundos) -->
-    <div id="splashScreen" class="fixed inset-0 z-50 bg-slate-950 flex flex-col items-center justify-center transition-opacity duration-700">
-        <div class="relative flex items-center justify-center mb-6">
-            <div class="absolute w-24 h-24 rounded-full bg-blue-500/20 animate-ping"></div>
-            <div class="w-20 h-20 rounded-2xl bg-slate-900 border border-blue-500/40 flex items-center justify-center text-blue-400 text-3xl shadow-lg shadow-blue-500/10">
-                <i class="fa-solid fa-arrows-rotate"></i>
+        <!-- Configuración de Credenciales -->
+        <div class="mb-6 p-4 bg-gray-50 rounded border">
+            <h2 class="font-semibold text-gray-700 mb-2">Configuración de Conexión</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                <input type="text" id="repoOwner" placeholder="Usuario de GitHub" class="p-2 border rounded text-sm">
+                <input type="text" id="repoName" placeholder="Nombre del Repositorio" class="p-2 border rounded text-sm">
+                <input type="password" id="githubToken" placeholder="GitHub Personal Access Token" class="p-2 border rounded text-sm">
+            </div>
+            <button onclick="cargarStock()" class="mt-3 bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition">Conectar / Cargar Stock</button>
+        </div>
+
+        <!-- Formulario Agregar Producto -->
+        <div class="mb-6 p-4 bg-blue-50 rounded border border-blue-100">
+            <h2 class="font-semibold text-blue-800 mb-2">Agregar Nuevo Producto</h2>
+            <div class="flex gap-3">
+                <input type="text" id="nuevoNombre" placeholder="Nombre del producto" class="flex-1 p-2 border rounded text-sm">
+                <input type="number" id="nuevoCantidad" placeholder="Cantidad" class="w-32 p-2 border rounded text-sm">
+                <button onclick="agregarProducto()" class="bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700 transition">Añadir</button>
             </div>
         </div>
-        <h1 class="text-2xl font-bold tracking-tight text-white mb-2">OmniConvert<span class="text-blue-400">.</span></h1>
-        <p class="text-xs text-slate-400 tracking-wider uppercase mb-8">Cargando motores de conversión locales...</p>
-        
-        <!-- Barra de progreso de 6 segundos -->
-        <div class="w-48 h-1 bg-slate-800 rounded-full overflow-hidden">
-            <div id="splashBar" class="h-full bg-blue-400 w-0 transition-all duration-100 ease-linear"></div>
+
+        <!-- Tabla de Stock -->
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead>
+                    <tr class="bg-gray-200 text-gray-700 text-sm">
+                        <th class="p-3">Producto</th>
+                        <th class="p-3">Stock</th>
+                        <th class="p-3 text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="tablaStock" class="text-sm divide-y divide-gray-200">
+                    <tr>
+                        <td colspan="3" class="p-4 text-center text-gray-500">Conéctate usando tus credenciales arriba para ver el inventario.</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 
-    <!-- Header -->
-    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-40">
-        <div class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <div class="flex items-center space-x-2">
-                <i class="fa-solid fa-arrows-rotate text-blue-400 text-2xl"></i>
-                <span class="text-xl font-bold tracking-tight">OmniConvert<span class="text-blue-400">.</span></span>
-            </div>
-            <nav class="hidden md:flex space-x-6 text-sm text-slate-300">
-                <a href="#herramientas" class="hover:text-blue-400 transition">Motores (10)</a>
-                <a href="#privacidad" class="hover:text-blue-400 transition">Privacidad</a>
-            </nav>
-        </div>
-    </header>
-
-    <!-- Hero Section -->
-    <main class="flex-grow">
-        <section class="max-w-5xl mx-auto px-4 py-12 text-center">
-            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 text-blue-400 text-xs font-semibold mb-6 border border-blue-500/20">
-                <i class="fa-solid fa-bolt"></i> Conversión Multiformato 100% en el Navegador
-            </div>
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">
-                Transforma documentos, imágenes y textos <span class="text-blue-400">al instante</span>.
-            </h1>
-            <p class="text-slate-400 max-w-xl mx-auto mb-8">
-                Sin subir archivos a servidores externos. Todo se procesa de forma segura en la memoria de tu dispositivo.
-            </p>
-        </section>
-
-        <!-- Sección de Herramientas -->
-        <section id="herramientas" class="max-w-4xl mx-auto px-4 py-6 space-y-12">
-            
-            <!-- 1. Conversor de Imágenes (HEIC/PNG/JPG/WEBP) -->
-            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
-                <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl"><i class="fa-solid fa-file-image"></i></div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">1. Conversor Universal de Imágenes</h3>
-                        <p class="text-slate-400 text-sm">Cambia entre JPG, PNG, WEBP y HEIC masivamente.</p>
-                    </div>
-                </div>
-                <div class="space-y-4">
-                    <div class="flex gap-4">
-                        <select id="imgTargetFormat" class="bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-blue-500">
-                            <option value="image/jpeg">Convertir a JPG</option>
-                            <option value="image/png">Convertir a PNG</option>
-                            <option value="image/webp">Convertir a WEBP</option>
-                        </select>
-                    </div>
-                    <div class="border-2 border-dashed border-slate-700 rounded-xl p-6 text-center hover:border-blue-500 transition cursor-pointer bg-slate-900/50" onclick="document.getElementById('fileInputImg').click()">
-                        <input type="file" id="fileInputImg" accept="image/*,.heic" multiple class="hidden" onchange="convertirImagenes(event)">
-                        <i class="fa-solid fa-cloud-arrow-up text-3xl text-blue-400 mb-2"></i>
-                        <p class="text-slate-300 font-medium text-sm">Selecciona tus imágenes</p>
-                    </div>
-                    <div id="resultadoImg" class="hidden mt-4 p-4 bg-slate-900 rounded-xl border border-slate-800 text-center">
-                        <p class="text-blue-400 font-medium text-sm mb-2" id="imgStatus">Procesando...</p>
-                        <div id="imgLinks" class="flex flex-wrap gap-2 justify-center"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 2. Conversor de Tipografía / Letras -->
-            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
-                <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl"><i class="fa-solid fa-font"></i></div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">2. Transformador de Letras y Estilos de Texto</h3>
-                        <p class="text-slate-400 text-sm">Convierte texto a fuentes estéticas, góticas, burbujas, etc.</p>
-                    </div>
-                </div>
-                <div class="space-y-4">
-                    <textarea id="textStyleInput" rows="2" placeholder="Escribe tu texto aquí..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-blue-500" oninput="transformarLetras()"></textarea>
-                    <div class="space-y-2">
-                        <div class="flex justify-between items-center bg-slate-900 p-3 rounded-xl border border-slate-800">
-                            <span class="text-xs text-slate-400">Gótico:</span>
-                            <span id="outGotico" class="text-sm font-mono text-blue-400 select-all">-</span>
-                        </div>
-                        <div class="flex justify-between items-center bg-slate-900 p-3 rounded-xl border border-slate-800">
-                            <span class="text-xs text-slate-400">Circular / Burbuja:</span>
-                            <span id="outCirculo" class="text-sm font-mono text-blue-400 select-all">-</span>
-                        </div>
-                        <div class="flex justify-between items-center bg-slate-900 p-3 rounded-xl border border-slate-800">
-                            <span class="text-xs text-slate-400">Cursiva / Script:</span>
-                            <span id="outCursiva" class="text-sm font-mono text-blue-400 select-all">-</span>
-                        </div>
-                        <div class="flex justify-between items-center bg-slate-900 p-3 rounded-xl border border-slate-800">
-                            <span class="text-xs text-slate-400">Espaciado:</span>
-                            <span id="outEspacio" class="text-sm font-mono text-blue-400 select-all">-</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 3. Conversor de Documentos / Hojas de Cálculo (JSON a CSV / Excel) -->
-            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
-                <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl"><i class="fa-solid fa-file-excel"></i></div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">3. Conversor de Datos (JSON / CSV / Excel)</h3>
-                        <p class="text-slate-400 text-sm">Transforma estructuras de datos de manera bidireccional.</p>
-                    </div>
-                </div>
-                <div class="space-y-4">
-                    <textarea id="dataInput" rows="3" placeholder='Pega datos JSON (ej: [{"nombre": "Ana", "edad": 30}])' class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-blue-500"></textarea>
-                    <div class="flex gap-3">
-                        <button onclick="convertirJsonACSV()" class="flex-1 bg-blue-500 hover:bg-blue-600 text-slate-950 font-semibold py-2.5 rounded-xl transition text-sm">JSON a CSV</button>
-                        <button onclick="convertirJsonAExcel()" class="flex-1 bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold py-2.5 rounded-xl transition text-sm">JSON a Excel (.xlsx)</button>
-                    </div>
-                    <div id="dataResultado" class="hidden mt-4 p-4 bg-slate-900 rounded-xl border border-slate-800 flex justify-between items-center">
-                        <p class="text-white text-sm" id="dataMsg">¡Archivo listo!</p>
-                        <a id="downloadData" class="bg-blue-500 hover:bg-blue-600 text-slate-950 font-semibold px-4 py-2 rounded-xl transition text-sm">Descargar Archivo</a>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 4. Extractor de Texto de PDF -->
-            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
-                <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl"><i class="fa-solid fa-file-pdf"></i></div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">4. Extractor de Texto de PDF a TXT</h3>
-                        <p class="text-slate-400 text-sm">Extrae todo el contenido escrito de un documento PDF.</p>
-                    </div>
-                </div>
-                <div class="border-2 border-dashed border-slate-700 rounded-xl p-6 text-center hover:border-blue-500 transition cursor-pointer bg-slate-900/50" onclick="document.getElementById('fileInputPdf').click()">
-                    <input type="file" id="fileInputPdf" accept=".pdf" class="hidden" onchange="extraerTextoPdf(event)">
-                    <i class="fa-solid fa-cloud-arrow-up text-3xl text-blue-400 mb-2"></i>
-                    <p class="text-slate-300 font-medium text-sm">Sube tu archivo PDF</p>
-                </div>
-                <div id="resultadoPdf" class="hidden mt-4 space-y-3">
-                    <textarea id="pdfTextOutput" rows="4" readonly class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-300 text-xs font-mono"></textarea>
-                    <a id="downloadPdfTxt" class="inline-block bg-blue-500 hover:bg-blue-600 text-slate-950 font-semibold px-4 py-2 rounded-xl transition text-sm">Descargar como .txt</a>
-                </div>
-            </div>
-
-            <!-- 5. Codificador / Decodificador de Formatos (Base64, URL, Hex) -->
-            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
-                <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl"><i class="fa-solid fa-code"></i></div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">5. Conversor de Codificación (Base64 / Hex / URL)</h3>
-                        <p class="text-slate-400 text-sm">Transforma cadenas de texto entre diferentes estándares de codificación.</p>
-                    </div>
-                </div>
-                <div class="space-y-4">
-                    <textarea id="codeSourceInput" rows="2" placeholder="Texto a codificar/decodificar..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-blue-500"></textarea>
-                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-2">
-                        <button onclick="ejecutarCodificacion('b64Enc')" class="bg-slate-700 hover:bg-slate-600 text-xs py-2 rounded-lg text-white">Base64 Encode</button>
-                        <button onclick="ejecutarCodificacion('b64Dec')" class="bg-slate-700 hover:bg-slate-600 text-xs py-2 rounded-lg text-white">Base64 Decode</button>
-                        <button onclick="ejecutarCodificacion('urlEnc')" class="bg-slate-700 hover:bg-slate-600 text-xs py-2 rounded-lg text-white">URL Encode</button>
-                        <button onclick="ejecutarCodificacion('urlDec')" class="bg-slate-700 hover:bg-slate-600 text-xs py-2 rounded-lg text-white">URL Decode</button>
-                        <button onclick="ejecutarCodificacion('hexEnc')" class="bg-slate-700 hover:bg-slate-600 text-xs py-2 rounded-lg text-white">Hexadecimal</button>
-                        <button onclick="ejecutarCodificacion('binEnc')" class="bg-slate-700 hover:bg-slate-600 text-xs py-2 rounded-lg text-white">Binario</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 6. Conversor de Mayúsculas / Minúsculas / Formatos de Código -->
-            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
-                <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl"><i class="fa-solid fa-text-height"></i></div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">6. Conversor de Casos y Nomenclatura (CamelCase, Snake, etc.)</h3>
-                        <p class="text-slate-400 text-sm">Cambia estilos de sintaxis para programación y textos.</p>
-                    </div>
-                </div>
-                <div class="space-y-4">
-                    <input type="text" id="caseInput" placeholder="texto de ejemplo para convertir..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-blue-500">
-                    <div class="flex flex-wrap gap-2">
-                        <button onclick="convertirCaso('upper')" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-2 rounded-lg text-white">MAYÚSCULAS</button>
-                        <button onclick="convertirCaso('lower')" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-2 rounded-lg text-white">minúsculas</button>
-                        <button onclick="convertirCaso('title')" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-2 rounded-lg text-white">Título Pro</button>
-                        <button onclick="convertirCaso('camel')" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-2 rounded-lg text-white">camelCase</button>
-                        <button onclick="convertirCaso('snake')" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-2 rounded-lg text-white">snake_case</button>
-                        <button onclick="convertirCaso('kebab')" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-2 rounded-lg text-white">kebab-case</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 7. Conversor de Unidades de Medida Básicas -->
-            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
-                <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl"><i class="fa-solid fa-scale-balanced"></i></div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">7. Conversor de Unidades (Peso, Longitud, Temperatura)</h3>
-                        <p class="text-slate-400 text-sm">Calcula conversiones métricas y imperiales rápidamente.</p>
-                    </div>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-2">
-                        <p class="text-xs font-semibold text-blue-400">Temperatura</p>
-                        <input type="number" id="tempVal" placeholder="Grados" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-xs text-white" oninput="convertirTemp()">
-                        <p id="tempOut" class="text-xs text-slate-300 font-mono">Resultado...</p>
-                    </div>
-                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-2">
-                        <p class="text-xs font-semibold text-blue-400">Longitud (Metros a Pies)</p>
-                        <input type="number" id="lenVal" placeholder="Metros" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-xs text-white" oninput="convertirLong()">
-                        <p id="lenOut" class="text-xs text-slate-300 font-mono">Resultado...</p>
-                    </div>
-                    <div class="bg-slate-900 p-4 rounded-xl border border-slate-800 space-y-2">
-                        <p class="text-xs font-semibold text-blue-400">Peso (Kg a Libras)</p>
-                        <input type="number" id="weightVal" placeholder="Kilogramos" class="w-full bg-slate-800 border border-slate-700 rounded-lg p-2 text-xs text-white" oninput="convertirPeso()">
-                        <p id="weightOut" class="text-xs text-slate-300 font-mono">Resultado...</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 8. Conversor de Tiempo / Divisas (Simulador Horario) -->
-            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
-                <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl"><i class="fa-solid fa-clock"></i></div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">8. Conversor de Zonas Horarias Mundiales</h3>
-                        <p class="text-slate-400 text-sm">Visualiza la hora actual en distintas ciudades globales.</p>
-                    </div>
-                </div>
-                <div class="space-y-3">
-                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs font-mono">
-                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
-                            <p class="text-slate-400 mb-1">Nueva York (EST):</p>
-                            <p id="tzNY" class="text-blue-400 font-bold text-sm">-</p>
-                        </div>
-                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
-                            <p class="text-slate-400 mb-1">Madrid (CET):</p>
-                            <p id="tzMadrid" class="text-blue-400 font-bold text-sm">-</p>
-                        </div>
-                        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800">
-                            <p class="text-slate-400 mb-1">Tokio (JST):</p>
-                            <p id="tzTokio" class="text-blue-400 font-bold text-sm">-</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 9. Minificador / Embellecedor de Código (JSON / CSS) -->
-            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
-                <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl"><i class="fa-solid fa-code-compare"></i></div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">9. Formateador y Minificador JSON</h3>
-                        <p class="text-slate-400 text-sm">Ordena o compacta estructuras JSON de manera limpia.</p>
-                    </div>
-                </div>
-                <div class="space-y-3">
-                    <textarea id="jsonCodeInput" rows="3" placeholder="Pega tu JSON aquí..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm font-mono"></textarea>
-                    <div class="flex gap-2">
-                        <button onclick="formatearJson(true)" class="flex-1 bg-blue-500 text-slate-950 font-semibold py-2 rounded-xl text-xs">Embellecer (Pretty)</button>
-                        <button onclick="formatearJson(false)" class="flex-1 bg-slate-700 text-white font-semibold py-2 rounded-xl text-xs">Minificar</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- 10. Generador de Contraseñas y Hashes -->
-            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
-                <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl"><i class="fa-solid fa-fingerprint"></i></div>
-                    <div>
-                        <h3 class="text-xl font-bold text-white">10. Generador de Firma SHA-256</h3>
-                        <p class="text-slate-400 text-sm">Convierte cualquier texto en un resumen criptográfico hash único.</p>
-                    </div>
-                </div>
-                <div class="space-y-3">
-                    <input type="text" id="shaInput" placeholder="Texto para generar hash..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm" oninput="calcularSHA256()">
-                    <p id="shaOutput" class="text-xs text-blue-400 font-mono break-all bg-slate-900 p-3 rounded-xl border border-slate-800">Hash resultante...</p>
-                </div>
-            </div>
-
-        </section>
-
-        <!-- Sección de Confianza -->
-        <section id="privacidad" class="max-w-3xl mx-auto px-4 py-12 text-center border-t border-slate-800 mt-12">
-            <h2 class="text-xl font-bold mb-3 text-white">Privacidad Absoluta</h2>
-            <p class="text-slate-400 text-xs leading-relaxed max-w-lg mx-auto">
-                OmniConvert opera completamente del lado del cliente mediante JavaScript. Ninguno de tus documentos, imágenes o datos personales se almacena ni se transfiere a ningún servidor externo.
-            </p>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-        <p>OmniConvert - Suite local de conversión universal.</p>
-    </footer>
-
-    <!-- Scripts de Funcionalidad y Motores -->
     <script>
-        // Configuración de PDF.js Worker
-        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+        let fileSha = "";
+        let productos = [];
 
-        // Control de la Pantalla de Splash (Duración exacta: 6 segundos)
-        window.addEventListener('DOMContentLoaded', () => {
-            const splash = document.getElementById('splashScreen');
-            const bar = document.getElementById('splashBar');
-            const duration = 6000; // 6 segundos
-            const interval = 50;
-            let elapsed = 0;
+        async function cargarStock() {
+            const owner = document.getElementById('repoOwner').value;
+            const repo = document.getElementById('repoName').value;
+            const token = document.getElementById('githubToken').value;
 
-            const progressTimer = setInterval(() => {
-                elapsed += interval;
-                const percentage = Math.min((elapsed / duration) * 100, 100);
-                bar.style.width = percentage + '%';
-
-                if (elapsed >= duration) {
-                    clearInterval(progressTimer);
-                    splash.style.opacity = '0';
-                    setTimeout(() => {
-                        splash.style.display = 'none';
-                    }, 700);
-                }
-            }, interval);
-
-            // Iniciar Relojes Mundiales
-            setInterval(actualizarRelojes, 1000);
-            actualizarRelojes();
-        });
-
-        // 1. Conversor de Imágenes
-        async function convertirImagenes(event) {
-            const files = event.target.files;
-            const targetFormat = document.getElementById('imgTargetFormat').value;
-            if (!files.length) return;
-            const linksContainer = document.getElementById('imgLinks');
-            linksContainer.innerHTML = '';
-            document.getElementById('imgStatus').textContent = "Procesando imágenes...";
-            document.getElementById('resultadoImg').classList.remove('hidden');
-
-            for (let file of files) {
-                let imageFile = file;
-                if (file.name.toLowerCase().endsWith('.heic') || file.type === "image/heic") {
-                    try {
-                        const convertedBlob = await heic2any({ blob: file, toType: "image/jpeg" });
-                        imageFile = new File([convertedBlob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", { type: "image/jpeg" });
-                    } catch (err) { continue; }
-                }
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    const img = new Image();
-                    img.onload = function() {
-                        const canvas = document.createElement('canvas');
-                        canvas.width = img.width; canvas.height = img.height;
-                        canvas.getContext('2d').drawImage(img, 0, 0);
-                        canvas.toBlob(function(blob) {
-                            const url = URL.createObjectURL(blob);
-                            const ext = targetFormat.split('/')[1];
-                            const a = document.createElement('a');
-                            a.href = url; a.download = "convertido_" + imageFile.name.replace(/\.[^/.]+$/, "") + "." + ext;
-                            a.textContent = "📥 " + imageFile.name.replace(/\.[^/.]+$/, "") + "." + ext;
-                            a.className = "bg-slate-800 hover:bg-blue-500 hover:text-slate-950 text-blue-400 text-xs px-3 py-2 rounded-lg border border-slate-700 transition";
-                            linksContainer.appendChild(a);
-                            document.getElementById('imgStatus').textContent = "¡Conversión finalizada!";
-                        }, targetFormat, 0.9);
-                    }
-                    img.src = e.target.result;
-                }
-                reader.readAsDataURL(imageFile);
-            }
-        }
-
-        // 2. Transformador de Tipografía / Letras
-        function transformarLetras() {
-            const t = document.getElementById('textStyleInput').value;
-            if(!t) {
-                document.getElementById('outGotico').textContent = "-";
-                document.getElementById('outCirculo').textContent = "-";
-                document.getElementById('outCursiva').textContent = "-";
-                document.getElementById('outEspacio').textContent = "-";
+            if (!owner || !repo || !token) {
+                alert("Por favor completa todos los campos de configuración.");
                 return;
             }
-            
-            // Mapeos simulados de fuentes estéticas Unicode
-            const goticoMap = { 'a':'𝔞','b':'𝔟','c':'𝔠','d':'𝔡','e':'𝔢','f':'𝔣','g':'𝔤','h':'𝔥','i':'𝔦','j':'𝔧','k':'𝔨','l':'𝔩','m':'𝔪','n':'𝔫','o':'𝔬','p':'𝔭','q':'𝔮','r':'𝔯','s':'𝔰','t':'𝔱','u':'𝔲','v':'𝔳','w':'𝔴','x':'𝔵','y':'𝔶','z':'𝔷','A':'𝔄','B':'𝔅','C':'ℂ','D':'𝔇','E':'𝔈','F':'𝔉','G':'𝔊','H':'ℌ','I':'ℑ','J':'𝔍','K':'𝔎','L':'𝔏','M':'𝔐','N':'𝔑','O':'𝔒','P':'𝔓','Q':'𝔔','R':'ℜ','S':'𝔖','T':'𝔗','U':'𝔘','V':'𝔙','W':'𝔚','X':'𝔛','Y':'𝔜','Z':'ℨ' };
-            const circuloMap = { 'a':'ⓐ','b':'ⓑ','c':'ⓒ','d':'ⓓ','e':'ⓔ','f':'ⓕ','g':'ⓖ','h':'ⓗ','i':'ⓘ','j':'ⓙ','k':'ⓚ','l':'ⓛ','m':'ⓜ','n':'ⓝ','o':'ⓞ','p':'ⓟ','q':'ⓠ','r':'ⓡ','s':'ⓢ','t':'ⓣ','u':'ⓤ','v':'ⓥ','w':'ⓦ','x':'ⓧ','y':'ⓨ','z':'ⓩ','A':'Ⓐ','B':'Ⓑ','C':'Ⓒ','D':'Ⓓ','E':'Ⓔ','F':'Ⓕ','G':'Ⓖ','H':'Ⓗ','I':'Ⓘ','J':'Ⓙ','K':'Ⓚ','L':'Ⓛ','M':'Ⓜ','N':'Ⓝ','O':'Ⓞ','P':'Ⓟ','Q':'Ⓠ','R':'Ⓡ','S':'Ⓢ','T':'Ⓣ','U':'Ⓤ','V':'Ⓥ','W':'Ⓦ','X':'Ⓧ','Y':'Ⓨ','Z':'Ⓩ' };
-            
-            let gotico = t.split('').map(c => goticoMap[c] || c).join('');
-            let circulo = t.split('').map(c => circuloMap[c] || c).join('');
-            let cursiva = t.split('').map(c => c.toLowerCase() >= 'a' && c.toLowerCase() <= 'z' ? String.fromCodePoint(c.codePointAt(0) + 119869 - 97) : c).join('');
-            let espaciado = t.split('').join(' ');
 
-            document.getElementById('outGotico').textContent = gotico;
-            document.getElementById('outCirculo').textContent = circulo;
-            document.getElementById('outCursiva').textContent = cursiva;
-            document.getElementById('outEspacio').textContent = espaciado;
-        }
-
-        // 3. Conversor de Datos JSON a CSV / Excel
-        function convertirJsonACSV() {
             try {
-                const data = JSON.parse(document.getElementById('dataInput').value);
-                const items = Array.isArray(data) ? data : [data];
-                const keys = Object.keys(items[0]);
-                let csv = keys.join(',') + '\n';
-                items.forEach(row => {
-                    csv += keys.map(k => JSON.stringify(row[k] || '')).join(',') + '\n';
+                const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/stock.json`, {
+                    headers: { 'Authorization': `token ${token}` }
                 });
-                const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
-                const url = URL.createObjectURL(blob);
-                const btn = document.getElementById('downloadData');
-                btn.href = url; btn.download = "datos_convertidos.csv";
-                document.getElementById('dataMsg').textContent = "¡CSV generado con éxito!";
-                document.getElementById('dataResultado').classList.remove('hidden');
-            } catch(e) { alert('JSON inválido. Revisa el formato.'); }
-        }
 
-        function convertirJsonAExcel() {
-            try {
-                const data = JSON.parse(document.getElementById('dataInput').value);
-                const items = Array.isArray(data) ? data : [data];
-                const worksheet = XLSX.utils.json_to_sheet(items);
-                const workbook = XLSX.utils.book_new();
-                XLSX.utils.book_append_sheet(workbook, worksheet, "Datos");
-                XLSX.writeFile(workbook, "datos_convertidos.xlsx");
-                document.getElementById('dataMsg').textContent = "¡Archivo Excel descargado!";
-                document.getElementById('dataResultado').classList.remove('hidden');
-            } catch(e) { alert('JSON inválido para Excel.'); }
-        }
+                if (!response.ok) throw new Error("No se pudo cargar el archivo stock.json. Asegúrate de que exista en el repositorio.");
 
-        // 4. Extractor de PDF
-        async function extraerTextoPdf(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = async function() {
-                const typedarray = new Uint8Array(this.result);
-                const pdf = await pdfjsLib.getDocument(typedarray).promise;
-                let fullText = "";
-                for (let i = 1; i <= pdf.numPages; i++) {
-                    const page = await pdf.getPage(i);
-                    const textContent = await page.getTextContent();
-                    fullText += textContent.items.map(s => s.str).join(' ') + '\n';
-                }
-                document.getElementById('pdfTextOutput').value = fullText;
-                document.getElementById('resultadoPdf').classList.remove('hidden');
+                const data = await response.json();
+                fileSha = data.sha;
                 
-                const blob = new Blob([fullText], { type: 'text/plain' });
-                const url = URL.createObjectURL(blob);
-                const btn = document.getElementById('downloadPdfTxt');
-                btn.href = url; btn.download = file.name.replace(/\.[^/.]+$/, "") + "_extraido.txt";
-            };
-            reader.readAsArrayBuffer(file);
+                // Decodificar contenido Base64 de GitHub
+                const decodedContent = decodeURIComponent(escape(atob(data.content)));
+                productos = JSON.parse(decodedContent);
+                
+                renderTabla();
+                alert("Stock cargado exitosamente.");
+            } catch (error) {
+                alert("Error: " + error.message);
+            }
         }
 
-        // 5. Codificador de Formatos
-        function ejecutarCodificacion(tipo) {
-            const val = document.getElementById('codeSourceInput').value;
-            if(!val) return;
+        function renderTabla() {
+            const tbody = document.getElementById('tablaStock');
+            tbody.innerHTML = "";
+
+            if (productos.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="3" class="p-4 text-center text-gray-500">No hay productos registrados.</td></tr>`;
+                return;
+            }
+
+            productos.forEach((prod, index) => {
+                tbody.innerHTML += `
+                    <tr class="hover:bg-gray-50">
+                        <td class="p-3">${prod.nombre}</td>
+                        <td class="p-3 font-semibold">${prod.cantidad}</td>
+                        <td class="p-3 text-center space-x-2">
+                            <button onclick="cambiarCantidad(${index}, 1)" class="bg-gray-200 px-2 py-1 rounded hover:bg-gray-300 text-xs">+</button>
+                            <button onclick="cambiarCantidad(${index}, -1)" class="bg-gray-200 px-2 py-1 rounded hover:bg-gray-300 text-xs">-</button>
+                            <button onclick="eliminarProducto(${index})" class="text-red-600 hover:text-red-800 text-xs ml-2">Eliminar</button>
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        async function guardarEnGitHub() {
+            const owner = document.getElementById('repoOwner').value;
+            const repo = document.getElementById('repoName').value;
+            const token = document.getElementById('githubToken').value;
+
+            const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(productos, null, 2))));
+
+            const response = await fetch(`https://api.github.com/repos/${owner}/${repo}/contents/stock.json`, {
+                method: 'PUT',
+                headers: {
+                    'Authorization': `token ${token}`,
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    message: "Actualización automática de stock vía Web",
+                    content: updatedContent,
+                    sha: fileSha
+                })
+            });
+
+            if (!response.ok) {
+                const errData = await response.json();
+                throw new Error(errData.message);
+            }
+
+            const data = await response.json();
+            fileSha = data.content.sha;
+        }
+
+        async function agregarProducto() {
+            const nombre = document.getElementById('nuevoNombre').value.trim();
+            const cantidad = parseInt(document.getElementById('nuevoCantidad').value);
+
+            if (!nombre || isNaN(cantidad)) {
+                alert("Ingresa un nombre y una cantidad válida.");
+                return;
+            }
+
+            productos.push({ nombre, cantidad });
             try {
-                if(tipo === 'b64Enc') document.getElementById('codeSourceInput').value = btoa(val);
-                if(tipo === 'b64Dec') document.getElementById('codeSourceInput').value = atob(val);
-                if(tipo === 'urlEnc') document.getElementById('codeSourceInput').value = encodeURIComponent(val);
-                if(tipo === 'urlDec') document.getElementById('codeSourceInput').value = decodeURIComponent(val);
-                if(tipo === 'hexEnc') document.getElementById('codeSourceInput').value = Array.from(val).map(c => c.charCodeAt(0).toString(16)).join(' ');
-                if(tipo === 'binEnc') document.getElementById('codeSourceInput').value = Array.from(val).map(c => c.charCodeAt(0).toString(2).padStart(8, '0')).join(' ');
-            } catch(e) { alert('Error en la transformación de codificación.'); }
+                await guardarEnGitHub();
+                document.getElementById('nuevoNombre').value = "";
+                document.getElementById('nuevoCantidad').value = "";
+                renderTabla();
+            } catch (error) {
+                alert("Error al guardar en GitHub: " + error.message);
+                productos.pop(); // Revertir cambio local si falla
+            }
         }
 
-        // 6. Conversor de Casos de Texto
-        function convertirCaso(tipo) {
-            let t = document.getElementById('caseInput').value;
-            if(!t) return;
-            if(tipo === 'upper') t = t.toUpperCase();
-            if(tipo === 'lower') t = t.toLowerCase();
-            if(tipo === 'title') t = t.replace(/\w\S*/g, (w) => w.replace(/^\w/, (c) => c.toUpperCase()));
-            if(tipo === 'camel') t = t.toLowerCase().replace(/[^a-zA-Z0-9]+(.)/g, (m, chr) => chr.toUpperCase());
-            if(tipo === 'snake') t = t.toLowerCase().replace(/\s+/g, '_').replace(/[^a-z0-9_]/g, '');
-            if(tipo === 'kebab') t = t.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-            document.getElementById('caseInput').value = t;
-        }
+        async function cambiarCantidad(index, delta) {
+            productos[index].cantidad += delta;
+            if (productos[index].cantidad < 0) productos[index].cantidad = 0;
 
-        // 7. Unidades de Medida
-        function convertirTemp() {
-            const val = parseFloat(document.getElementById('tempVal').value);
-            if(isNaN(val)) { document.getElementById('tempOut').textContent = "Resultado..."; return; }
-            const f = (val * 9/5) + 32;
-            document.getElementById('tempOut').textContent = `${val}°C equivalen a ${f.toFixed(1)}°F`;
-        }
-        function convertirLong() {
-            const val = parseFloat(document.getElementById('lenVal').value);
-            if(isNaN(val)) { document.getElementById('lenOut').textContent = "Resultado..."; return; }
-            const pies = val * 3.28084;
-            document.getElementById('lenOut').textContent = `${val} m = ${pies.toFixed(2)} pies`;
-        }
-        function convertirPeso() {
-            const val = parseFloat(document.getElementById('weightVal').value);
-            if(isNaN(val)) { document.getElementById('weightOut').textContent = "Resultado..."; return; }
-            const lb = val * 2.20462;
-            document.getElementById('weightOut').textContent = `${val} kg = ${lb.toFixed(2)} lb`;
-        }
-
-        // 8. Relojes Mundiales
-        function actualizarRelojes() {
-            const now = new Date();
-            document.getElementById('tzNY').textContent = now.toLocaleTimeString('en-US', { timeZone: 'America/New_York' });
-            document.getElementById('tzMadrid').textContent = now.toLocaleTimeString('es-ES', { timeZone: 'Europe/Madrid' });
-            document.getElementById('tzTokio').textContent = now.toLocaleTimeString('ja-JP', { timeZone: 'Asia/Tokyo' });
-        }
-
-        // 9. Minificador / Embellecedor JSON
-        function formatearJson(pretty) {
             try {
-                const val = document.getElementById('jsonCodeInput').value;
-                const obj = JSON.parse(val);
-                document.getElementById('jsonCodeInput').value = JSON.stringify(obj, null, pretty ? 2 : 0);
-            } catch(e) { alert('JSON no válido para formatear.'); }
+                await guardarEnGitHub();
+                renderTabla();
+            } catch (error) {
+                alert("Error al actualizar: " + error.message);
+                productos[index].cantidad -= delta; // Revertir
+            }
         }
 
-        // 10. SHA-256 Hash
-        async function calcularSHA256() {
-            const text = document.getElementById('shaInput').value;
-            if(!text) { document.getElementById('shaOutput').textContent = "Hash resultante..."; return; }
-            const msgBuffer = new TextEncoder().encode(text);
-            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
-            const hashArray = Array.from(new Uint8Array(hashBuffer));
-            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-            document.getElementById('shaOutput').textContent = hashHex;
+        async function eliminarProducto(index) {
+            if (!confirm("¿Estás seguro de eliminar este producto?")) return;
+            
+            const eliminado = productos.splice(index, 1);
+            try {
+                await guardarEnGitHub();
+                renderTabla();
+            } catch (error) {
+                alert("Error al eliminar: " + error.message);
+                productos.splice(index, 0, eliminado[0]); // Revertir
+            }
         }
     </script>
 </body>
