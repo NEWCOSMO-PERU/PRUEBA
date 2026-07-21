@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privatix - Herramientas de Privacidad 100% Locales</title>
+    <title>Privatix - Suite Completa de Privacidad 100% Local</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Librería para transformar HEIC de iPhone -->
     <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/exif-js/2.3.0/exif.min.js"></script>
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
@@ -19,8 +19,8 @@
                 <span class="text-xl font-bold tracking-tight">Privatix<span class="text-emerald-400">.</span></span>
             </div>
             <nav class="hidden md:flex space-x-6 text-sm text-slate-300">
-                <a href="#herramientas" class="hover:text-emerald-400 transition">Herramientas</a>
-                <a href="#privacidad" class="hover:text-emerald-400 transition">¿Cómo funciona?</a>
+                <a href="#herramientas" class="hover:text-emerald-400 transition">Herramientas (16)</a>
+                <a href="#privacidad" class="hover:text-emerald-400 transition">Seguridad</a>
             </nav>
         </div>
     </header>
@@ -29,57 +29,50 @@
     <main class="flex-grow">
         <section class="max-w-5xl mx-auto px-4 py-12 text-center">
             <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 text-xs font-semibold mb-6 border border-emerald-500/20">
-                <i class="fa-solid fa-lock"></i> Procesamiento 100% Local en tu Navegador
+                <i class="fa-solid fa-lock"></i> 16 Utilidades 100% Locales en tu Navegador
             </div>
             <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 text-white">
-                Tus archivos nunca <span class="text-emerald-400">abandonan</span> tu dispositivo.
+                Privacidad absoluta y herramientas <span class="text-emerald-400">sin servidores</span>.
             </h1>
             <p class="text-slate-400 max-w-xl mx-auto mb-8">
-                Suite completa de herramientas de privacidad ultraseguras ejecutadas directamente en tu memoria RAM.
+                Tus datos se procesan exclusivamente en la memoria RAM de tu dispositivo. Nada se sube a internet.
             </p>
         </section>
 
         <!-- Sección de Herramientas -->
         <section id="herramientas" class="max-w-4xl mx-auto px-4 py-6 space-y-12">
             
-            <!-- Herramienta 1: Limpiador de Metadatos -->
+            <!-- 1. Limpiador de Metadatos -->
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
                 <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-wand-magic-sparkles"></i>
-                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
                     <div>
                         <h3 class="text-xl font-bold text-white">1. Limpiador de Metadatos de Imágenes</h3>
-                        <p class="text-slate-400 text-sm">Elimina el rastro GPS, fecha y modelo de cámara de tus fotos.</p>
+                        <p class="text-slate-400 text-sm">Elimina GPS, fecha y modelo de cámara.</p>
                     </div>
                 </div>
-
                 <div class="border-2 border-dashed border-slate-700 rounded-xl p-6 text-center hover:border-emerald-500 transition cursor-pointer bg-slate-900/50" onclick="document.getElementById('fileInputMeta').click()">
                     <input type="file" id="fileInputMeta" accept="image/*" class="hidden" onchange="procesarImagenMeta(event)">
                     <i class="fa-solid fa-cloud-arrow-up text-3xl text-emerald-400 mb-2"></i>
-                    <p class="text-slate-300 font-medium text-sm">Haz clic para seleccionar una foto o arrástrala</p>
+                    <p class="text-slate-300 font-medium text-sm">Selecciona o arrastra una foto</p>
                 </div>
-
                 <div id="resultadoMeta" class="hidden mt-4 p-4 bg-slate-900 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
                     <p class="text-white font-medium text-sm truncate" id="nombreMeta">imagen.jpg</p>
                     <a id="downloadMeta" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-4 py-2 rounded-xl transition text-sm text-center">Descargar Limpia</a>
                 </div>
             </div>
 
-            <!-- Herramienta 2: Encriptador / Desencriptador de Texto -->
+            <!-- 2. Encriptador de Textos -->
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
                 <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-key"></i>
-                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-key"></i></div>
                     <div>
                         <h3 class="text-xl font-bold text-white">2. Encriptador / Desencriptador de Textos</h3>
-                        <p class="text-slate-400 text-sm">Protege mensajes secretos usando una clave privada local.</p>
+                        <p class="text-slate-400 text-sm">Protege mensajes con clave local.</p>
                     </div>
                 </div>
-
                 <div class="space-y-4">
-                    <textarea id="cryptoText" rows="3" placeholder="Escribe tu mensaje o texto cifrado aquí..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-emerald-500"></textarea>
+                    <textarea id="cryptoText" rows="3" placeholder="Mensaje o texto cifrado..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-emerald-500"></textarea>
                     <input type="password" id="cryptoKey" placeholder="Contraseña secreta" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-emerald-500">
                     <div class="flex gap-3">
                         <button onclick="cifrarTexto()" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold py-2.5 rounded-xl transition text-sm">Cifrar</button>
@@ -88,91 +81,240 @@
                 </div>
             </div>
 
-            <!-- Herramienta 3: Conversor Masivo / HEIC a JPG -->
+            <!-- 3. Conversor HEIC a JPG -->
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
                 <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-file-arrow-down"></i>
-                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-file-arrow-down"></i></div>
                     <div>
                         <h3 class="text-xl font-bold text-white">3. Conversor de Imágenes (HEIC a JPG)</h3>
-                        <p class="text-slate-400 text-sm">Transforma fotos de iPhone u otros formatos a JPG masivamente.</p>
+                        <p class="text-slate-400 text-sm">Transforma fotos de iPhone masivamente.</p>
                     </div>
                 </div>
-
                 <div class="border-2 border-dashed border-slate-700 rounded-xl p-6 text-center hover:border-emerald-500 transition cursor-pointer bg-slate-900/50" onclick="document.getElementById('fileInputConv').click()">
                     <input type="file" id="fileInputConv" accept="image/*,.heic" multiple class="hidden" onchange="convertirImagenes(event)">
                     <i class="fa-solid fa-cloud-arrow-up text-3xl text-emerald-400 mb-2"></i>
-                    <p class="text-slate-300 font-medium text-sm">Haz clic para seleccionar una o varias imágenes</p>
+                    <p class="text-slate-300 font-medium text-sm">Selecciona imágenes</p>
                 </div>
-
                 <div id="resultadoConv" class="hidden mt-4 p-4 bg-slate-900 rounded-xl border border-slate-800 text-center">
-                    <p class="text-emerald-400 font-medium text-sm mb-2" id="convStatus">Imágenes convertidas exitosamente</p>
+                    <p class="text-emerald-400 font-medium text-sm mb-2" id="convStatus">Procesando...</p>
                     <div id="convLinks" class="flex flex-wrap gap-2 justify-center"></div>
                 </div>
             </div>
 
-            <!-- Herramienta 4: Generador de Contraseñas Seguras -->
+            <!-- 4. Generador de Contraseñas -->
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
                 <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-shield-cat"></i>
-                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-shield-cat"></i></div>
                     <div>
                         <h3 class="text-xl font-bold text-white">4. Generador de Contraseñas Blindadas</h3>
-                        <p class="text-slate-400 text-sm">Crea claves imposibles de adivinar adaptadas a tus necesidades.</p>
+                        <p class="text-slate-400 text-sm">Claves robustas automáticas.</p>
                     </div>
                 </div>
-
                 <div class="space-y-4">
                     <div class="flex items-center justify-between bg-slate-900 border border-slate-700 rounded-xl p-3">
                         <span id="passOutput" class="text-emerald-400 font-mono text-sm tracking-wider select-all">Haz clic en generar</span>
-                        <button onclick="copiarPassword()" class="text-slate-400 hover:text-white text-sm"><i class="fa-regular fa-copy"></i> Copiar</button>
+                        <button onclick="copiarTextoGenerico('passOutput', '¡Contraseña copiada!')" class="text-slate-400 hover:text-white text-sm"><i class="fa-regular fa-copy"></i> Copiar</button>
                     </div>
-                    <button onclick="generarPassword()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold py-2.5 rounded-xl transition text-sm">Generar Contraseña Segura</button>
+                    <button onclick="generarPassword()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold py-2.5 rounded-xl transition text-sm">Generar Contraseña</button>
                 </div>
             </div>
 
-            <!-- Herramienta 5: Censurador / Redactor de Texto -->
+            <!-- 5. Censurador de Texto -->
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
                 <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-marker"></i>
-                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-marker"></i></div>
                     <div>
-                        <h3 class="text-xl font-bold text-white">5. Censurador de Datos Sensibles en Texto</h3>
-                        <p class="text-slate-400 text-sm">Oculta palabras clave, correos o números confidenciales antes de compartir.</p>
+                        <h3 class="text-xl font-bold text-white">5. Censurador de Datos Sensibles</h3>
+                        <p class="text-slate-400 text-sm">Oculta palabras clave en textos.</p>
                     </div>
                 </div>
-
                 <div class="space-y-4">
-                    <textarea id="redactText" rows="3" placeholder="Pega aquí el texto que deseas redactar..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-emerald-500"></textarea>
-                    <input type="text" id="redactWord" placeholder="Palabra o dato a ocultar (ej: Juan, 555-1234)" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-emerald-500">
-                    <button onclick="censurarTexto()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold py-2.5 rounded-xl transition text-sm">Censurar Texto</button>
+                    <textarea id="redactText" rows="3" placeholder="Texto original..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-emerald-500"></textarea>
+                    <input type="text" id="redactWord" placeholder="Palabra a ocultar" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-emerald-500">
+                    <button onclick="censurarTexto()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold py-2.5 rounded-xl transition text-sm">Censurar</button>
                 </div>
             </div>
 
-            <!-- Herramienta 6: Compresor Rápido de Imágenes -->
+            <!-- 6. Compresor de Imágenes -->
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
                 <div class="flex items-center space-x-3 mb-6">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
-                        <i class="fa-solid fa-compress"></i>
-                    </div>
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-compress"></i></div>
                     <div>
                         <h3 class="text-xl font-bold text-white">6. Compresor Local de Imágenes</h3>
-                        <p class="text-slate-400 text-sm">Reduce el peso en MB de tus fotos ajustando la calidad al vuelo.</p>
+                        <p class="text-slate-400 text-sm">Reduce el peso en MB al vuelo.</p>
                     </div>
                 </div>
-
                 <div class="border-2 border-dashed border-slate-700 rounded-xl p-6 text-center hover:border-emerald-500 transition cursor-pointer bg-slate-900/50" onclick="document.getElementById('fileInputComp').click()">
                     <input type="file" id="fileInputComp" accept="image/*" class="hidden" onchange="comprimirImagen(event)">
                     <i class="fa-solid fa-cloud-arrow-up text-3xl text-emerald-400 mb-2"></i>
-                    <p class="text-slate-300 font-medium text-sm">Haz clic para seleccionar una foto pesada</p>
+                    <p class="text-slate-300 font-medium text-sm">Selecciona foto pesada</p>
                 </div>
-
                 <div id="resultadoComp" class="hidden mt-4 p-4 bg-slate-900 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p class="text-white font-medium text-sm truncate" id="nombreComp">foto_comprimida.jpg</p>
-                    <a id="downloadComp" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-4 py-2 rounded-xl transition text-sm text-center">Descargar Comprimida</a>
+                    <p class="text-white font-medium text-sm truncate" id="nombreComp">foto.jpg</p>
+                    <a id="downloadComp" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-4 py-2 rounded-xl transition text-sm text-center">Descargar</a>
+                </div>
+            </div>
+
+            <!-- 7. Lector de Metadatos Exif (Nuevo) -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">7. Analizador / Lector de Metadatos EXIF</h3>
+                        <p class="text-slate-400 text-sm">Inspecciona qué datos oculta tu foto.</p>
+                    </div>
+                </div>
+                <input type="file" id="exifInput" accept="image/*" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-2 text-slate-300 text-sm mb-4" onchange="leerExif(event)">
+                <div id="exifOutput" class="bg-slate-900 p-4 rounded-xl border border-slate-800 text-xs text-slate-300 font-mono max-h-40 overflow-y-auto">Sube una imagen para ver sus metadatos ocultos...</div>
+            </div>
+
+            <!-- 8. Generador de Enlaces Seguros Hash (Nuevo) -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-link"></i></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">8. Generador de Nota Cifrada en URL</h3>
+                        <p class="text-slate-400 text-sm">Oculta un mensaje secreto dentro del enlace.</p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <input type="text" id="hashSecret" placeholder="Mensaje secreto" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm">
+                    <button onclick="generarEnlaceSecreto()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold py-2.5 rounded-xl transition text-sm">Generar Enlace Cifrado</button>
+                    <p id="hashOutput" class="text-xs text-slate-400 font-mono break-all"></p>
+                </div>
+            </div>
+
+            <!-- 9. Conversor de Texto a Mayúsculas/Minúsculas/Slug (Nuevo) -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-text-height"></i></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">9. Formateador de Texto (Case & Slug)</h3>
+                        <p class="text-slate-400 text-sm">Transforma formatos de texto al instante.</p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <textarea id="textFormatInput" rows="2" placeholder="Texto a formatear..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm"></textarea>
+                    <div class="flex flex-wrap gap-2">
+                        <button onclick="formatearTexto('upper')" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-2 rounded-lg text-white">MAYÚSCULAS</button>
+                        <button onclick="formatearTexto('lower')" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-2 rounded-lg text-white">minúsculas</button>
+                        <button onclick="formatearTexto('slug')" class="bg-slate-700 hover:bg-slate-600 text-xs px-3 py-2 rounded-lg text-white">URL Slug</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 10. Generador de Hash SHA-256 (Nuevo) -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-fingerprint"></i></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">10. Generador de Hash SHA-256</h3>
+                        <p class="text-slate-400 text-sm">Firma digital criptográfica local.</p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <input type="text" id="shaInput" placeholder="Texto para generar hash..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm" oninput="calcularSHA256()">
+                    <p id="shaOutput" class="text-xs text-emerald-400 font-mono break-all bg-slate-900 p-3 rounded-xl border border-slate-800">Hash resultante...</p>
+                </div>
+            </div>
+
+            <!-- 11. Codificador Base64 (Nuevo) -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-code"></i></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">11. Codificador / Decodificador Base64</h3>
+                        <p class="text-slate-400 text-sm">Codifica strings en Base64 de forma local.</p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <textarea id="base64Input" rows="2" placeholder="Texto..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm"></textarea>
+                    <div class="flex gap-2">
+                        <button onclick="codificarBase64()" class="flex-1 bg-emerald-500 text-slate-950 font-semibold py-2 rounded-xl text-xs">Codificar</button>
+                        <button onclick="decodificarBase64()" class="flex-1 bg-slate-700 text-white font-semibold py-2 rounded-xl text-xs">Decodificar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 12. Extractor de Enlaces (Nuevo) -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-globe"></i></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">12. Extractor Limpio de URLs</h3>
+                        <p class="text-slate-400 text-sm">Extrae todas las direcciones web de un texto.</p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <textarea id="urlExtractInput" rows="2" placeholder="Pega texto con enlaces..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm" oninput="extraerUrls()"></textarea>
+                    <div id="urlExtractOutput" class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 font-mono max-h-32 overflow-y-auto">Enlaces extraídos aparecerán aquí...</div>
+                </div>
+            </div>
+
+            <!-- 13. Contador de Palabras y Caracteres (Nuevo) -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-calculator"></i></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">13. Contador de Palabras y Caracteres</h3>
+                        <p class="text-slate-400 text-sm">Métricas de redacción en tiempo real.</p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <textarea id="counterInput" rows="3" placeholder="Escribe tu texto..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm" oninput="contarTexto()"></textarea>
+                    <div class="flex gap-4 text-xs text-slate-400 font-mono">
+                        <p>Palabras: <span id="wordCount" class="text-emerald-400 font-bold">0</span></p>
+                        <p>Caracteres: <span id="charCount" class="text-emerald-400 font-bold">0</span></p>
+                        <p>Tiempo de lectura: <span id="readTime" class="text-emerald-400 font-bold">0 min</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 14. Generador de Datos Falsos / Mock Data (Nuevo) -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-id-card"></i></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">14. Generador de Datos Falsos (Mock Data)</h3>
+                        <p class="text-slate-400 text-sm">Crea identidades ficticias para pruebas.</p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <button onclick="generarMockData()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold py-2.5 rounded-xl transition text-sm">Generar Identidad Aleatoria</button>
+                    <div id="mockOutput" class="bg-slate-900 p-3 rounded-xl border border-slate-800 text-xs text-slate-300 font-mono">Haz clic para generar...</div>
+                </div>
+            </div>
+
+            <!-- 15. Codificador URL / Percent-Encoding (Nuevo) -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-percent"></i></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">15. Codificador / Decodificador URL</h3>
+                        <p class="text-slate-400 text-sm">Sanitiza parámetros para enlaces web.</p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <textarea id="urlCodeInput" rows="2" placeholder="Texto o URL..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm"></textarea>
+                    <div class="flex gap-2">
+                        <button onclick="codificarUrlCode()" class="flex-1 bg-emerald-500 text-slate-950 font-semibold py-2 rounded-xl text-xs">Codificar URL</button>
+                        <button onclick="decodificarUrlCode()" class="flex-1 bg-slate-700 text-white font-semibold py-2 rounded-xl text-xs">Decodificar URL</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 16. Limpiador de Espacios y Líneas (Nuevo) -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl"><i class="fa-solid fa-eraser"></i></div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">16. Limpiador de Espacios y Líneas Vacías</h3>
+                        <p class="text-slate-400 text-sm">Elimina espacios dobles y saltos sobrantes.</p>
+                    </div>
+                </div>
+                <div class="space-y-3">
+                    <textarea id="cleanSpaceInput" rows="2" placeholder="Texto desordenado..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm"></textarea>
+                    <button onclick="limpiarEspaciosTexto()" class="w-full bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold py-2.5 rounded-xl transition text-sm">Limpiar Formato</button>
                 </div>
             </div>
 
@@ -189,12 +331,12 @@
 
     <!-- Footer -->
     <footer class="border-t border-slate-800 py-6 text-center text-xs text-slate-500">
-        <p>Privatix - Herramientas de código abierto.</p>
+        <p>Privatix - Suite de código abierto.</p>
     </footer>
 
     <!-- Scripts de Funcionalidad -->
     <script>
-        // Herramienta 1: Limpiador de Metadatos
+        // 1. Limpiador Metadatos
         function procesarImagenMeta(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -203,14 +345,12 @@
                 const img = new Image();
                 img.onload = function() {
                     const canvas = document.createElement('canvas');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
+                    canvas.width = img.width; canvas.height = img.height;
                     canvas.getContext('2d').drawImage(img, 0, 0);
                     canvas.toBlob(function(blob) {
                         const url = URL.createObjectURL(blob);
                         const btn = document.getElementById('downloadMeta');
-                        btn.href = url;
-                        btn.download = "limpia_" + file.name;
+                        btn.href = url; btn.download = "limpia_" + file.name;
                         document.getElementById('nombreMeta').textContent = file.name;
                         document.getElementById('resultadoMeta').classList.remove('hidden');
                     }, file.type);
@@ -220,17 +360,15 @@
             reader.readAsDataURL(file);
         }
 
-        // Herramienta 2: Encriptador / Desencriptador de Texto simple
+        // 2. Encriptador Textos
         function cifrarTexto() {
             const texto = document.getElementById('cryptoText').value;
             const clave = document.getElementById('cryptoKey').value;
             if(!texto || !clave) { alert('Ingresa texto y contraseña'); return; }
             try {
-                const encoded = btoa(encodeURIComponent(texto).split('').reverse().join('') + ":::" + clave);
-                document.getElementById('cryptoText').value = encoded;
+                document.getElementById('cryptoText').value = btoa(encodeURIComponent(texto).split('').reverse().join('') + ":::" + clave);
             } catch(e) { alert('Error al cifrar'); }
         }
-
         function descifrarTexto() {
             const texto = document.getElementById('cryptoText').value;
             const clave = document.getElementById('cryptoKey').value;
@@ -239,46 +377,41 @@
                 const decodedAll = decodeURIComponent(atob(texto));
                 const partes = decodedAll.split(":::");
                 if(partes[1] !== clave) { alert('Contraseña incorrecta'); return; }
-                const original = partes[0].split('').reverse().join('');
-                document.getElementById('cryptoText').value = original;
-            } catch(e) { alert('Texto cifrado o contraseña inválida'); }
+                document.getElementById('cryptoText').value = partes[0].split('').reverse().join('');
+            } catch(e) { alert('Datos inválidos'); }
         }
 
-        // Herramienta 3: Conversor Masivo / HEIC a JPG
+        // 3. Conversor HEIC
         async function convertirImagenes(event) {
             const files = event.target.files;
             if (!files.length) return;
             const linksContainer = document.getElementById('convLinks');
             linksContainer.innerHTML = '';
-            document.getElementById('convStatus').textContent = "Procesando imágenes...";
+            document.getElementById('convStatus').textContent = "Procesando...";
             document.getElementById('resultadoConv').classList.remove('hidden');
-
             for (let file of files) {
                 let imageFile = file;
                 if (file.name.toLowerCase().endsWith('.heic') || file.type === "image/heic") {
                     try {
                         const convertedBlob = await heic2any({ blob: file, toType: "image/jpeg" });
                         imageFile = new File([convertedBlob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", { type: "image/jpeg" });
-                    } catch (err) { console.error(err); continue; }
+                    } catch (err) { continue; }
                 }
-
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     const img = new Image();
                     img.onload = function() {
                         const canvas = document.createElement('canvas');
-                        canvas.width = img.width;
-                        canvas.height = img.height;
+                        canvas.width = img.width; canvas.height = img.height;
                         canvas.getContext('2d').drawImage(img, 0, 0);
                         canvas.toBlob(function(blob) {
                             const url = URL.createObjectURL(blob);
                             const a = document.createElement('a');
-                            a.href = url;
-                            a.download = "convertido_" + imageFile.name.replace(/\.[^/.]+$/, "") + ".jpg";
-                            a.textContent = "📥 " + imageFile.name.replace(/\.[^/.]+$/, "") + ".jpg";
+                            a.href = url; a.download = "convertido_" + imageFile.name.replace(/\.[^/.]+$/, "") + ".jpg";
+                            a.textContent = "📥 " + imageFile.name;
                             a.className = "bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-emerald-400 text-xs px-3 py-2 rounded-lg border border-slate-700 transition";
                             linksContainer.appendChild(a);
-                            document.getElementById('convStatus').textContent = "¡Conversión completada!";
+                            document.getElementById('convStatus').textContent = "¡Completado!";
                         }, 'image/jpeg', 0.9);
                     }
                     img.src = e.target.result;
@@ -287,33 +420,27 @@
             }
         }
 
-        // Herramienta 4: Generador de Contraseñas
+        // 4. Generador Pass
         function generarPassword() {
             const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%&*!-_";
             let pass = "";
-            for (let i = 0; i < 16; i++) {
-                pass += chars.charAt(Math.floor(Math.random() * chars.length));
-            }
+            for (let i = 0; i < 16; i++) pass += chars.charAt(Math.floor(Math.random() * chars.length));
             document.getElementById('passOutput').textContent = pass;
         }
-
-        function copiarPassword() {
-            const text = document.getElementById('passOutput').textContent;
-            navigator.clipboard.writeText(text);
-            alert("¡Contraseña copiada al portapapeles!");
+        function copiarTextoGenerico(elementId, msg) {
+            navigator.clipboard.writeText(document.getElementById(elementId).textContent);
+            alert(msg);
         }
 
-        // Herramienta 5: Censurador de Texto
+        // 5. Censurador
         function censurarTexto() {
             const texto = document.getElementById('redactText').value;
             const palabra = document.getElementById('redactWord').value;
-            if(!texto || !palabra) { alert('Ingresa el texto y la palabra a ocultar'); return; }
-            const regex = new RegExp(palabra, 'gi');
-            const redactado = texto.replace(regex, '█████');
-            document.getElementById('redactText').value = redactado;
+            if(!texto || !palabra) return;
+            document.getElementById('redactText').value = texto.replace(new RegExp(palabra, 'gi'), '█████');
         }
 
-        // Herramienta 6: Compresor Rápido de Imágenes
+        // 6. Compresor
         function comprimirImagen(event) {
             const file = event.target.files[0];
             if (!file) return;
@@ -322,23 +449,109 @@
                 const img = new Image();
                 img.onload = function() {
                     const canvas = document.createElement('canvas');
-                    canvas.width = img.width;
-                    canvas.height = img.height;
-                    const ctx = canvas.getContext('2d');
-                    ctx.drawImage(img, 0, 0);
-                    // Comprimir calidad al 70% para reducir peso
+                    canvas.width = img.width; canvas.height = img.height;
+                    canvas.getContext('2d').drawImage(img, 0, 0);
                     canvas.toBlob(function(blob) {
                         const url = URL.createObjectURL(blob);
                         const btn = document.getElementById('downloadComp');
-                        btn.href = url;
-                        btn.download = "comprimida_" + file.name;
-                        document.getElementById('nombreComp').textContent = file.name + " (Reducida)";
+                        btn.href = url; btn.download = "comp_" + file.name;
+                        document.getElementById('nombreComp').textContent = file.name;
                         document.getElementById('resultadoComp').classList.remove('hidden');
                     }, 'image/jpeg', 0.7);
                 }
                 img.src = e.target.result;
             }
             reader.readAsDataURL(file);
+        }
+
+        // 7. Lector EXIF
+        function leerExif(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            EXIF.getData(file, function() {
+                const allTags = EXIF.getAllTags(this);
+                let info = `Cámara: ${allTags.Make || 'N/D'} ${allTags.Model || ''}\n`;
+                info += `Fecha: ${allTags.DateTimeOriginal || 'N/D'}\n`;
+                info += `GPS: ${allTags.GPSLatitude ? 'Detectado (Coordenadas ocultas)' : 'No detectado'}`;
+                document.getElementById('exifOutput').textContent = info;
+            });
+        }
+
+        // 8. Hash Secret URL
+        function generarEnlaceSecreto() {
+            const msg = document.getElementById('hashSecret').value;
+            if(!msg) return;
+            const encoded = btoa(encodeURIComponent(msg));
+            const link = window.location.origin + window.location.pathname + "#msg=" + encoded;
+            document.getElementById('hashOutput').textContent = link;
+        }
+
+        // 9. Formatear Texto
+        function formatearTexto(tipo) {
+            let t = document.getElementById('textFormatInput').value;
+            if(tipo === 'upper') t = t.toUpperCase();
+            if(tipo === 'lower') t = t.toLowerCase();
+            if(tipo === 'slug') t = t.toLowerCase().replace(/[^a-z0-9]/g, '-').replace(/-+/g, '-');
+            document.getElementById('textFormatInput').value = t;
+        }
+
+        // 10. SHA-256
+        async function calcularSHA256() {
+            const text = document.getElementById('shaInput').value;
+            if(!text) { document.getElementById('shaOutput').textContent = "Hash resultante..."; return; }
+            const msgBuffer = new TextEncoder().encode(text);
+            const hashBuffer = await crypto.subtle.digest('SHA-256', msgBuffer);
+            const hashArray = Array.from(new Uint8Array(hashBuffer));
+            const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
+            document.getElementById('shaOutput').textContent = hashHex;
+        }
+
+        // 11. Base64
+        function codificarBase64() {
+            try { document.getElementById('base64Input').value = btoa(document.getElementById('base64Input').value); } catch(e){}
+        }
+        function decodificarBase64() {
+            try { document.getElementById('base64Input').value = atob(document.getElementById('base64Input').value); } catch(e){}
+        }
+
+        // 12. Extractor URLs
+        function extraerUrls() {
+            const text = document.getElementById('urlExtractInput').value;
+            const urls = text.match(/https?:\/\/[^\s]+/g) || [];
+            document.getElementById('urlExtractOutput').textContent = urls.length ? urls.join('\n') : "No se encontraron URLs...";
+        }
+
+        // 13. Contador
+        function contarTexto() {
+            const text = document.getElementById('counterInput').value;
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            const chars = text.length;
+            const readTime = Math.ceil(words / 200);
+            document.getElementById('wordCount').textContent = words;
+            document.getElementById('charCount').textContent = chars;
+            document.getElementById('readTime').textContent = readTime + " min";
+        }
+
+        // 14. Mock Data
+        function generarMockData() {
+            const nombres = ["Ana Pérez", "Carlos Gómez", "Lucía Ruiz", "Mateo Silva"];
+            const nombresR = nombres[Math.floor(Math.random() * nombres.length)];
+            const email = nombresR.toLowerCase().replace(' ', '.') + "@ejemplo.com";
+            document.getElementById('mockOutput').textContent = `Nombre: ${nombresR}\nEmail: ${email}\nTel: +34 600 ${Math.floor(100+Math.random()*900)}`;
+        }
+
+        // 15. URL Encode/Decode
+        function codificarUrlCode() {
+            document.getElementById('urlCodeInput').value = encodeURIComponent(document.getElementById('urlCodeInput').value);
+        }
+        function decodificarUrlCode() {
+            document.getElementById('urlCodeInput').value = decodeURIComponent(document.getElementById('urlCodeInput').value);
+        }
+
+        // 16. Limpiar Espacios
+        function limpiarEspaciosTexto() {
+            let t = document.getElementById('cleanSpaceInput').value;
+            document.getElementById('cleanSpaceInput').value = t.replace(/\s+/g, ' ').trim();
         }
     </script>
 </body>
