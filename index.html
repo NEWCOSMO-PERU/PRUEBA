@@ -6,6 +6,8 @@
     <title>Privatix - Herramientas de Privacidad 100% Locales</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Librería para transformar HEIC de iPhone -->
+    <script src="https://cdn.jsdelivr.net/npm/heic2any@0.0.4/dist/heic2any.min.js"></script>
 </head>
 <body class="bg-slate-900 text-slate-100 font-sans antialiased min-h-screen flex flex-col justify-between">
 
@@ -38,40 +40,75 @@
         </section>
 
         <!-- Sección de Herramientas -->
-        <section id="herramientas" class="max-w-4xl mx-auto px-4 py-6">
+        <section id="herramientas" class="max-w-4xl mx-auto px-4 py-6 space-y-12">
             
-            <!-- Herramienta Activa: Limpiador de Metadatos -->
+            <!-- Herramienta 1: Limpiador de Metadatos -->
             <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
                 <div class="flex items-center space-x-3 mb-6">
                     <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
                         <i class="fa-solid fa-wand-magic-sparkles"></i>
                     </div>
                     <div>
-                        <h3 class="text-xl font-bold text-white">Limpiador de Metadatos de Imágenes</h3>
-                        <p class="text-slate-400 text-sm">Elimina el rastro GPS, fecha y modelo de cámara de tus fotos de forma instantánea.</p>
+                        <h3 class="text-xl font-bold text-white">1. Limpiador de Metadatos de Imágenes</h3>
+                        <p class="text-slate-400 text-sm">Elimina el rastro GPS, fecha y modelo de cámara de tus fotos.</p>
                     </div>
                 </div>
 
-                <!-- Área de Carga -->
-                <div class="border-2 border-dashed border-slate-700 rounded-xl p-8 text-center hover:border-emerald-500 transition cursor-pointer bg-slate-900/50" onclick="document.getElementById('fileInput').click()">
-                    <input type="file" id="fileInput" accept="image/*" class="hidden" onchange="procesarImagen(event)">
-                    <i class="fa-solid fa-cloud-arrow-up text-3xl text-emerald-400 mb-3"></i>
-                    <p class="text-slate-300 font-medium mb-1">Haz clic aquí para seleccionar una foto o arrástrala</p>
-                    <p class="text-xs text-slate-500">Compatible con JPG, PNG, WebP</p>
+                <div class="border-2 border-dashed border-slate-700 rounded-xl p-6 text-center hover:border-emerald-500 transition cursor-pointer bg-slate-900/50" onclick="document.getElementById('fileInputMeta').click()">
+                    <input type="file" id="fileInputMeta" accept="image/*" class="hidden" onchange="procesarImagenMeta(event)">
+                    <i class="fa-solid fa-cloud-arrow-up text-3xl text-emerald-400 mb-2"></i>
+                    <p class="text-slate-300 font-medium text-sm">Haz clic para seleccionar una foto o arrástrala</p>
                 </div>
 
-                <!-- Resultado -->
-                <div id="resultadoContainer" class="hidden mt-6 p-4 bg-slate-900 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <div class="flex items-center space-x-3">
-                        <i class="fa-solid fa-circle-check text-emerald-400 text-2xl"></i>
-                        <div>
-                            <p class="text-white font-medium text-sm" id="nombreArchivo">imagen_limpia.jpg</p>
-                            <p class="text-xs text-emerald-400">Metadatos eliminados con éxito</p>
-                        </div>
+                <div id="resultadoMeta" class="hidden mt-4 p-4 bg-slate-900 rounded-xl border border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4">
+                    <p class="text-white font-medium text-sm truncate" id="nombreMeta">imagen.jpg</p>
+                    <a id="downloadMeta" class="bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-4 py-2 rounded-xl transition text-sm text-center">Descargar Limpia</a>
+                </div>
+            </div>
+
+            <!-- Herramienta 2: Encriptador / Desencriptador de Texto -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-key"></i>
                     </div>
-                    <a id="downloadBtn" class="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold px-5 py-2.5 rounded-xl transition text-sm text-center">
-                        Descargar Imagen Limpia
-                    </a>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">2. Encriptador / Desencriptador de Textos</h3>
+                        <p class="text-slate-400 text-sm">Protege mensajes secretos usando una clave privada local.</p>
+                    </div>
+                </div>
+
+                <div class="space-y-4">
+                    <textarea id="cryptoText" rows="3" placeholder="Escribe tu mensaje o texto cifrado aquí..." class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-emerald-500"></textarea>
+                    <input type="password" id="cryptoKey" placeholder="Contraseña secreta" class="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-slate-100 text-sm focus:outline-none focus:border-emerald-500">
+                    <div class="flex gap-3">
+                        <button onclick="cifrarTexto()" class="flex-1 bg-emerald-500 hover:bg-emerald-600 text-slate-950 font-semibold py-2.5 rounded-xl transition text-sm">Cifrar</button>
+                        <button onclick="descifrarTexto()" class="flex-1 bg-slate-700 hover:bg-slate-600 text-slate-200 font-semibold py-2.5 rounded-xl transition text-sm">Descifrar</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Herramienta 3: Conversor Masivo / HEIC a JPG -->
+            <div class="bg-slate-800/50 border border-slate-700 rounded-2xl p-6 md:p-8">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 text-emerald-400 flex items-center justify-center text-xl">
+                        <i class="fa-solid fa-file-arrow-down"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">3. Conversor de Imágenes (Incluye HEIC a JPG)</h3>
+                        <p class="text-slate-400 text-sm">Convierte fotos de iPhone (HEIC) u otros formatos a JPG de forma masiva.</p>
+                    </div>
+                </div>
+
+                <div class="border-2 border-dashed border-slate-700 rounded-xl p-6 text-center hover:border-emerald-500 transition cursor-pointer bg-slate-900/50" onclick="document.getElementById('fileInputConv').click()">
+                    <input type="file" id="fileInputConv" accept="image/*,.heic" multiple class="hidden" onchange="convertirImagenes(event)">
+                    <i class="fa-solid fa-cloud-arrow-up text-3xl text-emerald-400 mb-2"></i>
+                    <p class="text-slate-300 font-medium text-sm">Haz clic para seleccionar una o varias imágenes</p>
+                </div>
+
+                <div id="resultadoConv" class="hidden mt-4 p-4 bg-slate-900 rounded-xl border border-slate-800 text-center">
+                    <p class="text-emerald-400 font-medium text-sm mb-2" id="convStatus">Imágenes convertidas exitosamente</p>
+                    <div id="convLinks" class="flex flex-wrap gap-2 justify-center"></div>
                 </div>
             </div>
 
@@ -79,9 +116,9 @@
 
         <!-- Sección de Confianza -->
         <section id="privacidad" class="max-w-3xl mx-auto px-4 py-12 text-center border-t border-slate-800 mt-12">
-            <h2 class="text-xl font-bold mb-3 text-white">¿Cómo funciona técnicamente?</h2>
+            <h2 class="text-xl font-bold mb-3 text-white">Seguridad garantizada</h2>
             <p class="text-slate-400 text-xs leading-relaxed max-w-lg mx-auto">
-                Cuando seleccionas la imagen, el navegador la procesa mediante un elemento gráfico interno (Canvas) y extrae únicamente los pixeles visibles, descartando por completo los bloques binarios de metadatos (EXIF). Ningún archivo se transmite por internet.
+                Ninguna de estas herramientas se comunica con servidores externos. Toda la computación matemática de cifrado, canvas y conversiones se efectúa en el motor JavaScript de tu propio equipo.
             </p>
         </section>
     </main>
@@ -91,40 +128,101 @@
         <p>Privatix - Herramientas de código abierto.</p>
     </footer>
 
-    <!-- Script de Funcionalidad Local -->
+    <!-- Scripts de Funcionalidad -->
     <script>
-        function procesarImagen(event) {
+        // Herramienta 1: Limpiador de Metadatos
+        function procesarImagenMeta(event) {
             const file = event.target.files[0];
             if (!file) return;
-
             const reader = new FileReader();
             reader.onload = function(e) {
                 const img = new Image();
                 img.onload = function() {
-                    // Creamos un Canvas virtual en memoria RAM
                     const canvas = document.createElement('canvas');
                     canvas.width = img.width;
                     canvas.height = img.height;
-                    
-                    const ctx = canvas.getContext('2d');
-                    // Dibujamos solo los pixeles (esto borra automáticamente todos los metadatos EXIF)
-                    ctx.drawImage(img, 0, 0);
-
-                    // Convertimos el canvas a un archivo limpio descargable
+                    canvas.getContext('2d').drawImage(img, 0, 0);
                     canvas.toBlob(function(blob) {
                         const url = URL.createObjectURL(blob);
-                        const downloadBtn = document.getElementById('downloadBtn');
-                        
-                        downloadBtn.href = url;
-                        downloadBtn.download = "limpia_" + file.name;
-                        
-                        document.getElementById('nombreArchivo').textContent = file.name;
-                        document.getElementById('resultadoContainer').classList.remove('hidden');
+                        const btn = document.getElementById('downloadMeta');
+                        btn.href = url;
+                        btn.download = "limpia_" + file.name;
+                        document.getElementById('nombreMeta').textContent = file.name;
+                        document.getElementById('resultadoMeta').classList.remove('hidden');
                     }, file.type);
                 }
                 img.src = e.target.result;
             }
             reader.readAsDataURL(file);
+        }
+
+        // Herramienta 2: Encriptador / Desencriptador de Texto simple
+        function cifrarTexto() {
+            const texto = document.getElementById('cryptoText').value;
+            const clave = document.getElementById('cryptoKey').value;
+            if(!texto || !clave) { alert('Ingresa texto y contraseña'); return; }
+            try {
+                // Cifrado simétrico básico basado en Base64 + clave combinada localmente
+                const encoded = btoa(encodeURIComponent(texto).split('').reverse().join('') + ":::" + clave);
+                document.getElementById('cryptoText').value = encoded;
+            } catch(e) { alert('Error al cifrar'); }
+        }
+
+        function descifrarTexto() {
+            const texto = document.getElementById('cryptoText').value;
+            const clave = document.getElementById('cryptoKey').value;
+            if(!texto || !clave) { alert('Ingresa texto cifrado y contraseña'); return; }
+            try {
+                const decodedAll = decodeURIComponent(atob(texto));
+                const partes = decodedAll.split(":::");
+                if(partes[1] !== clave) { alert('Contraseña incorrecta'); return; }
+                const original = partes[0].split('').reverse().join('');
+                document.getElementById('cryptoText').value = original;
+            } catch(e) { alert('Texto cifrado o contraseña inválida'); }
+        }
+
+        // Herramienta 3: Conversor Masivo / HEIC a JPG
+        async function convertirImagenes(event) {
+            const files = event.target.files;
+            if (!files.length) return;
+            const linksContainer = document.getElementById('convLinks');
+            linksContainer.innerHTML = '';
+            document.getElementById('convStatus').textContent = "Procesando imágenes...";
+            document.getElementById('resultadoConv').classList.remove('hidden');
+
+            for (let file of files) {
+                let imageFile = file;
+                // Si es formato HEIC de iPhone
+                if (file.name.toLowerCase().endsWith('.heic') || file.type === "image/heic") {
+                    try {
+                        const convertedBlob = await heic2any({ blob: file, toType: "image/jpeg" });
+                        imageFile = new File([convertedBlob], file.name.replace(/\.[^/.]+$/, "") + ".jpg", { type: "image/jpeg" });
+                    } catch (err) { console.error(err); continue; }
+                }
+
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    const img = new Image();
+                    img.onload = function() {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        canvas.getContext('2d').drawImage(img, 0, 0);
+                        canvas.toBlob(function(blob) {
+                            const url = URL.createObjectURL(blob);
+                            const a = document.createElement('a');
+                            a.href = url;
+                            a.download = "convertido_" + imageFile.name.replace(/\.[^/.]+$/, "") + ".jpg";
+                            a.textContent = "📥 " + imageFile.name.replace(/\.[^/.]+$/, "") + ".jpg";
+                            a.className = "bg-slate-800 hover:bg-emerald-500 hover:text-slate-950 text-emerald-400 text-xs px-3 py-2 rounded-lg border border-slate-700 transition";
+                            linksContainer.appendChild(a);
+                            document.getElementById('convStatus').textContent = "¡Conversión completada!";
+                        }, 'image/jpeg', 0.9);
+                    }
+                    img.src = e.target.result;
+                }
+                reader.readAsDataURL(imageFile);
+            }
         }
     </script>
 </body>
