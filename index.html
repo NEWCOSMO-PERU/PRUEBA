@@ -3,65 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control de Stock en GitHub</title>
+    <title>Tienda Online con GitHub JSON</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="bg-gray-100 min-h-screen p-6">
-    <div class="max-w-4xl mx-auto bg-white shadow-md rounded-lg p-6">
-        <h1 class="text-2xl font-bold mb-4 text-gray-800">📦 Control de Stock con GitHub</h1>
+<body class="bg-slate-50 min-h-screen font-sans text-slate-800">
 
-        <!-- Configuración de Credenciales -->
-        <div class="mb-6 p-4 bg-gray-50 rounded border">
-            <h2 class="font-semibold text-gray-700 mb-2">Configuración de Conexión</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-                <input type="text" id="repoOwner" placeholder="Usuario de GitHub" class="p-2 border rounded text-sm">
-                <input type="text" id="repoName" placeholder="Nombre del Repositorio" class="p-2 border rounded text-sm">
-                <input type="password" id="githubToken" placeholder="GitHub Personal Access Token" class="p-2 border rounded text-sm">
+    <!-- Header / Navbar -->
+    <header class="bg-white shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-store text-indigo-600 text-2xl"></i>
+                <span class="text-xl font-bold tracking-tight text-slate-900">MiTienda<span class="text-indigo-600">JSON</span></span>
             </div>
-            <button onclick="cargarStock()" class="mt-3 bg-blue-600 text-white px-4 py-2 rounded text-sm hover:bg-blue-700 transition">Conectar / Cargar Stock</button>
+            
+            <div class="flex items-center space-x-4">
+                <!-- Botón Modo Administrador -->
+                <button onclick="toggleAdminModal()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-2 rounded-lg font-medium transition flex items-center gap-1.5">
+                    <i class="fa-solid fa-gear"></i> Modo Admin / GitHub
+                </button>
+                
+                <!-- Botón Carrito -->
+                <button onclick="toggleCartModal()" class="relative bg-indigo-600 hover:bg-indigo-700 text-white px-4 py-2 rounded-lg font-medium transition flex items-center gap-2 shadow-sm">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                    <span>Carrito</span>
+                    <span id="cartCount" class="bg-amber-400 text-slate-900 text-xs font-bold px-2 py-0.5 rounded-full">0</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 py-8">
+        
+        <!-- Banner de Bienvenida -->
+        <div class="bg-gradient-to-r from-indigo-900 to-slate-900 text-white rounded-2xl p-8 mb-8 shadow-md flex flex-col md:flex-row justify-between items-center">
+            <div class="mb-4 md:mb-0">
+                <h1 class="text-3xl font-extrabold mb-2">Catálogo de Productos</h1>
+                <p class="text-indigo-200 text-sm max-w-xl">Todos los datos de productos y stock se sincronizan en tiempo real desde un archivo <code class="bg-slate-800 px-1.5 py-0.5 rounded text-amber-300">stock.json</code> alojado en tu repositorio de GitHub.</p>
+            </div>
+            <button onclick="cargarCatalogo()" class="bg-indigo-500 hover:bg-indigo-400 text-white px-5 py-2.5 rounded-xl font-medium text-sm transition shadow flex items-center gap-2">
+                <i class="fa-solid fa-rotate"></i> Actualizar Catálogo
+            </button>
         </div>
 
-        <!-- Formulario Agregar Producto -->
-        <div class="mb-6 p-4 bg-blue-50 rounded border border-blue-100">
-            <h2 class="font-semibold text-blue-800 mb-2">Agregar Nuevo Producto</h2>
-            <div class="flex gap-3">
-                <input type="text" id="nuevoNombre" placeholder="Nombre del producto" class="flex-1 p-2 border rounded text-sm">
-                <input type="number" id="nuevoCantidad" placeholder="Cantidad" class="w-32 p-2 border rounded text-sm">
-                <button onclick="agregarProducto()" class="bg-green-600 text-white px-4 py-2 rounded text-sm hover:bg-green-700 transition">Añadir</button>
+        <!-- Grid de Productos -->
+        <div id="productGrid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Estado inicial de carga -->
+            <div class="col-span-full text-center py-16 bg-white rounded-2xl border border-slate-200 shadow-sm">
+                <i class="fa-solid fa-cloud-arrow-down text-4xl text-indigo-400 mb-3 animate-bounce"></i>
+                <h3 class="text-lg font-semibold text-slate-700">Esperando conexión con GitHub</h3>
+                <p class="text-sm text-slate-500 mt-1">Configura tus credenciales en el botón <span class="font-semibold">"Modo Admin / GitHub"</span> superior para cargar los productos.</p>
             </div>
         </div>
+    </main>
 
-        <!-- Tabla de Stock -->
-        <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse">
-                <thead>
-                    <tr class="bg-gray-200 text-gray-700 text-sm">
-                        <th class="p-3">Producto</th>
-                        <th class="p-3">Stock</th>
-                        <th class="p-3 text-center">Acciones</th>
-                    </tr>
-                </thead>
-                <tbody id="tablaStock" class="text-sm divide-y divide-gray-200">
-                    <tr>
-                        <td colspan="3" class="p-4 text-center text-gray-500">Conéctate usando tus credenciales arriba para ver el inventario.</td>
-                    </tr>
-                </tbody>
-            </table>
+    <!-- MODAL: Carrito de Compras -->
+    <div id="cartModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden z-50 flex justify-end">
+        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col justify-between p-6 overflow-y-auto">
+            <div>
+                <div class="flex justify-between items-center pb-4 border-b border-slate-100">
+                    <h2 class="text-lg font-bold flex items-center gap-2"><i class="fa-solid fa-bag-shopping text-indigo-600"></i> Tu Carrito</h2>
+                    <button onclick="toggleCartModal()" class="text-slate-400 hover:text-slate-600 text-xl font-bold">&times;</button>
+                </div>
+                <div id="cartItems" class="divide-y divide-slate-100 my-4 max-h-[60vh] overflow-y-auto">
+                    <p class="text-sm text-slate-500 text-center py-8">El carrito está vacío.</p>
+                </div>
+            </div>
+            <div class="border-t border-slate-100 pt-4">
+                <div class="flex justify-between text-base font-bold mb-4">
+                    <span>Total:</span>
+                    <span id="cartTotal" class="text-indigo-600">$0.00</span>
+                </div>
+                <button onclick="finalizarCompra()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-3 rounded-xl transition shadow flex justify-center items-center gap-2">
+                    <i class="fa-solid fa-check"></i> Finalizar Compra y Actualizar Stock
+                </button>
+            </div>
         </div>
     </div>
 
+    <!-- MODAL: Configuración / Admin (Gestión de Stock y Credenciales) -->
+    <div id="adminModal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden z-50 flex justify-center items-center p-4">
+        <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+            <div class="bg-slate-900 text-white p-5 flex justify-between items-center">
+                <h3 class="font-bold flex items-center gap-2"><i class="fa-solid fa-shield-halved text-indigo-400"></i> Panel de Administración & GitHub</h3>
+                <button onclick="toggleAdminModal()" class="text-slate-400 hover:text-white text-xl">&times;</button>
+            </div>
+            <div class="p-6 overflow-y-auto space-y-6">
+                <!-- Config GitHub -->
+                <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                    <h4 class="font-semibold text-slate-800 text-sm mb-3">1. Credenciales del Repositorio</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-2">
+                        <input type="text" id="repoOwner" placeholder="Usuario GitHub" class="p-2.5 bg-white border border-slate-300 rounded-lg text-xs">
+                        <input type="text" id="repoName" placeholder="Nombre Repositorio" class="p-2.5 bg-white border border-slate-300 rounded-lg text-xs">
+                        <input type="password" id="githubToken" placeholder="GitHub PAT Token" class="p-2.5 bg-white border border-slate-300 rounded-lg text-xs">
+                    </div>
+                    <button onclick="guardarCredenciales()" class="text-xs bg-indigo-600 hover:bg-indigo-700 text-white font-medium px-4 py-2 rounded-lg transition">Guardar credenciales localmente</button>
+                </div>
+
+                <!-- Agregar Producto -->
+                <div class="bg-indigo-50/50 p-4 rounded-xl border border-indigo-100">
+                    <h4 class="font-semibold text-indigo-900 text-sm mb-3">2. Añadir Nuevo Producto al Catálogo</h4>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-3">
+                        <input type="text" id="newNombre" placeholder="Nombre" class="p-2.5 bg-white border border-slate-300 rounded-lg text-xs">
+                        <input type="number" id="newPrecio" placeholder="Precio ($)" step="0.01" class="p-2.5 bg-white border border-slate-300 rounded-lg text-xs">
+                        <input type="number" id="newStock" placeholder="Stock inicial" class="p-2.5 bg-white border border-slate-300 rounded-lg text-xs">
+                    </div>
+                    <input type="text" id="newImagen" placeholder="URL de imagen (opcional)" class="w-full p-2.5 bg-white border border-slate-300 rounded-lg text-xs mb-3">
+                    <button onclick="agregarNuevoProducto()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-medium px-4 py-2 rounded-lg transition">Añadir a GitHub (stock.json)</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Script Principal -->
     <script>
         let fileSha = "";
         let productos = [];
+        let carrito = [];
 
-        async function cargarStock() {
-            const owner = document.getElementById('repoOwner').value;
-            const repo = document.getElementById('repoName').value;
-            const token = document.getElementById('githubToken').value;
+        // Cargar credenciales guardadas al iniciar
+        window.onload = () => {
+            if(localStorage.getItem('gh_owner')) document.getElementById('repoOwner').value = localStorage.getItem('gh_owner');
+            if(localStorage.getItem('gh_repo')) document.getElementById('repoName').value = localStorage.getItem('gh_repo');
+            if(localStorage.getItem('gh_token')) document.getElementById('githubToken').value = localStorage.getItem('gh_token');
+            
+            if(localStorage.getItem('gh_owner') && localStorage.getItem('gh_repo') && localStorage.getItem('gh_token')) {
+                cargarCatalogo();
+            }
+        };
+
+        function guardarCredenciales() {
+            localStorage.setItem('gh_owner', document.getElementById('repoOwner').value.trim());
+            localStorage.setItem('gh_repo', document.getElementById('repoName').value.trim());
+            localStorage.setItem('gh_token', document.getElementById('githubToken').value.trim());
+            alert("Credenciales guardadas correctamente.");
+            cargarCatalogo();
+        }
+
+        function toggleCartModal() {
+            const modal = document.getElementById('cartModal');
+            modal.classList.toggle('hidden');
+        }
+
+        function toggleAdminModal() {
+            const modal = document.getElementById('adminModal');
+            modal.classList.toggle('hidden');
+        }
+
+        async function cargarCatalogo() {
+            const owner = document.getElementById('repoOwner').value.trim();
+            const repo = document.getElementById('repoName').value.trim();
+            const token = document.getElementById('githubToken').value.trim();
 
             if (!owner || !repo || !token) {
-                alert("Por favor completa todos los campos de configuración.");
+                alert("Por favor completa las credenciales de GitHub en el panel de administración.");
+                toggleAdminModal();
                 return;
             }
 
@@ -70,50 +168,183 @@
                     headers: { 'Authorization': `token ${token}` }
                 });
 
-                if (!response.ok) throw new Error("No se pudo cargar el archivo stock.json. Asegúrate de que exista en el repositorio.");
+                if (!response.ok) throw new Error("No se pudo obtener stock.json. Verifica tus datos o crea el archivo en el repo.");
 
                 const data = await response.json();
                 fileSha = data.sha;
                 
-                // Decodificar contenido Base64 de GitHub
                 const decodedContent = decodeURIComponent(escape(atob(data.content)));
                 productos = JSON.parse(decodedContent);
                 
-                renderTabla();
-                alert("Stock cargado exitosamente.");
+                renderProductos();
             } catch (error) {
-                alert("Error: " + error.message);
+                alert("Error al cargar catálogo: " + error.message);
             }
         }
 
-        function renderTabla() {
-            const tbody = document.getElementById('tablaStock');
-            tbody.innerHTML = "";
+        function renderProductos() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = "";
 
             if (productos.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="3" class="p-4 text-center text-gray-500">No hay productos registrados.</td></tr>`;
+                grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500 bg-white rounded-2xl border border-slate-200">No hay productos disponibles.</div>`;
                 return;
             }
 
             productos.forEach((prod, index) => {
-                tbody.innerHTML += `
-                    <tr class="hover:bg-gray-50">
-                        <td class="p-3">${prod.nombre}</td>
-                        <td class="p-3 font-semibold">${prod.cantidad}</td>
-                        <td class="p-3 text-center space-x-2">
-                            <button onclick="cambiarCantidad(${index}, 1)" class="bg-gray-200 px-2 py-1 rounded hover:bg-gray-300 text-xs">+</button>
-                            <button onclick="cambiarCantidad(${index}, -1)" class="bg-gray-200 px-2 py-1 rounded hover:bg-gray-300 text-xs">-</button>
-                            <button onclick="eliminarProducto(${index})" class="text-red-600 hover:text-red-800 text-xs ml-2">Eliminar</button>
-                        </td>
-                    </tr>
+                const imgUrl = prod.imagen || "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&auto=format&fit=crop";
+                const sinStock = prod.stock <= 0;
+
+                grid.innerHTML += `
+                    <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden flex flex-col justify-between transition hover:shadow-md">
+                        <div>
+                            <div class="h-48 overflow-hidden bg-slate-100 relative">
+                                <img src="${imgUrl}" alt="${prod.nombre}" class="w-full h-full object-cover">
+                                <span class="absolute top-3 right-3 bg-white/90 backdrop-blur-sm text-slate-800 text-xs font-bold px-2.5 py-1 rounded-full shadow-sm">
+                                    Stock: ${prod.stock}
+                                </span>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-bold text-slate-900 mb-1">${prod.nombre}</h3>
+                                <p class="text-indigo-600 font-extrabold text-lg">$${Number(prod.precio).toFixed(2)}</p>
+                            </div>
+                        </div>
+                        <div class="p-4 pt-0">
+                            <button onclick="agregarAlCarrito(${index})" ${sinStock ? 'disabled' : ''} class="w-full ${sinStock ? 'bg-slate-200 text-slate-400 cursor-not-allowed' : 'bg-slate-900 hover:bg-indigo-600 text-white'} py-2.5 rounded-xl font-medium text-xs transition flex justify-center items-center gap-2 shadow-sm">
+                                <i class="fa-solid fa-cart-plus"></i> ${sinStock ? 'Agotado' : 'Agregar al Carrito'}
+                            </button>
+                        </div>
+                    </div>
                 `;
             });
         }
 
-        async function guardarEnGitHub() {
-            const owner = document.getElementById('repoOwner').value;
-            const repo = document.getElementById('repoName').value;
-            const token = document.getElementById('githubToken').value;
+        function agregarAlCarrito(index) {
+            const prod = productos[index];
+            if(prod.stock <= 0) return;
+
+            const itemExistente = carrito.find(item => item.index === index);
+            if(itemExistente) {
+                if(itemExistente.cantidad < prod.stock) {
+                    itemExistente.cantidad++;
+                } else {
+                    alert("No hay más stock disponible para este producto.");
+                }
+            } else {
+                carrito.push({ index: index, nombre: prod.nombre, precio: prod.precio, cantidad: 1 });
+            }
+            renderCarrito();
+        }
+
+        function renderCarrito() {
+            const container = document.getElementById('cartItems');
+            const countBadge = document.getElementById('cartCount');
+            const totalSpan = document.getElementById('cartTotal');
+            
+            let totalItems = 0;
+            let totalPrice = 0;
+
+            if(carrito.length === 0) {
+                container.innerHTML = `<p class="text-sm text-slate-500 text-center py-8">El carrito está vacío.</p>`;
+                countBadge.innerText = "0";
+                totalSpan.innerText = "$0.00";
+                return;
+            }
+
+            container.innerHTML = "";
+            carrito.forEach((item, i) => {
+                totalItems += item.cantidad;
+                totalPrice += item.precio * item.cantidad;
+
+                container.innerHTML += `
+                    <div class="py-3 flex justify-between items-center">
+                        <div>
+                            <h4 class="font-bold text-xs text-slate-800">${item.nombre}</h4>
+                            <p class="text-slate-500 text-xs">$${item.precio} x ${item.cantidad}</p>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <button onclick="cambiarCantidadCarrito(${i}, -1)" class="w-6 h-6 bg-slate-100 rounded-lg text-xs font-bold hover:bg-slate-200">-</button>
+                            <span class="text-xs font-bold">${item.cantidad}</span>
+                            <button onclick="cambiarCantidadCarrito(${i}, 1)" class="w-6 h-6 bg-slate-100 rounded-lg text-xs font-bold hover:bg-slate-200">+</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            countBadge.innerText = totalItems;
+            totalSpan.innerText = `$${totalPrice.toFixed(2)}`;
+        }
+
+        function cambiarCantidadCarrito(cartIndex, delta) {
+            const item = carrito[cartIndex];
+            const prodStock = productos[item.index].stock;
+
+            item.cantidad += delta;
+            if(item.cantidad > prodStock) {
+                item.cantidad = prodStock;
+                alert("Has alcanzado el límite del stock disponible.");
+            }
+            if(item.cantidad <= 0) {
+                carrito.splice(cartIndex, 1);
+            }
+            renderCarrito();
+        }
+
+        async function finalizarCompra() {
+            if(carrito.length === 0) return;
+            if(!confirm("¿Confirmar compra? Esto restará automáticamente el stock y actualizará el archivo en GitHub.")) return;
+
+            // Restar stock localmente basado en el carrito
+            carrito.forEach(item => {
+                productos[item.index].stock -= item.cantidad;
+            });
+
+            try {
+                // Guardar cambios en GitHub
+                await sincronizarGitHub("Compra realizada exitosamente desde la tienda online");
+                alert("¡Compra procesada con éxito! El stock se ha actualizado en GitHub.");
+                carrito = [];
+                renderCarrito();
+                renderProductos();
+                toggleCartModal();
+            } catch (error) {
+                alert("Error al procesar la compra en GitHub: " + error.message);
+                // Revertir stock local si falla
+                cargarCatalogo();
+            }
+        }
+
+        async function agregarNuevoProducto() {
+            const nombre = document.getElementById('newNombre').value.trim();
+            const precio = parseFloat(document.getElementById('newPrecio').value);
+            const stock = parseInt(document.getElementById('newStock').value);
+            const imagen = document.getElementById('newImagen').value.trim();
+
+            if(!nombre || isNaN(precio) || isNaN(stock)) {
+                alert("Por favor completa nombre, precio y stock de forma válida.");
+                return;
+            }
+
+            productos.push({ nombre, precio, stock, imagen });
+
+            try {
+                await sincronizarGitHub(`Añadido nuevo producto: ${nombre}`);
+                alert("Producto agregado correctamente al archivo stock.json en GitHub.");
+                document.getElementById('newNombre').value = "";
+                document.getElementById('newPrecio').value = "";
+                document.getElementById('newStock').value = "";
+                document.getElementById('newImagen').value = "";
+                renderProductos();
+            } catch (error) {
+                alert("Error al guardar en GitHub: " + error.message);
+                productos.pop();
+            }
+        }
+
+        async function sincronizarGitHub(mensajeCommit) {
+            const owner = document.getElementById('repoOwner').value.trim();
+            const repo = document.getElementById('repoName').value.trim();
+            const token = document.getElementById('githubToken').value.trim();
 
             const updatedContent = btoa(unescape(encodeURIComponent(JSON.stringify(productos, null, 2))));
 
@@ -124,7 +355,7 @@
                     'Content-Type': 'application/json',
                 },
                 body: JSON.stringify({
-                    message: "Actualización automática de stock vía Web",
+                    message: mensajeCommit,
                     content: updatedContent,
                     sha: fileSha
                 })
@@ -137,53 +368,6 @@
 
             const data = await response.json();
             fileSha = data.content.sha;
-        }
-
-        async function agregarProducto() {
-            const nombre = document.getElementById('nuevoNombre').value.trim();
-            const cantidad = parseInt(document.getElementById('nuevoCantidad').value);
-
-            if (!nombre || isNaN(cantidad)) {
-                alert("Ingresa un nombre y una cantidad válida.");
-                return;
-            }
-
-            productos.push({ nombre, cantidad });
-            try {
-                await guardarEnGitHub();
-                document.getElementById('nuevoNombre').value = "";
-                document.getElementById('nuevoCantidad').value = "";
-                renderTabla();
-            } catch (error) {
-                alert("Error al guardar en GitHub: " + error.message);
-                productos.pop(); // Revertir cambio local si falla
-            }
-        }
-
-        async function cambiarCantidad(index, delta) {
-            productos[index].cantidad += delta;
-            if (productos[index].cantidad < 0) productos[index].cantidad = 0;
-
-            try {
-                await guardarEnGitHub();
-                renderTabla();
-            } catch (error) {
-                alert("Error al actualizar: " + error.message);
-                productos[index].cantidad -= delta; // Revertir
-            }
-        }
-
-        async function eliminarProducto(index) {
-            if (!confirm("¿Estás seguro de eliminar este producto?")) return;
-            
-            const eliminado = productos.splice(index, 1);
-            try {
-                await guardarEnGitHub();
-                renderTabla();
-            } catch (error) {
-                alert("Error al eliminar: " + error.message);
-                productos.splice(index, 0, eliminado[0]); // Revertir
-            }
         }
     </script>
 </body>
