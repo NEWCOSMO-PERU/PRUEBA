@@ -2,8 +2,8 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
     e.preventDefault();
     
     // Define aquí tu usuario y contraseña
-    const usuarioCorrecto = "mi_usuario";
-    const passwordCorrecto = "mi_password123";
+    const usuarioCorrecto = "ADMIN";
+    const passwordCorrecto = "SISTEMAS26";
     
     const userInput = document.getElementById('username').value;
     const passInput = document.getElementById('password').value;
