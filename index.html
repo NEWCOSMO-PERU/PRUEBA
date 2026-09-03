@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEWCOSMO | Portal Oficial</title>
+    <!-- Fuente moderna -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
@@ -26,7 +27,7 @@
         /* Encabezado / Logo y Título */
         header {
             text-align: center;
-            padding: 50px 20px 30px 20px;
+            padding: 55px 20px 35px 20px;
             position: relative;
         }
 
@@ -34,7 +35,7 @@
         .logo-container {
             position: relative;
             display: inline-block;
-            margin-bottom: 20px;
+            margin-bottom: 22px;
         }
 
         .logo-container::after {
@@ -43,19 +44,19 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 130px;
-            height: 130px;
-            background: radial-gradient(circle, rgba(250, 204, 21, 0.35) 0%, rgba(217, 119, 6, 0.1) 60%, transparent 80%);
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, rgba(250, 204, 21, 0.4) 0%, rgba(217, 119, 6, 0.15) 55%, transparent 80%);
             border-radius: 50%;
             z-index: -1;
-            filter: blur(15px);
+            filter: blur(16px);
         }
 
         .logo-img {
-            width: 110px;
-            height: 110px;
+            width: 120px;
+            height: 120px;
             object-fit: contain;
-            filter: drop-shadow(0 0 15px rgba(250, 204, 21, 0.4));
+            filter: drop-shadow(0 0 18px rgba(250, 204, 21, 0.5));
             animation: floatLogo 4s ease-in-out infinite;
         }
 
@@ -66,32 +67,65 @@
 
         /* Letras brillantes y llamativas para NEWCOSMO */
         h1 {
-            font-size: 3rem;
+            font-size: 3.2rem;
             font-weight: 800;
-            letter-spacing: 2px;
-            margin-bottom: 10px;
+            letter-spacing: 2.5px;
+            margin-bottom: 12px;
             background: linear-gradient(180deg, #fffbeb 0%, #fde047 50%, #ca8a04 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 35px rgba(234, 179, 8, 0.3);
+            text-shadow: 0 0 35px rgba(234, 179, 8, 0.35);
         }
 
         .subtitle {
             color: #94a3b8;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             font-weight: 400;
             letter-spacing: 0.5px;
         }
 
-        /* Contenedor principal de tarjetas */
+        /* Cuadrícula organizada en formato 3 columnas arriba y 2 abajo centradas */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(3, 1fr);
             gap: 24px;
             width: 100%;
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 0 auto;
             padding: 20px;
+        }
+
+        /* Para pantallas medianas (tablets) se ajusta a 2 columnas */
+        @media (max-width: 900px) {
+            .grid-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Para celulares se ajusta a 1 columna */
+        @media (max-width: 600px) {
+            .grid-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Centrar perfectamente la última tarjeta si queda sola en la fila inferior */
+        .card:nth-child(4) {
+            grid-column: 1 / 2;
+        }
+        .card:nth-child(5) {
+            grid-column: 2 / 3;
+        }
+        @media (min-width: 901px) {
+            .card-wrapper-bottom {
+                grid-column: 1 / -1;
+                display: flex;
+                justify-content: center;
+                gap: 24px;
+            }
+            .card-wrapper-bottom .card {
+                width: calc(33.333% - 16px);
+            }
         }
 
         /* Estilo de las tarjetas */
@@ -125,7 +159,7 @@
         .card:hover {
             transform: translateY(-6px);
             border-color: #eab308;
-            box-shadow: 0 15px 30px -10px rgba(234, 179, 8, 0.15);
+            box-shadow: 0 15px 30px -10px rgba(234, 179, 8, 0.2);
             background-color: #161e31;
         }
 
@@ -176,17 +210,26 @@
             line-height: 1.5;
         }
 
-        .card-link {
+        /* Botón / Badge inferior estilizado como en la vista previa */
+        .card-btn {
+            background-color: rgba(234, 179, 8, 0.08);
+            border: 1px solid rgba(234, 179, 8, 0.3);
+            color: #fde047;
+            padding: 8px 16px;
+            border-radius: 50px;
             font-weight: 600;
-            font-size: 0.9rem;
-            color: #eab308;
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
+            font-size: 0.88rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            display: inline-block;
+            align-self: flex-start;
         }
 
-        .card:hover .card-link {
-            gap: 10px;
+        .card:hover .card-btn {
+            background-color: #eab308;
+            color: #07090e;
+            border-color: #eab308;
+            box-shadow: 0 0 12px rgba(234, 179, 8, 0.4);
         }
 
         /* Footer Moderno */
@@ -198,7 +241,7 @@
         }
 
         .footer-content {
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 0 auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -235,7 +278,7 @@
         }
 
         .footer-bottom {
-            max-width: 1100px;
+            max-width: 1150px;
             margin: 0 auto;
             padding-top: 25px;
             border-top: 1px solid #111827;
@@ -269,16 +312,19 @@
 </head>
 <body>
 
+    <!-- Encabezado con Logo y Título Brillante -->
     <header>
         <div class="logo-container">
             <img src="logo.png" alt="Logo NEWCOSMO" class="logo-img">
         </div>
         <h1>NEWCOSMO</h1>
-        <p class="subtitle">Portal Oficial de Recursos — Acceso a todos los centros</p>
+        <p class="subtitle">Official Portal de Recursos — Acceso a todos los centros</p>
     </header>
 
+    <!-- Cuadrícula de Tarjetas de Secciones -->
     <main class="grid-container">
         
+        <!-- MANUALES -->
         <a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank" class="card">
             <div>
                 <div class="icon-box">
@@ -287,9 +333,10 @@
                 <h3>MANUALES</h3>
                 <p>Guías de uso, documentación y manuales oficiales actualizados.</p>
             </div>
-            <span class="card-link">Explorar sección &rarr;</span>
+            <span class="card-btn">Explorar</span>
         </a>
 
+        <!-- SOLUCIONES -->
         <a href="https://newcosmo-peru.github.io/SOLUCIONES/" target="_blank" class="card">
             <div>
                 <div class="icon-box">
@@ -298,9 +345,10 @@
                 <h3>SOLUCIONES</h3>
                 <p>Respuestas técnicas, alternativas y resolución de incidencias.</p>
             </div>
-            <span class="card-link">Ver sección &rarr;</span>
+            <span class="card-btn">Acceder</span>
         </a>
 
+        <!-- STORE -->
         <a href="https://newcosmo-peru.github.io/STORE/" target="_blank" class="card">
             <div>
                 <div class="icon-box">
@@ -309,33 +357,39 @@
                 <h3>STORE</h3>
                 <p>Tienda digital, productos, herramientas y catálogos disponibles.</p>
             </div>
-            <span class="card-link">Visitar tienda &rarr;</span>
+            <span class="card-btn">Visitar</span>
         </a>
 
-        <a href="https://newcosmo-peru.github.io/TONOS/" target="_blank" class="card">
-            <div>
-                <div class="icon-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+        <!-- TONOS & WALLPAPERS (Envueltos para centrar la fila inferior perfectamente) -->
+        <div style="grid-column: 1 / -1; display: flex; justify-content: center; gap: 24px; width: 100%;">
+            <!-- TONOS -->
+            <a href="https://newcosmo-peru.github.io/TONOS/" target="_blank" class="card" style="width: 100%; max-width: 360px;">
+                <div>
+                    <div class="icon-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                    </div>
+                    <h3>TONOS</h3>
+                    <p>Sección de audios, tonos de llamada y recursos multimedia.</p>
                 </div>
-                <h3>TONOS</h3>
-                <p>Sección de audios, tonos de llamada y recursos multimedia.</p>
-            </div>
-            <span class="card-link">Escuchar tonos &rarr;</span>
-        </a>
+                <span class="card-btn">Escuchar</span>
+            </a>
 
-        <a href="https://newcosmo-peru.github.io/WALLPAPERS/" target="_blank" class="card">
-            <div>
-                <div class="icon-box">
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+            <!-- WALLPAPERS -->
+            <a href="https://newcosmo-peru.github.io/WALLPAPERS/" target="_blank" class="card" style="width: 100%; max-width: 360px;">
+                <div>
+                    <div class="icon-box">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                    </div>
+                    <h3>WALLPAPERS</h3>
+                    <p>Fondos de pantalla en alta resolución para tus dispositivos.</p>
                 </div>
-                <h3>WALLPAPERS</h3>
-                <p>Fondos de pantalla en alta resolución para personalizar tus dispositivos.</p>
-            </div>
-            <span class="card-link">Ver wallpapers &rarr;</span>
-        </a>
+                <span class="card-btn">Ver más</span>
+            </a>
+        </div>
 
     </main>
 
+    <!-- Footer Moderno -->
     <footer>
         <div class="footer-content">
             <div class="footer-col">
@@ -343,7 +397,7 @@
                 <p>Plataforma centralizada de recursos tecnológicos, manuales, multimedia y herramientas digitales.</p>
             </div>
             <div class="footer-col">
-                <h4>Accesos Rápidos</h4>
+                <h4>LINKS RÁPIDOS</h4>
                 <ul>
                     <li><a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank">Manuales</a></li>
                     <li><a href="https://newcosmo-peru.github.io/SOLUCIONES/" target="_blank">Soluciones</a></li>
@@ -351,8 +405,8 @@
                 </ul>
             </div>
             <div class="footer-col">
-                <h4>Contacto</h4>
-                <p>Soporte y consultas a través de nuestros canales oficiales en línea.</p>
+                <h4>CONTACTO</h4>
+                <p>newcosmo@email.com<br>Soporte y consultas a través de canales oficiales.</p>
             </div>
         </div>
         
