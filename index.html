@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEWCOSMO | Portal Oficial</title>
-    <!-- Fuente moderna -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -212,57 +211,111 @@ h1{
     box-shadow:0 0 24px rgba(250,204,21,.46);
 }
 
+/* ==========================================================
+   FOOTER PRO REDISEÑADO
+   ========================================================== */
 footer{
     position:relative;
     z-index:1;
-    background:linear-gradient(180deg,rgba(15,23,42,.76),#070b12);
-    border-top:1px solid rgba(148,163,184,.16);
-    padding:38px 20px 26px;
+    background:
+      radial-gradient(circle at 50% 0%, rgba(234,179,8,.05), transparent 40%),
+      linear-gradient(180deg, rgba(11,18,32,.9), #04070d);
+    border-top:1px solid rgba(250,204,21,.15);
+    padding:60px 20px 30px;
+    margin-top:40px;
 }
 
 .footer-content{
-    width:min(100%,900px);
+    width:min(100%, 1000px);
     margin:0 auto;
     display:grid;
-    grid-template-columns:1.2fr 1fr 1fr;
-    gap:45px;
-    padding-bottom:28px;
+    grid-template-columns: 1.6fr 1fr 1fr 1fr;
+    gap:35px;
+    padding-bottom:40px;
 }
 
 .footer-col h4{
-    color:#f8fafc;
-    font-size:1rem;
+    color:#facc15;
+    font-size:.9rem;
     font-weight:700;
-    margin-bottom:14px;
+    letter-spacing:1px;
+    margin-bottom:18px;
+    text-transform:uppercase;
 }
 
-.footer-col p,.footer-col ul{
-    color:#cbd5e1;
+.footer-col p{
+    color:#94a3b8;
     font-size:.84rem;
-    line-height:1.6;
+    line-height:1.7;
+    margin-bottom:16px;
+}
+
+.footer-col ul{
     list-style:none;
 }
 
-.footer-col ul li{margin-bottom:6px}
+.footer-col ul li{
+    margin-bottom:10px;
+}
 
 .footer-col ul li a{
     color:#cbd5e1;
+    font-size:.85rem;
     text-decoration:none;
-    transition:color .2s ease;
+    transition:all .2s ease;
+    display:inline-block;
 }
 
-.footer-col ul li a:hover{color:#facc15}
+.footer-col ul li a:hover{
+    color:#facc15;
+    transform:translateX(4px);
+}
+
+/* Redes Sociales Footer */
+.footer-socials{
+    display:flex;
+    gap:10px;
+    margin-top:15px;
+}
+
+.social-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(148, 163, 184, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #cbd5e1;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.social-icon:hover {
+    background: #facc15;
+    border-color: #facc15;
+    color: #0f172a;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(250, 204, 21, 0.3);
+}
+
+.social-icon svg {
+    width: 18px;
+    height: 18px;
+    fill: currentColor;
+}
 
 .footer-bottom{
-    width:min(100%,900px);
+    width:min(100%, 1000px);
     margin:0 auto;
-    padding-top:20px;
-    border-top:1px solid rgba(148,163,184,.13);
+    padding-top:25px;
+    border-top:1px solid rgba(148,163,184,.1);
     display:flex;
     justify-content:space-between;
     align-items:center;
     gap:15px;
-    color:#94a3b8;
+    color:#64748b;
     font-size:.78rem;
 }
 
@@ -270,17 +323,120 @@ footer{
     color:#cbd5e1;
     text-decoration:none;
     border:1px solid rgba(148,163,184,.25);
-    border-radius:7px;
-    padding:7px 11px;
+    border-radius:8px;
+    padding:7px 14px;
     background:#111827;
-    transition:border-color .2s ease,color .2s ease;
+    font-weight:500;
+    transition:all .2s ease;
 }
 
 .github-badge:hover{
     border-color:#facc15;
     color:#facc15;
+    box-shadow:0 0 15px rgba(250,204,21,.15);
 }
 
+/* ==========================================================
+   BOTONES FLOTANTES PRO (WhatsApp y Asesor en Línea)
+   ========================================================== */
+.floating-container {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 99;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: flex-end;
+}
+
+.floating-btn {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 16px;
+    border-radius: 50px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.85rem;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.floating-btn span {
+    max-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: max-width 0.3s ease, opacity 0.3s ease;
+    opacity: 0;
+}
+
+.floating-btn:hover span {
+    max-width: 150px;
+    opacity: 1;
+}
+
+.floating-btn:hover {
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Estilo Asesor en Línea */
+.btn-advisor {
+    background: linear-gradient(135deg, #1e293b, #0f172a);
+    border-color: rgba(250, 204, 21, 0.4);
+}
+
+.btn-advisor:hover {
+    border-color: #facc15;
+}
+
+.btn-advisor .icon-pulse {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Indicador online pulsante */
+.btn-advisor .icon-pulse::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 8px;
+    height: 8px;
+    background-color: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    animation: pulse-green 2s infinite;
+}
+
+@keyframes pulse-green {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+}
+
+/* Estilo WhatsApp */
+.btn-whatsapp {
+    background: linear-gradient(135deg, #22c55e, #16a34a);
+}
+
+.floating-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+
+/* ==========================================================
+   RESPONSIVE DESIGN ACTUALIZADO
+   ========================================================== */
 @media(max-width:760px){
     .grid-container{
         grid-template-columns:repeat(2,minmax(0,1fr));
@@ -288,7 +444,10 @@ footer{
         gap:14px;
     }
 
-    .footer-content{grid-template-columns:1fr 1fr}
+    .footer-content{
+        grid-template-columns: 1fr 1fr;
+        gap:30px;
+    }
 }
 
 @media(max-width:520px){
@@ -302,65 +461,35 @@ footer{
     }
 
     .card{min-height:140px}
-    .footer-content{grid-template-columns:1fr;gap:24px}
+    
+    .footer-content{
+        grid-template-columns: 1fr;
+        gap:24px;
+    }
+    
     .footer-bottom{
         flex-direction:column;
         text-align:center;
     }
-}
 
-.footer-links a{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    color:#cbd5e1;
-    text-decoration:none;
-    padding:5px 0;
-    transition:color .2s ease, transform .2s ease;
+    .floating-container {
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    /* En móviles contraemos los textos del botón flotante por defecto o dejamos solo icono */
+    .floating-btn span {
+        display: none;
+    }
+    .floating-btn {
+        padding: 12px;
+        border-radius: 50%;
+    }
 }
-.footer-links a:hover{
-    color:#facc15;
-    transform:translateX(3px);
-}
-.footer-icon{
-    width:28px;
-    height:28px;
-    flex:0 0 28px;
-    border:1px solid rgba(250,204,21,.45);
-    border-radius:7px;
-    display:inline-flex;
-    align-items:center;
-    justify-content:center;
-    background:rgba(234,179,8,.06);
-}
-.footer-icon svg{
-    width:16px;
-    height:16px;
-    stroke:#f5d66b;
-}
-.footer-contact{
-    display:flex;
-    flex-direction:column;
-    gap:9px;
-}
-.footer-contact-row{
-    display:flex;
-    align-items:center;
-    gap:10px;
-    color:#cbd5e1;
-    font-size:.84rem;
-}
-.footer-contact-row a{
-    color:#cbd5e1;
-    text-decoration:none;
-}
-.footer-contact-row a:hover{color:#facc15}
-
 </style>
 </head>
 <body>
 
-    <!-- Encabezado con Logo y Título Brillante -->
     <header>
         <div class="logo-container">
             <img src="logo.png" alt="Logo NEWCOSMO" class="logo-img">
@@ -369,8 +498,7 @@ footer{
         <p class="subtitle">Official Portal de Recursos — Acceso a todos los centros</p>
     </header>
 
-    <!-- Cuadrícula de Tarjetas de Secciones -->
-<main class="grid-container">
+    <main class="grid-container">
 
         <a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank" rel="noopener" class="card">
             <div class="card-top">
@@ -472,108 +600,73 @@ footer{
         </a>
 
     </main>
-<!-- Footer Moderno -->
-<footer>
+
+    <footer>
         <div class="footer-content">
             <div class="footer-col">
                 <h4>NEWCOSMO</h4>
-                <p>Portal centralizado de recursos, manuales, multimedia y herramientas digitales.</p>
+                <p>Portal centralizado de recursos, manuales, multimedia y herramientas digitales de alto rendimiento.</p>
+                <div class="footer-socials">
+                    <a href="#" target="_blank" class="social-icon" aria-label="GitHub">
+                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                    </a>
+                    <a href="#" target="_blank" class="social-icon" aria-label="Twitter">
+                        <svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+                    </a>
+                </div>
             </div>
-
-            <div class="footer-col footer-links">
-                <h4>SITIOS RÁPIDOS</h4>
+            
+            <div class="footer-col">
+                <h4>Explorar</h4>
                 <ul>
-                    <li>
-                        <a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank" rel="noopener">
-                            <span class="footer-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5Z"/>
-                                    <path d="M8 7h8M8 11h8M8 15h5"/>
-                                </svg>
-                            </span>
-                            Manuales
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://newcosmo-peru.github.io/SOLUCIONES/" target="_blank" rel="noopener">
-                            <span class="footer-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="m14.7 6.3 3-3a4 4 0 0 1 0 5.7l-2 2"/>
-                                    <path d="m9.3 17.7-3 3a4 4 0 0 1-5.7-5.7l2-2"/>
-                                    <path d="m8 16 8-8"/>
-                                </svg>
-                            </span>
-                            Soluciones
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://newcosmo-peru.github.io/STORE/" target="_blank" rel="noopener">
-                            <span class="footer-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <path d="M3 4h2l2.4 11.2a2 2 0 0 0 2 1.6h8.9a2 2 0 0 0 2-1.6L22 8H6"/>
-                                    <circle cx="10" cy="20" r="1.2"/>
-                                    <circle cx="18" cy="20" r="1.2"/>
-                                </svg>
-                            </span>
-                            Store
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://newcosmo-peru.github.io/TONOS/" target="_blank" rel="noopener">
-                            <span class="footer-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round">
-                                    <path d="M4 12v4M8 9v7M12 6v12M16 9v7M20 12v4"/>
-                                </svg>
-                            </span>
-                            Tonos
-                        </a>
-                    </li>
-                    <li>
-                        <a href="https://newcosmo-peru.github.io/WALLPAPERS/" target="_blank" rel="noopener">
-                            <span class="footer-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                    <rect x="3" y="3" width="18" height="18" rx="2"/>
-                                    <circle cx="8.5" cy="8.5" r="1.5"/>
-                                    <path d="m21 15-4.2-4.2a1.8 1.8 0 0 0-2.6 0L6 19"/>
-                                </svg>
-                            </span>
-                            Wallpapers
-                        </a>
-                    </li>
+                    <li><a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank">Manuales</a></li>
+                    <li><a href="https://newcosmo-peru.github.io/SOLUCIONES/" target="_blank">Soluciones</a></li>
+                    <li><a href="https://newcosmo-peru.github.io/STORE/" target="_blank">Store Digital</a></li>
                 </ul>
             </div>
 
             <div class="footer-col">
-                <h4>CONTACTO</h4>
-                <div class="footer-contact">
-                    <div class="footer-contact-row">
-                        <span class="footer-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="3" y="5" width="18" height="14" rx="2"/>
-                                <path d="m3 7 9 6 9-6"/>
-                            </svg>
-                        </span>
-                        <a href="mailto:WWW.NEWCOSMO@OUTLOOK.ES">WWW.NEWCOSMO@OUTLOOK.ES</a>
-                    </div>
+                <h4>Multimedia</h4>
+                <ul>
+                    <li><a href="https://newcosmo-peru.github.io/TONOS/" target="_blank">Tonos y Sonidos</a></li>
+                    <li><a href="https://newcosmo-peru.github.io/WALLPAPERS/" target="_blank">Wallpapers HD</a></li>
+                </ul>
+            </div>
 
-                    <div class="footer-contact-row">
-                        <span class="footer-icon">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                                <path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.7 19.7 0 0 1-8.6-3.1 19.3 19.3 0 0 1-6-6A19.7 19.7 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 2.8a2 2 0 0 1-.5 2.1L8 9.9a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7A2 2 0 0 1 22 16.9Z"/>
-                            </svg>
-                        </span>
-                        <a href="tel:+51907546093">+51 907 546 093</a>
-                    </div>
-                </div>
+            <div class="footer-col">
+                <h4>Soporte</h4>
+                <p>newcosmo@email.com<br>Atención rápida vía canales oficiales.</p>
+                <ul>
+                    <li><a href="#contacto">Centro de Ayuda</a></li>
+                </ul>
             </div>
         </div>
-
+        
         <div class="footer-bottom">
             <p>&copy; 2026 NEWCOSMO. Todos los derechos reservados.</p>
-            <a href="https://pages.github.com/" target="_blank" rel="noopener" class="github-badge">
+            <a href="https://pages.github.com/" target="_blank" class="github-badge">
                 Powered by GitHub Pages
             </a>
         </div>
     </footer>
+
+    <div class="floating-container">
+        <a href="#chat" class="floating-btn btn-advisor" aria-label="Asesor en Línea">
+            <div class="icon-pulse">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+            </div>
+            <span>Asesor en Línea</span>
+        </a>
+
+        <a href="https://wa.me/tu_numero_aqui" target="_blank" rel="noopener" class="floating-btn btn-whatsapp" aria-label="Chat de WhatsApp">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
+            </svg>
+            <span>WhatsApp</span>
+        </a>
+    </div>
+
 </body>
 </html>
