@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Cosmo | Portal de Enlaces</title>
-    <!-- Importamos una fuente moderna de Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>NEWCOSMO | Portal Oficial</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,52 +14,92 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0b0f19; /* Fondo oscuro ultra moderno */
+            background-color: #07090e; /* Fondo oscuro espacial */
             color: #f8fafc;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
             justify-content: space-between;
-            padding: 50px 20px;
+            overflow-x: hidden;
         }
 
+        /* Encabezado / Logo y Título */
         header {
             text-align: center;
-            margin-bottom: 50px;
+            padding: 50px 20px 30px 20px;
+            position: relative;
         }
 
+        /* Contenedor del logo con brillo y aura dorada detrás */
+        .logo-container {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .logo-container::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 130px;
+            height: 130px;
+            background: radial-gradient(circle, rgba(250, 204, 21, 0.35) 0%, rgba(217, 119, 6, 0.1) 60%, transparent 80%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(15px);
+        }
+
+        .logo-img {
+            width: 110px;
+            height: 110px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 15px rgba(250, 204, 21, 0.4));
+            animation: floatLogo 4s ease-in-out infinite;
+        }
+
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+
+        /* Letras brillantes y llamativas para NEWCOSMO */
         h1 {
-            font-size: 2.8rem;
-            font-weight: 700;
-            margin-bottom: 12px;
-            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
+            font-size: 3rem;
+            font-weight: 800;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+            background: linear-gradient(180deg, #fffbeb 0%, #fde047 50%, #ca8a04 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
+            text-shadow: 0 0 35px rgba(234, 179, 8, 0.3);
         }
 
-        header p {
+        .subtitle {
             color: #94a3b8;
-            font-size: 1.15rem;
+            font-size: 1.05rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
         }
 
-        /* Contenedor de la cuadrícula de tarjetas */
+        /* Contenedor principal de tarjetas */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
             width: 100%;
             max-width: 1100px;
-            margin-bottom: auto;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-        /* Estilo de cada tarjeta */
+        /* Estilo de las tarjetas */
         .card {
-            background-color: #131b2e;
-            border: 1px solid #1e293b;
-            border-radius: 20px;
-            padding: 30px 24px;
+            background-color: #111827;
+            border: 1px solid #1f2937;
+            border-radius: 18px;
+            padding: 28px;
             text-decoration: none;
             color: inherit;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -71,7 +110,7 @@
             overflow: hidden;
         }
 
-        /* Efecto sutil de brillo interno superior */
+        /* Línea superior dorada brillante al hacer hover */
         .card::before {
             content: '';
             position: absolute;
@@ -79,69 +118,68 @@
             left: 0;
             width: 100%;
             height: 3px;
-            background: linear-gradient(90deg, transparent, transparent);
+            background: transparent;
             transition: background 0.3s ease;
         }
 
-        /* Efecto al pasar el mouse por encima */
         .card:hover {
-            transform: translateY(-8px);
-            border-color: #38bdf8;
-            box-shadow: 0 20px 30px -10px rgba(56, 189, 248, 0.15);
-            background-color: #172138;
+            transform: translateY(-6px);
+            border-color: #eab308;
+            box-shadow: 0 15px 30px -10px rgba(234, 179, 8, 0.15);
+            background-color: #161e31;
         }
 
         .card:hover::before {
-            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            background: linear-gradient(90deg, #fde047, #ca8a04);
         }
 
-        /* Contenedor del Icono */
+        /* Icono de la tarjeta */
         .icon-box {
-            width: 50px;
-            height: 50px;
+            width: 48px;
+            height: 48px;
             border-radius: 12px;
-            background-color: #1e293b;
+            background-color: #1f2937;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin-bottom: 20px;
-            transition: background-color 0.3s ease, transform 0.3s ease;
+            margin-bottom: 18px;
+            transition: all 0.3s ease;
         }
 
         .card:hover .icon-box {
-            background-color: #38bdf8;
+            background-color: #eab308;
             transform: scale(1.05);
         }
 
         .icon-box svg {
             width: 24px;
             height: 24px;
-            stroke: #38bdf8;
+            stroke: #eab308;
             transition: stroke 0.3s ease;
         }
 
         .card:hover .icon-box svg {
-            stroke: #0b0f19;
+            stroke: #07090e;
         }
 
         .card h3 {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             font-weight: 600;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
             color: #ffffff;
         }
 
         .card p {
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             color: #94a3b8;
-            margin-bottom: 25px;
+            margin-bottom: 22px;
             line-height: 1.5;
         }
 
         .card-link {
             font-weight: 600;
-            font-size: 0.95rem;
-            color: #38bdf8;
+            font-size: 0.9rem;
+            color: #eab308;
             display: inline-flex;
             align-items: center;
             gap: 6px;
@@ -151,78 +189,146 @@
             gap: 10px;
         }
 
+        /* Footer Moderno */
         footer {
-            margin-top: 60px;
+            background-color: #040609;
+            border-top: 1px solid #111827;
+            margin-top: 80px;
+            padding: 50px 20px 30px 20px;
+        }
+
+        .footer-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            letter-spacing: 0.5px;
+        }
+
+        .footer-col p, .footer-col ul {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #eab308;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding-top: 25px;
+            border-top: 1px solid #111827;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
             color: #64748b;
             font-size: 0.85rem;
-            text-align: center;
+            gap: 15px;
+        }
+
+        .github-badge {
+            background-color: #111827;
+            border: 1px solid #1f2937;
+            padding: 6px 12px;
+            border-radius: 6px;
+            color: #cbd5e1;
+            font-weight: 500;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: border-color 0.2s ease;
+        }
+
+        .github-badge:hover {
+            border-color: #eab308;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>New Cosmo Portal</h1>
-        <p>Acceso rápido a todos nuestros centros de recursos y plataformas.</p>
+        <div class="logo-container">
+            <img src="logo.png" alt="Logo NEWCOSMO" class="logo-img">
+        </div>
+        <h1>NEWCOSMO</h1>
+        <p class="subtitle">Portal Oficial de Recursos — Acceso a todos los centros</p>
     </header>
 
     <main class="grid-container">
         
-        <!-- Tarjeta 1: MANUALES -->
         <a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank" class="card">
             <div>
                 <div class="icon-box">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
                 </div>
-                <h3>Manuales</h3>
+                <h3>MANUALES</h3>
                 <p>Guías de uso, documentación y manuales oficiales actualizados.</p>
             </div>
-            <span class="card-link">Explorar manuales &rarr;</span>
+            <span class="card-link">Explorar sección &rarr;</span>
         </a>
 
-        <!-- Tarjeta 2: SOLUCIONES -->
         <a href="https://newcosmo-peru.github.io/SOLUCIONES/" target="_blank" class="card">
             <div>
                 <div class="icon-box">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="m16.2 7.8 2.8-2.8"/><path d="M18 12h4"/><path d="m16.2 16.2 2.8 2.8"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/><circle cx="12" cy="12" r="3"/></svg>
                 </div>
-                <h3>Soluciones</h3>
+                <h3>SOLUCIONES</h3>
                 <p>Respuestas técnicas, alternativas y resolución de incidencias.</p>
             </div>
-            <span class="card-link">Ver soluciones &rarr;</span>
+            <span class="card-link">Ver sección &rarr;</span>
         </a>
 
-        <!-- Tarjeta 3: STORE -->
         <a href="https://newcosmo-peru.github.io/STORE/" target="_blank" class="card">
             <div>
                 <div class="icon-box">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
                 </div>
-                <h3>Store</h3>
+                <h3>STORE</h3>
                 <p>Tienda digital, productos, herramientas y catálogos disponibles.</p>
             </div>
             <span class="card-link">Visitar tienda &rarr;</span>
         </a>
 
-        <!-- Tarjeta 4: TONOS -->
         <a href="https://newcosmo-peru.github.io/TONOS/" target="_blank" class="card">
             <div>
                 <div class="icon-box">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
                 </div>
-                <h3>Tonos</h3>
+                <h3>TONOS</h3>
                 <p>Sección de audios, tonos de llamada y recursos multimedia.</p>
             </div>
             <span class="card-link">Escuchar tonos &rarr;</span>
         </a>
 
-        <!-- Tarjeta 5: WALLPAPERS -->
         <a href="https://newcosmo-peru.github.io/WALLPAPERS/" target="_blank" class="card">
             <div>
                 <div class="icon-box">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
                 </div>
-                <h3>Wallpapers</h3>
+                <h3>WALLPAPERS</h3>
                 <p>Fondos de pantalla en alta resolución para personalizar tus dispositivos.</p>
             </div>
             <span class="card-link">Ver wallpapers &rarr;</span>
@@ -231,7 +337,31 @@
     </main>
 
     <footer>
-        <p>&copy; New Cosmo - Todos los derechos reservados. Desarrollado con GitHub Pages.</p>
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>NEWCOSMO</h4>
+                <p>Plataforma centralizada de recursos tecnológicos, manuales, multimedia y herramientas digitales.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Accesos Rápidos</h4>
+                <ul>
+                    <li><a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank">Manuales</a></li>
+                    <li><a href="https://newcosmo-peru.github.io/SOLUCIONES/" target="_blank">Soluciones</a></li>
+                    <li><a href="https://newcosmo-peru.github.io/STORE/" target="_blank">Store</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Contacto</h4>
+                <p>Soporte y consultas a través de nuestros canales oficiales en línea.</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 NEWCOSMO. Todos los derechos reservados.</p>
+            <a href="https://pages.github.com/" target="_blank" class="github-badge">
+                Powered by GitHub Pages
+            </a>
+        </div>
     </footer>
 
 </body>
