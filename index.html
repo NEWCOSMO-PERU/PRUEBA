@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mi Portal de Proyectos</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>New Cosmo | Portal de Enlaces</title>
+    <!-- Importamos una fuente moderna de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -14,132 +15,223 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #0f172a; /* Fondo oscuro elegante estilo tech */
+            background-color: #0b0f19; /* Fondo oscuro ultra moderno */
             color: #f8fafc;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
+            justify-content: space-between;
+            padding: 50px 20px;
         }
 
         header {
             text-align: center;
-            margin-bottom: 40px;
+            margin-bottom: 50px;
         }
 
         h1 {
-            font-size: 2.5rem;
+            font-size: 2.8rem;
             font-weight: 700;
-            margin-bottom: 10px;
-            background: linear-gradient(90deg, #38bdf8, #818cf8);
+            margin-bottom: 12px;
+            background: linear-gradient(135deg, #38bdf8 0%, #818cf8 50%, #c084fc 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            letter-spacing: -0.5px;
         }
 
-        p {
+        header p {
             color: #94a3b8;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
         }
 
         /* Contenedor de la cuadrícula de tarjetas */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
             width: 100%;
-            max-width: 900px;
+            max-width: 1100px;
+            margin-bottom: auto;
         }
 
         /* Estilo de cada tarjeta */
         .card {
-            background-color: #1e293b;
-            border: 1px solid #334155;
-            border-radius: 16px;
-            padding: 30px;
+            background-color: #131b2e;
+            border: 1px solid #1e293b;
+            border-radius: 20px;
+            padding: 30px 24px;
             text-decoration: none;
             color: inherit;
-            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Efecto sutil de brillo interno superior */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, transparent);
+            transition: background 0.3s ease;
         }
 
         /* Efecto al pasar el mouse por encima */
         .card:hover {
             transform: translateY(-8px);
             border-color: #38bdf8;
-            box-shadow: 0 12px 25px -5px rgba(56, 189, 248, 0.2);
+            box-shadow: 0 20px 30px -10px rgba(56, 189, 248, 0.15);
+            background-color: #172138;
+        }
+
+        .card:hover::before {
+            background: linear-gradient(90deg, #38bdf8, #818cf8);
+        }
+
+        /* Contenedor del Icono */
+        .icon-box {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background-color: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .card:hover .icon-box {
+            background-color: #38bdf8;
+            transform: scale(1.05);
+        }
+
+        .icon-box svg {
+            width: 24px;
+            height: 24px;
+            stroke: #38bdf8;
+            transition: stroke 0.3s ease;
+        }
+
+        .card:hover .icon-box svg {
+            stroke: #0b0f19;
         }
 
         .card h3 {
-            font-size: 1.4rem;
+            font-size: 1.3rem;
+            font-weight: 600;
             margin-bottom: 10px;
             color: #ffffff;
         }
 
         .card p {
-            font-size: 0.95rem;
+            font-size: 0.92rem;
             color: #94a3b8;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
+            line-height: 1.5;
         }
 
         .card-link {
             font-weight: 600;
+            font-size: 0.95rem;
             color: #38bdf8;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
-        /* Pequeña animación para la flecha del enlace */
         .card:hover .card-link {
-            gap: 12px;
+            gap: 10px;
         }
 
         footer {
-            margin-top: 50px;
+            margin-top: 60px;
             color: #64748b;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
+            text-align: center;
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>Mis Proyectos Web</h1>
-        <p>Explora mi colección de aplicaciones y páginas desarrolladas.</p>
+        <h1>New Cosmo Portal</h1>
+        <p>Acceso rápido a todos nuestros centros de recursos y plataformas.</p>
     </header>
 
     <main class="grid-container">
-        <a href="./proyecto1/index.html" class="card">
+        
+        <!-- Tarjeta 1: MANUALES -->
+        <a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank" class="card">
             <div>
-                <h3>Proyecto 1</h3>
-                <p>Descripción breve de lo que hace este proyecto o sitio web.</p>
+                <div class="icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1-2.5-2.5Z"/><path d="M6 6h10"/><path d="M6 10h10"/></svg>
+                </div>
+                <h3>Manuales</h3>
+                <p>Guías de uso, documentación y manuales oficiales actualizados.</p>
             </div>
-            <span class="card-link">Visitar web &rarr;</span>
+            <span class="card-link">Explorar manuales &rarr;</span>
         </a>
 
-        <a href="./proyecto2/index.html" class="card">
+        <!-- Tarjeta 2: SOLUCIONES -->
+        <a href="https://newcosmo-peru.github.io/SOLUCIONES/" target="_blank" class="card">
             <div>
-                <h3>Proyecto 2</h3>
-                <p>Aplicación web interactiva construida con tecnologías modernas.</p>
+                <div class="icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="m16.2 7.8 2.8-2.8"/><path d="M18 12h4"/><path d="m16.2 16.2 2.8 2.8"/><path d="M12 18v4"/><path d="m4.9 19.1 2.9-2.9"/><path d="M2 12h4"/><path d="m4.9 4.9 2.9 2.9"/><circle cx="12" cy="12" r="3"/></svg>
+                </div>
+                <h3>Soluciones</h3>
+                <p>Respuestas técnicas, alternativas y resolución de incidencias.</p>
             </div>
-            <span class="card-link">Visitar web &rarr;</span>
+            <span class="card-link">Ver soluciones &rarr;</span>
         </a>
 
-        <a href="contacto.html" class="card">
+        <!-- Tarjeta 3: STORE -->
+        <a href="https://newcosmo-peru.github.io/STORE/" target="_blank" class="card">
             <div>
-                <h3>Contacto</h3>
-                <p>Ponte en comunicación conmigo o revisa mis redes profesionales.</p>
+                <div class="icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg>
+                </div>
+                <h3>Store</h3>
+                <p>Tienda digital, productos, herramientas y catálogos disponibles.</p>
             </div>
-            <span class="card-link">Visitar web &rarr;</span>
+            <span class="card-link">Visitar tienda &rarr;</span>
         </a>
+
+        <!-- Tarjeta 4: TONOS -->
+        <a href="https://newcosmo-peru.github.io/TONOS/" target="_blank" class="card">
+            <div>
+                <div class="icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                </div>
+                <h3>Tonos</h3>
+                <p>Sección de audios, tonos de llamada y recursos multimedia.</p>
+            </div>
+            <span class="card-link">Escuchar tonos &rarr;</span>
+        </a>
+
+        <!-- Tarjeta 5: WALLPAPERS -->
+        <a href="https://newcosmo-peru.github.io/WALLPAPERS/" target="_blank" class="card">
+            <div>
+                <div class="icon-box">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2" ry="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/></svg>
+                </div>
+                <h3>Wallpapers</h3>
+                <p>Fondos de pantalla en alta resolución para personalizar tus dispositivos.</p>
+            </div>
+            <span class="card-link">Ver wallpapers &rarr;</span>
+        </a>
+
     </main>
 
     <footer>
-        <p>Subido y alojado en GitHub Pages</p>
+        <p>&copy; New Cosmo - Todos los derechos reservados. Desarrollado con GitHub Pages.</p>
     </footer>
 
 </body>
