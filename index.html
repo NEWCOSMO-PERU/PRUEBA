@@ -260,7 +260,6 @@ h1{
 
 .card:hover::before{opacity:1}
 
-/* Insignia de Novedad */
 .card-badge {
     position: absolute;
     top: 12px;
@@ -320,7 +319,6 @@ h1{
     margin:0;
 }
 
-/* Contador de recursos en la tarjeta */
 .card-meta {
     display: block;
     color: #38bdf8;
@@ -348,6 +346,182 @@ h1{
 .card:hover .card-btn{
     transform:scale(1.03);
     box-shadow:0 0 28px rgba(56,189,248,.55);
+}
+
+/* ==========================================================
+   GADGET: REPRODUCTOR LO-FI / SYNTHWAVE (MINIMALISTA)
+   ========================================================== */
+.music-player-widget {
+    position: fixed;
+    bottom: 25px;
+    left: 25px;
+    z-index: 99;
+    background: rgba(13, 20, 36, 0.92);
+    border: 1px solid rgba(56, 189, 248, 0.4);
+    border-radius: 14px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 0 20px rgba(56, 189, 248, 0.15);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    max-width: 280px;
+}
+
+.music-player-widget.minimized {
+    padding: 8px;
+    border-radius: 50%;
+    width: 52px;
+    height: 52px;
+    justify-content: center;
+}
+
+.music-player-widget.minimized .player-info,
+.music-player-widget.minimized .player-controls {
+    display: none;
+}
+
+.music-player-widget.minimized .minimize-btn svg {
+    transform: rotate(180deg);
+}
+
+.player-vinyl {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: radial-gradient(circle, #0f172a 35%, #38bdf8 36%, #38bdf8 42%, #05080f 43%);
+    border: 1px solid rgba(56, 189, 248, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
+}
+
+.music-player-widget.playing .player-vinyl {
+    animation: spinVinyl 3s linear infinite;
+}
+
+@keyframes spinVinyl {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.player-vinyl::after {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: #7dd3fc;
+    border-radius: 50%;
+}
+
+.player-info {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    flex-grow: 1;
+}
+
+.player-title {
+    color: #f8fafc;
+    font-size: 0.75rem;
+    font-weight: 700;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.player-subtitle {
+    color: #38bdf8;
+    font-size: 0.65rem;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Ecualizador animado */
+.eq-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 2px;
+    height: 10px;
+}
+
+.music-player-widget.playing .eq-bars span {
+    animation: eqBounce 0.8s ease-in-out infinite alternate;
+}
+
+.eq-bars span {
+    width: 2px;
+    height: 4px;
+    background: #38bdf8;
+    border-radius: 1px;
+}
+
+.eq-bars span:nth-child(2) { animation-delay: 0.2s; }
+.eq-bars span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes eqBounce {
+    0% { height: 3px; }
+    100% { height: 10px; }
+}
+
+.player-controls {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.player-btn {
+    background: rgba(56, 189, 248, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    color: #7dd3fc;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.player-btn:hover {
+    background: #38bdf8;
+    color: #05080f;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.6);
+}
+
+.player-btn svg {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+}
+
+.minimize-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    cursor: pointer;
+    padding: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s ease;
+}
+
+.minimize-btn:hover {
+    color: #f8fafc;
+}
+
+.minimize-btn svg {
+    width: 14px;
+    height: 14px;
+    stroke: currentColor;
+    fill: none;
+    stroke-width: 2.5;
+    transition: transform 0.3s ease;
 }
 
 /* ==========================================================
@@ -536,7 +710,6 @@ footer::before {
     transform: scale(1.15);
 }
 
-/* Redes Sociales Footer */
 .footer-socials{
     display: flex;
     flex-wrap: wrap;
@@ -573,7 +746,6 @@ footer::before {
     fill: currentColor;
 }
 
-/* Estilos de hover específicos para marcas en redes */
 .social-icon[aria-label="OnlyFans"]:hover {
     background: #00aff0; border-color: #00aff0; color: #fff; box-shadow: 0 0 22px rgba(0, 175, 240, 0.7);
 }
@@ -705,6 +877,10 @@ footer::before {
         bottom: 20px;
         right: 20px;
     }
+    .music-player-widget {
+        left: 15px;
+        bottom: 20px;
+    }
     .live-counter-bar {
         flex-direction: column;
         gap: 6px;
@@ -753,7 +929,7 @@ footer::before {
         </div>
     </header>
 
-    <!-- Cuadrícula de Tarjetas de Secciones con Insignias y Contadores -->
+    <!-- Cuadrícula de Tarjetas de Secciones -->
     <main class="grid-container">
 
         <a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank" rel="noopener" class="card">
@@ -905,7 +1081,7 @@ footer::before {
         </div>
     </section>
 
-    <!-- Footer Pro con Iconos Actualizados (GitHub, OnlyFans, TikTok, YouTube) -->
+    <!-- Footer Pro -->
     <footer>
         <div class="footer-content">
             <div class="footer-col">
@@ -970,6 +1146,40 @@ footer::before {
         </div>
     </footer>
 
+    <!-- Gadget: Reproductor de Música Lo-Fi Flotante (Esquina Inferior Izquierda) -->
+    <div id="music-widget" class="music-player-widget">
+        <!-- Audio HTML5 con pista ambiental libre de derechos (Synthwave/Lo-Fi) -->
+        <audio id="bg-audio" loop preload="none">
+            <source src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf756.mp3?filename=lofi-study-112191.mp3" type="audio/mpeg">
+            Tu navegador no soporta audio HTML5.
+        </audio>
+
+        <div class="player-vinyl"></div>
+        
+        <div class="player-info">
+            <span class="player-title">Newcosmo Lo-Fi Chill</span>
+            <span class="player-subtitle">
+                Ambiente 
+                <div class="eq-bars">
+                    <span></span><span></span><span></span>
+                </div>
+            </span>
+        </div>
+
+        <div class="player-controls">
+            <button id="play-pause-btn" class="player-btn" aria-label="Reproducir / Pausar">
+                <!-- Icono Play -->
+                <svg id="play-icon" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                <!-- Icono Pause (Oculto por defecto) -->
+                <svg id="pause-icon" viewBox="0 0 24 24" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+            </button>
+        </div>
+
+        <button id="minimize-btn" class="minimize-btn" aria-label="Minimizar reproductor">
+            <svg viewBox="0 0 24 24"><path d="m18 15-6-6-6 6"/></svg>
+        </button>
+    </div>
+
     <!-- Botón Flotante de WhatsApp -->
     <div class="floating-container">
         <div class="whatsapp-badge">
@@ -983,7 +1193,7 @@ footer::before {
         </a>
     </div>
 
-    <!-- Scripts (Splash Screen, Contador de Visitas API, Acordeón FAQ) -->
+    <!-- Scripts -->
     <script>
         // Ocultar splash screen al cargar
         window.addEventListener('load', () => {
@@ -1034,6 +1244,34 @@ footer::before {
             };
             window.requestAnimationFrame(step);
         }
+
+        // Lógica del Reproductor de Música Lo-Fi
+        const audio = document.getElementById('bg-audio');
+        const playPauseBtn = document.getElementById('play-pause-btn');
+        const playIcon = document.getElementById('play-icon');
+        const pauseIcon = document.getElementById('pause-icon');
+        const musicWidget = document.getElementById('music-widget');
+        const minimizeBtn = document.getElementById('minimize-btn');
+
+        playPauseBtn.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.volume = 0.3; // Volumen ambiente cómodo
+                audio.play().then(() => {
+                    musicWidget.classList.add('playing');
+                    playIcon.style.display = 'none';
+                    pauseIcon.style.display = 'block';
+                }).catch(e => console.log("Reproducción bloqueada por el navegador"));
+            } else {
+                audio.pause();
+                musicWidget.classList.remove('playing');
+                playIcon.style.display = 'block';
+                pauseIcon.style.display = 'none';
+            }
+        });
+
+        minimizeBtn.addEventListener('click', () => {
+            musicWidget.classList.toggle('minimized');
+        });
 
         // Acordeón de Preguntas Frecuentes
         document.querySelectorAll('.faq-question').forEach(button => {
