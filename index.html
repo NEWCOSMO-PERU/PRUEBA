@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEWCOSMO | Portal Oficial</title>
-    <!-- Fuente moderna -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -353,7 +352,7 @@ h1{
    ========================================================== */
 .faq-section {
     width: min(100% - 40px, 900px);
-    margin: 30px auto 30px;
+    margin: 30px auto 50px;
     padding: 30px;
     background: linear-gradient(145deg, rgba(13, 20, 36, 0.9), rgba(7, 12, 20, 0.95));
     border: 1px solid rgba(56, 189, 248, 0.3);
@@ -431,113 +430,6 @@ h1{
 .faq-item.active .faq-answer {
     max-height: 200px;
     padding: 0 20px 16px 20px;
-}
-
-/* ==========================================================
-   REPRODUCTOR ESTÁTICO SIMPLE (SIN TEXTOS)
-   ========================================================== */
-.simple-player-section {
-    width: min(100% - 40px, 900px);
-    margin: 0 auto 50px;
-    display: flex;
-    justify-content: center;
-}
-
-.simple-player-card {
-    background: linear-gradient(145deg, rgba(13, 20, 36, 0.9), rgba(7, 12, 20, 0.95));
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    border-radius: 999px;
-    padding: 10px 24px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    backdrop-filter: blur(10px);
-}
-
-.player-vinyl {
-    width: 38px;
-    height: 38px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #0f172a 35%, #38bdf8 36%, #38bdf8 42%, #05080f 43%);
-    border: 1px solid rgba(56, 189, 248, 0.5);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-shrink: 0;
-    box-shadow: 0 0 10px rgba(56, 189, 248, 0.3);
-}
-
-.simple-player-card.playing .player-vinyl {
-    animation: spinVinyl 3s linear infinite;
-}
-
-@keyframes spinVinyl {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
-
-.player-vinyl::after {
-    content: '';
-    width: 8px;
-    height: 8px;
-    background: #7dd3fc;
-    border-radius: 50%;
-}
-
-/* Ecualizador */
-.eq-bars {
-    display: flex;
-    align-items: flex-end;
-    gap: 3px;
-    height: 14px;
-}
-
-.eq-bars span {
-    width: 3px;
-    height: 4px;
-    background: #38bdf8;
-    border-radius: 2px;
-}
-
-.simple-player-card.playing .eq-bars span {
-    animation: eqBounce 0.8s ease-in-out infinite alternate;
-}
-
-.eq-bars span:nth-child(2) { animation-delay: 0.2s; }
-.eq-bars span:nth-child(3) { animation-delay: 0.4s; }
-.eq-bars span:nth-child(4) { animation-delay: 0.1s; }
-
-@keyframes eqBounce {
-    0% { height: 4px; }
-    100% { height: 14px; }
-}
-
-/* Botón Play/Pause */
-.player-btn {
-    background: rgba(56, 189, 248, 0.15);
-    border: 1px solid rgba(56, 189, 248, 0.3);
-    color: #7dd3fc;
-    width: 36px;
-    height: 36px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-    transition: all 0.2s ease;
-}
-
-.player-btn:hover {
-    background: #38bdf8;
-    color: #05080f;
-    box-shadow: 0 0 15px rgba(56, 189, 248, 0.6);
-}
-
-.player-btn svg {
-    width: 16px;
-    height: 16px;
-    fill: currentColor;
 }
 
 /* ==========================================================
@@ -822,7 +714,6 @@ footer::before {
 </head>
 <body>
 
-    <!-- Splash de Carga Inicial -->
     <div id="splash-screen">
         <div class="splash-logo-container">
             <img src="logo.png" alt="Logo NEWCOSMO" class="splash-logo">
@@ -830,14 +721,12 @@ footer::before {
         <div class="splash-loader"></div>
     </div>
 
-    <!-- Encabezado con Logo, Título y Contadores en Vivo -->
     <header>
         <div class="logo-container">
             <img src="logo.png" alt="Logo NEWCOSMO" class="logo-img">
         </div>
         <h1>NEWCOSMO</h1>
         
-        <!-- Widget Contador de Visitas y Descargas en Vivo -->
         <div class="live-counter-bar">
             <div class="counter-item">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2">
@@ -856,7 +745,6 @@ footer::before {
         </div>
     </header>
 
-    <!-- Cuadrícula de Tarjetas de Secciones -->
     <main class="grid-container">
 
         <a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank" rel="noopener" class="card">
@@ -972,7 +860,6 @@ footer::before {
 
     </main>
 
-    <!-- Sección de Preguntas Frecuentes (FAQ) -->
     <section class="faq-section">
         <h2>Preguntas Frecuentes</h2>
         <div class="faq-container">
@@ -1008,50 +895,21 @@ footer::before {
         </div>
     </section>
 
-    <!-- Reproductor Estático Simple (Debajo de FAQ) -->
-    <section class="simple-player-section">
-        <div id="simple-player" class="simple-player-card">
-            <!-- Audio con ruta corregida a la carpeta audio/ -->
-            <audio id="bg-audio" loop autoplay muted>
-                <source src="audio/lofi-beat.mp3" type="audio/mpeg">
-                Tu navegador no soporta audio HTML5.
-            </audio>
-
-            <div class="player-vinyl"></div>
-
-            <div class="eq-bars">
-                <span></span><span></span><span></span><span></span>
-            </div>
-
-            <button id="play-pause-btn" class="player-btn" aria-label="Reproducir / Pausar">
-                <!-- Icono Play -->
-                <svg id="play-icon" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
-                <!-- Icono Pause -->
-                <svg id="pause-icon" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-            </button>
-        </div>
-    </section>
-
-    <!-- Footer Pro -->
     <footer>
         <div class="footer-content">
             <div class="footer-col">
                 <h4>NEWCOSMO</h4>
                 <p>Portal centralizado de recursos, manuales, multimedia y herramientas digitales de alto rendimiento.</p>
                 <div class="footer-socials">
-                    <!-- GitHub -->
                     <a href="https://github.com/newcosmo-peru" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub">
                         <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                     </a>
-                    <!-- OnlyFans -->
                     <a href="https://onlyfans.com/tu-usuario" target="_blank" rel="noopener" class="social-icon" aria-label="OnlyFans">
                         <svg viewBox="0 0 24 24"><path d="M15.464 10.518a4.57 4.57 0 0 0-3.376-1.503c-2.484 0-4.5 2.016-4.5 4.5s2.016 4.5 4.5 4.5c1.373 0 2.602-.622 3.42-1.604l1.642 1.198a6.71 6.71 0 0 1-5.062 2.206c-3.728 0-6.75-3.022-6.75-6.75s3.022-6.75 6.75-6.75c2.083 0 3.948.937 5.203 2.417l-1.827 1.286zM21.11 3.551C19.346 1.83 16.924.844 14.25.844c-3.86 0-7.152 2.39-8.49 5.795a10.638 10.638 0 0 0-2.31 6.643c0 5.903 4.784 10.687 10.687 10.687 2.923 0 5.581-1.155 7.527-3.033l-1.52-1.378a8.473 8.473 0 0 1-6.007 2.411C8.243 21.969 4.38 18.106 4.38 13.282c0-2.052.698-3.946 1.867-5.449 1.246-1.585 3.161-2.613 5.303-2.613 1.963 0 3.738.826 5.011 2.155l1.55-1.543a10.495 10.495 0 0 0-1.001-.849z"/></svg>
                     </a>
-                    <!-- TikTok -->
                     <a href="https://tiktok.com/@tu-usuario" target="_blank" rel="noopener" class="social-icon" aria-label="TikTok">
                         <svg viewBox="0 0 24 24"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/></svg>
                     </a>
-                    <!-- YouTube -->
                     <a href="https://youtube.com/@tu-canal" target="_blank" rel="noopener" class="social-icon" aria-label="YouTube">
                         <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                     </a>
@@ -1097,7 +955,6 @@ footer::before {
         </div>
     </footer>
 
-    <!-- Botón Flotante de WhatsApp -->
     <div class="floating-container">
         <div class="whatsapp-badge">
             <span class="dot"></span>
@@ -1110,7 +967,6 @@ footer::before {
         </a>
     </div>
 
-    <!-- Scripts -->
     <script>
         // Ocultar splash screen al cargar
         window.addEventListener('load', () => {
@@ -1161,30 +1017,6 @@ footer::before {
             };
             window.requestAnimationFrame(step);
         }
-
-        // Lógica del Reproductor Estático Simple
-        const audio = document.getElementById('bg-audio');
-        const playerCard = document.getElementById('simple-player');
-        const playPauseBtn = document.getElementById('play-pause-btn');
-        const playIcon = document.getElementById('play-icon');
-        const pauseIcon = document.getElementById('pause-icon');
-
-        playPauseBtn.addEventListener('click', () => {
-            if (audio.paused || audio.muted) {
-                audio.muted = false; // Habilita el sonido al hacer clic
-                audio.volume = 0.4;
-                audio.play().then(() => {
-                    playerCard.classList.add('playing');
-                    playIcon.style.display = 'none';
-                    pauseIcon.style.display = 'block';
-                }).catch(e => console.log("Reproducción bloqueada por el navegador"));
-            } else {
-                audio.pause();
-                playerCard.classList.remove('playing');
-                playIcon.style.display = 'block';
-                pauseIcon.style.display = 'none';
-            }
-        });
 
         // Acordeón de Preguntas Frecuentes
         document.querySelectorAll('.faq-question').forEach(button => {
