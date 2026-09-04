@@ -206,17 +206,30 @@ h1{
 }
 
 /* ==========================================================
-   FOOTER PRO REDISEÑADO CON ICONOS DE PÁGINAS
+   FOOTER PRO ULTRA BRILLANTE Y LLAMATIVO
    ========================================================== */
 footer{
     position:relative;
     z-index:1;
     background:
-      radial-gradient(circle at 50% 0%, rgba(234,179,8,.05), transparent 40%),
-      linear-gradient(180deg, rgba(11,18,32,.9), #04070d);
-    border-top:1px solid rgba(250,204,21,.15);
-    padding:60px 20px 30px;
-    margin-top:40px;
+      radial-gradient(circle at 50% 0%, rgba(250,204,21,.18), transparent 50%),
+      radial-gradient(circle at 15% 100%, rgba(234,179,8,.12), transparent 45%),
+      linear-gradient(180deg, rgba(13,20,36,0.95), #03060a);
+    border-top:2px solid rgba(250,204,21,.35);
+    box-shadow: 0 -15px 40px rgba(234,179,8,.08);
+    padding:65px 20px 30px;
+    margin-top:50px;
+}
+
+footer::before {
+    content: '';
+    position: absolute;
+    top: -1px;
+    left: 20%;
+    right: 20%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #facc15, transparent);
+    filter: drop-shadow(0 0 8px #facc15);
 }
 
 .footer-content{
@@ -229,22 +242,27 @@ footer{
 }
 
 .footer-col h4{
-    color:#facc15;
-    font-size:.9rem;
-    font-weight:700;
-    letter-spacing:1px;
+    color:#fdef96;
+    font-size:.95rem;
+    font-weight:800;
+    letter-spacing:1.5px;
     margin-bottom:18px;
     text-transform:uppercase;
+    text-shadow: 0 0 12px rgba(250,204,21,.4);
 }
 
 .footer-col p{
-    color:#94a3b8;
-    font-size:.84rem;
+    color:#cbd5e1;
+    font-size:.85rem;
     line-height:1.7;
-    margin-bottom:10px;
+    margin-bottom:12px;
 }
 
-/* Cuadrícula de Iconos de Páginas en el Footer */
+.footer-col p strong {
+    color: #facc15;
+}
+
+/* Cuadrícula de Iconos de Páginas con Brillo Pro */
 .footer-pages-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -255,64 +273,73 @@ footer{
 .footer-page-card {
     display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    background: rgba(17, 24, 39, 0.7);
-    border: 1px solid rgba(148, 163, 184, 0.15);
-    border-radius: 8px;
-    color: #cbd5e1;
+    gap: 10px;
+    padding: 9px 13px;
+    background: linear-gradient(145deg, rgba(20, 30, 50, 0.9), rgba(10, 16, 28, 0.9));
+    border: 1px solid rgba(250, 204, 21, 0.25);
+    border-radius: 9px;
+    color: #e2e8f0;
     text-decoration: none;
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
 .footer-page-card svg {
-    width: 16px;
-    height: 16px;
+    width: 18px;
+    height: 18px;
     stroke: #facc15;
+    filter: drop-shadow(0 0 4px rgba(250,204,21,.5));
     flex-shrink: 0;
+    transition: transform 0.2s ease;
 }
 
 .footer-page-card:hover {
-    background: rgba(234, 179, 8, 0.1);
-    border-color: rgba(250, 204, 21, 0.5);
+    background: linear-gradient(145deg, rgba(234, 179, 8, 0.2), rgba(17, 24, 39, 0.95));
+    border-color: #facc15;
     color: #fff;
-    transform: translateY(-2px);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(250, 204, 21, 0.25);
+}
+
+.footer-page-card:hover svg {
+    transform: scale(1.15);
 }
 
 /* Redes Sociales Footer */
 .footer-socials{
     display:flex;
-    gap:10px;
-    margin-top:15px;
+    gap:12px;
+    margin-top:18px;
 }
 
 .social-icon {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background: rgba(15, 23, 42, 0.8);
-    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(15, 23, 42, 0.9);
+    border: 1px solid rgba(250, 204, 21, 0.3);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #cbd5e1;
+    color: #facc15;
     text-decoration: none;
-    transition: all 0.2s ease;
+    transition: all 0.25s ease;
+    box-shadow: 0 0 10px rgba(250,204,21,.1);
 }
 
 .social-icon:hover {
     background: #facc15;
     border-color: #facc15;
-    color: #0f172a;
-    transform: translateY(-3px);
-    box-shadow: 0 5px 15px rgba(250, 204, 21, 0.3);
+    color: #070c14;
+    transform: translateY(-4px);
+    box-shadow: 0 0 20px rgba(250, 204, 21, 0.6);
 }
 
 .social-icon svg {
-    width: 18px;
-    height: 18px;
+    width: 20px;
+    height: 20px;
     fill: currentColor;
 }
 
@@ -320,140 +347,88 @@ footer{
     width:min(100%, 1000px);
     margin:0 auto;
     padding-top:25px;
-    border-top:1px solid rgba(148,163,184,.1);
+    border-top:1px solid rgba(250,204,21,.15);
     display:flex;
     justify-content:space-between;
     align-items:center;
     gap:15px;
-    color:#64748b;
-    font-size:.78rem;
+    color:#94a3b8;
+    font-size:.8rem;
 }
 
 .github-badge{
     color:#cbd5e1;
     text-decoration:none;
-    border:1px solid rgba(148,163,184,.25);
+    border:1px solid rgba(250,204,21,.3);
     border-radius:8px;
-    padding:7px 14px;
-    background:#111827;
-    font-weight:500;
-    transition:all .2s ease;
+    padding:8px 15px;
+    background: rgba(17, 24, 39, 0.9);
+    font-weight:600;
+    transition:all .25s ease;
 }
 
 .github-badge:hover{
     border-color:#facc15;
     color:#facc15;
-    box-shadow:0 0 15px rgba(250,204,21,.15);
+    box-shadow:0 0 18px rgba(250,204,21,.3);
+    transform: translateY(-2px);
 }
 
 /* ==========================================================
-   BOTONES FLOTANTES PRO (WhatsApp sin texto & Asesor con punto verde)
+   BOTÓN FLOTANTE WHATSAPP CON PUNTO VERDE (SIN LETRAS)
    ========================================================== */
 .floating-container {
     position: fixed;
     bottom: 25px;
     right: 25px;
     z-index: 99;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    align-items: flex-end;
 }
 
-.floating-btn {
+.floating-whatsapp {
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 52px;
-    height: 52px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
+    background: linear-gradient(135deg, #22c55e, #16a34a);
     color: #fff;
     text-decoration: none;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 10px 30px rgba(34, 197, 94, 0.4);
     transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    position: relative;
+    border: 2px solid rgba(255, 255, 255, 0.25);
 }
 
-.floating-btn:hover {
-    transform: scale(1.1) translateY(-2px);
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+.floating-whatsapp:hover {
+    transform: scale(1.12) translateY(-3px);
+    box-shadow: 0 15px 35px rgba(34, 197, 94, 0.6);
 }
 
-/* Tooltip lateral al hacer hover (revela el nombre solo al acercar el mouse) */
-.floating-btn::after {
-    content: attr(aria-label);
+.floating-whatsapp svg {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+}
+
+/* Punto verde indicador de en línea al costado del botón */
+.online-indicator {
     position: absolute;
-    right: 64px;
-    background: rgba(15, 23, 42, 0.95);
-    color: #f8fafc;
-    padding: 6px 12px;
-    border-radius: 6px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    white-space: nowrap;
-    opacity: 0;
-    pointer-events: none;
-    transform: translateX(10px);
-    transition: all 0.25s ease;
-    border: 1px solid rgba(250, 204, 21, 0.2);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-}
-
-.floating-btn:hover::after {
-    opacity: 1;
-    transform: translateX(0);
-}
-
-/* Estilo Asesor en Línea */
-.btn-advisor {
-    background: linear-gradient(135deg, #1e293b, #0f172a);
-    border-color: rgba(250, 204, 21, 0.4);
-}
-
-.btn-advisor:hover {
-    border-color: #facc15;
-}
-
-/* Indicador de punto verde online */
-.online-dot {
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    width: 12px;
-    height: 12px;
+    top: 2px;
+    right: 2px;
+    width: 15px;
+    height: 15px;
     background-color: #22c55e;
-    border: 2px solid #0f172a;
+    border: 3px solid #070c14;
     border-radius: 50%;
-    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.8);
     animation: pulse-green 2s infinite;
 }
 
 @keyframes pulse-green {
-    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7); }
-    70% { transform: scale(1); box-shadow: 0 0 0 6px rgba(34, 197, 94, 0); }
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.8); }
+    70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(34, 197, 94, 0); }
     100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
-}
-
-/* Estilo WhatsApp */
-.btn-whatsapp {
-    background: linear-gradient(135deg, #22c55e, #16a34a);
-}
-
-.floating-btn svg {
-    width: 26px;
-    height: 26px;
-    fill: currentColor;
-    stroke: none;
-}
-
-.btn-advisor svg {
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
 }
 
 
@@ -616,7 +591,7 @@ footer{
 
     </main>
 
-    <!-- Footer Pro Rediseño con Iconos y Datos Actualizados -->
+    <!-- Footer Pro Súper Brillante y Llamativo -->
     <footer>
         <div class="footer-content">
             <div class="footer-col">
@@ -671,18 +646,10 @@ footer{
         </div>
     </footer>
 
-    <!-- Botones Flotantes (WhatsApp sin nombre & Asesor con punto verde interactivo) -->
+    <!-- Botón Flotante de WhatsApp con Punto Verde en Línea (Sin Letras) -->
     <div class="floating-container">
-        <!-- Asesor en Línea -->
-        <a href="#chat" class="floating-btn btn-advisor" aria-label="Asesor en Línea">
-            <span class="online-dot"></span>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-            </svg>
-        </a>
-
-        <!-- WhatsApp -->
-        <a href="https://wa.me/51907546093" target="_blank" rel="noopener" class="floating-btn btn-whatsapp" aria-label="WhatsApp">
+        <a href="https://wa.me/51907546093" target="_blank" rel="noopener" class="floating-whatsapp" aria-label="WhatsApp">
+            <span class="online-indicator"></span>
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                 <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/>
             </svg>
