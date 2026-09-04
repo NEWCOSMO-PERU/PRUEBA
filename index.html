@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEWCOSMO | Portal Oficial</title>
+    <!-- Fuente moderna -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -13,7 +14,7 @@ html{scroll-behavior:smooth}
 body{
     font-family:'Inter',sans-serif;
     background:
-      radial-gradient(circle at 50% 8%, rgba(234,179,8,.1), transparent 30%),
+      radial-gradient(circle at 50% 8%, rgba(56,189,248,.1), transparent 30%),
       radial-gradient(circle at 10% 70%, rgba(30,41,59,.25), transparent 35%),
       #05080f;
     color:#f8fafc;
@@ -28,9 +29,9 @@ body::before{
     pointer-events:none;
     opacity:.3;
     background-image:
-      radial-gradient(circle at 20% 30%, rgba(255,255,255,.6) 0 1px, transparent 1.5px),
-      radial-gradient(circle at 75% 20%, rgba(255,255,255,.4) 0 1px, transparent 1.5px),
-      radial-gradient(circle at 55% 70%, rgba(255,255,255,.35) 0 1px, transparent 1.5px);
+      radial-gradient(circle at 20% 30%, rgba(125,211,252,.6) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 75% 20%, rgba(56,189,248,.4) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 55% 70%, rgba(14,165,233,.35) 0 1px, transparent 1.5px);
     background-size:150px 150px,210px 210px,180px 180px;
 }
 
@@ -68,7 +69,7 @@ body::before{
     width: 260px;
     height: 260px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(250,204,21,.6) 0%, rgba(234,179,8,.25) 45%, transparent 75%);
+    background: radial-gradient(circle, rgba(56,189,248,.6) 0%, rgba(14,165,233,.25) 45%, transparent 75%);
     filter: blur(25px);
     z-index: -1;
 }
@@ -77,13 +78,13 @@ body::before{
     width: 180px;
     height: 180px;
     object-fit: contain;
-    filter: drop-shadow(0 0 25px rgba(250,204,21,.7));
+    filter: drop-shadow(0 0 25px rgba(56,189,248,.7));
     animation: pulseSplash 1.5s ease-in-out infinite alternate;
 }
 
 @keyframes pulseSplash {
-    0% { transform: scale(0.95); filter: drop-shadow(0 0 18px rgba(250,204,21,.5)); }
-    100% { transform: scale(1.05); filter: drop-shadow(0 0 32px rgba(250,204,21,.9)); }
+    0% { transform: scale(0.95); filter: drop-shadow(0 0 18px rgba(56,189,248,.5)); }
+    100% { transform: scale(1.05); filter: drop-shadow(0 0 32px rgba(56,189,248,.9)); }
 }
 
 .splash-loader {
@@ -102,7 +103,7 @@ body::before{
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, #facc15, transparent);
+    background: linear-gradient(90deg, transparent, #38bdf8, transparent);
     animation: loadingBar 1.2s infinite linear;
 }
 
@@ -133,18 +134,18 @@ header{
     height:300px;
     border-radius:50%;
     background:radial-gradient(circle,
-      rgba(250,204,21,.6) 0%,
-      rgba(234,179,8,.25) 40%,
+      rgba(56,189,248,.6) 0%,
+      rgba(14,165,233,.25) 40%,
       transparent 75%);
     filter:blur(25px);
     z-index:-1;
 }
 
 .logo-img{
-    width:230px; /* Logo del Hero considerablemente más grande y llamativo */
+    width:230px; /* Logo del Hero grande */
     height:230px;
     object-fit:contain;
-    filter:drop-shadow(0 0 30px rgba(250,204,21,.75));
+    filter:drop-shadow(0 0 30px rgba(56,189,248,.75));
     animation:floatLogo 4s ease-in-out infinite;
 }
 
@@ -159,11 +160,11 @@ h1{
     font-weight:800;
     letter-spacing:4px;
     margin:6px 0 8px;
-    background:linear-gradient(180deg,#ffffff 0%,#fffbeb 30%,#fde047 60%,#eab308 85%,#ca8a04 100%);
+    background:linear-gradient(180deg,#ffffff 0%,#e0f2fe 30%,#7dd3fc 60%,#38bdf8 85%,#0284c7 100%);
     -webkit-background-clip:text;
     background-clip:text;
     -webkit-text-fill-color:transparent;
-    text-shadow:0 0 35px rgba(234,179,8,.5);
+    text-shadow:0 0 35px rgba(56,189,248,.5);
 }
 
 .grid-container{
@@ -178,7 +179,7 @@ h1{
 .card{
     min-height:148px;
     padding:18px 18px 16px;
-    border:1px solid rgba(250,204,21,.25);
+    border:1px solid rgba(56,189,248,.25);
     border-radius:12px;
     background:
       linear-gradient(145deg,rgba(15,23,42,.96),rgba(7,12,20,.96));
@@ -202,17 +203,17 @@ h1{
     left:0;
     width:100%;
     height:2px;
-    background:linear-gradient(90deg,transparent,#facc15,transparent);
+    background:linear-gradient(90deg,transparent,#38bdf8,transparent);
     opacity:0;
     transition:opacity .25s ease;
 }
 
 .card:hover{
     transform:translateY(-5px);
-    border-color:rgba(250,204,21,.75);
+    border-color:rgba(56,189,248,.75);
     box-shadow:
       0 16px 35px rgba(0,0,0,.35),
-      0 0 25px rgba(234,179,8,.18);
+      0 0 25px rgba(56,189,248,.18);
 }
 
 .card:hover::before{opacity:1}
@@ -231,18 +232,18 @@ h1{
     align-items:center;
     justify-content:center;
     border-radius:9px;
-    background:rgba(234,179,8,.08);
+    background:rgba(56,189,248,.08);
 }
 
 .icon-box svg{
     width:32px;
     height:32px;
-    stroke:#fde047;
-    filter:drop-shadow(0 0 6px rgba(250,204,21,.3));
+    stroke:#7dd3fc;
+    filter:drop-shadow(0 0 6px rgba(56,189,248,.3));
 }
 
 .card:hover .icon-box svg{
-    stroke:#facc15;
+    stroke:#38bdf8;
 }
 
 .card h3{
@@ -266,19 +267,19 @@ h1{
     margin-top:14px;
     padding:8px 18px;
     border-radius:999px;
-    border:1px solid rgba(250,204,21,.8);
-    background:linear-gradient(180deg,#fef08a 0%,#fde047 45%,#eab308 100%);
+    border:1px solid rgba(56,189,248,.8);
+    background:linear-gradient(180deg,#e0f2fe 0%,#7dd3fc 45%,#0ea5e9 100%);
     color:#0f172a;
     font-size:.78rem;
     font-weight:700;
     text-align:center;
-    box-shadow:0 0 20px rgba(250,204,21,.35);
+    box-shadow:0 0 20px rgba(56,189,248,.35);
     transition:transform .2s ease,box-shadow .2s ease;
 }
 
 .card:hover .card-btn{
     transform:scale(1.03);
-    box-shadow:0 0 28px rgba(250,204,21,.55);
+    box-shadow:0 0 28px rgba(56,189,248,.55);
 }
 
 /* ==========================================================
@@ -289,20 +290,20 @@ h1{
     margin: 30px auto 50px;
     padding: 30px;
     background: linear-gradient(145deg, rgba(13, 20, 36, 0.9), rgba(7, 12, 20, 0.95));
-    border: 1px solid rgba(250, 204, 21, 0.3);
+    border: 1px solid rgba(56, 189, 248, 0.3);
     border-radius: 16px;
     box-shadow: 0 12px 35px rgba(0,0,0,0.35);
 }
 
 .faq-section h2 {
-    color: #fde047;
+    color: #7dd3fc;
     font-size: 1.6rem;
     font-weight: 800;
     text-align: center;
     margin-bottom: 25px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    text-shadow: 0 0 15px rgba(250,204,21,.5);
+    text-shadow: 0 0 15px rgba(56,189,248,.5);
 }
 
 .faq-container {
@@ -313,14 +314,14 @@ h1{
 
 .faq-item {
     background: rgba(15, 23, 42, 0.75);
-    border: 1px solid rgba(250, 204, 21, 0.15);
+    border: 1px solid rgba(56, 189, 248, 0.15);
     border-radius: 10px;
     overflow: hidden;
     transition: border-color 0.25s ease;
 }
 
 .faq-item:hover {
-    border-color: rgba(250, 204, 21, 0.6);
+    border-color: rgba(56, 189, 248, 0.6);
 }
 
 .faq-question {
@@ -342,7 +343,7 @@ h1{
 .faq-question svg {
     width: 18px;
     height: 18px;
-    stroke: #fde047;
+    stroke: #7dd3fc;
     flex-shrink: 0;
     transition: transform 0.3s ease;
 }
@@ -374,11 +375,11 @@ footer{
     position:relative;
     z-index:1;
     background:
-      radial-gradient(circle at 50% 0%, rgba(250,204,21,.22), transparent 50%),
-      radial-gradient(circle at 15% 100%, rgba(234,179,8,.15), transparent 45%),
+      radial-gradient(circle at 50% 0%, rgba(56,189,248,.22), transparent 50%),
+      radial-gradient(circle at 15% 100%, rgba(14,165,233,.15), transparent 45%),
       linear-gradient(180deg, rgba(13,20,36,0.95), #03060a);
-    border-top:2px solid rgba(250,204,21,.4);
-    box-shadow: 0 -15px 40px rgba(234,179,8,.1);
+    border-top:2px solid rgba(56,189,248,.4);
+    box-shadow: 0 -15px 40px rgba(56,189,248,.1);
     padding:65px 20px 30px;
     margin-top:50px;
 }
@@ -390,8 +391,8 @@ footer::before {
     left: 20%;
     right: 20%;
     height: 3px;
-    background: linear-gradient(90deg, transparent, #facc15, transparent);
-    filter: drop-shadow(0 0 10px #facc15);
+    background: linear-gradient(90deg, transparent, #38bdf8, transparent);
+    filter: drop-shadow(0 0 10px #38bdf8);
 }
 
 .footer-content{
@@ -404,13 +405,13 @@ footer::before {
 }
 
 .footer-col h4{
-    color:#fde047;
+    color:#7dd3fc;
     font-size:.95rem;
     font-weight:800;
     letter-spacing:1.5px;
     margin-bottom:18px;
     text-transform:uppercase;
-    text-shadow: 0 0 15px rgba(250,204,21,.5);
+    text-shadow: 0 0 15px rgba(56,189,248,.5);
 }
 
 .footer-col p{
@@ -421,7 +422,7 @@ footer::before {
 }
 
 .footer-col p strong {
-    color: #fde047;
+    color: #7dd3fc;
 }
 
 /* Cuadrícula de Iconos de Páginas con Brillo Pro */
@@ -438,7 +439,7 @@ footer::before {
     gap: 10px;
     padding: 9px 13px;
     background: linear-gradient(145deg, rgba(20, 30, 50, 0.9), rgba(10, 16, 28, 0.9));
-    border: 1px solid rgba(250, 204, 21, 0.3);
+    border: 1px solid rgba(56, 189, 248, 0.3);
     border-radius: 9px;
     color: #e2e8f0;
     text-decoration: none;
@@ -451,18 +452,18 @@ footer::before {
 .footer-page-card svg {
     width: 18px;
     height: 18px;
-    stroke: #fde047;
-    filter: drop-shadow(0 0 5px rgba(250,204,21,.6));
+    stroke: #7dd3fc;
+    filter: drop-shadow(0 0 5px rgba(56,189,248,.6));
     flex-shrink: 0;
     transition: transform 0.2s ease;
 }
 
 .footer-page-card:hover {
-    background: linear-gradient(145deg, rgba(234, 179, 8, 0.25), rgba(15, 23, 42, 0.95));
-    border-color: #facc15;
+    background: linear-gradient(145deg, rgba(56, 189, 248, 0.25), rgba(15, 23, 42, 0.95));
+    border-color: #38bdf8;
     color: #fff;
     transform: translateY(-3px);
-    box-shadow: 0 6px 22px rgba(250, 204, 21, 0.3);
+    box-shadow: 0 6px 22px rgba(56, 189, 248, 0.3);
 }
 
 .footer-page-card:hover svg {
@@ -481,22 +482,22 @@ footer::before {
     height: 40px;
     border-radius: 50%;
     background: rgba(15, 23, 42, 0.9);
-    border: 1px solid rgba(250, 204, 21, 0.35);
+    border: 1px solid rgba(56, 189, 248, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #fde047;
+    color: #7dd3fc;
     text-decoration: none;
     transition: all 0.25s ease;
-    box-shadow: 0 0 12px rgba(250,204,21,.15);
+    box-shadow: 0 0 12px rgba(56,189,248,.15);
 }
 
 .social-icon:hover {
-    background: #facc15;
-    border-color: #facc15;
+    background: #38bdf8;
+    border-color: #38bdf8;
     color: #070c14;
     transform: translateY(-4px);
-    box-shadow: 0 0 25px rgba(250, 204, 21, 0.7);
+    box-shadow: 0 0 25px rgba(56, 189, 248, 0.7);
 }
 
 .social-icon svg {
@@ -509,7 +510,7 @@ footer::before {
     width:min(100%, 1000px);
     margin:0 auto;
     padding-top:25px;
-    border-top:1px solid rgba(250,204,21,.2);
+    border-top:1px solid rgba(56,189,248,.2);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -536,7 +537,7 @@ footer::before {
     align-items: center;
     gap: 8px;
     background: rgba(13, 20, 36, 0.95);
-    border: 1px solid rgba(250, 204, 21, 0.3);
+    border: 1px solid rgba(56, 189, 248, 0.3);
     padding: 10px 16px;
     border-radius: 999px;
     color: #f8fafc;
@@ -638,6 +639,7 @@ footer::before {
 </head>
 <body>
 
+    <!-- Splash de Carga Inicial -->
     <div id="splash-screen">
         <div class="splash-logo-container">
             <img src="logo.png" alt="Logo NEWCOSMO" class="splash-logo">
@@ -645,6 +647,7 @@ footer::before {
         <div class="splash-loader"></div>
     </div>
 
+    <!-- Encabezado con Logo Más Grande y Título Brillante -->
     <header>
         <div class="logo-container">
             <img src="logo.png" alt="Logo NEWCOSMO" class="logo-img">
@@ -652,6 +655,7 @@ footer::before {
         <h1>NEWCOSMO</h1>
     </header>
 
+    <!-- Cuadrícula de Tarjetas de Secciones -->
     <main class="grid-container">
 
         <a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank" rel="noopener" class="card">
@@ -755,6 +759,7 @@ footer::before {
 
     </main>
 
+    <!-- Sección de Preguntas Frecuentes (FAQ) -->
     <section class="faq-section">
         <h2>Preguntas Frecuentes</h2>
         <div class="faq-container">
@@ -790,6 +795,7 @@ footer::before {
         </div>
     </section>
 
+    <!-- Footer Pro Súper Brillante y Llamativo -->
     <footer>
         <div class="footer-content">
             <div class="footer-col">
@@ -841,6 +847,7 @@ footer::before {
         </div>
     </footer>
 
+    <!-- Botón Flotante de WhatsApp con Estilo Exacto de la Referencia -->
     <div class="floating-container">
         <div class="whatsapp-badge">
             <span class="dot"></span>
@@ -853,6 +860,7 @@ footer::before {
         </a>
     </div>
 
+    <!-- Script para ocultar el Splash Screen y controlar el acordeón de Preguntas Frecuentes -->
     <script>
         // Ocultar splash screen al cargar la página
         window.addEventListener('load', () => {
