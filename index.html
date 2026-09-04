@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>NEWCOSMO | Portal Oficial</title>
-    <!-- Fuente moderna -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -14,9 +13,9 @@ html{scroll-behavior:smooth}
 body{
     font-family:'Inter',sans-serif;
     background:
-      radial-gradient(circle at 50% 8%, rgba(234,179,8,.08), transparent 28%),
-      radial-gradient(circle at 10% 70%, rgba(30,41,59,.22), transparent 32%),
-      #070c14;
+      radial-gradient(circle at 50% 8%, rgba(234,179,8,.1), transparent 30%),
+      radial-gradient(circle at 10% 70%, rgba(30,41,59,.25), transparent 35%),
+      #05080f;
     color:#f8fafc;
     min-height:100vh;
     overflow-x:hidden;
@@ -27,11 +26,11 @@ body::before{
     position:fixed;
     inset:0;
     pointer-events:none;
-    opacity:.28;
+    opacity:.3;
     background-image:
-      radial-gradient(circle at 20% 30%, rgba(255,255,255,.55) 0 1px, transparent 1.5px),
-      radial-gradient(circle at 75% 20%, rgba(255,255,255,.35) 0 1px, transparent 1.5px),
-      radial-gradient(circle at 55% 70%, rgba(255,255,255,.3) 0 1px, transparent 1.5px);
+      radial-gradient(circle at 20% 30%, rgba(255,255,255,.6) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 75% 20%, rgba(255,255,255,.4) 0 1px, transparent 1.5px),
+      radial-gradient(circle at 55% 70%, rgba(255,255,255,.35) 0 1px, transparent 1.5px);
     background-size:150px 150px,210px 210px,180px 180px;
 }
 
@@ -41,7 +40,7 @@ body::before{
 #splash-screen {
     position: fixed;
     inset: 0;
-    background: #070c14;
+    background: #05080f;
     z-index: 9999;
     display: flex;
     flex-direction: column;
@@ -60,31 +59,31 @@ body::before{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
 }
 
 .splash-logo-container::after {
     content: '';
     position: absolute;
-    width: 220px;
-    height: 220px;
+    width: 260px;
+    height: 260px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(250,204,21,.5) 0%, rgba(234,179,8,.2) 40%, transparent 70%);
-    filter: blur(20px);
+    background: radial-gradient(circle, rgba(250,204,21,.6) 0%, rgba(234,179,8,.25) 45%, transparent 75%);
+    filter: blur(25px);
     z-index: -1;
 }
 
 .splash-logo {
-    width: 150px;
-    height: 150px;
+    width: 180px;
+    height: 180px;
     object-fit: contain;
-    filter: drop-shadow(0 0 22px rgba(250,204,21,.6));
+    filter: drop-shadow(0 0 25px rgba(250,204,21,.7));
     animation: pulseSplash 1.5s ease-in-out infinite alternate;
 }
 
 @keyframes pulseSplash {
-    0% { transform: scale(0.95); filter: drop-shadow(0 0 15px rgba(250,204,21,.4)); }
-    100% { transform: scale(1.05); filter: drop-shadow(0 0 28px rgba(250,204,21,.8)); }
+    0% { transform: scale(0.95); filter: drop-shadow(0 0 18px rgba(250,204,21,.5)); }
+    100% { transform: scale(1.05); filter: drop-shadow(0 0 32px rgba(250,204,21,.9)); }
 }
 
 .splash-loader {
@@ -116,7 +115,7 @@ main{position:relative;z-index:1}
 
 header{
     text-align:center;
-    padding:48px 20px 26px;
+    padding:56px 20px 30px;
 }
 
 .logo-container{
@@ -124,47 +123,47 @@ header{
     display:inline-flex;
     justify-content:center;
     align-items:center;
-    margin-bottom:12px;
+    margin-bottom:16px;
 }
 
 .logo-container::after{
     content:'';
     position:absolute;
-    width:230px;
-    height:230px;
+    width:300px;
+    height:300px;
     border-radius:50%;
     background:radial-gradient(circle,
-      rgba(250,204,21,.5) 0%,
-      rgba(234,179,8,.22) 38%,
-      transparent 72%);
-    filter:blur(20px);
+      rgba(250,204,21,.6) 0%,
+      rgba(234,179,8,.25) 40%,
+      transparent 75%);
+    filter:blur(25px);
     z-index:-1;
 }
 
 .logo-img{
-    width:180px; /* Logo más grande como se solicitó */
-    height:180px;
+    width:230px; /* Logo del Hero considerablemente más grande y llamativo */
+    height:230px;
     object-fit:contain;
-    filter:drop-shadow(0 0 22px rgba(250,204,21,.6));
+    filter:drop-shadow(0 0 30px rgba(250,204,21,.75));
     animation:floatLogo 4s ease-in-out infinite;
 }
 
 @keyframes floatLogo{
     0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-6px)}
+    50%{transform:translateY(-8px)}
 }
 
 h1{
-    font-size:clamp(2.7rem,6vw,4.2rem);
+    font-size:clamp(3rem, 7vw, 4.8rem);
     line-height:1;
     font-weight:800;
-    letter-spacing:3px;
-    margin:4px 0 6px;
-    background:linear-gradient(180deg,#fff 0%,#fff5b0 35%,#facc15 65%,#ca8a04 100%);
+    letter-spacing:4px;
+    margin:6px 0 8px;
+    background:linear-gradient(180deg,#ffffff 0%,#fffbeb 30%,#fde047 60%,#eab308 85%,#ca8a04 100%);
     -webkit-background-clip:text;
     background-clip:text;
     -webkit-text-fill-color:transparent;
-    text-shadow:0 0 28px rgba(234,179,8,.42);
+    text-shadow:0 0 35px rgba(234,179,8,.5);
 }
 
 .grid-container{
@@ -179,13 +178,13 @@ h1{
 .card{
     min-height:148px;
     padding:18px 18px 16px;
-    border:1px solid rgba(148,163,184,.34);
+    border:1px solid rgba(250,204,21,.25);
     border-radius:12px;
     background:
-      linear-gradient(145deg,rgba(17,24,39,.96),rgba(9,15,25,.96));
+      linear-gradient(145deg,rgba(15,23,42,.96),rgba(7,12,20,.96));
     box-shadow:
-      inset 0 1px 0 rgba(255,255,255,.025),
-      0 8px 25px rgba(0,0,0,.16);
+      inset 0 1px 0 rgba(255,255,255,.04),
+      0 10px 30px rgba(0,0,0,.2);
     text-decoration:none;
     color:inherit;
     display:flex;
@@ -210,10 +209,10 @@ h1{
 
 .card:hover{
     transform:translateY(-5px);
-    border-color:rgba(250,204,21,.65);
+    border-color:rgba(250,204,21,.75);
     box-shadow:
-      0 14px 32px rgba(0,0,0,.30),
-      0 0 20px rgba(234,179,8,.10);
+      0 16px 35px rgba(0,0,0,.35),
+      0 0 25px rgba(234,179,8,.18);
 }
 
 .card:hover::before{opacity:1}
@@ -232,14 +231,14 @@ h1{
     align-items:center;
     justify-content:center;
     border-radius:9px;
-    background:rgba(234,179,8,.045);
+    background:rgba(234,179,8,.08);
 }
 
 .icon-box svg{
     width:32px;
     height:32px;
-    stroke:#f5d66b;
-    filter:drop-shadow(0 0 5px rgba(250,204,21,.22));
+    stroke:#fde047;
+    filter:drop-shadow(0 0 6px rgba(250,204,21,.3));
 }
 
 .card:hover .icon-box svg{
@@ -255,7 +254,7 @@ h1{
 }
 
 .card p{
-    color:#e2e8f0;
+    color:#cbd5e1;
     font-size:.83rem;
     line-height:1.35;
     margin:0;
@@ -267,19 +266,19 @@ h1{
     margin-top:14px;
     padding:8px 18px;
     border-radius:999px;
-    border:1px solid rgba(250,204,21,.7);
-    background:linear-gradient(180deg,#fff5bd 0%,#fde68a 45%,#facc15 100%);
-    color:#161616;
+    border:1px solid rgba(250,204,21,.8);
+    background:linear-gradient(180deg,#fef08a 0%,#fde047 45%,#eab308 100%);
+    color:#0f172a;
     font-size:.78rem;
     font-weight:700;
     text-align:center;
-    box-shadow:0 0 18px rgba(250,204,21,.28);
+    box-shadow:0 0 20px rgba(250,204,21,.35);
     transition:transform .2s ease,box-shadow .2s ease;
 }
 
 .card:hover .card-btn{
     transform:scale(1.03);
-    box-shadow:0 0 24px rgba(250,204,21,.46);
+    box-shadow:0 0 28px rgba(250,204,21,.55);
 }
 
 /* ==========================================================
@@ -289,21 +288,21 @@ h1{
     width: min(100% - 40px, 900px);
     margin: 30px auto 50px;
     padding: 30px;
-    background: linear-gradient(145deg, rgba(13, 20, 36, 0.85), rgba(7, 12, 20, 0.95));
-    border: 1px solid rgba(250, 204, 21, 0.25);
+    background: linear-gradient(145deg, rgba(13, 20, 36, 0.9), rgba(7, 12, 20, 0.95));
+    border: 1px solid rgba(250, 204, 21, 0.3);
     border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    box-shadow: 0 12px 35px rgba(0,0,0,0.35);
 }
 
 .faq-section h2 {
-    color: #fdef96;
+    color: #fde047;
     font-size: 1.6rem;
     font-weight: 800;
     text-align: center;
     margin-bottom: 25px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    text-shadow: 0 0 12px rgba(250,204,21,.4);
+    text-shadow: 0 0 15px rgba(250,204,21,.5);
 }
 
 .faq-container {
@@ -313,15 +312,15 @@ h1{
 }
 
 .faq-item {
-    background: rgba(17, 24, 39, 0.7);
-    border: 1px solid rgba(148, 163, 184, 0.2);
+    background: rgba(15, 23, 42, 0.75);
+    border: 1px solid rgba(250, 204, 21, 0.15);
     border-radius: 10px;
     overflow: hidden;
     transition: border-color 0.25s ease;
 }
 
 .faq-item:hover {
-    border-color: rgba(250, 204, 21, 0.5);
+    border-color: rgba(250, 204, 21, 0.6);
 }
 
 .faq-question {
@@ -343,7 +342,7 @@ h1{
 .faq-question svg {
     width: 18px;
     height: 18px;
-    stroke: #facc15;
+    stroke: #fde047;
     flex-shrink: 0;
     transition: transform 0.3s ease;
 }
@@ -375,11 +374,11 @@ footer{
     position:relative;
     z-index:1;
     background:
-      radial-gradient(circle at 50% 0%, rgba(250,204,21,.18), transparent 50%),
-      radial-gradient(circle at 15% 100%, rgba(234,179,8,.12), transparent 45%),
+      radial-gradient(circle at 50% 0%, rgba(250,204,21,.22), transparent 50%),
+      radial-gradient(circle at 15% 100%, rgba(234,179,8,.15), transparent 45%),
       linear-gradient(180deg, rgba(13,20,36,0.95), #03060a);
-    border-top:2px solid rgba(250,204,21,.35);
-    box-shadow: 0 -15px 40px rgba(234,179,8,.08);
+    border-top:2px solid rgba(250,204,21,.4);
+    box-shadow: 0 -15px 40px rgba(234,179,8,.1);
     padding:65px 20px 30px;
     margin-top:50px;
 }
@@ -392,7 +391,7 @@ footer::before {
     right: 20%;
     height: 3px;
     background: linear-gradient(90deg, transparent, #facc15, transparent);
-    filter: drop-shadow(0 0 8px #facc15);
+    filter: drop-shadow(0 0 10px #facc15);
 }
 
 .footer-content{
@@ -405,13 +404,13 @@ footer::before {
 }
 
 .footer-col h4{
-    color:#fdef96;
+    color:#fde047;
     font-size:.95rem;
     font-weight:800;
     letter-spacing:1.5px;
     margin-bottom:18px;
     text-transform:uppercase;
-    text-shadow: 0 0 12px rgba(250,204,21,.4);
+    text-shadow: 0 0 15px rgba(250,204,21,.5);
 }
 
 .footer-col p{
@@ -422,7 +421,7 @@ footer::before {
 }
 
 .footer-col p strong {
-    color: #facc15;
+    color: #fde047;
 }
 
 /* Cuadrícula de Iconos de Páginas con Brillo Pro */
@@ -439,7 +438,7 @@ footer::before {
     gap: 10px;
     padding: 9px 13px;
     background: linear-gradient(145deg, rgba(20, 30, 50, 0.9), rgba(10, 16, 28, 0.9));
-    border: 1px solid rgba(250, 204, 21, 0.25);
+    border: 1px solid rgba(250, 204, 21, 0.3);
     border-radius: 9px;
     color: #e2e8f0;
     text-decoration: none;
@@ -452,18 +451,18 @@ footer::before {
 .footer-page-card svg {
     width: 18px;
     height: 18px;
-    stroke: #facc15;
-    filter: drop-shadow(0 0 4px rgba(250,204,21,.5));
+    stroke: #fde047;
+    filter: drop-shadow(0 0 5px rgba(250,204,21,.6));
     flex-shrink: 0;
     transition: transform 0.2s ease;
 }
 
 .footer-page-card:hover {
-    background: linear-gradient(145deg, rgba(234, 179, 8, 0.2), rgba(17, 24, 39, 0.95));
+    background: linear-gradient(145deg, rgba(234, 179, 8, 0.25), rgba(15, 23, 42, 0.95));
     border-color: #facc15;
     color: #fff;
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(250, 204, 21, 0.25);
+    box-shadow: 0 6px 22px rgba(250, 204, 21, 0.3);
 }
 
 .footer-page-card:hover svg {
@@ -482,14 +481,14 @@ footer::before {
     height: 40px;
     border-radius: 50%;
     background: rgba(15, 23, 42, 0.9);
-    border: 1px solid rgba(250, 204, 21, 0.3);
+    border: 1px solid rgba(250, 204, 21, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #facc15;
+    color: #fde047;
     text-decoration: none;
     transition: all 0.25s ease;
-    box-shadow: 0 0 10px rgba(250,204,21,.1);
+    box-shadow: 0 0 12px rgba(250,204,21,.15);
 }
 
 .social-icon:hover {
@@ -497,7 +496,7 @@ footer::before {
     border-color: #facc15;
     color: #070c14;
     transform: translateY(-4px);
-    box-shadow: 0 0 20px rgba(250, 204, 21, 0.6);
+    box-shadow: 0 0 25px rgba(250, 204, 21, 0.7);
 }
 
 .social-icon svg {
@@ -510,7 +509,7 @@ footer::before {
     width:min(100%, 1000px);
     margin:0 auto;
     padding-top:25px;
-    border-top:1px solid rgba(250,204,21,.15);
+    border-top:1px solid rgba(250,204,21,.2);
     display:flex;
     justify-content:center;
     align-items:center;
@@ -532,13 +531,12 @@ footer::before {
     gap: 12px;
 }
 
-/* Etiqueta flotante tipo "Asesor técnico en línea" con punto verde */
 .whatsapp-badge {
     display: flex;
     align-items: center;
     gap: 8px;
     background: rgba(13, 20, 36, 0.95);
-    border: 1px solid rgba(250, 204, 21, 0.25);
+    border: 1px solid rgba(250, 204, 21, 0.3);
     padding: 10px 16px;
     border-radius: 999px;
     color: #f8fafc;
@@ -546,7 +544,7 @@ footer::before {
     font-weight: 600;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
     backdrop-filter: blur(8px);
-    pointer-events: none; /* No interactivo para evitar que salgan letras o titulos raros al pasar el cursor */
+    pointer-events: none;
     white-space: nowrap;
 }
 
@@ -612,7 +610,7 @@ footer::before {
 
 @media(max-width:520px){
     header{padding-top:30px}
-    .logo-img{width:140px;height:140px}
+    .logo-img{width:160px;height:160px}
     h1{letter-spacing:2px;margin-bottom:5px}
 
     .grid-container{
@@ -628,7 +626,7 @@ footer::before {
     }
 
     .whatsapp-badge {
-        display: none; /* Oculta la etiqueta en pantallas muy pequeñas para ahorrar espacio, dejando solo el botón de WhatsApp */
+        display: none;
     }
 
     .floating-container {
@@ -640,7 +638,6 @@ footer::before {
 </head>
 <body>
 
-    <!-- Splash de Carga Inicial -->
     <div id="splash-screen">
         <div class="splash-logo-container">
             <img src="logo.png" alt="Logo NEWCOSMO" class="splash-logo">
@@ -648,7 +645,6 @@ footer::before {
         <div class="splash-loader"></div>
     </div>
 
-    <!-- Encabezado con Logo Más Grande y Título Brillante -->
     <header>
         <div class="logo-container">
             <img src="logo.png" alt="Logo NEWCOSMO" class="logo-img">
@@ -656,7 +652,6 @@ footer::before {
         <h1>NEWCOSMO</h1>
     </header>
 
-    <!-- Cuadrícula de Tarjetas de Secciones -->
     <main class="grid-container">
 
         <a href="https://newcosmo-peru.github.io/MANUALES/" target="_blank" rel="noopener" class="card">
@@ -760,7 +755,6 @@ footer::before {
 
     </main>
 
-    <!-- Sección de Preguntas Frecuentes (FAQ) -->
     <section class="faq-section">
         <h2>Preguntas Frecuentes</h2>
         <div class="faq-container">
@@ -796,7 +790,6 @@ footer::before {
         </div>
     </section>
 
-    <!-- Footer Pro Súper Brillante y Llamativo -->
     <footer>
         <div class="footer-content">
             <div class="footer-col">
@@ -848,7 +841,6 @@ footer::before {
         </div>
     </footer>
 
-    <!-- Botón Flotante de WhatsApp con Estilo Exacto de la Referencia -->
     <div class="floating-container">
         <div class="whatsapp-badge">
             <span class="dot"></span>
@@ -861,14 +853,13 @@ footer::before {
         </a>
     </div>
 
-    <!-- Script para ocultar el Splash Screen y controlar el acordeón de Preguntas Frecuentes -->
     <script>
         // Ocultar splash screen al cargar la página
         window.addEventListener('load', () => {
             const splash = document.getElementById('splash-screen');
             setTimeout(() => {
                 splash.classList.add('fade-out');
-            }, 600); // Pequeño retraso elegante
+            }, 600);
         });
 
         // Interacción de Preguntas Frecuentes (Acordeón)
@@ -877,12 +868,10 @@ footer::before {
                 const item = button.parentElement;
                 const isActive = item.classList.contains('active');
                 
-                // Cierra todos los demás
                 document.querySelectorAll('.faq-item').forEach(faq => {
                     faq.classList.remove('active');
                 });
 
-                // Si no estaba activo, lo abre
                 if (!isActive) {
                     item.classList.add('active');
                 }
